@@ -1,11 +1,11 @@
-<ion-view title="User">
-  <ion-content has-header="true" padding="true" ng-show="user.id != undefined">
+<ion-view view-title="User">
+  <ion-content has-header="true" padding="true" ng-show="user.uid != undefined">
     <div class="list card">
       <div class="item item-divider">
         Email
       </div>
       <div class="item item-text-wrap">
-        {{ user.email }}
+        {{ user.password.email }}
       </div>
     </div>
     <div class="list card">
@@ -13,7 +13,7 @@
         firebaseAuthToken
       </div>
       <div class="item item-text-wrap">
-        {{ user.firebaseAuthToken }}
+        {{ user.token }}
       </div>
     </div>
     <div class="list card">
@@ -21,7 +21,7 @@
         id
       </div>
       <div class="item item-text-wrap">
-        {{ user.id }}
+        {{ user.uid }}
       </div>
     </div>
     <div class="list card">
@@ -33,7 +33,7 @@
       </div>
     </div>
   </ion-content>
-  <ion-content has-header="true" padding="true" class="vcenter" ng-show="user.id == undefined">
+  <ion-content has-header="true" padding="true" class="vcenter" ng-show="user.uid == undefined">
     <div class="row row-center">
       <div class="col col-center">
         Look like there is no user.id variable so you need to login

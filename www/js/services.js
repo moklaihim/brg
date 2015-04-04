@@ -1,20 +1,19 @@
 angular.module('starter.services', [])
 
-.factory('User', ["$timeout", "$firebaseSimpleLogin", function($timeout, $firebaseSimpleLogin) {
+.factory('User', ["$timeout", "$firebaseAuth", function($timeout, $firebaseAuth) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
   var ref = new Firebase("https://fiery-heat-6039.firebaseIO.com/");
 
-  var auth = $firebaseSimpleLogin(ref);
+  var auth = $firebaseAuth(ref);
   var user = {};
 
   return {
     login: function(email, password, callback){
-      auth.$login('password', {
+      auth.$authWithPassword({
         email: email,
-        password: password,
-        rememberMe: false
+        password: password
       }).then(function(res) {
         user = res;
         if (callback) {
@@ -28,7 +27,7 @@ angular.module('starter.services', [])
     },
 
     register: function(email, password, callback) {
-      auth.$createUser(email, password).then(function(res) {
+      auth.$createUser({email: email, password: password}).then(function(res) {
         user = res;
         if (callback) {
           callback(res)
@@ -41,8 +40,9 @@ angular.module('starter.services', [])
     getUser: function() {
       return user;
     },
+
     logout: function() {
-      auth.$logout();
+      auth.$unauth();
       user = {};
     }
   }

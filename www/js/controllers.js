@@ -1,12 +1,16 @@
 angular.module('starter.controllers', [])
 
+.controller('UserCtrl', ["$scope", "User", function($scope, User) {
+  $scope.user = User.getUser();
+}])
+
 .controller('AccountCtrl', ["$scope", "$ionicPopup", "User", function($scope, $ionicPopup, User) {
   $scope.user = User.getUser();
 
   $scope.login = function (){
   	User.login($scope.user.email, $scope.user.password, function(res)
   		{
-  			if (res.id) {
+  			if (res.uid) {
   				$scope.user = res;
   			} else {
   				$ionicPopup.alert({
@@ -20,7 +24,7 @@ angular.module('starter.controllers', [])
   $scope.register = function (){
   	User.register($scope.user.email, $scope.user.password, function(res)
 		{
-			if (res.id) {
+			if (res.uid) {
 				$scope.user = res;
 			} else {
 				$ionicPopup.alert({
