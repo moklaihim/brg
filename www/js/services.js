@@ -29,7 +29,7 @@ angular.module('starter.services', [])
 
     register: function(email, password, callback) {
       auth.$createUser(email, password).then(function(res) {
-        user = resl
+        user = res;
         if (callback) {
           callback(res)
         }

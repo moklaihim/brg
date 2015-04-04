@@ -13,7 +13,7 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', ["$scope", "$ionicPopup", "USer", function($scope, $ionicPopup, User) {
+.controller('AccountCtrl', ["$scope", "$ionicPopup", "User", function($scope, $ionicPopup, User) {
   $scope.user = User.getUser();
 
   $scope.login = function (){
