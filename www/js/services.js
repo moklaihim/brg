@@ -4,14 +4,14 @@ angular.module('starter.services', [])
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var ref = new Firebase('https://fiery-heat-6039.firebaseIO.com/');
+  var ref = new Firebase("https://fiery-heat-6039.firebaseIO.com/");
 
-  var aut = $firebaseSimpleLogin(ref);
+  var auth = $firebaseSimpleLogin(ref);
   var user = {};
 
   return {
     login: function(email, password, callback){
-      auth.login('password', {
+      auth.$login('password', {
         email: email,
         password: password,
         rememberMe: false
