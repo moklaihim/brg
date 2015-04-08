@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
   });
 }])
 
-.controller('AccountCtrl', ["$scope", "$ionicPopup", "User", function($scope, $ionicPopup, User) {
+.controller('AccountCtrl', ["$scope", "$ionicPopup", "$state", "User", function($scope, $ionicPopup, $state, User) {
   $scope.user = User.getUser();
 
   $scope.login = function (){
@@ -16,6 +16,7 @@ angular.module('starter.controllers', [])
   		{
   			if (res.uid) {
   				$scope.user = res;
+          $state.go('sales-home');
   			} else {
   				$ionicPopup.alert({
   					title: 'Login error!',

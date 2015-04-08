@@ -57,15 +57,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       }
     })
-  
+
   .state('sales-home', {
       url: '/sales-home',
-      views: {
-        'sales-home': {
+      // views: {
+        // 'sales-home': {
           templateUrl: 'templates/sales-home.html',
-          // controller: 'SalesHomeCtrl'
-        }
-      }
+        // }
+      // }
     });
 
 
