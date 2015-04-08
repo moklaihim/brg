@@ -1,7 +1,11 @@
 angular.module('starter.controllers', [])
 
-.controller('UserCtrl', ["$scope", "User", function($scope, User) {
-  $scope.user = User.getUser();
+.controller('UserCtrl', ["$scope", "$ionicPopup", "User", function($scope, $ionicPopup, User) {
+  //$scope.user = User.getUser();
+  $ionicPopup.alert({
+  					title: 'Login error!',
+  					template:"ok" 
+  });
 }])
 
 .controller('AccountCtrl', ["$scope", "$ionicPopup", "User", function($scope, $ionicPopup, User) {
