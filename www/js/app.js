@@ -56,7 +56,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           controller: 'UserCtrl'
         }
       }
+    })
+  
+  .state('sales-home', {
+      url: '/sales-home',
+      views: {
+        'sales-home': {
+          templateUrl: 'templates/sales-home.html',
+          // controller: 'SalesHomeCtrl'
+        }
+      }
     });
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/account');
