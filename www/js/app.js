@@ -58,13 +58,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-  .state('sales-home', {
-      url: '/sales-home',
-      // views: {
-        // 'sales-home': {
-          templateUrl: 'templates/sales-home.html',
-        // }
-      // }
+  .state('tab.sales', {
+      url: '/sales',
+       views: {
+         'tab-sales': {
+          templateUrl: 'templates/tab-sales.html',
+          controller: 'SalesCtrl'
+         }
+       }
     });
 
 

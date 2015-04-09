@@ -44,4 +44,11 @@ angular.module('starter.controllers', [])
   	User.logout();
   	$scope.user = {};
   };
-}]);
+}])
+
+.controller('SalesCtrl', ["$scope", "$state", "User", function($scope, $state, User) {
+  $scope.sales = [{name:"R31006-BLU-39", price:"109"}, {name:"R31019-BLK-41", price:"120"}, {name:"R31001-BLK-40", price:"93"}];
+    
+}])
+
+;
