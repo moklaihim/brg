@@ -1,0 +1,13 @@
+<ion-view title="Sales" >
+    <ion-nav-buttons side="left">
+        <button class="button" ng-click="doSomething()">BM@TAKA</button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button" ng-click="doSomething()">1-Apr-2015</button>
+    </ion-nav-buttons>
+    <ion-content padding="true">
+        <ion-list ng-repeat="sale in sales">
+            <ion-item><b>{{sale.name}}</b><span style="float: right;">${{sale.price}}</span></ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
