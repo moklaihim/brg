@@ -6,8 +6,9 @@
         <button class="button" ng-click="doSomething()">1-Apr-2015</button>
     </ion-nav-buttons>
     <ion-content padding="true">
-        <ion-list ng-repeat="sale in sales">
-            <ion-item><b>{{sale.name}}</b><span style="float: right;">${{sale.price}}</span></ion-item>
+        <ion-list>
+            <ion-item ng-repeat="sale in sales"><b>{{sale.name}}</b><span style="float: right;">${{sale.price}}</span></ion-item>
+            <ion-item><button class="button" ng-click="doSomething()">Add</button><button class="button" ng-click="doSomething()">Scan</button></ion-item>
         </ion-list>
     </ion-content>
 </ion-view>
