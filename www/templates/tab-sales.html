@@ -27,7 +27,7 @@
             <input ng-model="query" type="text">
         </label>
         <ion-list>
-            <ion-item ng-repeat="item in items | filter :query" ng-click="manualAddSalePage2(item.id)"><b>{{item.id}}</b></ion-item>
+            <ion-item ng-repeat="item in items | filter :query" ng-click="manualAddSalePage2(item.id, item.price)"><b>{{item.id}}</b></ion-item>
         </ion-list>
     </ion-content>
 

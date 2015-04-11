@@ -62,7 +62,8 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         $scope.showManualAddSalePage1 = true;
     };
 
-    $scope.manualAddSalePage2 = function($item_id){
+    $scope.manualAddSalePage2 = function($item_id, $retail_price){
+        $scope.item_id = $item_id;
         $scope.item_id = $item_id;
         $scope.showManualAddSalePage1 = false;
         $scope.showManualAddSalePage2 = true;
