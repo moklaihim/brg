@@ -1,6 +1,6 @@
 <ion-view title="Stocks" >
     <ion-nav-buttons side="left">
-        <button class="button" ng-click="showStoreList()">BM@TAKA</button>
+        <button class="button" ng-click="showStoreList()">{{store_name}}</button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
         <button class="button" ng-click="doSomething()">{{date}}</button>
@@ -13,6 +13,11 @@
         <ion-list>
             <ion-item ng-repeat="stock in stocks | filter :query "><b>{{stock.item}}</b><span style="float: right;">${{stock.price}}</span></ion-item>
             <!-- <ion-item><button class="button" ng-click="doSomething()">Add</button><button class="button" ng-click="doSomething()">Scan</button></ion-item> -->
+        </ion-list>
+    </ion-content>
+     <ion-content padding="false" ng-show="selectStoreView">
+        <ion-list>
+            <ion-item ng-repeat="store in stores" ng-click="selectStore('{{store.id}}', '{{store.name}}')"><b>{{store.name}}</b></ion-item>
         </ion-list>
     </ion-content>
     <!-- <ion-content padding="false" ng-show="selectStoreView">
