@@ -11,7 +11,7 @@
         <input ng-model="query" type="text">
         </label>
         <ion-list>
-            <ion-item ng-repeat="stock in stocks | filter :query "><b>{{stock.id}}</b><span style="float: right;">${{stock.price}}</span></ion-item>
+            <ion-item ng-repeat="stock in stocks | filter :query "><b>{{stock.item}}</b><span style="float: right;">{{stock.qty}}</span></ion-item>
             <!-- <ion-item><button class="button" ng-click="doSomething()">Add</button><button class="button" ng-click="doSomething()">Scan</button></ion-item> -->
         </ion-list>
     </ion-content>

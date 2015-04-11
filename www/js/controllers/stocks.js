@@ -10,14 +10,12 @@ angular.module('starter.controllers').controller('StockCtrl', ["$scope", "$state
         var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/stocks/bm_isetan_scotts");
         $scope.sales = $firebaseArray(ref);
         $scope.sales.$add({
-            item: "R54321-BLU-39",
-            price: "99",
-            date_time: "1-Apr-2015 12:30"
+            item: "R54321-BLU-35",
+            qty: 4
         });
         $scope.sales.$add({
-            item: "R56789-BRW-43",
-            price: "130",
-            date_time: "1-Apr-2015 16:50"
+            item: "R56789-BRW-41",
+            qty: 3
         });
     }
 
