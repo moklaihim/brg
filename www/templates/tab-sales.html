@@ -33,13 +33,15 @@
 
     <ion-content padding="false" ng-show="showManualAddSalePage2">
         <ion-list>
-            <ion-item><b>{{item_id}}</b></ion-item>
+            <ion-item ng-click="manualAddSalePage1()"><b>{{item_id}}</b></ion-item>
         </ion-list>
         <label class="item item-input">
             <span class="input-label">Sale Price</span>
             <input ng-model="sale_price" type="text">
         </label>
-            <button class="button" ng-click="manualAddSaleOK(sale_price)">OK</button>
+        <label class="item item-input">
+            <button class="button" ng-click="manualAddSaleOK(sale_price)">OK</button><button class="button" ng-click="manualAddSaleCancel()">Cancel</button>
+        </label>
     </ion-content>
 
 </ion-view>
