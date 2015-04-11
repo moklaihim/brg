@@ -8,8 +8,17 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     $scope.store_name = "BM@TAKA";
     $scope.date = "2-Apr-2015";
 
-    updateSales();
+    connectFirebase();
+    //updateSales();
     //createDummyData();
+
+    function connectFirebase(){
+        $scope.stores = $firebaseArray(new Firebase("https://fiery-heat-6039.firebaseio.com/stores"));
+        $scope.items = $firebaseArray(new Firebase("https://fiery-heat-6039.firebaseio.com/items"));
+
+        var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
+        $scope.sales = $firebaseArray(ref.child("sales/" + $scope.store_id));
+    }
 
     function createDummyData(){
         var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/sales/bm_isetan_scotts");
@@ -32,8 +41,8 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     };
 
     $scope.showStoreList = function(){
-        var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
-        $scope.stores = $firebaseArray(ref.child("stores"));
+        //var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
+        //$scope.stores = $firebaseArray(ref.child("stores"));
         //var syncObject = $firebaseObject(ref.child("stores"));
         //syncObject.$bindTo($scope, "stores");
 
@@ -50,32 +59,34 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         */
         $scope.store_id = $store_id;
         $scope.store_name = $store_name;
-        updateSales();
+        var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
+        $scope.sales = $firebaseArray(ref.child("sales/" + $scope.store_id));
+        //updateSales();
         $scope.showStoreView = false;
         $scope.hideSalesView = false;
     };
 
     $scope.manualAddSalePage1 = function(){
-        var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
-        $scope.items = $firebaseArray(ref.child("items"));
+        //var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
+        //$scope.items = $firebaseArray(ref.child("items"));
         $scope.hideSalesView = true;
         $scope.showManualAddSalePage1 = true;
     };
 
     $scope.manualAddSalePage2 = function($item_id, $retail_price){
         $scope.item_id = $item_id;
-        $scope.item_id = $item_id;
+        $scope.sale_price = $retail_price;
         $scope.showManualAddSalePage1 = false;
         $scope.showManualAddSalePage2 = true;
     };
 
     $scope.manualAddSaleOK = function($sale_price){
-        $scope.price = $sale_price;
-        var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
-        $scope.sales = $firebaseArray(ref.child("sales/" + $scope.store_id));
+        $scope.sale_price = $sale_price;
+        //var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
+        //$scope.sales = $firebaseArray(ref.child("sales/" + $scope.store_id));
         $scope.sales.$add({
             item: $scope.item_id,
-            price: $scope.price,
+            price: $scope.sale_price,
             date_time: "1-Apr-2015 12:30"
         });
         updateSales();
