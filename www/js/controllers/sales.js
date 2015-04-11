@@ -1,4 +1,4 @@
-angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state", "$ionicPopup", "$ionicPlatform", "$firebaseArray", "User", function($scope, $state, $ionicPopup, $ionicPlatform, $firebaseArray, User) {
+angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state", "$ionicPopup", "$ionicPlatform", "$firebaseArray", "$cordovaBarcodeScanner", "User", function($scope, $state, $ionicPopup, $ionicPlatform, $firebaseArray, $cordovaBarcodeScanner, User) {
   //$ionicPlatform.ready(function() {
     //$scope.$storage = $localStorage.$default({
       //isEnableHoge: false,
@@ -46,6 +46,8 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         //var syncObject = $firebaseObject(ref.child("stores"));
         //syncObject.$bindTo($scope, "stores");
 
+        $scope.showManualAddSalePage1 = false;
+        $scope.showManualAddSalePage2 = false;
         $scope.showStoreView = true;
         $scope.hideSalesView = true;
     };
@@ -69,6 +71,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     $scope.manualAddSalePage1 = function(){
         //var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
         //$scope.items = $firebaseArray(ref.child("items"));
+        $scope.showManualAddSalePage2 = false;
         $scope.hideSalesView = true;
         $scope.showManualAddSalePage1 = true;
     };
@@ -89,8 +92,32 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
             price: $scope.sale_price,
             date_time: "1-Apr-2015 12:30"
         });
-        updateSales();
+        //updateSales();
         $scope.showManualAddSalePage2 = false;
         $scope.hideSalesView = false;
+    };
+
+    $scope.manualAddCancel = function(){
+        $scope.showManualAddSalePage2 = false;
+        $scope.hideSalesView = false;
+    };
+
+    $scope.scanAddSalePage1 = function(){
+        $ionicPlatform.ready(function(){
+            $cordovaBarcodeScanner
+                .scan()
+                .then(function(barcodeData) {
+                    // Success! Barcode data is here
+                    $ionicPopup.alert({
+                        title: 'Alert',
+                        template: barcodeData
+                    });
+                }, function(error) {
+                    // An error occurred
+                });
+        });
+
+        $scope.hideSalesView = true;
+        $scope.showScanAddSalePage1 = true;
     };
 }])
