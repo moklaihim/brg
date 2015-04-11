@@ -54,7 +54,6 @@ angular.module('starter.controllers', [])
     //});
     $store_id = "bm_taka";
     var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
-
     $scope.sales = $firebaseArray(ref.child("sales/" + $store_id));
     //$scope.stores = $firebaseArray(ref.child("stores"));
     //$scope.stores.$add({
@@ -81,9 +80,9 @@ angular.module('starter.controllers', [])
 
     $scope.showStoreList = function(){
         var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
-        //$scope.stores = $firebaseArray(ref.child("stores"));
-        var syncObject = $firebaseObject(ref.child("stores");
-        syncObject.$bindTo($scope, "stores");
+        $scope.stores = $firebaseArray(ref.child("stores"));
+        //var syncObject = $firebaseObject(ref.child("stores"));
+        //syncObject.$bindTo($scope, "stores");
 
         $scope.selectStoreView = true;
     }
