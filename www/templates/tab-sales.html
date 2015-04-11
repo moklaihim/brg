@@ -1,24 +1,45 @@
 <ion-view title="Sales" >
+
     <ion-nav-buttons side="left">
         <button class="button" ng-click="showStoreList()">{{store_name}}</button>
     </ion-nav-buttons>
+
     <ion-nav-buttons side="right">
         <button class="button" ng-click="doSomething()">{{date}}</button>
     </ion-nav-buttons>
-    <ion-content padding="true" ng-hide="selectStoreView">
+
+    <ion-content padding="true" ng-hide="hideSalesView">
         <ion-list>
             <ion-item ng-repeat="sale in sales"><b>{{sale.item}}</b><span style="float: right;">${{sale.price}}</span></ion-item>
-            <ion-item><button class="button" ng-click="manualAddSale()">Add</button><button class="button" ng-click="scanAddSalePage1()">Scan</button></ion-item>
+            <ion-item><button class="button" ng-click="manualAddSalePage1()">Add</button><button class="button" ng-click="scanAddSalePage1()">Scan</button></ion-item>
         </ion-list>
     </ion-content>
-    <ion-content padding="false" ng-show="selectStoreView">
+
+    <ion-content padding="false" ng-show="showStoreView">
         <ion-list>
             <ion-item ng-repeat="store in stores" ng-click="selectStore('{{store.id}}', '{{store.name}}')"><b>{{store.name}}</b></ion-item>
         </ion-list>
     </ion-content>
-    <ion-content padding="false" ng-show="manualAddSalePage1">
+
+    <ion-content padding="false" ng-show="showManualAddSalePage1">
+        <label class="item item-input">
+            <span class="input-label">Search</span>
+            <input ng-model="query" type="text">
+        </label>
         <ion-list>
-            <ion-item ng-repeat="item in items" ng-click="selectStore('{{item.id}}')"><b>{{item.id}}</b></ion-item>
+            <ion-item ng-repeat="item in items | filter :query" ng-click="manualAddSalePage2('{{item.id}}')"><b>{{item.id}}</b></ion-item>
         </ion-list>
     </ion-content>
+
+    <ion-content padding="false" ng-show="showManualAddSalePage2">
+        <ion-list>
+            <ion-item><b>{{item_id}}</b></ion-item>
+        </ion-list>
+        <label class="item item-input">
+            <span class="input-label">Sale Price</span>
+            <input ng-model="sale_price" type="text">
+        </label>
+            <button class="button" ng-click="manualAddSaleOK('{{sale_price}}')">OK</button>
+    </ion-content>
+
 </ion-view>
