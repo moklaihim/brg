@@ -1,32 +1,30 @@
 angular.module('starter.controllers').controller('StockCtrl', ["$scope", "$state", "$ionicPlatform", "$firebaseArray", "User", function($scope, $state, $ionicPlatform, $firebaseArray, User) {
-  //$ionicPlatform.ready(function() {
-    //$scope.$storage = $localStorage.$default({
-      //isEnableHoge: false,
-      //positionXHoge: 10
-    //});
-    $store_id = "bm_taka";
-    var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
-    $scope.stocks = $firebaseArray(ref.child("stocks/" + $store_id));
-    // $scope.stocks = $firebaseArray(ref.child("stocks"));
-    
-    // $scope.stocks.$add({
-    //   item: "R31006-BLU-39",
-    //   price: "109",
-    //   date_time: "1-Apr-2015 12:30"
-    // });
-    // $scope.stocks.$add({
-    //   item: "R31012-BLK-41",
-    //   price: "93",
-    //   date_time: "1-Apr-2015 13:22"
-    // });
-    // $scope.stocks.$add({
-    //   item: "R31010-BRW-43",
-    //   price: "109",
-    //   date_time: "1-Apr-2015 16:50"
-    // });
-    
+
+    $scope.store_id = "bm_taka";
+    $scope.store_name = "BM@TAKA"
     $scope.date = "2-Apr-2015";
-  //};
+    updateStocks();
+    //createDummyData();
+
+    function createDummyData(){
+        var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/stocks/bm_isetan_scotts");
+        $scope.sales = $firebaseArray(ref);
+        $scope.sales.$add({
+            item: "R54321-BLU-39",
+            price: "99",
+            date_time: "1-Apr-2015 12:30"
+        });
+        $scope.sales.$add({
+            item: "R56789-BRW-43",
+            price: "130",
+            date_time: "1-Apr-2015 16:50"
+        });
+    }
+
+    function updateStocks(){
+        var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
+        $scope.stocks = $firebaseArray(ref.child("stocks/" + $scope.store_id));
+    }
 
     $scope.showStoreList = function(){
         var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
@@ -35,5 +33,18 @@ angular.module('starter.controllers').controller('StockCtrl', ["$scope", "$state
         //syncObject.$bindTo($scope, "stores");
 
         $scope.selectStoreView = true;
+    }
+
+    $scope.selectStore = function($store_id, $store_name){
+        /*
+        $ionicPopup.alert({
+            title: 'Alert',
+            template: $store_id
+        });
+        */
+        $scope.store_id = $store_id;
+        $scope.store_name = $store_name;
+        updateStocks();
+        $scope.selectStoreView = false;
     }
 }])
