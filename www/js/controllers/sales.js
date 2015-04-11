@@ -69,12 +69,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     };
 
     $scope.manualAddSaleOK = function($sale_price){
-        $ionicPopup.alert({
-            title: 'Alert',
-            template: $sale_price
-        });
-        /*
-        $scope.price = $price;
+        $scope.price = $sale_price;
         var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
         $scope.sales = $firebaseArray(ref.child("sales/" + $scope.store_id));
         $scope.sales.$add({
@@ -84,7 +79,6 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         });
         updateSales();
         $scope.showManualAddSalePage2 = false;
-        $scope.showSalesView = true;
-        */
+        $scope.hideSalesView = false;
     };
 }])
