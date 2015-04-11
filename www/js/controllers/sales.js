@@ -52,4 +52,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         updateSales();
         $scope.selectStoreView = false;
     }
+
+    $scope.manualAddSalePage1 function(){
+    }
 }])

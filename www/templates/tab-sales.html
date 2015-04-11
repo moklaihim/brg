@@ -8,12 +8,17 @@
     <ion-content padding="true" ng-hide="selectStoreView">
         <ion-list>
             <ion-item ng-repeat="sale in sales"><b>{{sale.item}}</b><span style="float: right;">${{sale.price}}</span></ion-item>
-            <ion-item><button class="button" ng-click="doSomething()">Add</button><button class="button" ng-click="doSomething()">Scan</button></ion-item>
+            <ion-item><button class="button" ng-click="manualAddSale()">Add</button><button class="button" ng-click="scanAddSalePage1()">Scan</button></ion-item>
         </ion-list>
     </ion-content>
     <ion-content padding="false" ng-show="selectStoreView">
         <ion-list>
             <ion-item ng-repeat="store in stores" ng-click="selectStore('{{store.id}}', '{{store.name}}')"><b>{{store.name}}</b></ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-content padding="false" ng-show="manualAddSalePage1">
+        <ion-list>
+            <ion-item ng-repeat="item in items" ng-click="selectStore('{{item.id}}')"><b>{{item.id}}</b></ion-item>
         </ion-list>
     </ion-content>
 </ion-view>
