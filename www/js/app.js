@@ -63,7 +63,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       views: {
         'tab-stock': {
           templateUrl: 'templates/tab-stock.html',
-          // controller: 'UserCtrl'
+          controller: 'StockCtrl'
         }
       }
     })
