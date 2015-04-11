@@ -1,6 +1,6 @@
 <ion-view title="Sales" >
     <ion-nav-buttons side="left">
-        <button class="button" ng-click="showStoreList()">BM@TAKA</button>
+        <button class="button" ng-click="showStoreList()">{{store_name}}</button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
         <button class="button" ng-click="doSomething()">{{date}}</button>
@@ -13,7 +13,7 @@
     </ion-content>
     <ion-content padding="false" ng-show="selectStoreView">
         <ion-list>
-            <ion-item ng-repeat="store in stores" ng-click="selectStore()"><b>{{store.name}}</b></ion-item>
+            <ion-item ng-repeat="store in stores" ng-click="selectStore('{{store.id}}', '{{store.name}}')"><b>{{store.name}}</b></ion-item>
         </ion-list>
     </ion-content>
 </ion-view>
