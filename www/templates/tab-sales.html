@@ -1,14 +1,19 @@
 <ion-view title="Sales" >
     <ion-nav-buttons side="left">
-        <button class="button" ng-click="doSomething()">BM@TAKA</button>
+        <button class="button" ng-click="showStoreList()">BM@TAKA</button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button" ng-click="doSomething()">1-Apr-2015</button>
+        <button class="button" ng-click="doSomething()">{{date}}</button>
     </ion-nav-buttons>
-    <ion-content padding="true">
+    <ion-content padding="true" ng-hide="selectStoreView">
         <ion-list>
-            <ion-item ng-repeat="sale in sales"><b>{{sale.name}}</b><span style="float: right;">${{sale.price}}</span></ion-item>
+            <ion-item ng-repeat="sale in sales"><b>{{sale.item}}</b><span style="float: right;">${{sale.price}}</span></ion-item>
             <ion-item><button class="button" ng-click="doSomething()">Add</button><button class="button" ng-click="doSomething()">Scan</button></ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-content padding="false" ng-show="selectStoreView">
+        <ion-list>
+            <ion-item ng-repeat="store in stores" ng-click="selectStore()"><b>{{store.name}}</b></ion-item>
         </ion-list>
     </ion-content>
 </ion-view>
