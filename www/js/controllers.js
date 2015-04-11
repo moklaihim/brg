@@ -55,6 +55,7 @@ angular.module('starter.controllers', [])
     $store_id = "bm_taka";
     var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
     $scope.sales = $firebaseArray(ref.child("sales/" + $store_id));
+
     //$scope.stores = $firebaseArray(ref.child("stores"));
     //$scope.stores.$add({
       
