@@ -48,3 +48,4 @@ angular.module('starter.controllers', [])
 
 document.write('<script type="text/javascript" src="js/controllers/sales.js"></script>');
 document.write('<script type="text/javascript" src="js/controllers/stocks.js"></script>');
+document.write('<script type="text/javascript" src="js/controllers/test.js"></script>');

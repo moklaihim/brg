@@ -1,6 +1,6 @@
 {
   "name": "BRG",
-  "app_id": "e15bb578",
+  "app_id": "96d7457d",
   "gulpStartupTasks": [
     "sass",
     "watch"
