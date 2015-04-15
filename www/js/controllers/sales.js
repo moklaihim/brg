@@ -38,13 +38,12 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         fStores.on('value', function(snapshot) {
             //console.log(snapshot.val());
         }, undefined, undefined, true);
+        $scope.stores = $firebaseArray(fStores);
 
         var fItems = new OfflineFirebase("https://fiery-heat-6039.firebaseio.com/items");
         fItems.on('value', function(snapshot) {
             //console.log(snapshot.val());
         }, undefined, undefined, true);
-
-        $scope.stores = $firebaseArray(fStores);
         $scope.items = $firebaseArray(fItems);
     }
 
