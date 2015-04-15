@@ -29,6 +29,7 @@
         </label>
         <ion-list>
             <ion-item ng-repeat="item in items | filter :query" ng-click="manualAddSalePage2(item.id, item.price)"><b>{{item.id}}</b></ion-item>
+            <ion-item ng-show="(items | filter :query).length == 0" ng-click="manualAddSalePage2(query, 'new')"><center><b>Not Found. Add {{query}}?</b></center></ion-item>
         </ion-list>
     </ion-content>
 

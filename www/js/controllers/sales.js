@@ -1,4 +1,4 @@
-angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state", "$ionicPopup", "$ionicPlatform", "$firebaseArray", "$cordovaBarcodeScanner", "User", function($scope, $state, $ionicPopup, $ionicPlatform, $firebaseArray, $cordovaBarcodeScanner, User) {
+angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state", "$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "User", function($scope, $state, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, User) {
   //$ionicPlatform.ready(function() {
     //$scope.$storage = $localStorage.$default({
       //isEnableHoge: false,
@@ -25,7 +25,9 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         var today=new Date(); 
         $scope.year = today.getFullYear();
         $scope.month = today.getMonth()+1;
+        if ($scope.month < 10) { $scope.month = '0' + $scope.month; }
         $scope.day = today.getDate();
+        if ($scope.day < 10) { $scope.day = '0' + $scope.day; }
         $scope.date = $scope.year + "/" + $scope.month + "/" + $scope.day;
     }
 
@@ -105,8 +107,16 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     };
 
     $scope.manualAddSalePage2 = function($item_id, $retail_price){
+        if ($retail_price == 'new'){
+            //Add item to DB
+            var fNewItem = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + $item_id);
+            var objNewItem = $firebaseObject(fNewItem);
+            objNewItem.id = $item_id;
+            objNewItem.$save();
+
+        }
         $scope.item_id = $item_id;
-        $scope.sale_price = $retail_price;
+        //$scope.sale_price = $retail_price;
         $scope.showManualAddSalePage1 = false;
         $scope.showManualAddSalePage2 = true;
     };
