@@ -145,17 +145,17 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
             $cordovaBarcodeScanner
                 .scan()
                 .then(function(barcodeData) {
-                    // Success! Barcode data is here
-                    $ionicPopup.alert({
-                        title: 'Alert',
-                        template: barcodeData
-                    });
+                    $scope.item_id = barcodeData.text;
+                    var fNewItem = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + barcodeData.text);
+                    var objNewItem = $firebaseObject(fNewItem);
+                    objNewItem.id = barcodeData.text;
+                    objNewItem.$save();
                 }, function(error) {
                     // An error occurred
                 });
         });
 
         $scope.hideSalesView = true;
-        $scope.showScanAddSalePage1 = true;
+        $scope.showManualAddSalePage2 = true;
     };
 }])
