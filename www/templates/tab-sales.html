@@ -17,6 +17,7 @@
 
     <ion-content padding="false" ng-show="showStoreView">
         <ion-list>
+            <ion-item ng-show="showInitialStoreSelectMsg"><center><b>Where are you today?</b></center></ion-item>
             <ion-item ng-repeat="store in stores" ng-click="selectStore(store.id, store.name)"><b>{{store.name}}</b></ion-item>
         </ion-list>
     </ion-content>

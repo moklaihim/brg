@@ -4,32 +4,54 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
       //isEnableHoge: false,
       //positionXHoge: 10
     //});
-    $scope.store_id = "bm_taka";
-    $scope.store_name = "BM@TAKA";
-    $scope.date = "2-Apr-2015";
 
+    setTodayDate();
+    setStore();
     connectFirebase();
-    //updateSales();
+    updateSales();
     //createDummyData();
+    
+    function setStore(){
+        //$scope.store_id = "bm_taka";
+        //$scope.store_name = "BM@TAKA";
+        $scope.showInitialStoreSelectMsg = true;
+        $scope.showManualAddSalePage1 = false;
+        $scope.showManualAddSalePage2 = false;
+        $scope.showStoreView = true;
+        $scope.hideSalesView = true;
+    }
+
+    function setTodayDate(){
+        var today=new Date(); 
+        $scope.year = today.getFullYear();
+        $scope.month = today.getMonth()+1;
+        $scope.day = today.getDate();
+        $scope.date = $scope.year + "/" + $scope.month + "/" + $scope.day;
+    }
 
     function connectFirebase(){
 
         OfflineFirebase.restore();
         var fStores = new OfflineFirebase("https://fiery-heat-6039.firebaseio.com/stores");
         fStores.on('value', function(snapshot) {
-            console.log(snapshot.val());
+            //console.log(snapshot.val());
         }, undefined, undefined, true);
 
         var fItems = new OfflineFirebase("https://fiery-heat-6039.firebaseio.com/items");
         fItems.on('value', function(snapshot) {
-            console.log(snapshot.val());
+            //console.log(snapshot.val());
         }, undefined, undefined, true);
 
         $scope.stores = $firebaseArray(fStores);
         $scope.items = $firebaseArray(fItems);
+    }
 
-        var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
-        $scope.sales = $firebaseArray(ref.child("sales/" + $scope.store_id));
+    function updateSales(){
+        var fSales = new OfflineFirebase("https://fiery-heat-6039.firebaseio.com/sales/" + $scope.store_id + "/" + $scope.year + "/" + $scope.month + "/" + $scope.day);
+        fSales.on('value', function(snapshot) {
+            //console.log(snapshot.val());
+        }, undefined, undefined, true);
+        $scope.sales = $firebaseArray(fSales);
     }
 
     function createDummyData(){
@@ -47,17 +69,13 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         });
     };
 
-    function updateSales(){
-        var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
-        $scope.sales = $firebaseArray(ref.child("sales/" + $scope.store_id));
-    };
-
     $scope.showStoreList = function(){
         //var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
         //$scope.stores = $firebaseArray(ref.child("stores"));
         //var syncObject = $firebaseObject(ref.child("stores"));
         //syncObject.$bindTo($scope, "stores");
 
+        $scope.showInitialStoreSelectMsg = false;
         $scope.showManualAddSalePage1 = false;
         $scope.showManualAddSalePage2 = false;
         $scope.showStoreView = true;
@@ -73,9 +91,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         */
         $scope.store_id = $store_id;
         $scope.store_name = $store_name;
-        var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
-        $scope.sales = $firebaseArray(ref.child("sales/" + $scope.store_id));
-        //updateSales();
+        updateSales();
         $scope.showStoreView = false;
         $scope.hideSalesView = false;
     };
@@ -102,9 +118,9 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         $scope.sales.$add({
             item: $scope.item_id,
             price: $scope.sale_price,
-            date_time: "1-Apr-2015 12:30"
+            date: $scope.year + "/" + $scope.month + "/" + $scope.day,
+            time: "12:30"
         });
-        //updateSales();
         $scope.showManualAddSalePage2 = false;
         $scope.hideSalesView = false;
     };
