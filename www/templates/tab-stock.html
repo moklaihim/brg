@@ -17,7 +17,7 @@
         <ion-list>
             <ion-item ng-repeat="stock in stocks | filter :query ">
                 <b>{{stock.item}}</b><span style="float: right;">{{stock.qty}} </span>
-                <ion-option-button class="button-positive ion-plus" ng-click="plusItem('{{stock.$id}}',{{stock.qty}})">
+                <ion-option-button class="button-positive ion-plus" ng-click="stock.qty=stock.qty+1">
                 </ion-option-button>
                 <ion-option-button class="button-energized ion-minus" ng-click="minusItem('{{stock.$id}}',{{stock.qty}})">
                 </ion-option-button>

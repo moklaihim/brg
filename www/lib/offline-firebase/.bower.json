@@ -1,0 +1,14 @@
+{
+  "name": "offline-firebase",
+  "homepage": "https://github.com/yeldarby/offline-firebase",
+  "_release": "4298c636dd",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "4298c636dd7fdd89b24338e59cc3200508ab6290"
+  },
+  "_source": "https://github.com/yeldarby/offline-firebase.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/yeldarby/offline-firebase.git",
+  "_direct": true
+}

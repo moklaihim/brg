@@ -13,8 +13,20 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     //createDummyData();
 
     function connectFirebase(){
-        $scope.stores = $firebaseArray(new Firebase("https://fiery-heat-6039.firebaseio.com/stores"));
-        $scope.items = $firebaseArray(new Firebase("https://fiery-heat-6039.firebaseio.com/items"));
+
+        OfflineFirebase.restore();
+        var fStores = new OfflineFirebase("https://fiery-heat-6039.firebaseio.com/stores");
+        fStores.on('value', function(snapshot) {
+            console.log(snapshot.val());
+        }, undefined, undefined, true);
+
+        var fItems = new OfflineFirebase("https://fiery-heat-6039.firebaseio.com/items");
+        fItems.on('value', function(snapshot) {
+            console.log(snapshot.val());
+        }, undefined, undefined, true);
+
+        $scope.stores = $firebaseArray(fStores);
+        $scope.items = $firebaseArray(fItems);
 
         var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
         $scope.sales = $firebaseArray(ref.child("sales/" + $scope.store_id));
