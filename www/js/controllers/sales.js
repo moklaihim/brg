@@ -9,6 +9,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     var fStores;
 
     setDate(new Date());
+
     //setStore();
     if(localStorage.getItem("store_date") == $scope.date){
         $scope.store_id = localStorage.getItem("store_id");
@@ -59,6 +60,9 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         $scope.day = date.getDate();
         if ($scope.day < 10) { $scope.day = '0' + $scope.day; }
         $scope.date = $scope.year + "/" + $scope.month + "/" + $scope.day;
+        $scope.currentHr = date.getHours();
+        $scope.currentMin = date.getMinutes();
+        $scope.currentTime = $scope.currentHr + ":" + $scope.currentMin;
         updateSales();
     }
 
@@ -190,7 +194,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         var month = today.getMonth()+1;
         if (month < 10) { month = '0' + month; }
         var day = today.getDate();
-        if (day < 10) { ay = '0' + day; }
+        if (day < 10) { day = '0' + day; }
         var date = year + "/" + month + "/" + day;
 
         localStorage.setItem("store_date", date);
@@ -239,7 +243,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
             item: $scope.sale.item_id,
             price: $scope.sale.sale_price,
             date: $scope.year + "/" + $scope.month + "/" + $scope.day,
-            time: "12:30"
+            time: $scope.currentTime
         });
         $scope.showManualAddSalePage2 = false;
         $scope.hideSalesView = false;
