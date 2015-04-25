@@ -254,6 +254,12 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
             //console.log(snapshot.val());
         }, undefined, undefined, true);
         $scope.sales = $firebaseArray(fSales);
-        $scope.sales.$remove(key);  
+        // $scope.sales.$remove(key);  
+
+        $scope.sales.$remove(key).then(function(ref) {
+  // data has been deleted locally and in Firebase
+        }, function(error) {
+        console.log("Error:", error);
+        });
     }
 }])
