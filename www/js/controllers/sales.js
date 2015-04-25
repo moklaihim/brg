@@ -1,4 +1,4 @@
-angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state", "$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "User", function($scope, $state, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, User) {
+angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state", "$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "User", function($scope, $state, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, User) {
   //$ionicPlatform.ready(function() {
     //$scope.$storage = $localStorage.$default({
       //isEnableHoge: false,
@@ -8,12 +8,12 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     var fItems;
     var fStores;
 
-    setTodayDate();
+    setDate(new Date());
     //setStore();
     $scope.showInitialStoreSelectMsg = true;
     showStoreList();
     connectFirebase();
-    updateSales();
+    //updateSales();
     //createDummyData();
 
     $scope.query = {
@@ -44,14 +44,15 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         $scope.hideSalesView = true;
     }
 
-    function setTodayDate(){
-        var today=new Date(); 
-        $scope.year = today.getFullYear();
-        $scope.month = today.getMonth()+1;
+    function setDate(date){
+        //var today=new Date(); 
+        $scope.year = date.getFullYear();
+        $scope.month = date.getMonth()+1;
         if ($scope.month < 10) { $scope.month = '0' + $scope.month; }
-        $scope.day = today.getDate();
+        $scope.day = date.getDate();
         if ($scope.day < 10) { $scope.day = '0' + $scope.day; }
         $scope.date = $scope.year + "/" + $scope.month + "/" + $scope.day;
+        updateSales();
     }
 
     function connectFirebase(){
@@ -149,8 +150,23 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
                 $scope.showStoreView = true;
             });
     }
-
     $scope.showStoreList = showStoreList;
+
+    $scope.showDatePicker = function(){
+        var options = {
+            mode: 'date',
+            date: new Date(),
+            allowOldDates: true,
+            allowFutureDates: true,
+            doneButtonLabel: 'DONE',
+            doneButtonColor: '#F2F3F4',
+            cancelButtonLabel: 'CANCEL',
+            cancelButtonColor: '#000000'
+        };
+        $cordovaDatePicker.show(options).then(function(date){
+            setDate(date);
+        });
+    };
 
     $scope.selectStore = function($store_id, $store_name){
         $scope.store_id = $store_id;
