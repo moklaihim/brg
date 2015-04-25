@@ -42,15 +42,13 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         time: ''
     }
 
-    function setStore(){
-        //$scope.store_id = "bm_taka";
-        //$scope.store_name = "BM@TAKA";
-        $scope.showInitialStoreSelectMsg = true;
-        $scope.showManualAddSalePage1 = false;
-        $scope.showManualAddSalePage2 = false;
-        $scope.showStoreView = true;
-        $scope.hideSalesView = true;
-    }
+    // function setStore(){
+    //     $scope.showInitialStoreSelectMsg = true;
+    //     $scope.showManualAddSalePage1 = false;
+    //     $scope.showManualAddSalePage2 = false;
+    //     $scope.showStoreView = true;
+    //     $scope.hideSalesView = true;
+    // }
 
     function setDate(date){
         //var today=new Date(); 
@@ -227,7 +225,8 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
 
     $scope.manualAddSaleCancel = function(){
         $scope.showManualAddSalePage2 = false;
-        $scope.hideSalesView = false;
+        $scope.showManualAddSalePage1 = true;
+        // $scope.hideSalesView = false;
     };
 
     $scope.manualAddSelectCancel = function(){
