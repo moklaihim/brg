@@ -1,4 +1,4 @@
-angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state", "$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "User", function($scope, $state, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, User) {
+angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state", "$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "User", function($scope, $state, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, User) {
   //$ionicPlatform.ready(function() {
     //$scope.$storage = $localStorage.$default({
       //isEnableHoge: false,
@@ -6,9 +6,12 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     //});
 
     var fItems;
+    var fStores;
 
     setTodayDate();
-    setStore();
+    //setStore();
+    $scope.showInitialStoreSelectMsg = true;
+    showStoreList();
     connectFirebase();
     updateSales();
     //createDummyData();
@@ -30,7 +33,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         date: '',
         time: ''
     }
-    
+
     function setStore(){
         //$scope.store_id = "bm_taka";
         //$scope.store_name = "BM@TAKA";
@@ -54,11 +57,12 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     function connectFirebase(){
 
         OfflineFirebase.restore();
-        var fStores = new OfflineFirebase("https://fiery-heat-6039.firebaseio.com/stores");
+        fStores = new OfflineFirebase("https://fiery-heat-6039.firebaseio.com/stores");
         fStores.on('value', function(snapshot) {
             //console.log(snapshot.val());
         }, undefined, undefined, true);
         $scope.stores = $firebaseObject(fStores);
+        refreshStoreArray();
 
         fItems = new OfflineFirebase("https://fiery-heat-6039.firebaseio.com/items");
         fItems.on('value', function(snapshot) {
@@ -70,6 +74,10 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
 
     function refreshItemArray(){
         $scope.items_array = $firebaseArray(fItems);
+    }
+
+    function refreshStoreArray(){
+        $scope.stores_array = $firebaseArray(fStores);
     }
 
     function updateSales(){
@@ -95,29 +103,60 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         });
     };
 
-    $scope.showStoreList = function(){
-        //var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
-        //$scope.stores = $firebaseArray(ref.child("stores"));
-        //var syncObject = $firebaseObject(ref.child("stores"));
-        //syncObject.$bindTo($scope, "stores");
+    function distance(lat1, lon1, lat2, lon2, unit) {
+        var radlat1 = Math.PI * lat1/180
+        var radlat2 = Math.PI * lat2/180
+        var radlon1 = Math.PI * lon1/180
+        var radlon2 = Math.PI * lon2/180
+        var theta = lon1-lon2
+        var radtheta = Math.PI * theta/180
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist)
+        dist = dist * 180/Math.PI
+        dist = dist * 60 * 1.1515
+        if (unit=="K") { dist = dist * 1.609344 }
+        if (unit=="N") { dist = dist * 0.8684 }
+        return dist
+    }
 
-        $scope.showInitialStoreSelectMsg = false;
-        $scope.showManualAddSalePage1 = false;
-        $scope.showManualAddSalePage2 = false;
-        $scope.showStoreView = true;
+
+    function showStoreList(){
         $scope.hideSalesView = true;
-    };
+        $scope.showSpinner = true;
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        $cordovaGeolocation
+            .getCurrentPosition(posOptions)
+            .then(function (position) {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+                console.log(lat + " " + lng + " OK");
+                for (var i = 0; i < $scope.stores_array.length; i++) {
+                    $scope.stores_array[i].distance = Math.round(distance(lat, lng, $scope.stores_array[i].lat, $scope.stores_array[i].lng, "K")*1000);
+                    if($scope.stores_array[i].distance > 1000){
+                        $scope.stores_array[i].distance_disp = Math.round($scope.stores_array[i].distance / 100) / 10 + "km";
+                    }else{
+                        $scope.stores_array[i].distance_disp = $scope.stores_array[i].distance + "m";
+                    }
+                }
+                $scope.showSpinner = false;
+                $scope.showManualAddSalePage1 = false;
+                $scope.showManualAddSalePage2 = false;
+                $scope.showStoreView = true;
+            }, function(err) {
+                $scope.showSpinner = false;
+                $scope.showManualAddSalePage1 = false;
+                $scope.showManualAddSalePage2 = false;
+                $scope.showStoreView = true;
+            });
+    }
+
+    $scope.showStoreList = showStoreList;
 
     $scope.selectStore = function($store_id, $store_name){
-        /*
-        $ionicPopup.alert({
-            title: 'Alert',
-            template: $store_id
-        });
-        */
         $scope.store_id = $store_id;
         $scope.store_name = $store_name;
         updateSales();
+        $scope.showInitialStoreSelectMsg = false;
         $scope.showStoreView = false;
         $scope.hideSalesView = false;
     };
