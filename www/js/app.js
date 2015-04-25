@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase', 'ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase', 'ngCordova', 'angular-toArrayFilter'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -76,16 +76,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           controller: 'SalesCtrl'
          }
        }
-    })
-
-  .state('tab.test', {
-      url: '/test',
-       views: {
-         'tab-test': {
-          templateUrl: 'templates/tab-test.html',
-          controller: 'TestCtrl'
-         }
-       }
     });
 
 
@@ -93,3 +83,4 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $urlRouterProvider.otherwise('/tab/account');
 
 });
+

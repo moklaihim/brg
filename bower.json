@@ -6,7 +6,8 @@
     "angularfire": "~1.0.0",
     "ngstorage": "~0.3.0",
     "ngCordova": "~0.1.14-alpha",
-    "offline-firebase": "https://github.com/yeldarby/offline-firebase.git"
+    "offline-firebase": "https://github.com/yeldarby/offline-firebase.git",
+    "angular-toArrayFilter": "https://github.com/petebacondarwin/angular-toArrayFilter.git#~1.0.0"
   },
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.0.0-rc.2"

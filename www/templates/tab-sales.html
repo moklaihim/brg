@@ -25,25 +25,52 @@
     <ion-content padding="false" ng-show="showManualAddSalePage1">
         <label class="item item-input">
             <span class="input-label">Search</span>
-            <input ng-model="query" type="text">
+            <input ng-model="query.text" type="text">
         </label>
         <ion-list>
-            <ion-item ng-repeat="item in items | filter :query | uppercase" ng-click="manualAddSalePage2(item.id, item.price)"><b>{{item.id}}</b></ion-item>
-            <ion-item ng-show="(items | filter :query | uppercase).length == 0" ng-click="manualAddSalePage2((query|uppercase), 'new')"><center><b>Not Found. Add {{query | uppercase}}?</b></center></ion-item>
+            <ion-item ng-repeat="item in items_array | filter :query.text | uppercase" ng-click="manualAddSalePage2(item.id)"><b>{{item.id}}</b></ion-item>
+            <ion-item ng-show="(items_array | filter :query.text | uppercase).length == 0" ng-click="manualAddItemPage1()"><center><b>Not Found. Add New Item?</b></center></ion-item>
         </ion-list>
     </ion-content>
 
     <ion-content padding="false" ng-show="showManualAddSalePage2">
         <ion-list>
-            <ion-item ng-click="manualAddSalePage1()"><b>{{item_id}}</b></ion-item>
+            <ion-item ng-click="manualAddSalePage1()"><b>{{sale.item_id}}</b></ion-item>
         </ion-list>
         <label class="item item-input">
-            <span class="input-label">Sale Price</span>
-            <input ng-model="sale_price" type="text">
+            <span class="input-label">Retail Price</span>
+            <input ng-model="sale.retail_price" type="text">
         </label>
         <label class="item item-input">
-            <button class="button" ng-click="manualAddSaleOK(sale_price)">OK</button><button class="button" ng-click="manualAddSaleCancel()">Cancel</button>
+            <span class="input-label">Discount(%)</span>
+            <input ng-model="sale.discount_rate" ng-change="sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100" type="text">
         </label>
+        <label class="item item-input">
+            <span class="input-label">Sale Price</span>
+            <input ng-model="sale.sale_price" type="text">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Qty</span>
+            <input ng-model="sale.qty" type="text">
+        </label>
+        <div class="item item-input">
+            <button class="button" ng-click="manualAddSaleOK(sale_price)">OK</button>
+            <button class="button" ng-click="manualAddSaleCancel()">Cancel</button>
+        </div>
     </ion-content>
 
+    <ion-content padding="false" ng-show="showManualAddItemPage1">
+        <label class="item item-input">
+            <span class="input-label">New Item Code</span>
+            <input ng-model="new_item.id" type="text">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Retail Price</span>
+            <input ng-model="new_item.retail_price" type="text">
+        </label>
+        <div class="item item-input">
+            <button class="button" ng-click="manualAddItemOK()">OK</button>
+            <button class="button" ng-click="manualAddItemCancel()">Cancel</button>
+        </div>
+    </ion-content>
 </ion-view>
