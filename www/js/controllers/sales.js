@@ -175,6 +175,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         $scope.showInitialStoreSelectMsg = false;
         $scope.showStoreView = false;
         $scope.hideSalesView = false;
+        $scope.showInitialStoreSelectMsg = false;
     };
 
     $scope.manualAddSalePage1 = function(){
@@ -198,6 +199,11 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
 
     $scope.manualAddSaleCancel = function(){
         $scope.showManualAddSalePage2 = false;
+        $scope.hideSalesView = false;
+    };
+
+    $scope.manualAddSelectCancel = function(){
+        $scope.showManualAddSalePage1 = false;
         $scope.hideSalesView = false;
     };
 
@@ -256,5 +262,14 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         $scope.sale.qty = 1;
         $scope.showManualAddItemPage1 = false;
         $scope.showManualAddSalePage2 = true;
+    }
+
+    $scope.removeSale = function (key) {
+        var fSales = new OfflineFirebase("https://fiery-heat-6039.firebaseio.com/sales/" + $scope.store_id + "/" + $scope.year + "/" + $scope.month + "/" + $scope.day);
+        fSales.on('value', function(snapshot) {
+            //console.log(snapshot.val());
+        }, undefined, undefined, true);
+        $scope.sales = $firebaseArray(fSales);
+        $scope.sales.$remove(key);  
     }
 }])

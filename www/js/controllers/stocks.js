@@ -11,8 +11,9 @@ angular.module('starter.controllers').controller('StockCtrl', ["$scope", "$state
     function connectFirebase(){
         $scope.stores = $firebaseArray(new Firebase("https://fiery-heat-6039.firebaseio.com/stores"));
         $scope.items = $firebaseArray(new Firebase("https://fiery-heat-6039.firebaseio.com/items"));
-        var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
-        $scope.stocks = $firebaseArray(ref.child("stocks/" + $scope.store_id));
+        // var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
+        var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/stocks/bm_taka");
+        $scope.stocks = $firebaseArray(ref);
     }
 
     // function createDummyData(){
@@ -70,7 +71,7 @@ angular.module('starter.controllers').controller('StockCtrl', ["$scope", "$state
         $scope.item_qty = $item_qty;
         //var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
         //$scope.sales = $firebaseArray(ref.child("sales/" + $scope.store_id));
-        $scope.stocks.$add({
+        $scope.stocks.child(1).$add({
             item: $scope.item_id,
             qty: $scope.item_qty,
         });
