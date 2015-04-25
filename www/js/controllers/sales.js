@@ -265,13 +265,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     }
 
     $scope.removeSale = function (key) {
-        var fSales = new OfflineFirebase("https://fiery-heat-6039.firebaseio.com/sales/" + $scope.store_id + "/" + $scope.year + "/" + $scope.month + "/" + $scope.day);
-        fSales.on('value', function(snapshot) {
-            //console.log(snapshot.val());
-        }, undefined, undefined, true);
-        $scope.sales = $firebaseArray(fSales);
-        // $scope.sales.$remove(key);  
-
+        
         $scope.sales.$remove(key).then(function(ref) {
   // data has been deleted locally and in Firebase
         }, function(error) {
