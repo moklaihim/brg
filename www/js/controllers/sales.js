@@ -10,8 +10,15 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
 
     setDate(new Date());
     //setStore();
-    $scope.showInitialStoreSelectMsg = true;
-    showStoreList();
+    if(localStorage.getItem("store_date") == $scope.date){
+        $scope.store_id = localStorage.getItem("store_id");
+        $scope.store_name = localStorage.getItem("store_name");
+        updateSales();
+    }else{
+        $scope.showInitialStoreSelectMsg = true;
+        showStoreList();
+    }
+
     connectFirebase();
     //updateSales();
     //createInitialData();
@@ -177,6 +184,18 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         $scope.store_id = $store_id;
         $scope.store_name = $store_name;
         updateSales();
+
+        var today=new Date(); 
+        var year = today.getFullYear();
+        var month = today.getMonth()+1;
+        if (month < 10) { month = '0' + month; }
+        var day = today.getDate();
+        if (day < 10) { ay = '0' + day; }
+        var date = year + "/" + month + "/" + day;
+
+        localStorage.setItem("store_date", date);
+        localStorage.setItem("store_id", $store_id);
+        localStorage.setItem("store_name", $store_name);
         $scope.showInitialStoreSelectMsg = false;
         $scope.showStoreView = false;
         $scope.hideSalesView = false;
