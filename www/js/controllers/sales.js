@@ -11,9 +11,14 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     setDate(new Date());
 
     //setStore();
-    if(localStorage.getItem("store_date") == $scope.date){
-        $scope.store_id = localStorage.getItem("store_id");
-        $scope.store_name = localStorage.getItem("store_name");
+    //
+    // $ionicPopup.alert({
+    //     title: 'Alert1',
+    //     template: window.localStorage.getItem("store_date")
+    // });
+    if(window.localStorage.getItem("store_date") == $scope.date){
+        $scope.store_id = window.localStorage.getItem("store_id");
+        $scope.store_name = window.localStorage.getItem("store_name");
         updateSales();
     }else{
         $scope.showInitialStoreSelectMsg = true;
@@ -167,6 +172,10 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     $scope.showStoreList = showStoreList;
 
     $scope.showDatePicker = function(){
+    //$ionicPopup.alert({
+    //    title: 'Alert2',
+    //    template: window.localStorage.getItem("store_date")
+    //});
         var options = {
             mode: 'date',
             date: new Date(),
@@ -195,9 +204,13 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         if (day < 10) { day = '0' + day; }
         var date = year + "/" + month + "/" + day;
 
-        localStorage.setItem("store_date", date);
-        localStorage.setItem("store_id", $store_id);
-        localStorage.setItem("store_name", $store_name);
+        window.localStorage.setItem("store_date", date);
+        window.localStorage.setItem("store_id", $store_id);
+        window.localStorage.setItem("store_name", $store_name);
+    // $ionicPopup.alert({
+    //     title: 'Alert3',
+    //     template: window.localStorage.getItem("store_date")
+    // });
         $scope.showInitialStoreSelectMsg = false;
         $scope.showStoreView = false;
         $scope.hideSalesView = false;
