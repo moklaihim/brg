@@ -29,6 +29,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   $ionicConfigProvider.tabs.position("bottom");
+  $ionicConfigProvider.navBar.alignTitle('left');
+  
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -80,6 +82,46 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
        views: {
          'tab-sales': {
           templateUrl: 'templates/tab-sales.html',
+          controller: 'SalesCtrl'
+         }
+       }
+    })
+
+  .state('tab.sales-m1', {
+      url: '/sales/m1',
+       views: {
+         'tab-sales': {
+          templateUrl: 'templates/tab-sales-m1.html',
+          controller: 'SalesCtrl'
+         }
+       }
+    })
+
+  .state('tab.sales-m2', {
+      url: '/sales/m2',
+       views: {
+         'tab-sales': {
+          templateUrl: 'templates/tab-sales-m2.html',
+          controller: 'SalesCtrl'
+         }
+       }
+    })
+
+  .state('tab.sales-additem', {
+      url: '/sales/additem',
+       views: {
+         'tab-sales': {
+          templateUrl: 'templates/tab-sales-additem.html',
+          controller: 'SalesCtrl'
+         }
+       }
+    })
+
+  .state('tab.sales-stores', {
+      url: '/sales/stores',
+       views: {
+         'tab-sales': {
+          templateUrl: 'templates/tab-sales-stores.html',
           controller: 'SalesCtrl'
          }
        }

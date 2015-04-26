@@ -1,0 +1,33 @@
+<ion-view title="details">
+<ion-content padding="false">
+        <ion-list>
+            <ion-item ng-click="manualAddSalePage1()"><b>{{sale.item_id}}</b></ion-item>
+        </ion-list>
+        <label class="item item-input">
+            <span class="input-label">Retail Price</span>
+            <input ng-model="sale.retail_price" type="text">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Discount(%)</span>
+            <input ng-model="sale.discount_rate" ng-change="sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100" type="text">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Sale Price</span>
+            <input ng-model="sale.sale_price" type="text"></input>
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Qty</span>
+            <input ng-model="sale.qty" type="text">
+        </label>
+        <!-- <div class="item item-input">
+            <button class="button" ng-click="manualAddSaleOK(sale_price)">OK</button>
+            <button class="button" ng-click="manualAddSaleCancel()">Cancel</button>
+        </div> -->
+    </ion-content>
+    <div class="bar bar-footer bar-balanced" style="bottom:47px">
+        <div class="button-bar">
+            <button class="button" ng-click="manualAddSaleOK()" >OK</button>
+            <button class="button" ng-click="$ionicGoBack($event)">Back</button>
+        </div>
+    </div>
+</ion-view>
