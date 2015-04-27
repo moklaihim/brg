@@ -1,4 +1,4 @@
-angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state", "$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "User", function($scope, $state, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, User) {
+angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state", "$stateParams","$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "User", function($scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, User) {
   //$ionicPlatform.ready(function() {
     //$scope.$storage = $localStorage.$default({
       //isEnableHoge: false,
@@ -9,6 +9,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     var fStores;
 
     setDate(new Date());
+
     //setStore();
     //
     // $ionicPopup.alert({
@@ -46,15 +47,13 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         time: ''
     }
 
-    function setStore(){
-        //$scope.store_id = "bm_taka";
-        //$scope.store_name = "BM@TAKA";
-        $scope.showInitialStoreSelectMsg = true;
-        $scope.showManualAddSalePage1 = false;
-        $scope.showManualAddSalePage2 = false;
-        $scope.showStoreView = true;
-        $scope.hideSalesView = true;
-    }
+    // function setStore(){
+    //     $scope.showInitialStoreSelectMsg = true;
+    //     $scope.showManualAddSalePage1 = false;
+    //     $scope.showManualAddSalePage2 = false;
+    //     $scope.showStoreView = true;
+    //     $scope.hideSalesView = true;
+    // }
 
     function setDate(date){
         //var today=new Date(); 
@@ -64,6 +63,9 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         $scope.day = date.getDate();
         if ($scope.day < 10) { $scope.day = '0' + $scope.day; }
         $scope.date = $scope.year + "/" + $scope.month + "/" + $scope.day;
+        $scope.currentHr = date.getHours();
+        $scope.currentMin = date.getMinutes();
+        $scope.currentTime = $scope.currentHr + ":" + $scope.currentMin;
         updateSales();
     }
 
@@ -98,6 +100,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         fSales.on('value', function(snapshot) {
             //console.log(snapshot.val());
         }, undefined, undefined, true);
+
         $scope.sales = $firebaseArray(fSales);
     }
 
@@ -139,7 +142,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
 
 
     function showStoreList(){
-        $scope.hideSalesView = true;
+        // $scope.hideSalesView = true;
         $scope.showSpinner = true;
         var posOptions = {timeout: 5000, enableHighAccuracy: false};
         $cordovaGeolocation
@@ -157,14 +160,16 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
                     }
                 }
                 $scope.showSpinner = false;
-                $scope.showManualAddSalePage1 = false;
-                $scope.showManualAddSalePage2 = false;
-                $scope.showStoreView = true;
+                // $scope.showManualAddSalePage1 = false;
+                // $scope.showManualAddSalePage2 = false;
+                // $scope.showStoreView = true;
+                $state.go('tab.sales-stores');
             }, function(err) {
                 $scope.showSpinner = false;
-                $scope.showManualAddSalePage1 = false;
-                $scope.showManualAddSalePage2 = false;
-                $scope.showStoreView = true;
+                // $scope.showManualAddSalePage1 = false;
+                // $scope.showManualAddSalePage2 = false;
+                // $scope.showStoreView = true;
+                $state.go('tab.sales-stores');
             });
     }
     $scope.showStoreList = showStoreList;
@@ -205,38 +210,47 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         window.localStorage.setItem("store_date", date);
         window.localStorage.setItem("store_id", $store_id);
         window.localStorage.setItem("store_name", $store_name);
+
+        $state.go('tab.sales');
     // $ionicPopup.alert({
     //     title: 'Alert3',
     //     template: window.localStorage.getItem("store_date")
     // });
-        $scope.showInitialStoreSelectMsg = false;
-        $scope.showStoreView = false;
-        $scope.hideSalesView = false;
-        $scope.showInitialStoreSelectMsg = false;
+        // $scope.showInitialStoreSelectMsg = false;
+        // $scope.showStoreView = false;
+        // $scope.hideSalesView = false;
+        // $scope.showInitialStoreSelectMsg = false;
     };
 
     $scope.manualAddSalePage1 = function(){
         //var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
         //$scope.items = $firebaseArray(ref.child("items"));
         $scope.query.text = "";
-        $scope.showManualAddSalePage2 = false;
-        $scope.hideSalesView = true;
-        $scope.showManualAddSalePage1 = true;
+        // $scope.showManualAddSalePage2 = false;
+        // $scope.hideSalesView = true;
+        // $scope.showManualAddSalePage1 = true;
+        $state.go('tab.sales-m1');
     };
 
+
     $scope.manualAddSalePage2 = function($item_id){
+        // $scope.item = "testing123";
         $scope.sale.item_id = $item_id;
         $scope.sale.retail_price = $scope.items[$item_id].retail_price;
         $scope.sale.discount_rate = '';
         $scope.sale.sale_price = '';
         $scope.sale.qty = 1;
-        $scope.showManualAddSalePage1 = false;
-        $scope.showManualAddSalePage2 = true;
+        // console.log({{sale.item_id}});
+        // $scope.showManualAddSalePage1 = false;
+        // $scope.showManualAddSalePage2 = true;
+        $state.go('tab.sales-m2');
+
     };
 
     $scope.manualAddSaleCancel = function(){
         $scope.showManualAddSalePage2 = false;
-        $scope.hideSalesView = false;
+        $scope.showManualAddSalePage1 = true;
+        // $scope.hideSalesView = false;
     };
 
     $scope.manualAddSelectCancel = function(){
@@ -252,7 +266,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
             item: $scope.sale.item_id,
             price: $scope.sale.sale_price,
             date: $scope.year + "/" + $scope.month + "/" + $scope.day,
-            time: "12:30"
+            time: $scope.currentTime
         });
         $scope.showManualAddSalePage2 = false;
         $scope.hideSalesView = false;
@@ -281,8 +295,9 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     $scope.manualAddItemPage1 = function(){
         $scope.new_item.id = '';
         $scope.new_item.retail_price = '';
-        $scope.showManualAddSalePage1 = false;
-        $scope.showManualAddItemPage1 = true;
+        $state.go('tab.sales-additem');
+        // $scope.showManualAddSalePage1 = false;
+        // $scope.showManualAddItemPage1 = true;
     }
 
     $scope.manualAddItemOK = function(){
@@ -297,18 +312,13 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
         $scope.sale.discount_rate = '';
         $scope.sale_price = '';
         $scope.sale.qty = 1;
-        $scope.showManualAddItemPage1 = false;
-        $scope.showManualAddSalePage2 = true;
+        $state.go('tab.sales-m2');
+        // $scope.showManualAddItemPage1 = false;
+        // $scope.showManualAddSalePage2 = true;
     }
 
     $scope.removeSale = function (key) {
-        var fSales = new OfflineFirebase("https://fiery-heat-6039.firebaseio.com/sales/" + $scope.store_id + "/" + $scope.year + "/" + $scope.month + "/" + $scope.day);
-        fSales.on('value', function(snapshot) {
-            //console.log(snapshot.val());
-        }, undefined, undefined, true);
-        $scope.sales = $firebaseArray(fSales);
-        // $scope.sales.$remove(key);  
-
+        
         $scope.sales.$remove(key).then(function(ref) {
   // data has been deleted locally and in Firebase
         }, function(error) {

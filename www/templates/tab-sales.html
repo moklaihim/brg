@@ -1,12 +1,11 @@
-<ion-view title="Sales" >
-
-    <ion-nav-buttons side="left">
-        <button class="button" ng-click="showStoreList()" ng-hide="showInitialStoreSelectMsg">{{store_name}}</button>
-    </ion-nav-buttons>
-
-    <ion-nav-buttons side="right">
+<!-- <ion-nav-view></ion-nav-view> -->
+<ion-view title="Sales Page" >
+    
+    <ion-nav-buttons side="secondary">
+        <button class="button" ng-click="showStoreList()">{{store_name}}</button>
         <button class="button" ng-click="showDatePicker()">{{date}}</button>
     </ion-nav-buttons>
+   
 
     <ion-content padding="true" ng-show="showSpinner">
         <ion-spinner icon="ripple"></ion-spinner>
@@ -14,7 +13,7 @@
 
     <ion-content padding="true" ng-hide="hideSalesView" style="margin-bottom: 100px">
         <ion-list>
-            <ion-item ng-repeat="sale in sales"><b>{{sale.item}}</b><span style="float: right;">${{sale.price}}</span>
+            <ion-item ng-repeat="(key, sale) in sales"><b>{{sale.item}}</b><span style="float: right;">${{sale.price}}</span>
                 <ion-option-button class="button-positive ion-edit" ng-click="">
                 </ion-option-button>
                 <ion-option-button class="button-assertive ion-close-round" ng-click="removeSale(key)">
@@ -24,51 +23,14 @@
         </ion-list>
     </ion-content>
 
-    <ion-content padding="false" ng-show="showStoreView">
+    <!-- <ion-content padding="false" ng-show="showStoreView">
         <ion-list>
             <ion-item ng-show="showInitialStoreSelectMsg"><center><b>Where are you today?</b></center></ion-item>
             <ion-item ng-repeat="store in stores_array | orderBy:'distance'" ng-click="selectStore(store.id, store.name)"><b>{{store.name}}</b><span style="float: right;">{{store.distance_disp}}</span></ion-item>
         </ion-list>
-    </ion-content>
+    </ion-content> -->
 
-    <ion-content padding="false" ng-show="showManualAddSalePage1">
-        <label class="item item-input">
-            <span class="input-label">Search</span>
-            <input ng-model="query.text" type="text">
-        </label>
-        <ion-list>
-            <ion-item ng-repeat="item in items_array | filter :query.text | uppercase" ng-click="manualAddSalePage2(item.id)"><b>{{item.id}}</b></ion-item>
-            <ion-item ng-show="(items_array | filter :query.text | uppercase).length == 0" ng-click="manualAddItemPage1()"><center><b>Not Found. Add New Item?</b></center></ion-item>
-        </ion-list>
-    </ion-content>
-
-    <ion-content padding="false" ng-show="showManualAddSalePage2">
-        <ion-list>
-            <ion-item ng-click="manualAddSalePage1()"><b>{{sale.item_id}}</b></ion-item>
-        </ion-list>
-        <label class="item item-input">
-            <span class="input-label">Retail Price</span>
-            <input ng-model="sale.retail_price" type="text">
-        </label>
-        <label class="item item-input">
-            <span class="input-label">Discount(%)</span>
-            <input ng-model="sale.discount_rate" ng-change="sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100" type="text">
-        </label>
-        <label class="item item-input">
-            <span class="input-label">Sale Price</span>
-            <input ng-model="sale.sale_price" type="text">
-        </label>
-        <label class="item item-input">
-            <span class="input-label">Qty</span>
-            <input ng-model="sale.qty" type="text">
-        </label>
-        <!-- <div class="item item-input">
-            <button class="button" ng-click="manualAddSaleOK(sale_price)">OK</button>
-            <button class="button" ng-click="manualAddSaleCancel()">Cancel</button>
-        </div> -->
-    </ion-content>
-
-    <ion-content padding="false" ng-show="showManualAddItemPage1">
+    <!-- <ion-content padding="false" ng-show="showManualAddItemPage1">
         <label class="item item-input">
             <span class="input-label">New Item Code</span>
             <input ng-model="new_item.id" type="text">
@@ -81,20 +43,12 @@
             <button class="button" ng-click="manualAddItemOK()">OK</button>
             <button class="button" ng-click="manualAddItemCancel()">Cancel</button>
         </div>
-    </ion-content>
+    </ion-content> -->
     <div class="bar bar-footer bar-balanced" style="bottom:47px" ng-hide="showStoreView">
         <div class="button-bar">
             <button class="button" ng-click="manualAddSalePage1()" ng-hide="hideSalesView">Add</button>
             <button class="button" ng-click="scanAddSalePage1()" ng-hide="hideSalesView">Scan</button>
-            <button class="button" ng-click="manualAddSelectCancel()" ng-show="showManualAddSalePage1">Back</button>
-            <button class="button" ng-click="manualAddSaleOK()" ng-show="showManualAddSalePage2">OK</button>
-            <button class="button" ng-click="manualAddSaleCancel()" ng-show="showManualAddSalePage2">Cancle</button>
         </div>
     </div>
 
-    <!-- <div class="bar bar-footer bar-balanced" style="bottom:47px" ng-hide="showManualAddSalePage1">
-        <div class="button-bar">
-            <button class="button" ng-click="manualAddSalePage1()" ng-show="showManualAddSalePage1">Back</button>
-        </div>
-    </div> -->
 </ion-view>

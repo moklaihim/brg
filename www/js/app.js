@@ -19,10 +19,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       StatusBar.styleDefault();
     }
   });
+
+  $ionicPlatform.registerBackButtonAction(function (event) {
+                    event.preventDefault();
+            }, 100);
 })
 
-.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
+  $ionicConfigProvider.tabs.position("bottom");
+  $ionicConfigProvider.navBar.alignTitle('left');
+  
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -76,16 +83,50 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           controller: 'SalesCtrl'
          }
        }
+    })
+
+  .state('tab.sales-m1', {
+      url: '/sales/m1',
+       views: {
+         'tab-sales': {
+          templateUrl: 'templates/tab-sales-m1.html',
+          controller: 'SalesCtrl'
+         }
+       }
+    })
+
+  .state('tab.sales-m2', {
+      url: '/sales/m2',
+       views: {
+         'tab-sales': {
+          templateUrl: 'templates/tab-sales-m2.html',
+          controller: 'SalesCtrl'
+         }
+       }
+    })
+
+  .state('tab.sales-additem', {
+      url: '/sales/additem',
+       views: {
+         'tab-sales': {
+          templateUrl: 'templates/tab-sales-additem.html',
+          controller: 'SalesCtrl'
+         }
+       }
+    })
+
+  .state('tab.sales-stores', {
+      url: '/sales/stores',
+       views: {
+         'tab-sales': {
+          templateUrl: 'templates/tab-sales-stores.html',
+          controller: 'SalesCtrl'
+         }
+       }
     });
 
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/account');
-
-  localStorageServiceProvider
-    .setPrefix('brg_cfg')
-    .setStorageType('localStorage')
-    .setNotify(true, true)
-
 });
 
