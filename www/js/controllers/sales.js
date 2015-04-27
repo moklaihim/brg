@@ -15,9 +15,9 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     //     title: 'Alert1',
     //     template: window.localStorage.getItem("store_date")
     // });
-    if(window.localStorage.getItem("store_date") == $scope.date){
-        $scope.store_id = window.localStorage.getItem("store_id");
-        $scope.store_name = window.localStorage.getItem("store_name");
+    if(window.localStorage.getItem('store_date') == $scope.date){
+        $scope.store_id = window.localStorage.getItem('store_id');
+        $scope.store_name = window.localStorage.getItem('store_name');
         updateSales();
     }else{
         $scope.showInitialStoreSelectMsg = true;
