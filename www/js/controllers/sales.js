@@ -92,6 +92,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
     }
 
     function refreshStoreArray(){
+        console.log("refreshStoreArray OK");
         $scope.stores_array = $firebaseArray(fStores);
     }
 
@@ -150,7 +151,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
             .then(function (position) {
                 var lat = position.coords.latitude;
                 var lng = position.coords.longitude;
-                console.log(lat + " " + lng + " OK");
+                //console.log(lat + " " + lng + " OK");
                 for (var i = 0; i < $scope.stores_array.length; i++) {
                     $scope.stores_array[i].distance = Math.round(distance(lat, lng, $scope.stores_array[i].lat, $scope.stores_array[i].lng, "K")*1000);
                     if($scope.stores_array[i].distance > 1000){
@@ -158,6 +159,7 @@ angular.module('starter.controllers').controller('SalesCtrl', ["$scope", "$state
                     }else{
                         $scope.stores_array[i].distance_disp = $scope.stores_array[i].distance + "m";
                     }
+                    console.log($scope.stores_array[i].name + " " + $scope.stores_array[i].distance_disp + " OK");
                 }
                 $scope.showSpinner = false;
                 // $scope.showManualAddSalePage1 = false;
