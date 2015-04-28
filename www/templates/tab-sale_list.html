@@ -1,0 +1,25 @@
+<!-- <ion-nav-view></ion-nav-view> -->
+<ion-view title="Sales Page" >
+    
+    <ion-nav-buttons side="secondary">
+        <button class="button" ng-click="showStoreList()">{{store_name}}</button>
+        <button class="button" ng-click="showDatePicker()">{{date}}</button>
+    </ion-nav-buttons>
+   
+    <ion-content padding="true" ng-hide="hideSalesView" style="margin-bottom: 100px">
+        <ion-list>
+            <ion-item ng-repeat="(key, sale) in sales"><b>{{sale.item}}</b><span style="float: right;">${{sale.price}}</span>
+                <ion-option-button class="button-positive ion-edit" ng-click="">
+                </ion-option-button>
+                <ion-option-button class="button-assertive ion-close-round" ng-click="removeSale(key)">
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer bar-balanced" style="bottom:47px" ng-hide="showStoreView">
+        <div class="button-bar">
+            <a class="button" ui-sref="tab.sale-add" ng-hide="hideSalesView">Add</a>
+            <button class="button" ng-click="scanAddSalePage1()" ng-hide="hideSalesView">Scan</button>
+        </div>
+    </div>
+</ion-view>

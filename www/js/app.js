@@ -85,6 +85,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
        }
     })
 
+  .state('tab.sale-list', {
+      url: '/sale_list',
+       views: {
+         'tab-sales': {
+          templateUrl: 'templates/tab-sale_list.html',
+          controller: 'SaleListController'
+         }
+       }
+    })
+
+  .state('tab.sale-add', {
+      url: '/sale_add',
+       views: {
+         'tab-sales': {
+          templateUrl: 'templates/tab-sales-m1.html',
+          controller: 'SaleAddController'
+         }
+       }
+    })
+
   .state('tab.sales-m1', {
       url: '/sales/m1',
        views: {
