@@ -22,7 +22,7 @@ angular.module('starter.controllers').controller('SaleListController', ["$scope"
         updateSales();
     }else{
         $scope.showInitialStoreSelectMsg = true;
-        showStoreList();
+        state.go('tab.sales-stores');
     }
 
     connectFirebase();
