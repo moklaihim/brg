@@ -7,7 +7,7 @@ angular.module('starter.controllers').controller('SaleListController', ["$scope"
         $scope.sales = Sales.get($scope.store_id, $scope.year, $scope.month, $scope.day);
     }else{
         $scope.showInitialStoreSelectMsg = true;
-        //showStoreList();
+        state.go('tab.sales-stores');
     }
 
     function setDate(date){
