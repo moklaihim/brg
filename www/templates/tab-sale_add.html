@@ -1,0 +1,51 @@
+<ion-view title="Add Sale">
+<!-- <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+<ion-nav-buttons side="left">
+        <button class="button" ng-click="$ionicGoBack($event)"><i class="ion-arrow-left-c"></i> Back</button>
+</ion-nav-buttons>
+</ion-nav-bar> -->
+<!-- <ion-nav-buttons side="secondary">
+        <button class="button" ng-click="showStoreList()">{{store_name}}</button>
+        <button class="button" ng-click="showDatePicker()">{{date}}</button>
+</ion-nav-buttons> -->
+
+<ion-content padding="true" ng-show="showItemList">
+    <label class="item item-input">
+        <span class="input-label">Search</span>
+        <input ng-model="query.text" type="text">
+    </label>
+    <ion-list>
+        <ion-item ng-repeat="item in items_array | filter :query.text | uppercase" ng-click="selectItem(item.id)"><b>{{item.id}}</b></ion-item>
+        <ion-item ng-show="(items_array | filter :query.text | uppercase).length == 0" ng-click="manualAddItemPage1()"><center><b>Not Found. Add New Item?</b></center></ion-item>
+    </ion-list>
+</ion-content>
+
+<ion-content padding="true" ng-show="showSaleDetail">
+    <ion-list>
+        <ion-item ng-click="showItemList(item_id)"><b>{{sale.item_id}}</b></ion-item>
+    </ion-list>
+    <label class="item item-input">
+        <span class="input-label">Retail Price</span>
+        <input ng-model="sale.retail_price" type="text">
+    </label>
+    <label class="item item-input">
+        <span class="input-label">Discount(%)</span>
+        <input ng-model="sale.discount_rate" ng-change="sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100" type="text">
+    </label>
+        <label class="item item-input">
+        <span class="input-label">Sale Price</span>
+    <input ng-model="sale.sale_price" type="text"></input>
+        </label>
+        <label class="item item-input">
+        <span class="input-label">Qty</span>
+        <input ng-model="sale.qty" type="text">
+    </label>
+</ion-content>
+
+<div class="bar bar-footer bar-balanced" style="bottom:47px" ng-show="showSaleDetail">
+    <div class="button-bar">
+       <button class="button" ng-click="ok()" >OK</button>
+       <button class="button" ng-click="cancel()">Back</button>
+    </div>
+</div>
+</ion-view>

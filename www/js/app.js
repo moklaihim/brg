@@ -99,7 +99,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       url: '/sale_add',
        views: {
          'tab-sales': {
-          templateUrl: 'templates/tab-sales-m1.html',
+          templateUrl: 'templates/tab-sale_add.html',
           controller: 'SaleAddController'
          }
        }
@@ -147,6 +147,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/account');
+  $urlRouterProvider.otherwise('/tab/sale_add');
 });
 

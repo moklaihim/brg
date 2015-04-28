@@ -48,3 +48,6 @@ angular.module('starter.services', [])
   }
 
 }]);
+
+document.write('<script type="text/javascript" src="js/services/Sales.js"></script>');
+document.write('<script type="text/javascript" src="js/services/Items.js"></script>');
