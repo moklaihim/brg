@@ -23,7 +23,8 @@ angular.module('starter.controllers')
         $scope.currentHr = date.getHours();
         $scope.currentMin = date.getMinutes();
         $scope.currentTime = $scope.currentHr + ":" + $scope.currentMin;
-        $scope.sales = Sales.get(Stores.current_store_id, $scope.year, $scope.month, $scope.day);
+        $scope.sales = Sales.get($scope.store_id, $scope.year, $scope.month, $scope.day);
+        console.log("Date changed: " + $scope.year + "/" + $scope.month + "/" + $scope.day);
     }
 
     $scope.showDatePicker = function(){
