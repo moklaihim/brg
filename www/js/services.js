@@ -5,7 +5,6 @@ angular.module('starter.services', [])
 
   // Some fake testing data
   var ref = new Firebase("https://fiery-heat-6039.firebaseIO.com/");
-
   var auth = $firebaseAuth(ref);
   var user = {};
 
@@ -51,3 +50,4 @@ angular.module('starter.services', [])
 
 document.write('<script type="text/javascript" src="js/services/Sales.js"></script>');
 document.write('<script type="text/javascript" src="js/services/Items.js"></script>');
+document.write('<script type="text/javascript" src="js/services/Stores.js"></script>');

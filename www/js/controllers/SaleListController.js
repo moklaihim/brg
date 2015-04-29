@@ -1,5 +1,7 @@
-angular.module('starter.controllers').controller('SaleListController', ["$scope", "$state", "$stateParams","$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "Sales", function($scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, Sales) {
+angular.module('starter.controllers').controller('SaleListController', ["$scope", "$state", "$stateParams","$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "Sales", "Stores", function($scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, Sales, Stores) {
     setDate(new Date());
+
+    $scope.stores_array = Stores.get_as_array($stateParams.storeId);
 
     if(window.localStorage.getItem('store_date') == $scope.date){
         $scope.store_id = window.localStorage.getItem('store_id')
