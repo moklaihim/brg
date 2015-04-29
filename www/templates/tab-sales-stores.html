@@ -2,6 +2,6 @@
     <ion-content padding="false">
         <ion-list>
             <ion-item ng-show="showInitialStoreSelectMsg"><center><b>Where are you today?</b></center></ion-item>
-            <ion-item ng-repeat="store in stores_array | orderBy:'distance'" ng-click="selectStore(store.id, store.name)"><b>{{store.name}}</b><span style="float: right;">{{store.distance_disp}}</span></ion-item>
+            <ion-item ng-repeat="store in stores | orderBy:'distance'" ui-sref="tab.sale-list" <b>{{store.name}}</b><span style="float: right;">{{store.distance_disp}}</span></ion-item>
         </ion-list>
     </ion-content>
