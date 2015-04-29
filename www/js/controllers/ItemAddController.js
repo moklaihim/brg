@@ -1,33 +1,20 @@
-angular.module('starter.controllers').controller('ItemAddController', ["$scope", "$state", "$stateParams","$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "User", function($scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, User) {
+angular.module('starter.controllers')
+.controller('ItemAddController', ["$scope", "$state", "Items", "Sales", function($scope, $state, Items, Sales) {
  
     $scope.new_item = {
         id: '',
         retail_price: ''
     } 
 
-    $scope.manualAddItemPage1 = function(){
-        $scope.new_item.id = '';
-        $scope.new_item.retail_price = '';
-        $state.go('tab.items_add');
-        // $scope.showManualAddSalePage1 = false;
-        // $scope.showManualAddItemPage1 = true;
+    $scope.ok = function(){
+        Items.add($scope.new_item.id, $scope.new_item.retail_price);
+        Sales.set_current_item($scope.new_item.id);
+        var current_item = Sales.get_current_item();
+        console.log("Saved Current Item: " + current_item);
+        $state.go('tab.sales_add');
     }
 
-    $scope.manualAddItemOK = function(){
-        //console.log("manualAddItemOK Started");
-        //console.log($scope.new_item.item_id);
-        $scope.items[$scope.new_item.id] = {id: $scope.new_item.id, retail_price: $scope.new_item.retail_price};
-        $scope.items.$save();
-        refreshItemArray();
-
-        $scope.sale.item_id = $scope.new_item.id;
-        $scope.sale.retail_price = $scope.new_item.retail_price;
-        $scope.sale.discount_rate = '';
-        $scope.sale_price = '';
-        $scope.sale.qty = 1;
-        $state.go('tab.sales-m2');
-        // $scope.showManualAddItemPage1 = false;
-        // $scope.showManualAddSalePage2 = true;
-    }
-
+    $scope.cancel = function(){
+        $state.go('tab.sales_list');
+    };
 }])

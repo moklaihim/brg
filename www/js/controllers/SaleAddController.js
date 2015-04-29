@@ -1,10 +1,18 @@
 angular.module('starter.controllers')
-.controller('SaleAddController', ["$scope", "$state", "$cordovaBarcodeScanner", "$cordovaDatePicker", "Items", "Sales", function($scope, $state, $cordovaBarcodeScanner, $cordovaDatePicker, Items, Sales) {
+.controller('SaleAddController', ["$scope", "$state", "$cordovaBarcodeScanner", "$cordovaDatePicker", "Items", "Sales", "Stores", function($scope, $state, $cordovaBarcodeScanner, $cordovaDatePicker, Items, Sales, Stores) {
     setDate(new Date());
+
+    var current_store = Stores.get_current();
+    console.log(current_store);
+    if(Object.keys(current_store).length === 0){
+        $state.go('tab.stores_list');
+    }
+    if(Sales.check_sales()){
+        Sales.get(current_store.id, $scope.year, $scope.month, $scope.day);
+    }
 
     $scope.items = Items.get();
     $scope.items_array = Items.get_as_array();
-    $scope.showItemList = true;
 
     $scope.query = {
         text: '' 
@@ -17,6 +25,15 @@ angular.module('starter.controllers')
         qty: '',
         date: '',
         time: ''
+    }
+
+    var current_item = Sales.get_current_item();
+    console.log("Loaded Current Item: " + current_item);
+    if(current_item){
+        console.log("Current Item exist: " + current_item);
+        selectItem(current_item);
+    }else{
+        $scope.showItemList = true;
     }
 
     function setDate(date){
@@ -52,12 +69,12 @@ angular.module('starter.controllers')
         });
     };
 
-    $scope.showItemList = function(){
+    $scope.showItemListPage = function(){
         $scope.showItemList = true;
         $scope.showSaleDetail = false;
     };
 
-    $scope.selectItem = function($item_id){
+    function selectItem($item_id){
         $scope.sale.item_id = $item_id;
         $scope.sale.retail_price = $scope.items[$item_id].retail_price;
         $scope.sale.discount_rate = '';
@@ -66,6 +83,7 @@ angular.module('starter.controllers')
         $scope.showItemList = false;
         $scope.showSaleDetail = true;
     };
+    $scope.selectItem = selectItem;
 
     $scope.cancel = function(){
         $state.go('tab.sales_list');

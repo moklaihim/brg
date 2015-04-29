@@ -1,8 +1,8 @@
-<ion-view title="Page 1">
+<ion-view title="Add Item">
 <ion-content padding="false" class="has-header">
 
         <label class="item item-input">
-            <span class="input-label">New Item Code</span>
+            <span class="input-label">Item Code</span>
             <input ng-model="new_item.id" type="text">
         </label>
         <label class="item item-input">
@@ -10,8 +10,8 @@
             <input ng-model="new_item.retail_price" type="text">
         </label>
         <div class="item item-input">
-            <button class="button" ng-click="manualAddItemOK()">OK</button>
-            <button class="button" ng-click="manualAddItemCancel()">Cancel</button>
+            <button class="button" ng-click="ok()">OK</button>
+            <button class="button" ng-click="cancel()">Cancel</button>
         </div>
     </ion-content>
 </ion-view>
