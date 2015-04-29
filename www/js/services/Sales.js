@@ -34,7 +34,7 @@ angular.module('starter.services')
         get_current_item: function(){
             return current_item;
         },
-        check_sales(){
+        check_sales: function(){
             if(!sales){
                 return false;
             }else{

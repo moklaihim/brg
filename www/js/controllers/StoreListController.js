@@ -2,7 +2,29 @@ angular.module('starter.controllers')
 .controller('StoreListController', ["$scope", "$state", "$cordovaGeolocation", "Stores", function($scope, $state, $cordovaGeolocation, Stores) {
 
     //$scope.stores_array = Stores.get_as_array($stateParams.storeId);
+    $scope.stores = Stores.get_list();
     showStoreList();
+    //createInitialData();
+
+    function createInitialData(){
+        $scope.stores['taka'] = {id: 'taka', name: 'TAKA', lat: 1.302479, lng: 103.834615};
+        $scope.stores['isetan_scotts'] = {id: 'isetan_scotts', name: 'ISETAN SCOTTS', lat: 1.305732, lng: 103.8315};
+        $scope.stores['isetan_tmp'] = {id: 'isetan_tmp', name: 'ISETAN TMP', lat: 1.352492, lng: 103.944797};
+        $scope.stores['isetan_nex'] = {id: 'isetan_nex', name: 'ISETAN NEX', lat: 1.305589, lng: 103.831510};
+        $scope.stores['isetan_katong'] = {id: 'isetan_katong', name: 'ISETAN KATONG', lat: 1.301547, lng: 103.904688};
+        $scope.stores['isetan_westgate'] = {id: 'isetan_westgate', name: 'ISETAN WESTGATE', lat: 1.334033, lng: 103.742837};
+        $scope.stores['robs_rc'] = {id: 'robs_rc', name: 'Robs RC', lat: 1.293775, lng: 103.852741};
+        $scope.stores['robs_orch'] = {id: 'robs_orch', name: 'Robs Orch', lat: 1.302399, lng: 103.837175};
+        $scope.stores['robs_jem'] = {id: 'robs_jem', name: 'Robs JEM', lat: 1.333381, lng: 103.743388};
+        $scope.stores['tangs_orch'] = {id: 'tangs_orch', name: 'Tangs Orch', lat: 1.304975, lng: 103.832957};
+        $scope.stores['tangs_vivo'] = {id: 'tangs_vivo', name: 'Tangs Vivo', lat: 1.264797, lng: 103.822047};
+        $scope.stores['bhg_bugis'] = {id: 'bhg_bugis', name: 'BHG Bugis', lat: 1.300001, lng: 103.855588};
+        $scope.stores['metro_paragon'] = {id: 'metro_paragon', name: 'Metro Paragon', lat: 1.303753, lng: 103.835716};
+        $scope.stores['metro_woodlands'] = {id: 'metro_woodlands', name: 'Metro Woodlands', lat: 1.435820, lng: 103.786139};
+        $scope.stores['metro_city_sq'] = {id: 'metro_city_sq', name: 'Metro City Sq', lat: 1.311333, lng: 103.856434};
+        $scope.stores['events_atriums'] = {id: 'events_atriums', name: 'Events / Atriums', lat: 0, lng: 0};
+        $scope.stores.$save();
+    };
 
     function distance(lat1, lon1, lat2, lon2, unit) {
         var radlat1 = Math.PI * lat1/180
