@@ -1,16 +1,17 @@
 angular.module('starter.controllers').controller('SaleListController', ["$scope", "$state", "$stateParams","$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "Sales", "Stores", function($scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, Sales, Stores) {
     setDate(new Date());
-
-    $scope.stores_array = Stores.get_as_array($stateParams.storeId);
+    console.log("SaleListController started");
 
     if(window.localStorage.getItem('store_date') == $scope.date){
-        $scope.store_id = window.localStorage.getItem('store_id')
+        console.log("Found store_date is today " + window.localStorage.getItem('store_id') + window.localStorage.getItem('store_name'));
+        $scope.store_id = window.localStorage.getItem('store_id');
+        //var store_tmp = Stores.get_one('taka');
+        //console.log("store_tmp " + store_tmp);
         $scope.store_name = window.localStorage.getItem('store_name');
-        $scope.sales = Sales.get($scope.store_id, $scope.year, $scope.month, $scope.day);
     }else{
-        $scope.showInitialStoreSelectMsg = true;
-        //$state.go('tab.sales-stores');
+        $state.go('tab.store-list');
     }
+    $scope.sales = Sales.get(Stores.current_store_id, $scope.year, $scope.month, $scope.day);
 
     function setDate(date){
         //var today=new Date(); 
@@ -23,7 +24,7 @@ angular.module('starter.controllers').controller('SaleListController', ["$scope"
         $scope.currentHr = date.getHours();
         $scope.currentMin = date.getMinutes();
         $scope.currentTime = $scope.currentHr + ":" + $scope.currentMin;
-        $scope.sales = Sales.get($scope.store_id, $scope.year, $scope.month, $scope.day);
+        $scope.sales = Sales.get(Stores.current_store_id, $scope.year, $scope.month, $scope.day);
     }
 
     $scope.showDatePicker = function(){

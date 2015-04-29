@@ -1,4 +1,4 @@
-angular.module('starter.controllers').controller('SaleAddController', ["$scope", "$state", "$stateParams","$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "Items", function($scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, Items) {
+angular.module('starter.controllers').controller('SaleAddController', ["$scope", "$state", "$stateParams","$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "Items", "Sales", function($scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, Items, Sales) {
     $scope.items = Items.get();
     $scope.items_array = Items.get_as_array();
     $scope.showItemList = true;
@@ -71,7 +71,7 @@ angular.module('starter.controllers').controller('SaleAddController', ["$scope",
     };
 
     $scope.ok = function(){
-        Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.year + "/" + $scope.month + "/" + $scope.day, $scope.currentTime);
+        Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.year, $scope.month, $scope.day, $scope.currentTime);
         $state.go('tab.sale-list');
     };
 

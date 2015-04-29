@@ -10,20 +10,28 @@ angular.module('starter.services')
     var stores = $firebaseObject(fStores);
     var stores_array = $firebaseArray(fStores);
 
+    var current_store_id;
+
     return {
-        get: function(){
+        get_list: function(){
             return stores;
         },
-        // get_as_array: function(storeid){
-        //     return stores_array;
-        // }
-        get_as_array: function(storeId) {
-            for (var i = 0; i < stores_array.length; i++) {
-                if (stores_array[i].id === parseInt(storeId)) {
-                    return stores_array[i];
-                }
-            }
-            return null;
+        get_list_as_array: function(){
+            return stores_array;
+        },
+        get_one: function($store_id){
+            console.log("get_one for " + $store_id);
+            console.log(stores);
+            console.log(stores.hasOwnProperty('taka'));
+            return store_tmp;
         }
+        // get_as_array: function(storeId) {
+        //     for (var i = 0; i < stores_array.length; i++) {
+        //         if (stores_array[i].id === parseInt(storeId)) {
+        //             return stores_array[i];
+        //         }
+        //     }
+        //     return null;
+        // }
     }
 }]);

@@ -1,8 +1,8 @@
-angular.module('starter.controllers').controller('StoreListController', ["$scope", "$state", "$stateParams","$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "Stores", function($scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, Stores) {
+angular.module('starter.controllers').controller('StoreListController', ["$rootScope", "$scope", "$state", "$stateParams","$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "Stores", function($rootScope, $scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, Stores) {
     // showStoreList();
 
-    $scope.stores = Stores.get();
-    $scope.stores_array = Stores.get_as_array($stateParams.storeId);
+    //$scope.stores_array = Stores.get_as_array($stateParams.storeId);
+    showStoreList();
 
     function distance(lat1, lon1, lat2, lon2, unit) {
         var radlat1 = Math.PI * lat1/180
@@ -20,8 +20,8 @@ angular.module('starter.controllers').controller('StoreListController', ["$scope
         return dist
     }
 
-
     function showStoreList(){
+        var stores_array = Stores.get_list_as_array();
         // $scope.hideSalesView = true;
         $scope.showSpinner = true;
         var posOptions = {timeout: 5000, enableHighAccuracy: false};
@@ -31,16 +31,17 @@ angular.module('starter.controllers').controller('StoreListController', ["$scope
                 var lat = position.coords.latitude;
                 var lng = position.coords.longitude;
                 //console.log(lat + " " + lng + " OK");
-                for (var i = 0; i < $scope.stores_array.length; i++) {
-                    $scope.stores_array[i].distance = Math.round(distance(lat, lng, $scope.stores_array[i].lat, $scope.stores_array[i].lng, "K")*1000);
-                    if($scope.stores_array[i].distance > 1000){
-                        $scope.stores_array[i].distance_disp = Math.round($scope.stores_array[i].distance / 100) / 10 + "km";
+                for (var i = 0; i < stores_array.length; i++) {
+                    stores_array[i].distance = Math.round(distance(lat, lng, stores_array[i].lat, stores_array[i].lng, "K")*1000);
+                    if(stores_array[i].distance > 1000){
+                        stores_array[i].distance_disp = Math.round(stores_array[i].distance / 100) / 10 + "km";
                     }else{
-                        $scope.stores_array[i].distance_disp = $scope.stores_array[i].distance + "m";
+                        stores_array[i].distance_disp = stores_array[i].distance + "m";
                     }
-                    // console.log($scope.stores_array[i].name + " " + $scope.stores_array[i].distance_disp + " OK");
+                    //console.log($scope.stores_array[i].name + " " + $scope.stores_array[i].distance_disp + " OK");
                 }
                 $scope.showSpinner = false;
+                $scope.stores_array = stores_array;
                 // $scope.showManualAddSalePage1 = false;
                 // $scope.showManualAddSalePage2 = false;
                 // $scope.showStoreView = true;
@@ -49,6 +50,7 @@ angular.module('starter.controllers').controller('StoreListController', ["$scope
                 // $state.transitionTo('tab.sales-stores', null, {'reload':true});
             }, function(err) {
                 $scope.showSpinner = false;
+                $scope.stores_array = stores_array;
                 // $scope.showManualAddSalePage1 = false;
                 // $scope.showManualAddSalePage2 = false;
                 // $scope.showStoreView = true;
@@ -59,30 +61,10 @@ angular.module('starter.controllers').controller('StoreListController', ["$scope
     }
     $scope.showStoreList = showStoreList;
 
-    $scope.showDatePicker = function(){
-    //$ionicPopup.alert({
-    //    title: 'Alert2',
-    //    template: window.localStorage.getItem("store_date")
-    //});
-        var options = {
-            mode: 'date',
-            date: new Date(),
-            allowOldDates: true,
-            allowFutureDates: true,
-            doneButtonLabel: 'DONE',
-            doneButtonColor: '#F2F3F4',
-            cancelButtonLabel: 'CANCEL',
-            cancelButtonColor: '#000000'
-        };
-        $cordovaDatePicker.show(options).then(function(date){
-            setDate(date);
-        });
-    };
-
-    $scope.selectStore = function($store_id, $store_name){
+    $scope.selectStore = function(store_id, store_name){
         
-        $scope.store_id = $store_id;
-        $scope.store_name = $store_name;
+        //$scope.store_id = store_id;
+        //$scope.store_name = store_name;
         // updateSales();
         var today=new Date(); 
         var year = today.getFullYear();
@@ -93,9 +75,12 @@ angular.module('starter.controllers').controller('StoreListController', ["$scope
         var date = year + "/" + month + "/" + day;
 
         window.localStorage.setItem("store_date", date);
-        window.localStorage.setItem("store_id", $store_id);
-        window.localStorage.setItem("store_name", $store_name);
+        window.localStorage.setItem("store_id", store_id);
+        window.localStorage.setItem("store_name", store_name);
 
+        Stores.current_store_id = store_id;
+        //$rootScope.$broadcast('changeStore', store_id);
+        console.log("Stores current_store_id: " + Stores.current_store_id);
         $state.go('tab.sale-list');
 
     // // $ionicPopup.alert({
@@ -107,4 +92,5 @@ angular.module('starter.controllers').controller('StoreListController', ["$scope
     //     // $scope.hideSalesView = false;
     //     // $scope.showInitialStoreSelectMsg = false;
     };
+
 }])

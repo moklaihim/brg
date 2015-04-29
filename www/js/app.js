@@ -86,7 +86,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     })
 
   .state('tab.sale-list', {
-      url: '/sale-list',
+      url: '/sale_list',
        views: {
          'tab-sales': {
           templateUrl: 'templates/tab-sale_list.html',
@@ -135,11 +135,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
        }
     })
 
-  .state('tab.sales-stores', {
-      url: '/sales/stores',
+  .state('tab.store-list', {
+      url: '/store_list',
        views: {
          'tab-sales': {
-          templateUrl: 'templates/tab-sales-stores.html',
+          templateUrl: 'templates/tab-store_list.html',
           controller: 'StoreListController'
          }
        }
@@ -147,6 +147,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/sale-list');
+  $urlRouterProvider.otherwise('/tab/sale_list');
 });
 
