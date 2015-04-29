@@ -7,7 +7,7 @@
         <button class="button" ng-click="showDatePicker()">{{date}}</button>
     </ion-nav-buttons>
    
-    <ion-content padding="false" ng-hide="hideSalesView" style="margin-bottom: 100px">
+    <ion-content padding="false" ng-hide="hideSalesView" style="margin-bottom: 50px">
         <ion-list>
             <ion-item ng-repeat="(key, sale) in sales"><b>{{sale.item}}</b><span style="float: right;">${{sale.price}}</span>
                 <ion-option-button class="button-positive ion-edit" ng-click="">
@@ -17,10 +17,10 @@
             </ion-item>
         </ion-list>
     </ion-content>
-    <div class="bar bar-footer bar-balanced" style="bottom:47px" ng-hide="showStoreView">
+    <div class="bar bar-footer bar-balanced">
         <div class="button-bar">
-            <a class="button" ui-sref="tab.sales_add" ng-hide="hideSalesView">Add</a>
-            <button class="button" ng-click="scanAddSalePage1()" ng-hide="hideSalesView">Scan</button>
+            <a class="button" ui-sref="tab.sales_add" ><i class="ion-plus-round"></i> Add</a>
+            <button class="button" ng-click="scanAddSalePage1()"><i class="ion-ios-barcode-outline"></i> Scan</button>
         </div>
     </div>
 </ion-view>
