@@ -87,6 +87,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('tab.sale-list', {
       url: '/sale_list',
+      cache: false,
        views: {
          'tab-sales': {
           templateUrl: 'templates/tab-sale_list.html',
