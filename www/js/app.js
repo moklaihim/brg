@@ -20,9 +20,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   });
 
-  $ionicPlatform.registerBackButtonAction(function (event) {
-                    event.preventDefault();
-            }, 100);
+  // $ionicPlatform.registerBackButtonAction(function (event) {
+  //                   event.preventDefault();
+  //           }, 100);
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
@@ -37,11 +37,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabs.html"
   })
+
 
   // Each tab has its own nav history stack:
 
@@ -78,7 +79,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('tab.sales_add', {
       url: '/sales/add',
-      cache: false,
        views: {
          'tab-sales': {
           templateUrl: 'templates/tab-sale_add.html',
@@ -89,7 +89,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('tab.items_add', {
       url: '/items/add',
-      cache: false,
        views: {
          'tab-sales': {
           templateUrl: 'templates/tab-item_add.html',
@@ -100,7 +99,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('tab.stores_list', {
       url: '/stores/list',
-      cache: false,
        views: {
          'tab-sales': {
           templateUrl: 'templates/tab-store_list.html',
