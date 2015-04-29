@@ -1,4 +1,7 @@
 <ion-view title="Sales Page">
+    <ion-content padding="true" ng-show="showSpinner">
+        <ion-spinner icon="ripple"></ion-spinner>
+    </ion-content>
     <ion-content padding="false">
         <ion-list>
             <ion-item ng-show="showInitialStoreSelectMsg"><center><b>Where are you today?</b></center></ion-item>

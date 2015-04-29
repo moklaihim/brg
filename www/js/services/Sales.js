@@ -18,6 +18,13 @@ angular.module('starter.services')
                 date: year + "/" + month + "/" + day,
                 time: time
             });
+        },
+        remove: function(key){
+            sales.$remove(key).then(function(ref) {
+                //data has been deleted locally and in Firebase
+            }, function(error) {
+                //console.log("Error: failed to delete", error);
+            });
         }
     }
 }]);

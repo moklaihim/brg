@@ -65,28 +65,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-  .state('tab.stock', {
-      url: '/stock',
-      views: {
-        'tab-stock': {
-          templateUrl: 'templates/tab-stock.html',
-          controller: 'StockCtrl'
-        }
-      }
-    })
-
-  .state('tab.sales', {
-      url: '/sales',
-       views: {
-         'tab-sales': {
-          templateUrl: 'templates/tab-sales.html',
-          controller: 'SalesCtrl'
-         }
-       }
-    })
-
-  .state('tab.sale-list', {
-      url: '/sale_list',
+  .state('tab.sales_list', {
+      url: '/sales/list',
       cache: false,
        views: {
          'tab-sales': {
@@ -96,8 +76,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
        }
     })
 
-  .state('tab.sale-add', {
-      url: '/sale_add',
+  .state('tab.sales_add', {
+      url: '/sales/add',
        views: {
          'tab-sales': {
           templateUrl: 'templates/tab-sale_add.html',
@@ -106,38 +86,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
        }
     })
 
-  .state('tab.sales-m1', {
-      url: '/sales/m1',
+  .state('tab.items_add', {
+      url: '/items/add',
        views: {
          'tab-sales': {
-          templateUrl: 'templates/tab-sales-m1.html',
-          controller: 'SalesCtrl'
+          templateUrl: 'templates/tab-item-add.html',
+          controller: 'ItemAddController'
          }
        }
     })
 
-  .state('tab.sales-m2', {
-      url: '/sales/m2',
-       views: {
-         'tab-sales': {
-          templateUrl: 'templates/tab-sales-m2.html',
-          controller: 'SalesCtrl'
-         }
-       }
-    })
-
-  .state('tab.sales-additem', {
-      url: '/sales/additem',
-       views: {
-         'tab-sales': {
-          templateUrl: 'templates/tab-sales-additem.html',
-          controller: 'SalesCtrl'
-         }
-       }
-    })
-
-  .state('tab.store-list', {
-      url: '/store_list',
+  .state('tab.stores_list', {
+      url: '/stores/list',
        views: {
          'tab-sales': {
           templateUrl: 'templates/tab-store_list.html',

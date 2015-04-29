@@ -1,9 +1,10 @@
-angular.module('starter.controllers').controller('SaleAddController', ["$scope", "$state", "$stateParams","$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "Items", "Sales", function($scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, Items, Sales) {
+angular.module('starter.controllers')
+.controller('SaleAddController', ["$scope", "$state", "$cordovaBarcodeScanner", "$cordovaDatePicker", "Items", "Sales", function($scope, $state, $cordovaBarcodeScanner, $cordovaDatePicker, Items, Sales) {
+    setDate(new Date());
+
     $scope.items = Items.get();
     $scope.items_array = Items.get_as_array();
     $scope.showItemList = true;
-
-    setDate(new Date());
 
     $scope.query = {
         text: '' 
@@ -54,7 +55,7 @@ angular.module('starter.controllers').controller('SaleAddController', ["$scope",
     $scope.showItemList = function(){
         $scope.showItemList = true;
         $scope.showSaleDetail = false;
-    }
+    };
 
     $scope.selectItem = function($item_id){
         $scope.sale.item_id = $item_id;
@@ -67,13 +68,17 @@ angular.module('starter.controllers').controller('SaleAddController', ["$scope",
     };
 
     $scope.cancel = function(){
-        $state.go('tab.sale-list');
+        $state.go('tab.sales_list');
     };
 
     $scope.ok = function(){
         Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.year, $scope.month, $scope.day, $scope.currentTime);
-        $state.go('tab.sale-list');
+        $state.go('tab.sales_list');
     };
+
+    $scope.addItem = function(){
+        $state.go('tab.items_add');
+    }
 
     $scope.scanAddSalePage1 = function(){
         $ionicPlatform.ready(function(){
@@ -94,5 +99,4 @@ angular.module('starter.controllers').controller('SaleAddController', ["$scope",
         $scope.hideSalesView = true;
         $scope.showManualAddSalePage2 = true;
     };
-
 }])

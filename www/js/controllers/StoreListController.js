@@ -1,5 +1,5 @@
-angular.module('starter.controllers').controller('StoreListController', ["$rootScope", "$scope", "$state", "$stateParams","$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "Stores", function($rootScope, $scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, Stores) {
-    // showStoreList();
+angular.module('starter.controllers')
+.controller('StoreListController', ["$scope", "$state", "$cordovaGeolocation", "Stores", function($scope, $state, $cordovaGeolocation, Stores) {
 
     //$scope.stores_array = Stores.get_as_array($stateParams.storeId);
     showStoreList();
@@ -22,7 +22,6 @@ angular.module('starter.controllers').controller('StoreListController', ["$rootS
 
     function showStoreList(){
         var stores_array = Stores.get_list_as_array();
-        // $scope.hideSalesView = true;
         $scope.showSpinner = true;
         var posOptions = {timeout: 5000, enableHighAccuracy: false};
         $cordovaGeolocation
@@ -42,55 +41,16 @@ angular.module('starter.controllers').controller('StoreListController', ["$rootS
                 }
                 $scope.showSpinner = false;
                 $scope.stores_array = stores_array;
-                // $scope.showManualAddSalePage1 = false;
-                // $scope.showManualAddSalePage2 = false;
-                // $scope.showStoreView = true;
-                // $state.go('tab.sales-stores');
-                // $state.refresh('tab.sales-stores');
-                // $state.transitionTo('tab.sales-stores', null, {'reload':true});
             }, function(err) {
                 $scope.showSpinner = false;
                 $scope.stores_array = stores_array;
-                // $scope.showManualAddSalePage1 = false;
-                // $scope.showManualAddSalePage2 = false;
-                // $scope.showStoreView = true;
-                // $state.go('tab.sales-stores');
-                // $state.refresh('tab.sales-stores');
-                // $state.transitionTo('tab.sales-stores', null, {'reload':true});
             });
     }
-    $scope.showStoreList = showStoreList;
 
     $scope.selectStore = function(store_id, store_name){
-        
-        //$scope.store_id = store_id;
-        //$scope.store_name = store_name;
-        // updateSales();
-        var today=new Date(); 
-        var year = today.getFullYear();
-        var month = today.getMonth()+1;
-        if (month < 10) { month = '0' + month; }
-        var day = today.getDate();
-        if (day < 10) { day = '0' + day; }
-        var date = year + "/" + month + "/" + day;
-
-        window.localStorage.setItem("store_date", date);
-        window.localStorage.setItem("store_id", store_id);
-        window.localStorage.setItem("store_name", store_name);
-
-        Stores.current_store_id = store_id;
-        //$rootScope.$broadcast('changeStore', store_id);
-        console.log("Stores current_store_id: " + Stores.current_store_id);
-        $state.go('tab.sale-list');
-
-    // // $ionicPopup.alert({
-    // //     title: 'Alert3',
-    // //     template: window.localStorage.getItem("store_date")
-    // // });
-    //     // $scope.showInitialStoreSelectMsg = false;
-    //     // $scope.showStoreView = false;
-    //     // $scope.hideSalesView = false;
-    //     // $scope.showInitialStoreSelectMsg = false;
+        Stores.set_current(store_id, store_name);
+        console.log("CurrentStore id: " + Stores.get_current().id + " name: " + Stores.get_current().name);
+        $state.go('tab.sales_list');
     };
 
 }])

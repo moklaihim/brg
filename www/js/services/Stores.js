@@ -9,10 +9,36 @@ angular.module('starter.services')
     //localStorage.clear();
     var stores = $firebaseObject(fStores);
     var stores_array = $firebaseArray(fStores);
-
-    var current_store_id;
+    function todayDate(){
+        var today=new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth()+1;
+        if (month < 10) { month = '0' + month; }
+        var day = today.getDate();
+        if (day < 10) { day = '0' + day; }
+        return year + "/" + month + "/" + day;
+    }
 
     return {
+        set_current: function(store_id, store_name){
+            var date = todayDate();
+            window.localStorage.setItem("store_date", date);
+            window.localStorage.setItem("store_id", store_id);
+            window.localStorage.setItem("store_name", store_name);
+            return store_id;
+        },
+        get_current: function(){
+            var date = todayDate();
+            var current_store = {};
+            if(window.localStorage.getItem('store_date') == date){
+                var store_id = window.localStorage.getItem('store_id');
+                var store_name = window.localStorage.getItem('store_name');
+                current_store = {id: store_id, name: store_name}
+                //var store_tmp = Stores.get_one('taka');
+                //console.log("store_tmp " + store_tmp);
+            }
+            return current_store;
+        },
         get_list: function(){
             return stores;
         },

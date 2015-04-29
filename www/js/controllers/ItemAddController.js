@@ -8,7 +8,7 @@ angular.module('starter.controllers').controller('ItemAddController', ["$scope",
     $scope.manualAddItemPage1 = function(){
         $scope.new_item.id = '';
         $scope.new_item.retail_price = '';
-        $state.go('tab.sales-additem');
+        $state.go('tab.items_add');
         // $scope.showManualAddSalePage1 = false;
         // $scope.showManualAddItemPage1 = true;
     }

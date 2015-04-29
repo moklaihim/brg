@@ -16,7 +16,7 @@
     </label>
     <ion-list>
         <ion-item ng-repeat="item in items_array | filter :query.text | uppercase" ng-click="selectItem(item.id)"><b>{{item.id}}</b></ion-item>
-        <ion-item ng-show="(items_array | filter :query.text | uppercase).length == 0" ng-click="manualAddItemPage1()"><center><b>Not Found. Add New Item?</b></center></ion-item>
+        <ion-item ng-show="(items_array | filter :query.text | uppercase).length == 0" ng-click="addItem()"><center><b>Not Found. Add New Item?</b></center></ion-item>
     </ion-list>
 </ion-content>
 

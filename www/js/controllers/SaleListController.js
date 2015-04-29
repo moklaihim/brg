@@ -1,17 +1,16 @@
-angular.module('starter.controllers').controller('SaleListController', ["$scope", "$state", "$stateParams","$ionicPopup", "$ionicPlatform", "$firebaseObject", "$firebaseArray", "$cordovaBarcodeScanner", "$cordovaGeolocation", "$cordovaDatePicker", "Sales", "Stores", function($scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $firebaseObject, $firebaseArray, $cordovaBarcodeScanner, $cordovaGeolocation, $cordovaDatePicker, Sales, Stores) {
-    setDate(new Date());
+angular.module('starter.controllers')
+.controller('SaleListController', ["$scope", "$state", "$cordovaDatePicker", "Sales", "Stores", function($scope, $state, $cordovaDatePicker, Sales, Stores) {
     console.log("SaleListController started");
+    setDate(new Date());
 
-    if(window.localStorage.getItem('store_date') == $scope.date){
-        console.log("Found store_date is today " + window.localStorage.getItem('store_id') + window.localStorage.getItem('store_name'));
-        $scope.store_id = window.localStorage.getItem('store_id');
-        //var store_tmp = Stores.get_one('taka');
-        //console.log("store_tmp " + store_tmp);
-        $scope.store_name = window.localStorage.getItem('store_name');
-    }else{
-        $state.go('tab.store-list');
+    var current_store = Stores.get_current();
+    if(Object.keys(current_store).length === 0){
+        $state.go('tab.stores_list');
     }
-    $scope.sales = Sales.get(Stores.current_store_id, $scope.year, $scope.month, $scope.day);
+    $scope.store_id = current_store.id;
+    $scope.store_name = current_store.name;
+    $scope.sales = Sales.get($scope.store_id, $scope.year, $scope.month, $scope.day);
+    console.log("Current Store" +  $scope.store_id + " " + $scope.store_name);
 
     function setDate(date){
         //var today=new Date(); 
@@ -28,10 +27,6 @@ angular.module('starter.controllers').controller('SaleListController', ["$scope"
     }
 
     $scope.showDatePicker = function(){
-    //$ionicPopup.alert({
-    //    title: 'Alert2',
-    //    template: window.localStorage.getItem("store_date")
-    //});
         var options = {
             mode: 'date',
             date: new Date(),
@@ -47,21 +42,8 @@ angular.module('starter.controllers').controller('SaleListController', ["$scope"
         });
     };
 
-    $scope.manualAddSalePage1 = function(){
-        //var ref = new Firebase("https://fiery-heat-6039.firebaseio.com/");
-        //$scope.items = $firebaseArray(ref.child("items"));
-        $scope.query.text = "";
-        // $scope.showManualAddSalePage2 = false;
-        // $scope.hideSalesView = true;
-        // $scope.showManualAddSalePage1 = true;
-        $state.go('tab.sales-m1');
+    $scope.removeSale = function(key) {
+        console.log("remove key: " + key);
+        Sales.remove(key);
     };
-
-    $scope.removeSale = function (key) {
-        $scope.sales.$remove(key).then(function(ref) {
-            // data has been deleted locally and in Firebase
-        }, function(error) {
-            console.log("Error:", error);
-        });
-    }
 }])
