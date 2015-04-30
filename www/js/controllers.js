@@ -48,6 +48,7 @@ angular.module('starter.controllers', [])
 
 document.write('<script type="text/javascript" src="js/controllers/sales.js"></script>');
 document.write('<script type="text/javascript" src="js/controllers/stocks.js"></script>');
+document.write('<script type="text/javascript" src="js/controllers/MainController.js"></script>');
 document.write('<script type="text/javascript" src="js/controllers/SaleListController.js"></script>');
 document.write('<script type="text/javascript" src="js/controllers/SaleAddController.js"></script>');
 document.write('<script type="text/javascript" src="js/controllers/StoreListController.js"></script>');

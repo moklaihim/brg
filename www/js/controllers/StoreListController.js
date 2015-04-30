@@ -72,7 +72,7 @@ angular.module('starter.controllers')
     $scope.selectStore = function(store_id, store_name){
         Stores.set_current(store_id, store_name);
         console.log("CurrentStore id: " + Stores.get_current().id + " name: " + Stores.get_current().name);
-        $state.go('tab.sales_list');
+        $state.go('main.sales_list');
     };
 
 }])

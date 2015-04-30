@@ -14,9 +14,11 @@ angular.module('starter.services')
         get: function(){
             return items;
         },
+
         get_as_array: function(){
             return items_array;
         },
+
         add: function(item_id, retail_price){
             items[item_id] = {id: item_id, retail_price: retail_price};
             items.$save();

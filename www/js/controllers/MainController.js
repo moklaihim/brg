@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('SaleListController', ["$scope", "$state", "$cordovaDatePicker", "Sales", "Stores", function($scope, $state, $cordovaDatePicker, Sales, Stores) {
-    console.log("SaleListController started");
+.controller('MainController', ["$scope", "$state", "$cordovaDatePicker", "Sales", "Stores", function($scope, $state, $cordovaDatePicker, Sales, Stores) {
+    console.log("MainController started");
     setDate(new Date());
 
     var current_store = Stores.get_current();
@@ -41,10 +41,5 @@ angular.module('starter.controllers')
         $cordovaDatePicker.show(options).then(function(date){
             setDate(date);
         });
-    };
-
-    $scope.removeSale = function(key) {
-        console.log("remove key: " + key);
-        Sales.remove(key);
     };
 }])

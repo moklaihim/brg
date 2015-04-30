@@ -5,7 +5,7 @@ angular.module('starter.controllers')
     var current_store = Stores.get_current();
     console.log(current_store);
     if(Object.keys(current_store).length === 0){
-        $state.go('tab.stores_list');
+        $state.go('main.stores_list');
     }
     if(Sales.check_sales()){
         Sales.get(current_store.id, $scope.year, $scope.month, $scope.day);
@@ -86,16 +86,16 @@ angular.module('starter.controllers')
     $scope.selectItem = selectItem;
 
     $scope.cancel = function(){
-        $state.go('tab.sales_list');
+        $state.go('main.sales_list');
     };
 
     $scope.ok = function(){
         Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.year, $scope.month, $scope.day, $scope.currentTime);
-        $state.go('tab.sales_list');
+        $state.go('main.sales_list');
     };
 
     $scope.addItem = function(){
-        $state.go('tab.items_add');
+        $state.go('main.items_add');
     }
 
     $scope.scanAddSalePage1 = function(){

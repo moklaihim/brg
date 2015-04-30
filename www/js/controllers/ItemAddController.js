@@ -11,10 +11,10 @@ angular.module('starter.controllers')
         Sales.set_current_item($scope.new_item.id);
         var current_item = Sales.get_current_item();
         console.log("Saved Current Item: " + current_item);
-        $state.go('tab.sales_add');
+        $state.go('main.sales_add');
     }
 
     $scope.cancel = function(){
-        $state.go('tab.sales_list');
+        $state.go('main.sales_list');
     };
 }])
