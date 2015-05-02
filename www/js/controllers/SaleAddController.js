@@ -1,6 +1,8 @@
 angular.module('starter.controllers')
 .controller('SaleAddController', ["$scope", "$state", "$cordovaBarcodeScanner", "Items", "Sales", function($scope, $state, $cordovaBarcodeScanner, Items, Sales) {
 
+    $scope.showDisOption = false;
+
     $scope.query = {
         text: '' 
     };
@@ -83,4 +85,10 @@ angular.module('starter.controllers')
         $scope.hideSalesView = true;
         $scope.showManualAddSalePage2 = true;
     };
+
+    $scope.dOption= function(){
+        $scope.showDisOption = !$scope.showDisOption;
+        console.log("button clicked");
+    };
+
 }])
