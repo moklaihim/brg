@@ -2,16 +2,43 @@ angular.module('starter.controllers')
 .controller('SaleListController', ["$scope", "$state", "Sales", function($scope, $state, Sales) {
     console.log("SaleListController started");
 
-    $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
-    console.log("Current Store" +  $scope.current.store_id + " " + $scope.current.store_name);
+    updateSales();
+    $scope.showSalesView = true;
 
     $scope.removeSale = function(key) {
         console.log("remove key: " + key);
         Sales.remove(key);
     };
 
-    $scope.$on('changedDate', function() {
-        console.log("Started changedDate");
+    $scope.closeSales = function(){
+        console.log("Close Sales");
+        Sales.close($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+        updateSales();
+    }
+
+    function updateSales(){
+        $scope.salesClosed = true;
+        $scope.showSpinner = true;
         $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
-    });
+        $scope.sales.$loaded()
+            .then(function() {
+                console.log($scope.sales);
+                if('CLOSED' in $scope.sales){
+                    console.log("Already Closed");
+                    $scope.showSpinner = false;
+                    $scope.salesClosed = true;
+                    $scope.showClosedMessage = true;
+                }else{
+                    console.log("Has not Closed");
+                    $scope.showSpinner = false;
+                    $scope.salesClosed = false;
+                }
+            })  
+            .catch(function(err) {
+                console.error(err);
+            });
+
+        //console.log(Object.getOwnPropertyNames($scope.sales));
+    }
+    $scope.$on('changedDate', updateSales);
 }])

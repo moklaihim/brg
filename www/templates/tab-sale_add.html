@@ -8,7 +8,7 @@
         <h1 class="title">Add Sale</h1>
     </ion-header-bar>
 
-    <ion-content padding="true" ng-show="showItemList">
+    <ion-content padding="true" class="ng-hide" ng-show="showItemList">
         <ion-list>
             <div class="item item-input-inset">
                 <label class="item-input-wrapper">
@@ -24,13 +24,14 @@
         </ion-list>
     </ion-content>
 
-    <ion-content padding="true" ng-show="showSaleDetail">
-        <ion-list>
-            <ion-item ng-click="showItemListPage()"><b>{{sale.item_id}}</b></ion-item>
-        </ion-list>
+    <ion-content padding="true" class="ng-hide" ng-show="showSaleDetail">
+        <label class="item item-input">
+            <span class="input-label">Item</span>
+            <span>{{sale.item_id}}</span>
+        </label>
         <label class="item item-input">
             <span class="input-label">Retail Price</span>
-            <input ng-model="sale.retail_price" ng-change="sale.sale_price = sale.retail_price" type="text">
+            <span>{{sale.retail_price | currency:"$"}}</span>
         </label>
             <div class="item item-input-inset" ng-show="showDisOption">
                 <label class="item item-input-wrapper" style="padding:0px 0px 0px 5px; background:#fff; border-style: none">
@@ -55,7 +56,7 @@
             <!-- <span class="input-label">code</span> -->
                 <label class="item item-input-wrapper" style="padding:0px 0px 0px 5px; background:#fff; border-style: none">
                     <span class="input-label">Discount(%)</span>
-                    <input ng-model="sale.discount_rate" ng-change="sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100" type="text">
+                    <input type="number" min="0" max="100" ng-model="sale.discount_rate" ng-change="sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100">
                 </label>
                 <button class="button button-clear button-small button-positive" ng-click="dOption()">>
               </button>
@@ -63,11 +64,11 @@
         </ion-list>
         <label class="item item-input">
             <span class="input-label">Sale Price</span>
-            <input ng-model="sale.sale_price" type="text"></input>
+            <input type="number" min="0" ng-model="sale.sale_price"></input>
         </label>
         <label class="item item-input">
             <span class="input-label">Qty</span>
-            <input ng-model="sale.qty" type="text">
+            <input type="number" min="1" ng-model="sale.qty">
         </label>
     </ion-content>
 

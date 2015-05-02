@@ -29,6 +29,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   $ionicConfigProvider.tabs.position("bottom");
   $ionicConfigProvider.navBar.alignTitle('left');
+  $ionicConfigProvider.views.forwardCache(true);
   
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -116,6 +117,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('main.stores_list', {
       url: '/stores/list',
+      cache: true,
        views: {
          'tab-sales': {
           templateUrl: 'templates/tab-store_list.html',

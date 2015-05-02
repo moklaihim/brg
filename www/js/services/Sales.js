@@ -11,10 +11,16 @@ angular.module('starter.services')
             }, undefined, undefined, true);
             sales = $firebaseObject(fSales);
             return sales;
+
         },
 
-        add: function(item_id, sale_price, year, month, day, time){
-            var current_ut = new Date().getTime();
+        add: function(item_id, sale_price, year, month, day){
+            var now = new Date();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            if (minute < 10) { minute = '0' + minute; }
+            var time = hour + ':' + minute;
+            var current_ut = now.getTime();
 
             sales[current_ut] = {item: item_id, price: sale_price, date: year + "/" + month + "/" + day, time: time};
             sales.$save();
@@ -39,12 +45,15 @@ angular.module('starter.services')
             //});
         },
 
-        set_current_item: function(item_id) {
-            current_item = item_id;
-        },
-
-        get_current_item: function(){
-            return current_item;
+        close: function(store_id, year, month, day){
+            //Close Sales
+            var now = new Date();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            if (minute < 10) { minute = '0' + minute; }
+            var time = hour + ':' + minute;
+            sales['CLOSED'] = {item: "CLOSED", date: year + "/" + month + "/" + day, time: time};
+            sales.$save();
         },
 
         check_sales: function(){

@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SaleAddController', ["$scope", "$state", "$cordovaBarcodeScanner","$ionicPlatform", "$ionicPopup", "Items", "Sales", function($scope, $state, $cordovaBarcodeScanner, $ionicPlatform, $ionicPopup, Items, Sales) {
+.controller('SaleAddController', ["$scope", "$state", "$filter", "$cordovaBarcodeScanner", "Items", "Sales", function($scope, $state, $filter, $cordovaBarcodeScanner, Items, Sales) {
 
     $scope.showDisOption = false;
 
@@ -66,7 +66,7 @@ angular.module('starter.controllers')
         $scope.sale.item_id = $item_id;
         $scope.sale.retail_price = $scope.items[$item_id].retail_price;
         $scope.sale.discount_rate = '';
-        $scope.sale.sale_price = $scope.items[$item_id].retail_price;
+        $scope.sale.sale_price = Number($scope.items[$item_id].retail_price);
         $scope.sale.qty = 1;
         $scope.showSaleDetail = true;
     };
@@ -78,13 +78,9 @@ angular.module('starter.controllers')
     };
 
     $scope.ok = function(){
-        var now = new Date();
-        var hour = now.getHours();
-        var minute = now.getMinutes();
-        if (minute < 10) { minute = '0' + minute; }
-        var time = hour + ':' + minute;
-
-        Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, time);
+        for (var i = 0; i < $scope.sale.qty; i++) {
+            Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+        }
         $scope.current.item_id = "";
         $state.go('main.sales_list');
     };
@@ -109,7 +105,7 @@ angular.module('starter.controllers')
                 });
         });
 
-        $scope.hideSalesView = true;
+        $scope.showSalesView = false;
         $scope.showManualAddSalePage2 = true;
     };
 
@@ -117,7 +113,8 @@ angular.module('starter.controllers')
         $scope.showDisOption = !$scope.showDisOption;
         console.log("button clicked");
     };
-// Alert Function----------------------------------------
+
+    // Alert Function----------------------------------------
     // function showAlert($item_id){
     //     // var msg = item_id;
     //     var alertPopup = $ionicPopup.alert({

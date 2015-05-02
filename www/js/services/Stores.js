@@ -27,10 +27,13 @@ angular.module('starter.services')
             return stores_array;
         },
         get_one: function($store_id){
-            console.log("get_one for " + $store_id);
-            console.log(stores);
-            console.log(stores.hasOwnProperty('taka'));
-            return store_tmp;
+            stores.$loaded()
+                .then(function() {
+                    return stores[$store_id];
+                })
+                .catch(function(err) {
+                    console.error(err);
+                });
         }
     }
 }]);
