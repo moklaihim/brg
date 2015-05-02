@@ -14,8 +14,9 @@
     
     <ion-content padding="false" class="ng-hide" ng-show="showSalesView" style="margin-bottom: 50px">
         <ion-list>
-            <ion-item ng-repeat="(key, sale) in sales"><b>{{sale.item}}</b><span style="float: right;">{{sale.price | currency:"$"}}</span>
-                <div ng-if="sale.item != 'CLOSED'">
+            <ion-item ng-repeat="(key, sale) in sales">
+                <b>{{sale.item}}</b><span style="float: right;">{{sale.price | currency:"$"}}</span>
+                <div ng-if="!salesClosed">
                     <ion-option-button class="button-positive ion-edit" ng-click=""></ion-option-button>
                     <ion-option-button class="button-assertive ion-close-round" ng-click="removeSale(key)"></ion-option-button>
                 </div>
@@ -23,15 +24,20 @@
         </ion-list>
     </ion-content>
 
-    <ion-footer-bar class="bar-subfooter bar-energized ng-hide" ng-show="showCloseButton">
+    <ion-footer-bar class="bar-subfooter bar-energized ng-hide" ng-if="!salesClosed" ng-show="!salesClosed">
         <div class="button-bar">
             <button class="button" ng-click="closeSales()">Close sales for the day.</button>
         </div>
     </ion-footer-bar>
-    <ion-footer-bar class="bar-balanced ng-hide" ng-show="showAddButtons">
+    <ion-footer-bar class="bar-balanced ng-hide" ng-if="!salesClosed" ng-show="!salesClosed">
         <div class="button-bar">
             <a class="button" ui-sref="main.sales_add" ><i class="ion-plus-round"></i> Add</a>
             <button class="button" ng-click="scanAddSalePage1()"><i class="ion-ios-barcode-outline"></i> Scan</button>
+        </div>
+    </ion-footer-bar>
+    <ion-footer-bar class="bar-light ng-hide" ng-if="showClosedMessage" ng-show="showClosedMessage">
+        <div class="button-bar">
+            <button class="button">Sales Closed</button>
         </div>
     </ion-footer-bar>
 </ion-view>

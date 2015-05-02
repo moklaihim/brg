@@ -17,6 +17,7 @@ angular.module('starter.controllers')
     }
 
     function updateSales(){
+        $scope.salesClosed = true;
         $scope.showSpinner = true;
         $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
         $scope.sales.$loaded()
@@ -25,13 +26,12 @@ angular.module('starter.controllers')
                 if('CLOSED' in $scope.sales){
                     console.log("Already Closed");
                     $scope.showSpinner = false;
-                    $scope.showCloseButton = false;
-                    $scope.showAddButtons = false;
+                    $scope.salesClosed = true;
+                    $scope.showClosedMessage = true;
                 }else{
                     console.log("Has not Closed");
                     $scope.showSpinner = false;
-                    $scope.showCloseButton = true;
-                    $scope.showAddButtons = true;
+                    $scope.salesClosed = false;
                 }
             })  
             .catch(function(err) {
