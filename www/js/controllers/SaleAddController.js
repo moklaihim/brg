@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
 .controller('SaleAddController', ["$scope", "$state", "$cordovaBarcodeScanner", "$cordovaDatePicker", "Items", "Sales", "Stores", function($scope, $state, $cordovaBarcodeScanner, $cordovaDatePicker, Items, Sales, Stores) {
     setDate(new Date());
+    $scope.showDisOption = false;
 
     var current_store = Stores.get_current();
     console.log(current_store);
@@ -117,4 +118,15 @@ angular.module('starter.controllers')
         $scope.hideSalesView = true;
         $scope.showManualAddSalePage2 = true;
     };
+
+    $scope.dOption= function(){
+        $scope.showDisOption = !$scope.showDisOption;
+        console.log("button clicked");
+    };
+
+    $scope.dOption2= function(){
+        console.log("button 10% clicked");
+    };
+
+    // console.log("page Loaded");
 }])
