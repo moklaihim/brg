@@ -5,7 +5,6 @@ angular.module('starter.controllers')
     $scope.current = {
         store_id: '',
         store_name: '',
-        store_item: '',
         today_year: '',
         today_month: '',
         today_day: '',

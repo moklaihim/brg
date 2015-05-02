@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SaleAddController', ["$scope", "$state", "$cordovaBarcodeScanner", "Items", "Sales", function($scope, $state, $cordovaBarcodeScanner, Items, Sales) {
+.controller('SaleAddController', ["$scope", "$state", "$filter", "$cordovaBarcodeScanner", "Items", "Sales", function($scope, $state, $filter, $cordovaBarcodeScanner, Items, Sales) {
 
     $scope.showDisOption = false;
 
@@ -58,7 +58,9 @@ angular.module('starter.controllers')
         if (minute < 10) { minute = '0' + minute; }
         var time = hour + ':' + minute;
 
-        Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, time);
+        for (var i = 0; i < $scope.sale.qty; i++) {
+            Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, time);
+        }
         $state.go('main.sales_list');
     };
 
