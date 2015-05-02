@@ -78,7 +78,7 @@ angular.module('starter.controllers')
                 });
         });
 
-        $scope.hideSalesView = true;
+        $scope.showSalesView = false;
         $scope.showManualAddSalePage2 = true;
     };
 

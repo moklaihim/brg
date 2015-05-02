@@ -3,6 +3,7 @@ angular.module('starter.controllers')
     console.log("SaleListController started");
 
     updateSales();
+    $scope.showSalesView = true;
 
     $scope.removeSale = function(key) {
         console.log("remove key: " + key);
@@ -16,16 +17,19 @@ angular.module('starter.controllers')
     }
 
     function updateSales(){
+        $scope.showSpinner = true;
         $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
         $scope.sales.$loaded()
             .then(function() {
                 console.log($scope.sales);
                 if('CLOSED' in $scope.sales){
                     console.log("Already Closed");
+                    $scope.showSpinner = false;
                     $scope.showCloseButton = false;
                     $scope.showAddButtons = false;
                 }else{
                     console.log("Has not Closed");
+                    $scope.showSpinner = false;
                     $scope.showCloseButton = true;
                     $scope.showAddButtons = true;
                 }
