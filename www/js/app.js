@@ -93,6 +93,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
        }
     })
 
+  .state('main.sales_scanadd', {
+      url: '/sales/scanadd',
+      cache: false,
+       views: {
+         'tab-sales': {
+          templateUrl: 'templates/tab-sale_add.html',
+          controller: 'SaleAddController'
+         }
+       }
+    })
+
   .state('main.items_add', {
       url: '/items/add',
       cache: false,
