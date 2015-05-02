@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SaleAddController', ["$scope", "$state", "$filter", "$cordovaBarcodeScanner", "Items", "Sales", function($scope, $state, $filter, $cordovaBarcodeScanner, Items, Sales) {
+.controller('SaleAddController', ["$scope", "$state", "$filter", "$cordovaBarcodeScanner", "$ionicPlatform","Items", "Sales", function($scope, $state, $filter, $cordovaBarcodeScanner, $ionicPlatform, Items, Sales) {
 
     $scope.showDisOption = false;
 
