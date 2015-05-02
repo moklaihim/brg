@@ -20,25 +20,6 @@ angular.module('starter.services')
     }
 
     return {
-        set_current: function(store_id, store_name){
-            var date = todayDate();
-            window.localStorage.setItem("store_date", date);
-            window.localStorage.setItem("store_id", store_id);
-            window.localStorage.setItem("store_name", store_name);
-            return store_id;
-        },
-        get_current: function(){
-            var date = todayDate();
-            var current_store = {};
-            if(window.localStorage.getItem('store_date') == date){
-                var store_id = window.localStorage.getItem('store_id');
-                var store_name = window.localStorage.getItem('store_name');
-                current_store = {id: store_id, name: store_name}
-                //var store_tmp = Stores.get_one('taka');
-                //console.log("store_tmp " + store_tmp);
-            }
-            return current_store;
-        },
         get_list: function(){
             return stores;
         },
@@ -51,13 +32,5 @@ angular.module('starter.services')
             console.log(stores.hasOwnProperty('taka'));
             return store_tmp;
         }
-        // get_as_array: function(storeId) {
-        //     for (var i = 0; i < stores_array.length; i++) {
-        //         if (stores_array[i].id === parseInt(storeId)) {
-        //             return stores_array[i];
-        //         }
-        //     }
-        //     return null;
-        // }
     }
 }]);

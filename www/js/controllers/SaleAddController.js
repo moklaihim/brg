@@ -1,18 +1,5 @@
 angular.module('starter.controllers')
-.controller('SaleAddController', ["$scope", "$state", "$cordovaBarcodeScanner", "$cordovaDatePicker", "Items", "Sales", "Stores", function($scope, $state, $cordovaBarcodeScanner, $cordovaDatePicker, Items, Sales, Stores) {
-    setDate(new Date());
-
-    var current_store = Stores.get_current();
-    console.log(current_store);
-    if(Object.keys(current_store).length === 0){
-        $state.go('main.stores_list');
-    }
-    if(Sales.check_sales()){
-        Sales.get(current_store.id, $scope.year, $scope.month, $scope.day);
-    }
-
-    $scope.items = Items.get();
-    $scope.items_array = Items.get_as_array();
+.controller('SaleAddController', ["$scope", "$state", "$cordovaBarcodeScanner", "Items", "Sales", function($scope, $state, $cordovaBarcodeScanner, Items, Sales) {
 
     $scope.query = {
         text: '' 
@@ -27,47 +14,20 @@ angular.module('starter.controllers')
         time: ''
     }
 
-    var current_item = Sales.get_current_item();
-    console.log("Loaded Current Item: " + current_item);
-    if(current_item){
-        console.log("Current Item exist: " + current_item);
-        selectItem(current_item);
+    $scope.items = Items.get();
+    $scope.items_array = Items.get_as_array();
+
+    if(Sales.check_sales()){
+        Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+    }
+
+    console.log("Loaded Current Item: " + $scope.current.item_id);
+    if($scope.current.item_id){
+        console.log("Current Item exist: " + $scope.current.item_id);
+        selectItem($scope.current.item_id);
     }else{
         $scope.showItemList = true;
     }
-
-    function setDate(date){
-        //var today=new Date(); 
-        $scope.year = date.getFullYear();
-        $scope.month = date.getMonth()+1;
-        if ($scope.month < 10) { $scope.month = '0' + $scope.month; }
-        $scope.day = date.getDate();
-        if ($scope.day < 10) { $scope.day = '0' + $scope.day; }
-        $scope.date = $scope.year + "/" + $scope.month + "/" + $scope.day;
-        $scope.currentHr = date.getHours();
-        $scope.currentMin = date.getMinutes();
-        $scope.currentTime = $scope.currentHr + ":" + $scope.currentMin;
-    }
-
-    $scope.showDatePicker = function(){
-    //$ionicPopup.alert({
-    //    title: 'Alert2',
-    //    template: window.localStorage.getItem("store_date")
-    //});
-        var options = {
-            mode: 'date',
-            date: new Date(),
-            allowOldDates: true,
-            allowFutureDates: true,
-            doneButtonLabel: 'DONE',
-            doneButtonColor: '#F2F3F4',
-            cancelButtonLabel: 'CANCEL',
-            cancelButtonColor: '#000000'
-        };
-        $cordovaDatePicker.show(options).then(function(date){
-            setDate(date);
-        });
-    };
 
     $scope.showItemListPage = function(){
         $scope.showItemList = true;
@@ -90,7 +50,13 @@ angular.module('starter.controllers')
     };
 
     $scope.ok = function(){
-        Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.year, $scope.month, $scope.day, $scope.currentTime);
+        var now = new Date();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        if (minute < 10) { minute = '0' + minute; }
+        var time = hour + ':' + minute;
+
+        Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, time);
         $state.go('main.sales_list');
     };
 

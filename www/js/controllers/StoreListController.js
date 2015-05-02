@@ -70,8 +70,14 @@ angular.module('starter.controllers')
     }
 
     $scope.selectStore = function(store_id, store_name){
-        Stores.set_current(store_id, store_name);
-        console.log("CurrentStore id: " + Stores.get_current().id + " name: " + Stores.get_current().name);
+        window.localStorage.setItem("store_date", $scope.current.today_date);
+        window.localStorage.setItem("store_id", store_id);
+        window.localStorage.setItem("store_name", store_name);
+
+        $scope.current.store_id = store_id;
+        $scope.current.store_name = store_name;
+
+        console.log("CurrentStore set to id: " + $scope.current.store_id + " name: " + $scope.current.store_name);
         $state.go('main.sales_list');
     };
 

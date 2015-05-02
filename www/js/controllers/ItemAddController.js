@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ItemAddController', ["$scope", "$state", "Items", "Sales", function($scope, $state, Items, Sales) {
+.controller('ItemAddController', ["$scope", "$state", "Items", function($scope, $state, Items) {
  
     $scope.new_item = {
         id: '',
@@ -8,9 +8,7 @@ angular.module('starter.controllers')
 
     $scope.ok = function(){
         Items.add($scope.new_item.id, $scope.new_item.retail_price);
-        Sales.set_current_item($scope.new_item.id);
-        var current_item = Sales.get_current_item();
-        console.log("Saved Current Item: " + current_item);
+        $scope.current.item_id = $scope.new_item.id;
         $state.go('main.sales_add');
     }
 
