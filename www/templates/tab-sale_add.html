@@ -25,12 +25,13 @@
     </ion-content>
 
     <ion-content padding="true" ng-show="showSaleDetail">
-        <ion-list>
-            <ion-item ng-click="showItemListPage()"><b>{{sale.item_id}}</b></ion-item>
-        </ion-list>
+        <label class="item item-input">
+            <span class="input-label">Item</span>
+            <span>{{sale.item_id}}</span>
+        </label>
         <label class="item item-input">
             <span class="input-label">Retail Price</span>
-            <input ng-model="sale.retail_price" ng-change="sale.sale_price = sale.retail_price" type="text">
+            <span>{{sale.retail_price | currency:"$"}}</span>
         </label>
             <div class="item item-input-inset" ng-show="showDisOption">
                 <label class="item item-input-wrapper" style="padding:0px 0px 0px 5px; background:#fff; border-style: none">

@@ -40,7 +40,7 @@ angular.module('starter.controllers')
         $scope.sale.item_id = $item_id;
         $scope.sale.retail_price = $scope.items[$item_id].retail_price;
         $scope.sale.discount_rate = '';
-        $scope.sale.sale_price = $scope.items[$item_id].retail_price;
+        $scope.sale.sale_price = Number($scope.items[$item_id].retail_price);
         $scope.sale.qty = 1;
         $scope.showItemList = false;
         $scope.showSaleDetail = true;
