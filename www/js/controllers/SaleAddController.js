@@ -52,14 +52,8 @@ angular.module('starter.controllers')
     };
 
     $scope.ok = function(){
-        var now = new Date();
-        var hour = now.getHours();
-        var minute = now.getMinutes();
-        if (minute < 10) { minute = '0' + minute; }
-        var time = hour + ':' + minute;
-
         for (var i = 0; i < $scope.sale.qty; i++) {
-            Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, time);
+            Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
         }
         $state.go('main.sales_list');
     };

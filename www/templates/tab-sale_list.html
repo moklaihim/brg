@@ -19,7 +19,12 @@
         </ion-list>
     </ion-content>
 
-    <ion-footer-bar class="bar-balanced">
+    <ion-footer-bar class="bar-subfooter bar-energized" ng-show="showCloseButton">
+        <div class="button-bar">
+            <button class="button" ng-click="closeSales()">Close sales for the day.</button>
+        </div>
+    </ion-footer-bar>
+    <ion-footer-bar class="bar-balanced" ng-show="showAddButtons">
         <div class="button-bar">
             <a class="button" ui-sref="main.sales_add" ><i class="ion-plus-round"></i> Add</a>
             <button class="button" ng-click="scanAddSalePage1()"><i class="ion-ios-barcode-outline"></i> Scan</button>
