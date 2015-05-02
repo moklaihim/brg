@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ItemAddController', ["$scope", "$state", "Items", function($scope, $state, Items) {
+.controller('ItemAddController', ["$scope", "$filter", "$state", "Items", function($scope, $filter, $state, Items) {
  
     $scope.new_item = {
         id: '',
@@ -17,4 +17,8 @@ angular.module('starter.controllers')
     $scope.cancel = function(){
         $state.go('main.sales_list');
     };
+
+    $scope.$watch('new_item.id', function(val) {
+        $scope.new_item.id = $filter('uppercase')(val);
+    }, true);
 }])

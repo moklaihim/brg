@@ -114,6 +114,10 @@ angular.module('starter.controllers')
         console.log("button clicked");
     };
 
+    $scope.$watch('query.text', function(val) {
+        $scope.query.text = $filter('uppercase')(val);
+    }, true);
+
     // Alert Function----------------------------------------
     // function showAlert($item_id){
     //     // var msg = item_id;
