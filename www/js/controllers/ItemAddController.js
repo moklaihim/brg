@@ -6,11 +6,13 @@ angular.module('starter.controllers')
         retail_price: ''
     } 
 
+    $scope.new_item.id = $scope.current.item_id;
+
     $scope.ok = function(){
         Items.add($scope.new_item.id, $scope.new_item.retail_price);
         $scope.current.item_id = $scope.new_item.id;
         $state.go('main.sales_add');
-    }
+    };
 
     $scope.cancel = function(){
         $state.go('main.sales_list');

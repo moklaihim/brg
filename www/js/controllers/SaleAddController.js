@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SaleAddController', ["$scope", "$state", "$cordovaBarcodeScanner", "Items", "Sales", function($scope, $state, $cordovaBarcodeScanner, Items, Sales) {
+.controller('SaleAddController', ["$scope", "$state", "$cordovaBarcodeScanner","$ionicPlatform", "$ionicPopup", "Items", "Sales", function($scope, $state, $cordovaBarcodeScanner, $ionicPlatform, $ionicPopup, Items, Sales) {
 
     $scope.showDisOption = false;
 
@@ -19,9 +19,33 @@ angular.module('starter.controllers')
     $scope.items = Items.get();
     $scope.items_array = Items.get_as_array();
 
+    if($state.current.name === "main.sales_scanadd"){
+        $scope.showItemList = false;
+        console.log ("state is main.sales_scanadd")
+        $ionicPlatform.ready(function(){
+            $cordovaBarcodeScanner
+                .scan()
+                .then(function(barcodeData) {
+                    var item_id = barcodeData.text;
+                    if (!$scope.items.hasOwnProperty(item_id)){
+                        $scope.current.item_id = item_id;
+                        // showAlert($scope.current.item_id);
+                        $state.go('main.items_add');
+                    };
+                    
+                    selectItem(item_id);
+                    
+                },  function(error) {
+
+                    // An error occurred
+                    });
+        }); 
+    };
+
     if(Sales.check_sales()){
         Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
     }
+    
 
     console.log("Loaded Current Item: " + $scope.current.item_id);
     if($scope.current.item_id){
@@ -37,17 +61,19 @@ angular.module('starter.controllers')
     };
 
     function selectItem($item_id){
+        console.log ("sselectItem function called")
+        $scope.showItemList = false;
         $scope.sale.item_id = $item_id;
         $scope.sale.retail_price = $scope.items[$item_id].retail_price;
         $scope.sale.discount_rate = '';
         $scope.sale.sale_price = $scope.items[$item_id].retail_price;
         $scope.sale.qty = 1;
-        $scope.showItemList = false;
         $scope.showSaleDetail = true;
     };
     $scope.selectItem = selectItem;
 
     $scope.cancel = function(){
+        $scope.current.item_id = "";
         $state.go('main.sales_list');
     };
 
@@ -59,6 +85,7 @@ angular.module('starter.controllers')
         var time = hour + ':' + minute;
 
         Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, time);
+        $scope.current.item_id = "";
         $state.go('main.sales_list');
     };
 
@@ -90,5 +117,17 @@ angular.module('starter.controllers')
         $scope.showDisOption = !$scope.showDisOption;
         console.log("button clicked");
     };
+// Alert Function----------------------------------------
+    // function showAlert($item_id){
+    //     // var msg = item_id;
+    //     var alertPopup = $ionicPopup.alert({
+    //      title: 'Don\'t eat that!',
+    //      template: $item_id
+    //     });
+    //     alertPopup.then(function(res) {
+    //      console.log('Thank you for not eating my delicious ice cream cone');
+    //     });
+    // };
+    // $scope.showAlert = showAlert;
 
 }])
