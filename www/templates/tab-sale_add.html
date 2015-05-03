@@ -15,8 +15,8 @@
                     <i class="icon ion-ios-search placeholder-icon"></i>
                     <input type="text" ng-model="query.text" placeholder="Search">
                 </label>
-                <button class="button button-small" ng-click="query.text = ''">
-                    Clear
+                <button class="button button-clear ion-close" ng-click="query.text = ''">
+                    
                 </button>
             </div>
             <ion-item ng-repeat="item in items_array | filter :query.text | uppercase" ng-click="selectItem(item.id)"><b>{{item.id}}</b></ion-item>
@@ -72,7 +72,7 @@
         </label>
     </ion-content>
 
-    <ion-footer-bar class="bar-balanced" ng-show="showSaleDetail">
+    <ion-footer-bar keyboard-attach class="bar-balanced" ng-show="showSaleDetail">
         <div class="button-bar">
             <button class="button" ng-click="ok()" >OK</button>
             <button class="button" ng-click="cancel()">Back</button>
