@@ -20,25 +20,31 @@ angular.module('starter.controllers')
     $scope.items_array = Items.get_as_array();
 
     if($state.current.name === "main.sales_scanadd"){
-        $scope.showItemList = false;
-        console.log ("state is main.sales_scanadd")
+        // $scope.showItemList = false;
+        // console.log ("state is main.sales_scanadd")
         $ionicPlatform.ready(function(){
             $cordovaBarcodeScanner
                 .scan()
                 .then(function(barcodeData) {
-                    var item_id = barcodeData.text;
-                    if (!$scope.items.hasOwnProperty(item_id)){
-                        $scope.current.item_id = item_id;
+                    // var item_id = barcodeData.text;
+                    if (!$scope.items.hasOwnProperty(barcodeData.text)){
+                        $scope.current.item_id = barcodeData.text;
                         // showAlert($scope.current.item_id);
                         $state.go('main.items_add');
                     };
-                    
-                    selectItem(item_id);
-                    
+                    if ($scope.items.hasOwnProperty(barcodeData.text)){
+                        selectItem(barcodeData.text);
+                    };
+                    if (barcodeData.cancelled){
+                        $state.go('main.sales_list');
+                    };
                 },  function(error) {
-
                     // An error occurred
-                    });
+                    },
+                    {
+                        "showFlipCameraButton" : false
+                    }
+                );
         }); 
     };
 
@@ -51,7 +57,11 @@ angular.module('starter.controllers')
     if($scope.current.item_id){
         console.log("Current Item exist: " + $scope.current.item_id);
         selectItem($scope.current.item_id);
-    }else{
+    }
+    else if ($state.current.name === "main.sales_scanadd"){
+        $scope.showItemList = false;
+    }
+    else{
         $scope.showItemList = true;
     }
 
@@ -89,29 +99,33 @@ angular.module('starter.controllers')
         $state.go('main.items_add');
     }
 
-    $scope.scanAddSalePage1 = function(){
-        $ionicPlatform.ready(function(){
-            $cordovaBarcodeScanner
-                .scan()
-                .then(function(barcodeData) {
-                    $scope.item_id = barcodeData.text;
-                    if (!$scope.items.hasOwnProperty(barcodeData.text)){
-                        $scope.items[$item_id] = {id: $item_id};
-                        $scope.items.$save();
-                    };
-                }, function(error) {
-                    // An error occurred
-                });
-        });
-
-        $scope.showSalesView = false;
-        $scope.showManualAddSalePage2 = true;
-    };
+    // $scope.scanAddSalePage1 = function(){
+    //     $ionicPlatform.ready(function(){
+    //         $cordovaBarcodeScanner
+    //             .scan()
+    //             .then(function(barcodeData) {
+    //                 $scope.item_id = barcodeData.text;
+    //                 if (!$scope.items.hasOwnProperty(barcodeData.text)){
+    //                     $scope.items[$item_id] = {id: $item_id};
+    //                     $scope.items.$save();
+    //                     refreshItemArray();
+    //                 };
+    //             }, function(error) {
+    //                 // An error occurred
+    //             });
+    //     });
+    //     $scope.showSalesView = false;
+    //     $scope.showManualAddSalePage2 = true;
+    // };
 
     $scope.dOption= function(){
         $scope.showDisOption = !$scope.showDisOption;
         console.log("button clicked");
     };
+
+    $scope.$watch('query.text', function(val) {
+        $scope.query.text = $filter('uppercase')(val);
+    }, true);
 
     // Alert Function----------------------------------------
     // function showAlert($item_id){
