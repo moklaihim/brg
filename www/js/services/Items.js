@@ -1,7 +1,7 @@
 angular.module('starter.services')
 .factory('Items', ["$timeout", "$firebaseObject", "$firebaseArray", function($timeout, $firebaseObject, $firebaseArray) {
 
-    OfflineFirebase.restore();
+    //OfflineFirebase.restore();
     var fItems = new OfflineFirebase("https://fiery-heat-6039.firebaseio.com/items");
     fItems.on('value', function(snapshot) {
         //console.log(snapshot.val());

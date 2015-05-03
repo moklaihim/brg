@@ -13,8 +13,14 @@ angular.module('starter.controllers')
         set_month: '',
         set_day: '',
         set_date: '',
-        item_id: ''
+        item_id: '',
+        fb_restored: false
     };
+
+    if(!$scope.current.fb_restored){
+        OfflineFirebase.restore();
+        $scope.current.fb_restored = true;
+    }
 
     setDate(new Date(), true);
 

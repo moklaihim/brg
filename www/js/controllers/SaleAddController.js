@@ -98,7 +98,6 @@ angular.module('starter.controllers')
                     if (!$scope.items.hasOwnProperty(barcodeData.text)){
                         $scope.items[$item_id] = {id: $item_id};
                         $scope.items.$save();
-                        refreshItemArray();
                     };
                 }, function(error) {
                     // An error occurred
