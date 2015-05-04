@@ -38,6 +38,16 @@ angular.module('starter.controllers')
         // console.log("button clicked");
     };
 
+    $scope.dButton= function(event){
+        var disc = event.target.id;
+        $scope.showDisOption = !$scope.showDisOption;
+        $scope.sale.discount_rate = disc;
+        $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * disc / 100
+        console.log(disc);
+        
+        // console.log("button clicked");
+    };
+
     $scope.editSaleUpdateBtn= function(){
         // console.log("update clicked");
         // console.log("key is"+$scope.sale.key);

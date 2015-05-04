@@ -38,16 +38,16 @@
                     <span class="input-label">Discount(%)</span>
                 </label>
                     <ion-scroll direction="x" style="width: 200px">
-                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 5 / 100">5%</button>
-                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 10 / 100">10%</button>
-                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 15 / 100">15%</button>
-                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 20 / 100">20%</button>
-                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 25 / 100">25%</button>
-                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 30 / 100">30%</button>
-                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 35 / 100">35%</button>
-                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 40 / 100">40%</button>
-                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 45 / 100">45%</button>
-                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 50 / 100">50%</button>
+                        <button id="5" class="button button-positive" data-ng-click="dButton($event)">5%</button>
+                        <button id="10" class="button button-positive" data-ng-click="dButton($event)">10%</button>
+                        <button id="15" class="button button-positive" data-ng-click="dButton($event)">15%</button>
+                        <button id="20" class="button button-positive" data-ng-click="dButton($event)">20%</button>
+                        <button id="25" class="button button-positive" data-ng-click="dButton($event)">25%</button>
+                        <button id="30" class="button button-positive" data-ng-click="dButton($event)">30%</button>
+                        <button id="35" class="button button-positive" data-ng-click="dButton($event)">35%</button>
+                        <button id="40" class="button button-positive" data-ng-click="dButton($event)">40%</button>
+                        <button id="45" class="button button-positive" data-ng-click="dButton($event)">45%</button>
+                        <button id="50" class="button button-positive" data-ng-click="dButton($event)">50%</button>
                     </ion-scroll>
                     <button class="button button-clear button-small button-positive" ng-click="dOption()">></button>
             </div>
@@ -56,7 +56,7 @@
             <!-- <span class="input-label">code</span> -->
                 <label class="item item-input-wrapper" style="padding:0px 0px 0px 5px; background:#fff; border-style: none">
                     <span class="input-label">Discount(%)</span>
-                    <input type="number" min="0" max="100" ng-model="sale.discount_rate" ng-change="sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100">
+                    <input type="text" min="0" max="100" ng-model="sale.discount_rate" ng-change="sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100">
                 </label>
                 <button class="button button-clear button-small button-positive" ng-click="dOption()">>
               </button>

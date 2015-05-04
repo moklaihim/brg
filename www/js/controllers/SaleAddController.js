@@ -124,6 +124,14 @@ angular.module('starter.controllers')
         console.log("button clicked");
     };
 
+    $scope.dButton= function(event){
+        var disc = event.target.id;
+        $scope.showDisOption = !$scope.showDisOption;
+        $scope.sale.discount_rate = disc;
+        $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * disc / 100;
+
+    };
+
     $scope.$watch('query.text', function(val) {
         $scope.query.text = $filter('uppercase')(val);
     }, true);
