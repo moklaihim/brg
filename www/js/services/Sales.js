@@ -34,6 +34,19 @@ angular.module('starter.services')
             current_item = '';
         },
 
+        save: function(key, item_id, sale_price, year, month, day){
+            var now = new Date();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            if (minute < 10) { minute = '0' + minute; }
+            var time = hour + ':' + minute;
+            // var current_ut = now.getTime();
+
+            sales[key] = {item: item_id, price: sale_price, date: year + "/" + month + "/" + day, time: time};
+            sales.$save();
+
+        },
+
         remove: function(key){
             //console.log(key);
             sales[key] = {};

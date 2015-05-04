@@ -17,11 +17,55 @@
             <ion-item ng-repeat="(key, sale) in sales">
                 <b>{{sale.item}}</b><span style="float: right;">{{sale.price | currency:"$"}}</span>
                 <div ng-if="!salesClosed">
-                    <ion-option-button class="button-positive ion-edit" ng-click=""></ion-option-button>
+                    <ion-option-button class="button-positive ion-edit" ng-click="editSale(key)"></ion-option-button>
                     <ion-option-button class="button-assertive ion-close-round" ng-click="removeSale(key)"></ion-option-button>
                 </div>
             </ion-item>
         </ion-list>
+    </ion-content>
+
+    <ion-content padding="true" class="ng-hide" ng-show="showEditSaleDetail">
+        <label class="item item-input">
+            <span class="input-label">Item</span>
+            <span>{{sale.item_id | uppercase}}</span>
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Retail Price</span>
+            <span>{{sale.retail_price | currency:"$"}}</span>
+        </label>
+            <div class="item item-input-inset" ng-show="showDisOption">
+                <label class="item item-input-wrapper" style="padding:0px 0px 0px 5px; background:#fff; border-style: none">
+                    <span class="input-label">Discount(%)</span>
+                </label>
+                    <ion-scroll direction="x" style="width: 200px">
+                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 5 / 100">5%</button>
+                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 10 / 100">10%</button>
+                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 15 / 100">15%</button>
+                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 20 / 100">20%</button>
+                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 25 / 100">25%</button>
+                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 30 / 100">30%</button>
+                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 35 / 100">35%</button>
+                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 40 / 100">40%</button>
+                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 45 / 100">45%</button>
+                        <button class="button button-clear button-small button-positive" ng-click="sale.sale_price = sale.retail_price - sale.retail_price * 50 / 100">50%</button>
+                    </ion-scroll>
+                    <button class="button button-clear button-small button-positive" ng-click="dOption()">></button>
+            </div>
+        <ion-list>
+            <div class="item item-input-inset" ng-hide="showDisOption">
+            <!-- <span class="input-label">code</span> -->
+                <label class="item item-input-wrapper" style="padding:0px 0px 0px 5px; background:#fff; border-style: none">
+                    <span class="input-label">Discount(%)</span>
+                    <input type="number" min="0" max="100" ng-model="sale.discount_rate" ng-change="sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100">
+                </label>
+                <button class="button button-clear button-small button-positive" ng-click="dOption()">>
+              </button>
+            </div>
+        </ion-list>
+        <label class="item item-input">
+            <span class="input-label">Sale Price</span>
+            <input type="number" min="0" ng-model="sale.sale_price"></input>
+        </label>
     </ion-content>
 
     <ion-footer-bar class="bar-subfooter bar-energized ng-hide" ng-if="!salesClosed" ng-show="!salesClosed">
@@ -33,7 +77,12 @@
         <div class="button-bar">
             <a class="button" ui-sref="main.sales_add" ><i class="ion-plus-round"></i> Add</a>
             <a class="button" ui-sref="main.sales_scanadd" ><i class="ion-ios-barcode-outline"></i> Scan</a>
-            <!-- <button class="button" ng-click="scanAddSalePage1()"><i class="ion-ios-barcode-outline"></i> Scan</button> -->
+        </div>
+    </ion-footer-bar>
+     <ion-footer-bar keyboard-attach class="bar-balanced ng-hide" ng-show="showEditBtns">
+        <div class="button-bar">
+            <a class="button" ng-click="editSaleUpdateBtn()" >Update</a>
+            <a class="button" ng-click="editSaleCancelBtn()" >Cancel</a>
         </div>
     </ion-footer-bar>
     <ion-footer-bar class="bar-light ng-hide" ng-if="showClosedMessage" ng-show="showClosedMessage">
