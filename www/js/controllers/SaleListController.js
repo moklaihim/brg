@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SaleListController', ["$scope", "$state", "$ionicListDelegate", "Sales", "Items", function($scope, $state, $ionicListDelegate, Sales, Items) {
+.controller('SaleListController', ["$scope", "$state", "$ionicPopup", "$ionicListDelegate", "Sales", "Items", function($scope, $state, $ionicPopup, $ionicListDelegate, Sales, Items) {
     console.log("SaleListController started");
 
     updateSales();
@@ -90,4 +90,17 @@ angular.module('starter.controllers')
         //console.log(Object.getOwnPropertyNames($scope.sales));
     }
     $scope.$on('changedDate', updateSales);
+
+    // Alert Function----------------------------------------
+    function showAlert(){
+        // var msg = item_id;
+        var alertPopup = $ionicPopup.alert({
+         title: 'hey!',
+         template: 'over scroll '
+        });
+        alertPopup.then(function(res) {
+         console.log('over scroll');
+        });
+    };
+    $scope.showAlert = showAlert;
 }])
