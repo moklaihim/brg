@@ -75,6 +75,12 @@ angular.module('starter.controllers')
         updateSales();
     }
 
+    $scope.reOpenSales = function(){
+        console.log("ReOpenSales");
+        Sales.remove("CLOSED");
+        updateSales();
+    }
+
     function updateSales(){
         $scope.salesClosed = true;
         $scope.showSpinner = true;
@@ -87,10 +93,14 @@ angular.module('starter.controllers')
                     $scope.showSpinner = false;
                     $scope.salesClosed = true;
                     $scope.showClosedMessage = true;
+                    $scope.CloseStyle = {"background-color":"#ffc900", "border-color":"#e6b500"}
                 }else{
                     console.log("Has not Closed");
                     $scope.showSpinner = false;
                     $scope.salesClosed = false;
+                    $scope.showClosedMessage = false;
+                    $scope.CloseStyle = {"background-color":"#33cd5f", "border-color":"#28a54c"}
+
                 }
             })  
             .catch(function(err) {
@@ -113,4 +123,6 @@ angular.module('starter.controllers')
         });
     };
     $scope.showAlert = showAlert;
+
+
 }])

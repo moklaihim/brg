@@ -48,14 +48,8 @@ angular.module('starter.services')
         },
 
         remove: function(key){
-            //console.log(key);
             sales[key] = {};
             sales.$save();
-            //sales.$remove(key).then(function(ref) {
-                //data has been deleted locally and in Firebase
-            //}, function(error) {
-                //console.log("Error: failed to delete", error);
-            //});
         },
 
         close: function(store_id, year, month, day){
