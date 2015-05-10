@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$cordovaDatePicker", function($rootScope, $scope, $state, $cordovaDatePicker) {
+.controller('MainController', ["$rootScope", "$scope", "$state", "$cordovaNetwork", "$cordovaDatePicker", function($rootScope, $scope, $state, $cordovaNetwork, $cordovaDatePicker) {
     console.log("MainController started");
-    
+
     $scope.current = {
         store_id: '',
         store_name: '',
@@ -17,10 +17,12 @@ angular.module('starter.controllers')
         fb_restored: false
     };
 
+    /*
     if(!$scope.current.fb_restored){
         OfflineFirebase.restore();
         $scope.current.fb_restored = true;
     }
+    */
 
     setDate(new Date(), true);
 

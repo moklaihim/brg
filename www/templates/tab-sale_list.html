@@ -14,7 +14,7 @@
     
     <ion-content padding="false" class="ng-hide" ng-show="showSalesView" style="margin-bottom: 50px">
         <ion-list>
-            <ion-item ng-repeat="(key, sale) in sales">
+            <ion-item class="ng-hide" ng-repeat="(key, sale) in sales" ng-show="!sale.removed">
                 <b>{{sale.item}}</b><span style="float: right;">{{sale.price | currency:"$"}}</span>
                 <div ng-if="!salesClosed">
                     <ion-option-button class="button-positive ion-edit" ng-click=""></ion-option-button>

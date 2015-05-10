@@ -18,6 +18,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
   });
 
   // $ionicPlatform.registerBackButtonAction(function (event) {
@@ -117,7 +118,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('main.stores_list', {
       url: '/stores/list',
-      cache: true,
+      cache: false,
        views: {
          'tab-sales': {
           templateUrl: 'templates/tab-store_list.html',

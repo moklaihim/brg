@@ -48,20 +48,13 @@ angular.module('starter.controllers')
         }); 
     };
 
-    if(Sales.check_sales()){
-        Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
-    }
-    
-
     console.log("Loaded Current Item: " + $scope.current.item_id);
     if($scope.current.item_id){
         console.log("Current Item exist: " + $scope.current.item_id);
         selectItem($scope.current.item_id);
-    }
-    else if ($state.current.name === "main.sales_scanadd"){
+    }else if ($state.current.name === "main.sales_scanadd"){
         $scope.showItemList = false;
-    }
-    else{
+    }else{
         $scope.showItemList = true;
     }
 
@@ -89,7 +82,7 @@ angular.module('starter.controllers')
 
     $scope.ok = function(){
         for (var i = 0; i < $scope.sale.qty; i++) {
-            Sales.add($scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+            Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
         }
         $scope.current.item_id = "";
         $state.go('main.sales_list');
