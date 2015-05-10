@@ -4,13 +4,19 @@
         <button class="button" ng-click="showDatePicker()">{{current.set_date}}</button>
     </ion-nav-buttons>
 
-    <ion-header-bar align-title="left" class="bar-subheader bar-balanced">
-        <h1 class="title">Add Sale</h1>
+    <ion-header-bar align-title="left" class="bar-subheader bar-balanced" >
+     <span id="searchItem" class="title" ng-model="query.text">SEARCH : {{query.text}}</h1></span>
+        <span style="float:right"><button class="button button-clear ion-close" ng-click="itemIdClear()"></button></span>
     </ion-header-bar>
 
+    <!-- <ion-header-bar align-title="left" class="bar-subheader bar-balanced" ng-show="!showSearchHeader">
+     <span class="title" ng-model="query.text">Confirm Add Sale for {{query.text}}</h1></span>
+    </ion-header-bar> -->
+
     <ion-content padding="true" class="ng-hide" ng-show="showItemList">
+        <!-- <ion-scroll direction="y" style="height:"> -->
         <ion-list>
-            <div class="item item-input-inset">
+            <!-- <div class="item item-input-inset">
                 <label class="item-input-wrapper">
                     <i class="icon ion-ios-search placeholder-icon"></i>
                     <input type="text" ng-model="query.text" placeholder="Search">
@@ -18,11 +24,59 @@
                 <button class="button button-clear ion-close" ng-click="query.text = ''">
                     
                 </button>
-            </div>
+            </div> -->
             <ion-item ng-repeat="item in items_array | filter :query.text | uppercase" ng-click="selectItem(item.id)"><b>{{item.id}}</b></ion-item>
             <ion-item ng-show="(items_array | filter :query.text | uppercase).length == 0" ng-click="addItem()"><center><b>Not Found. Add New Item?</b></center></ion-item>
+            
         </ion-list>
+        <!-- </ion-scroll> -->
     </ion-content>
+
+        <div ng-hide = "hideSearchButtons" style="position:fixed; bottom:0%; width:100%;">
+            <div class="item" style="padding:5px">
+                <ion-scroll direction="x" style="width:100%">
+                    <button id = "HB" class="button" ng-click="btn_brand($event)">HB</button>
+                    <button id = "F" class="button" ng-click="btn_brand($event)">F</button>
+                    <button id = "R" class="button" ng-click="btn_brand($event)">R</button>
+                    <button id = "H" class="button" ng-click="btn_brand($event)">H</button>
+                </ion-scroll>
+            </div>
+            <div class="item" style="padding:5px">
+                <ion-scroll direction="x" style="width:100%">
+                    <button id = "BLK" class="button" ng-click="btn_color($event)">BLK</button>
+                    <button id = "BLU" class="button" ng-click="btn_color($event)">BLU</button>
+                    <button id = "GRN" class="button" ng-click="btn_color($event)">GRN</button>
+                    <button id = "BRN" class="button" ng-click="btn_color($event)">BRN</button>
+                </ion-scroll>
+            </div>
+            <div class="item" style="padding:5px">
+                <ion-scroll direction="x" style="width:100%">
+                    <button id = "38" class="button" ng-click="btn_size($event)">38</button>
+                    <button id = "39" class="button" ng-click="btn_size($event)">39</button>
+                    <button id = "40" class="button" ng-click="btn_size($event)">40</button>
+                    <button id = "41" class="button" ng-click="btn_size($event)">41</button>
+                    <button id = "42" class="button" ng-click="btn_size($event)">42</button>
+                    <button id = "43" class="button" ng-click="btn_size($event)">43</button>
+                    <button id = "44" class="button" ng-click="btn_size($event)">44</button>
+                    <button id = "45" class="button" ng-click="btn_size($event)">45</button>
+                </ion-scroll>
+            </div>
+            <div class="button-bar">
+                <button id = "0" class="button" ng-click="btn_code($event)">0</button>
+                <button id = "1" class="button" ng-click="btn_code($event)">1</button>
+                <button id = "2" class="button" ng-click="btn_code($event)">2</button>
+                <button id = "3" class="button" ng-click="btn_code($event)">3</button>
+                <button id = "4" class="button" ng-click="btn_code($event)">4</button>
+            </div>
+            <div class="button-bar">
+                <button id = "5" class="button" ng-click="btn_code($event)">5</button>
+                <button id = "6" class="button" ng-click="btn_code($event)">6</button>
+                <button id = "7" class="button" ng-click="btn_code($event)">7</button>
+                <button id = "8" class="button" ng-click="btn_code($event)">8</button>
+                <button id = "9" class="button" ng-click="btn_code($event)">9</button>
+            </div>
+        </div>
+
 
     <ion-content padding="true" class="ng-hide" ng-show="showSaleDetail">
         <label class="item item-input">

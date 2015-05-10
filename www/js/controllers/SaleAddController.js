@@ -1,7 +1,9 @@
 angular.module('starter.controllers')
-.controller('SaleAddController', ["$scope", "$state", "$filter", "$cordovaBarcodeScanner", "$ionicPlatform","Items", "Sales", function($scope, $state, $filter, $cordovaBarcodeScanner, $ionicPlatform, Items, Sales) {
+.controller('SaleAddController', ["$scope", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$cordovaBarcodeScanner", "$ionicPlatform","Items", "Sales", function($scope, $ionicGesture, $state, $filter, $ionicPopup, $cordovaBarcodeScanner, $ionicPlatform, Items, Sales) {
 
     $scope.showDisOption = false;
+    // $scope.showSearchHeader = true;
+
 
     $scope.query = {
         text: '' 
@@ -18,6 +20,11 @@ angular.module('starter.controllers')
 
     $scope.items = Items.get();
     $scope.items_array = Items.get_as_array();
+
+    $scope.item_brand = '';
+    $scope.item_code = '';
+    $scope.item_color = '';
+    $scope.item_size = '';
 
     if($state.current.name === "main.sales_scanadd"){
         // $scope.showItemList = false;
@@ -48,6 +55,10 @@ angular.module('starter.controllers')
         }); 
     };
 
+    if($scope.current.today_date != $scope.current.set_date) {
+        showAlert();
+    }
+
     if(Sales.check_sales()){
         Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
     }
@@ -68,6 +79,8 @@ angular.module('starter.controllers')
     $scope.showItemListPage = function(){
         $scope.showItemList = true;
         $scope.showSaleDetail = false;
+        // $scope.hideSearchButtons = false;
+
     };
 
     function selectItem($item_id){
@@ -79,6 +92,9 @@ angular.module('starter.controllers')
         $scope.sale.sale_price = Number($scope.items[$item_id].retail_price);
         $scope.sale.qty = 1;
         $scope.showSaleDetail = true;
+        $scope.hideSearchButtons = true;
+        
+
     };
     $scope.selectItem = selectItem;
 
@@ -136,17 +152,67 @@ angular.module('starter.controllers')
         $scope.query.text = $filter('uppercase')(val);
     }, true);
 
+    $scope.btn_brand= function(event){
+        $scope.item_brand = event.target.id;
+        itemId();
+    };
+
+    $scope.btn_code= function(event){
+        $scope.item_code = $scope.item_code + event.target.id;
+        itemId();
+    };
+
+    $scope.btn_color= function(event){
+        $scope.item_color =  event.target.id;
+        itemId();
+    };
+
+    $scope.btn_size= function(event){
+        $scope.item_size = event.target.id;
+        itemId();
+    };
+
+    $scope.btn_price= function(event){
+        $scope.new_item.retail_price = $scope.new_item.retail_price + event.target.id;
+    };
+
+    $scope.itemIdClear= function(){
+        $scope.item_brand = '';
+        $scope.item_code ='';
+        $scope.item_color ='';
+        $scope.item_size = '';
+        itemId();
+    };
+
+    function itemId(){
+        $scope.query.text = $scope.item_brand + $scope.item_code + $scope.item_color + $scope.item_size;
+    };
+    $scope.itemId = itemId;
+
+    var searchItem = angular.element(document.querySelector('#searchItem'));
+    $ionicGesture.on('tap', function(e) {
+        // console.log("hide");
+        $scope.hideSearchButtons = !$scope.hideSearchButtons;
+        $scope.$digest();
+        // if($scope.hideKBButtons == false)
+        // {
+        //     console.log("hide device keyboard");
+        //     $cordovaKeyboard.close();
+
+        // }
+    }, searchItem);
+
     // Alert Function----------------------------------------
-    // function showAlert($item_id){
-    //     // var msg = item_id;
-    //     var alertPopup = $ionicPopup.alert({
-    //      title: 'Don\'t eat that!',
-    //      template: $item_id
-    //     });
-    //     alertPopup.then(function(res) {
-    //      console.log('Thank you for not eating my delicious ice cream cone');
-    //     });
-    // };
-    // $scope.showAlert = showAlert;
+    function showAlert(){
+        // var msg = item_id;
+        var alertPopup = $ionicPopup.alert({
+         title: 'Warning!',
+         template: 'You are not entering sales for today\'s date'
+        });
+        alertPopup.then(function(res) {
+         console.log('Thank you for different date');
+        });
+    };
+    $scope.showAlert = showAlert;
 
 }])
