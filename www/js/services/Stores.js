@@ -11,10 +11,7 @@ angular.module('starter.services')
 
             if(isOffline){
                 console.log("Stores detected Offline");
-                is_online = false;
-                stores = JSON.parse(localStorage.getItem('brg_stores'));
-                stores_array = Object.keys(stores).map(function(key) { return stores[key] });
-                $rootScope.$on('$cordovaNetwork:online', onOnline);
+                onOffline();
             }else{
                 console.log("Stores detected Online");
                 onOnline();
@@ -42,11 +39,22 @@ angular.module('starter.services')
         }
     }
 
+    function onOffline(){
+        is_online = false;
+        stores = JSON.parse(localStorage.getItem('brg_stores'));
+        stores_array = Object.keys(stores).map(function(key) { return stores[key] });
+        $rootScope.$on('$cordovaNetwork:online', onOnline);
+    }
+
     return {
         get_list: function(){
             return stores;
         },
         get_list_as_array: function(){
+            return stores_array;
+        },
+        get_list_as_array_offine: function(){
+            onOffline();
             return stores_array;
         }
     }

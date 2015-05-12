@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('StoreListController', ["$ionicPlatform", "$rootScope", "$scope", "$state", "$cordovaNetwork", "$cordovaGeolocation", "Stores", function($ionicPlatform, $rootScope, $scope, $state, $cordovaNetwork, $cordovaGeolocation, Stores) {
+.controller('StoreListController', ["$ionicPlatform", "$rootScope", "$scope", "$timeout", "$state", "$cordovaNetwork", "$cordovaGeolocation", "Stores", function($ionicPlatform, $rootScope, $scope, $timeout, $state, $cordovaNetwork, $cordovaGeolocation, Stores) {
     console.log("BRG Debug: StoreListController Started");
 
     var stores_array;
@@ -72,6 +72,18 @@ angular.module('starter.controllers')
         console.log("BRG Debug: showStoreList step3");
         stores_array = Stores.get_list_as_array();
         console.log(stores_array);
+
+        if(stores_array.$loaded){
+            stores_array.$loaded()
+                .then(function() {
+                    console.log("BRG Debug: stores_array loaded successfully");
+                })
+                .catch(function(err) {
+                    console.error("BRG Debug: stores_array loaded failed" + err);
+                    stores_array = Stores.get_list_as_array_offine();
+                });
+        }
+
         $cordovaGeolocation
             .getCurrentPosition(posOptions)
             .then(function (position) {
@@ -79,24 +91,15 @@ angular.module('starter.controllers')
                 var lng = position.coords.longitude;
                 console.log("BRG Debug: showStoreList step4");
                 //console.log(lat + " " + lng + " OK");
-                if(stores_array.$loaded){
-                    stores_array.$loaded()
-                        .then(function() {
-                            for (var i = 0; i < stores_array.length; i++) {
-                                console.log("BRG Debug: Calculate distance for " + stores_array[i].name);
-                                stores_array[i].distance = Math.round(distance(lat, lng, stores_array[i].lat, stores_array[i].lng, "K")*1000);
-                                if(stores_array[i].distance > 1000){
-                                    stores_array[i].distance_disp = Math.round(stores_array[i].distance / 100) / 10 + "km";
-                                }else{
-                                    stores_array[i].distance_disp = stores_array[i].distance + "m";
-                                }
-                                //console.log($scope.stores_array[i].name + " " + $scope.stores_array[i].distance_disp + " OK");
-                            }
-
-                        })
-                        .catch(function(err) {
-                            console.error(err);
-                        });
+                for (var i = 0; i < stores_array.length; i++) {
+                    console.log("BRG Debug: Calculate distance for " + stores_array[i].name);
+                    stores_array[i].distance = Math.round(distance(lat, lng, stores_array[i].lat, stores_array[i].lng, "K")*1000);
+                    if(stores_array[i].distance > 1000){
+                        stores_array[i].distance_disp = Math.round(stores_array[i].distance / 100) / 10 + "km";
+                    }else{
+                        stores_array[i].distance_disp = stores_array[i].distance + "m";
+                    }
+                    //console.log($scope.stores_array[i].name + " " + $scope.stores_array[i].distance_disp + " OK");
                 }
 
                 console.log("BRG Debug: showStoreList step5");

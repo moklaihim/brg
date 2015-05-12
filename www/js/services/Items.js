@@ -57,6 +57,7 @@ angular.module('starter.services')
             var current_ut = now.getTime();
 
             if(is_online){
+                /*
                 var fItem = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + item_id);
                 //localStorage.clear();
                 var item = $firebaseObject(fItem);
@@ -65,6 +66,12 @@ angular.module('starter.services')
                 item.retail_price = retail_price;
                 item.timestamp = current_ut;
                 item.$save();
+                */
+                items[item_id] = new Object();
+                items[item_id].id = item_id;
+                items[item_id].retail_price = retail_price;
+                items[item_id].timestamp = current_ut;
+                items.$save();
             }else{
                 //dont do anything
                 items[item_id] = new Object();

@@ -77,7 +77,7 @@ angular.module('starter.controllers')
     };
 
     function selectItem($item_id){
-        console.log ("sselectItem function called")
+        console.log("sselectItem function called");
         $scope.showItemList = false;
         $scope.sale.item_id = $item_id;
         $scope.sale.retail_price = $scope.items[$item_id].retail_price;
@@ -86,8 +86,6 @@ angular.module('starter.controllers')
         $scope.sale.qty = 1;
         $scope.showSaleDetail = true;
         $scope.hideSearchButtons = true;
-        
-
     };
     $scope.selectItem = selectItem;
 
