@@ -40,6 +40,7 @@ angular.module('starter.services')
 
             items = $firebaseObject(fItems);
             items_array = $firebaseArray(fItems);
+
         }   
     }
 
