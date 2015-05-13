@@ -7,27 +7,6 @@ angular.module('starter.controllers')
     //createInitialData();
     //
 
-    /*
-    document.addEventListener("deviceready", function () {
-        console.log("TOMdebug: Device Ready");
-        var isOnline = $cordovaNetwork.isOnline();
-        var isOffline = $cordovaNetwork.isOffline();
-
-        if(isOnline){
-            console.log("TOMdebug: Online");
-        }
-        if(isOffline){
-            console.log("TOMdebug: Offline");
-        }
-        
-        // listen for Online event
-        $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-            console.log("Become Online");
-        });
-      
-    }, false);
-    */
-
     function createInitialData(){
         $scope.stores['taka'] = {id: 'taka', name: 'TAKA', lat: 1.302479, lng: 103.834615, timestamp: 1430663266989};
         $scope.stores['isetan_scotts'] = {id: 'isetan_scotts', name: 'ISETAN SCOTTS', lat: 1.305732, lng: 103.8315, timestamp: 1430663266989};
@@ -68,22 +47,35 @@ angular.module('starter.controllers')
         console.log("BRG Debug: showStoreList started");
         $scope.showSpinner = true;
         console.log("BRG Debug: showStoreList step2");
-        var posOptions = {timeout: 5000, enableHighAccuracy: false};
-        console.log("BRG Debug: showStoreList step3");
         stores_array = Stores.get_list_as_array();
         console.log(stores_array);
 
         if(stores_array.$loaded){
+            console.log("BRG Debug: This is angularfire_array object");
             stores_array.$loaded()
                 .then(function() {
                     console.log("BRG Debug: stores_array loaded successfully");
+                    calcDistance();
                 })
                 .catch(function(err) {
                     console.error("BRG Debug: stores_array loaded failed" + err);
-                    stores_array = Stores.get_list_as_array_offine();
+                    Stores.on_timeout();
+                    stores_array = Stores.get_list_as_array();
+                    calcDistance();
                 });
-        }
 
+            console.log("BRG Debug: Setting timeout");
+            $timeout(function(){
+                console.log("BRG Debug: store_array Timed out");
+                Stores.on_timeout();
+                stores_array = Stores.get_list_as_array();
+                calcDistance();
+            }, 5000)
+        }
+    }
+
+    function calcDistance(){
+        var posOptions = {timeout: 5000, enableHighAccuracy: false};
         $cordovaGeolocation
             .getCurrentPosition(posOptions)
             .then(function (position) {

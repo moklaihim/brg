@@ -77,6 +77,7 @@ angular.module('starter.services')
                 items[item_id] = new Object();
                 items[item_id].id = item_id;
                 items[item_id].retail_price = retail_price;
+                items[item_id].timestamp = current_ut;
             }
         }
     }

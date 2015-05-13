@@ -53,9 +53,8 @@ angular.module('starter.services')
         get_list_as_array: function(){
             return stores_array;
         },
-        get_list_as_array_offine: function(){
+        on_timeout: function(){
             onOffline();
-            return stores_array;
         }
     }
 }]);
