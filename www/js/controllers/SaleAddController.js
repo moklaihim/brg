@@ -217,6 +217,11 @@ angular.module('starter.controllers')
         $scope.$digest();
     }, searchItem);
 
+    $scope.doRefresh = function() {
+        $state.go("main.sales_scanadd");
+        $scope.$broadcast('scroll.refreshComplete');
+    };
+
     // Alert Function----------------------------------------
     function showAlert(){
         // var msg = item_id;
