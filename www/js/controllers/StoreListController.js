@@ -71,6 +71,9 @@ angular.module('starter.controllers')
                 stores_array = Stores.get_list_as_array();
                 calcDistance();
             }, 5000)
+        }else{
+            console.log("BRG Debug: This is just an array");
+            calcDistance();
         }
     }
 

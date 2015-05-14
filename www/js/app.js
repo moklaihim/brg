@@ -6,129 +6,147 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase', 'ngCordova'])
+.run(["$ionicPlatform", "$rootScope", "$state", function($ionicPlatform, $rootScope, $state) {
+    $ionicPlatform.ready(function() {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        if (window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        }
+        if (window.StatusBar) {
+            // org.apache.cordova.statusbar required
+            StatusBar.styleDefault();
+        }
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
+    });
 
-  });
+    $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+        if (error && !error.authenticated) {
+            $state.go('login');
+        }
+    });
 
-  // $ionicPlatform.registerBackButtonAction(function (event) {
-  //                   event.preventDefault();
-  //           }, 100);
-})
+    // $ionicPlatform.registerBackButtonAction(function (event) {
+    //                   event.preventDefault();
+    //           }, 100);
+}])
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
-  $ionicConfigProvider.tabs.position("bottom");
-  $ionicConfigProvider.navBar.alignTitle('left');
-  $ionicConfigProvider.views.forwardCache(true);
+    $ionicConfigProvider.tabs.position("bottom");
+    $ionicConfigProvider.navBar.alignTitle('left');
+    $ionicConfigProvider.views.forwardCache(true);
   
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider
+    // Ionic uses AngularUI Router which uses the concept of states
+    // Learn more here: https://github.com/angular-ui/ui-router
+    // Set up the various states which the app can be in.
+    // Each state's controller can be found in controllers.js
+    $stateProvider
 
-  // setup an abstract state for the tabs directive
-  .state('tab', {
-    url: "/tab",
-    abstract: true,
-    templateUrl: "templates/tabs.html"
-  })
+    // setup an abstract state for the tabs directive
+    .state('login', {
+        url: '/login',
+        cache: false,
+        templateUrl: 'templates/login.html',
+        controller: 'LoginController'
+    })
 
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
-  })
+    .state('tab', {
+        url: "/tab",
+        abstract: true,
+        templateUrl: "templates/tabs.html"
+    })
 
-  .state('tab.user', {
-      url: '/user',
-      views: {
-        'tab-user': {
-          templateUrl: 'templates/tab-user.html',
-          controller: 'UserCtrl'
+    .state('tab.account', {
+        url: '/account',
+        views: {
+            'tab-account': {
+                templateUrl: 'templates/tab-account.html',
+                controller: 'AccountCtrl'
+            }
         }
-      }
     })
 
-  .state('main', {
-    url: "/main",
-    abstract: true,
-    templateUrl: 'templates/main.html',
-    controller: 'MainController'
-  })
-
-  .state('main.sales_list', {
-      url: '/sales/list',
-      cache: false,
-       views: {
-         'tab-sales': {
-          templateUrl: 'templates/tab-sale_list.html',
-          controller: 'SaleListController'
-         }
-       }
+    .state('tab.user', {
+        url: '/user',
+        views: {
+            'tab-user': {
+                templateUrl: 'templates/tab-user.html',
+                controller: 'UserCtrl'
+            }
+        }
     })
 
-  .state('main.sales_add', {
-      url: '/sales/add',
-      cache: false,
-       views: {
-         'tab-sales': {
-          templateUrl: 'templates/tab-sale_add.html',
-          controller: 'SaleAddController'
-         }
-       }
+    .state('main', {
+        url: "/main",
+        abstract: true,
+        templateUrl: 'templates/main.html',
+        cache: false,
+        controller: 'MainController',
+        resolve: {
+            "currentUser": ["User", function(User) {
+                console.log("currentAuth started");
+                return User.getAuth().$requireAuth();
+            }]
+        }
     })
 
-  .state('main.sales_scanadd', {
-      url: '/sales/scanadd',
-      cache: false,
-       views: {
-         'tab-sales': {
-          templateUrl: 'templates/tab-sale_add.html',
-          controller: 'SaleAddController'
-         }
-       }
+    .state('main.sales_list', {
+        url: '/sales/list',
+        cache: false,
+        views: {
+            'tab-sales': {
+                templateUrl: 'templates/tab-sale_list.html',
+                controller: 'SaleListController'
+            }
+        }
     })
 
-  .state('main.items_add', {
-      url: '/items/add',
-      cache: false,
-       views: {
-         'tab-sales': {
-          templateUrl: 'templates/tab-item_add.html',
-          controller: 'ItemAddController'
-         }
-       }
+    .state('main.sales_add', {
+        url: '/sales/add',
+        cache: false,
+        views: {
+            'tab-sales': {
+            templateUrl: 'templates/tab-sale_add.html',
+            controller: 'SaleAddController'
+            }
+        }
     })
 
-  .state('main.stores_list', {
-      url: '/stores/list',
-      cache: false,
-       views: {
-         'tab-sales': {
-          templateUrl: 'templates/tab-store_list.html',
-          controller: 'StoreListController'
-         }
-       }
+    .state('main.sales_scanadd', {
+        url: '/sales/scanadd',
+        cache: false,
+        views: {
+            'tab-sales': {
+                templateUrl: 'templates/tab-sale_add.html',
+                controller: 'SaleAddController'
+            }
+        }
+    })
+
+    .state('main.items_add', {
+        url: '/items/add',
+        cache: false,
+        views: {
+            'tab-sales': {
+                templateUrl: 'templates/tab-item_add.html',
+                controller: 'ItemAddController'
+            }
+        }
+    })
+
+    .state('main.stores_list', {
+        url: '/stores/list',
+        cache: false,
+        views: {
+            'tab-sales': {
+                templateUrl: 'templates/tab-store_list.html',
+                controller: 'StoreListController'
+            }
+        }
     });
 
-
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/main/sales/add');
+    // if none of the above states are matched, use this as the fallback
+    $urlRouterProvider.otherwise('/main/sales/add');
 });
 

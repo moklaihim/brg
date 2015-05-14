@@ -1,6 +1,9 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$cordovaNetwork", "$cordovaDatePicker", function($rootScope, $scope, $state, $cordovaNetwork, $cordovaDatePicker) {
+.controller('MainController', ["$rootScope", "$scope", "$state", "$cordovaNetwork", "$cordovaDatePicker", "User", "currentUser", function($rootScope, $scope, $state, $cordovaNetwork, $cordovaDatePicker, User, currentUser) {
     console.log("MainController started");
+    console.log(currentUser);
+
+    $scope.user = currentUser;
 
     $scope.current = {
         store_id: '',
@@ -67,5 +70,13 @@ angular.module('starter.controllers')
         $cordovaDatePicker.show(options).then(function(date){
             setDate(date, false);
         });
+
+    }
+
+    $scope.logout = function(){
+        console.log("logout started");
+        User.logout();
+        $scope.user = {};
+        $state.go('login');
     };
 }])
