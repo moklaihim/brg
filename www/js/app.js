@@ -51,32 +51,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'LoginController'
     })
 
-    .state('tab', {
-        url: "/tab",
-        abstract: true,
-        templateUrl: "templates/tabs.html"
-    })
-
-    .state('tab.account', {
-        url: '/account',
-        views: {
-            'tab-account': {
-                templateUrl: 'templates/tab-account.html',
-                controller: 'AccountCtrl'
-            }
-        }
-    })
-
-    .state('tab.user', {
-        url: '/user',
-        views: {
-            'tab-user': {
-                templateUrl: 'templates/tab-user.html',
-                controller: 'UserCtrl'
-            }
-        }
-    })
-
     .state('main', {
         url: "/main",
         abstract: true,
@@ -94,56 +68,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     .state('main.sales_list', {
         url: '/sales/list',
         cache: false,
-        views: {
-            'tab-sales': {
-                templateUrl: 'templates/tab-sale_list.html',
-                controller: 'SaleListController'
-            }
-        }
+        templateUrl: 'templates/tab-sale_list.html',
+        controller: 'SaleListController'
     })
 
     .state('main.sales_add', {
         url: '/sales/add',
         cache: false,
-        views: {
-            'tab-sales': {
-            templateUrl: 'templates/tab-sale_add.html',
-            controller: 'SaleAddController'
-            }
-        }
+        templateUrl: 'templates/tab-sale_add.html',
+        controller: 'SaleAddController'
     })
 
     .state('main.sales_scanadd', {
         url: '/sales/scanadd',
         cache: false,
-        views: {
-            'tab-sales': {
-                templateUrl: 'templates/tab-sale_add.html',
-                controller: 'SaleAddController'
-            }
-        }
+        templateUrl: 'templates/tab-sale_add.html',
+        controller: 'SaleAddController'
     })
 
     .state('main.items_add', {
         url: '/items/add',
         cache: false,
-        views: {
-            'tab-sales': {
-                templateUrl: 'templates/tab-item_add.html',
-                controller: 'ItemAddController'
-            }
-        }
+        templateUrl: 'templates/tab-item_add.html',
+        controller: 'ItemAddController'
     })
 
     .state('main.stores_list', {
         url: '/stores/list',
         cache: false,
-        views: {
-            'tab-sales': {
-                templateUrl: 'templates/tab-store_list.html',
-                controller: 'StoreListController'
-            }
-        }
+        templateUrl: 'templates/tab-store_list.html',
+        controller: 'StoreListController'
     });
 
     // if none of the above states are matched, use this as the fallback
