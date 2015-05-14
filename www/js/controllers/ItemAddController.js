@@ -11,10 +11,10 @@ angular.module('starter.controllers')
     $scope.item_size = '';
 
 
-    // $scope.new_item.id = $scope.current.item_id;
-    // $scope.new_item.id = $scope.item_brand + $scope.item_code + $scope.item_color + $scope.item_size;
-    // $scope.new_item.id = $scope.item_brand;
-
+    if ($scope.current.item_id){
+        $scope.new_item.id = $scope.current.item_id;
+        $scope.hideKBButtons=true;
+    }
 
     $scope.ok = function(){
         Items.add($scope.new_item.id, $scope.new_item.retail_price);
@@ -25,11 +25,19 @@ angular.module('starter.controllers')
     $scope.cancel = function(){
         $scope.current.item_id ="";
         $state.go('main.sales_list');
-
     };
 
     $scope.btn_brand= function(event){
+        var btns = ["HB", "F", "R", "H"];
         $scope.item_brand = event.target.id;
+        for (btn in btns) {
+            if (btns[btn] == $scope.item_brand){
+                document.getElementById(btns[btn]).className = "button active";
+            }
+            else{
+                document.getElementById(btns[btn]).className = "button";
+            }
+        }
         itemId();
     };
 
@@ -39,12 +47,30 @@ angular.module('starter.controllers')
     };
 
     $scope.btn_color= function(event){
+        var btns = ["BLK", "BLU", "GRN", "BRN"];
         $scope.item_color =  event.target.id;
+        for (btn in btns) {
+            if (btns[btn] == $scope.item_color){
+                document.getElementById(btns[btn]).className = "button active";
+            }
+            else{
+                document.getElementById(btns[btn]).className = "button";
+            }
+        }
         itemId();
     };
 
     $scope.btn_size= function(event){
+        var btns = ["38", "39", "40", "41", "42", "43", "44", "45"];
         $scope.item_size = event.target.id;
+        for (btn in btns) {
+            if (btns[btn] == $scope.item_size){
+                document.getElementById(btns[btn]).className = "button active";
+            }
+            else{
+                document.getElementById(btns[btn]).className = "button";
+            }
+        }
         itemId();
     };
 
@@ -57,6 +83,7 @@ angular.module('starter.controllers')
         $scope.item_code ='';
         $scope.item_color ='';
         $scope.item_size = '';
+        $scope.ClearBg = {"background-color":"#f8f8f8", "border-color":"#b2b2b2"};
         itemId();
     };
 

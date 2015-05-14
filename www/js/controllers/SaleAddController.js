@@ -27,8 +27,7 @@ angular.module('starter.controllers')
     $scope.item_size = '';
 
     if($state.current.name === "main.sales_scanadd"){
-        // $scope.showItemList = false;
-        // console.log ("state is main.sales_scanadd")
+        //$scope.showItemList = false;
         $ionicPlatform.ready(function(){
             $cordovaBarcodeScanner
                 .scan()
@@ -103,6 +102,7 @@ angular.module('starter.controllers')
     };
 
     $scope.addItem = function(){
+        $scope.current.item_id = $scope.query.text;
         $state.go('main.items_add');
     }
 
@@ -143,7 +143,17 @@ angular.module('starter.controllers')
     }, true);
 
     $scope.btn_brand= function(event){
-        $scope.item_brand = event.target.id;
+        var btns = ["HB", "F", "R", "H"];
+        
+        for (btn in btns) {
+            if (btns[btn] == event.target.id){
+                document.getElementById(btns[btn]).className = "button active";
+                $scope.item_brand = btns[btn];
+            }
+            else{
+                document.getElementById(btns[btn]).className = "button";
+            }
+        }
         itemId();
     };
 
@@ -153,12 +163,30 @@ angular.module('starter.controllers')
     };
 
     $scope.btn_color= function(event){
-        $scope.item_color =  event.target.id;
+        var btns = ["BLK", "BLU", "GRN", "BRN"];
+        for (btn in btns) {
+            if (btns[btn] == event.target.id){
+                document.getElementById(btns[btn]).className = "button active";
+                $scope.item_color = btns[btn];
+            }
+            else{
+                document.getElementById(btns[btn]).className = "button";
+            }
+        }
         itemId();
     };
 
     $scope.btn_size= function(event){
-        $scope.item_size = event.target.id;
+        var btns = ["38", "39", "40", "41", "42", "43", "44", "45"];
+        for (btn in btns) {
+            if (btns[btn] == event.target.id){
+                document.getElementById(btns[btn]).className = "button active";
+                $scope.item_size = btns[btn];
+            }
+            else{
+                document.getElementById(btns[btn]).className = "button";
+            }
+        }
         itemId();
     };
 
@@ -171,6 +199,10 @@ angular.module('starter.controllers')
         $scope.item_code ='';
         $scope.item_color ='';
         $scope.item_size = '';
+        $scope.brandBtn='';
+        $scope.colorBtn='';
+        $scope.sizeBtn='';
+        $scope.ClearBg = {"background-color":"#f8f8f8", "border-color":"#b2b2b2"};
         itemId();
     };
 
@@ -181,15 +213,8 @@ angular.module('starter.controllers')
 
     var searchItem = angular.element(document.querySelector('#searchItem'));
     $ionicGesture.on('tap', function(e) {
-        // console.log("hide");
         $scope.hideSearchButtons = !$scope.hideSearchButtons;
         $scope.$digest();
-        // if($scope.hideKBButtons == false)
-        // {
-        //     console.log("hide device keyboard");
-        //     $cordovaKeyboard.close();
-
-        // }
     }, searchItem);
 
     // Alert Function----------------------------------------
