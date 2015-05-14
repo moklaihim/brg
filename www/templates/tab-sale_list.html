@@ -1,7 +1,12 @@
 <ion-view hide-back-button="true">
     <ion-nav-buttons side="right">
+        <div style="min-width: 250px;">
         <a class="button" ui-sref="main.stores_list">{{current.store_name}}</a>
-        <button class="button" ng-click="showDatePicker()">{{current.set_date}}</button>
+        <button class="button" ng-click="showDatePicker($event)">{{current.set_date}}</button>
+        <div class="dropdown-menu" ng-if="showPCDatePicker" ng-show="showPCDatePicker" ng-click="$event.preventDefault();$event.stopPropagation()">
+            <div date-picker="current.raw_set_date" view="date" max-view="date" min-view="date" auto-close="false"></div>
+        </div>
+    </div>
     </ion-nav-buttons>
     
     <ion-header-bar align-title="left" class="bar-subheader bar-balanced" ng-style="CloseStyle">

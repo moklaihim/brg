@@ -16,6 +16,7 @@ angular.module('starter.controllers')
         set_month: '',
         set_day: '',
         set_date: '',
+        raw_set_date: '',
         item_id: '',
         fb_restored: false
     };
@@ -57,21 +58,34 @@ angular.module('starter.controllers')
     }
 
     $scope.showDatePicker = function(){
-        var options = {
-            mode: 'date',
-            date: new Date(),
-            allowOldDates: true,
-            allowFutureDates: true,
-            doneButtonLabel: 'DONE',
-            doneButtonColor: '#F2F3F4',
-            cancelButtonLabel: 'CANCEL',
-            cancelButtonColor: '#000000'
-        };
-        $cordovaDatePicker.show(options).then(function(date){
-            setDate(date, false);
-        });
-
+        var deviceInformation = ionic.Platform.device();
+        if(deviceInformation.platform == "Android" || deviceInformation.platform == "iOS"){
+            var options = {
+                mode: 'date',
+                date: new Date(),
+                allowOldDates: true,
+                allowFutureDates: true,
+                doneButtonLabel: 'DONE',
+                doneButtonColor: '#F2F3F4',
+                cancelButtonLabel: 'CANCEL',
+                cancelButtonColor: '#000000'
+            };
+            $cordovaDatePicker.show(options).then(function(date){
+                setDate(date, false);
+            });
+        }else{
+            if($scope.showPCDatePicker){
+                $scope.showPCDatePicker = false;
+            }else{
+                $scope.showPCDatePicker = true;
+            }
+        }
     }
+
+    $scope.$watch('current.raw_set_date', function(){
+        setDate($scope.current.raw_set_date, false);
+        $scope.showPCDatePicker = false;
+    });
 
     $scope.logout = function(){
         console.log("logout started");
