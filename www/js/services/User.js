@@ -27,6 +27,18 @@ angular.module('starter.services')
             });
         },
 
+        change_pw: function(email, old_password, new_password){
+            auth.$changePassword({
+                email: email,
+                oldPassword: old_password,
+                newPassword: new_password
+            }).then(function(){
+                console.log("Password changed successfully!");
+            }).catch(function(error) {
+                console.error("Error: ", error);
+            });
+        },
+
         register: function(email, password, callback) {
             auth.$createUser({email: email, password: password}).then(function(res) {
                 user = res;

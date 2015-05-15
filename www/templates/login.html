@@ -1,5 +1,5 @@
 <ion-view view-title="Login">
-    <ion-content class="has-header padding" ng-show="user.uid == undefined">
+    <ion-content class="has-header padding" ng-show="showLoginView && user.uid == undefined">
   	    <div class="list">
   		    <label class="item item-input">
   			    <span class="input-label">Email</span>
@@ -10,6 +10,24 @@
   			    <input type="password" ng-model="user.password">
   		    </label>
   		    <button class="button button-block button-positive" ng-click="login()">Login</button>
+  	    </div>
+    </ion-content>
+
+    <ion-content class="has-header padding" ng-show="showPasswordChangeView">
+  	    <div class="list">
+  		    <label class="item item-input">
+  			    <span class="input-label">Email</span>
+  			    <input type="email" ng-model="user.email">
+  		    </label>
+  		    <label class="item item-input">
+  			    <span class="input-label">New Password</span>
+  			    <input type="password" ng-model="user.new_password">
+  		    </label>
+  		    <label class="item item-input">
+  			    <span class="input-label">New Password Again</span>
+  			    <input type="password" ng-model="user.new_password_again">
+  		    </label>
+  		    <button class="button button-block button-positive" ng-click="change_pw()">Change Password</button>
   	    </div>
     </ion-content>
 </ion-view>
