@@ -77,7 +77,7 @@ angular.module('starter.controllers')
 
     $scope.reOpenSales = function(){
         console.log("ReOpenSales");
-        Sales.remove("CLOSED");
+        Sales.remove($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day,"CLOSED");
         updateSales();
     }
 
