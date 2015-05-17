@@ -43,12 +43,12 @@ angular.module('starter.controllers')
                 });
 
             console.log("BRG Debug: Setting timeout");
-            $timeout(function(){
-                console.log("BRG Debug: store_array Timed out");
-                Stores.on_timeout();
-                stores_array = Stores.get_list_as_array();
-                calcDistance();
-            }, 5000)
+            // $timeout(function(){
+            //     console.log("BRG Debug: store_array Timed out");
+            //     Stores.on_timeout();
+            //     stores_array = Stores.get_list_as_array();
+            //     calcDistance();
+            // }, 5000)
         }else{
             console.log("BRG Debug: This is just an array");
             calcDistance();

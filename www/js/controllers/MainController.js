@@ -21,23 +21,23 @@ angular.module('starter.controllers')
                 $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
             }
         });
-        $timeout(function(){
-            console.log("BRG Debug: user_detail Timed out");
-            User.on_timeout();
-            $scope.user_detail = User.getUserDetail(currentUser.password.email);
-        }, 5000)
+        // $timeout(function(){
+        //     console.log("BRG Debug: user_detail Timed out");
+        //     User.on_timeout();
+        //     $scope.user_detail = User.getUserDetail(currentUser.password.email);
+        // }, 5000)
     }else{
         if($scope.roles.$loaded){
             $scope.roles.$loaded().then(function() {
                 console.log($scope.roles[User.getUserDetail(currentUser.password.email)['role']]);
                 $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
             });
-            $timeout(function(){
-                console.log("BRG Debug: store_array Timed out");
-                Roles.on_timeout();
-                $scope.roles = Roles.get_list();
-                $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
-            }, 5000)
+            // $timeout(function(){
+            //     console.log("BRG Debug: store_array Timed out");
+            //     Roles.on_timeout();
+            //     $scope.roles = Roles.get_list();
+            //     $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
+            // }, 5000)
         }else{
             $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
         }
