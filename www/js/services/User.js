@@ -6,6 +6,7 @@ angular.module('starter.services')
     var is_online = true;
     var fUser;
     var user_detail;
+    init();
 
     function init(){
         var deviceInformation = ionic.Platform.device();
