@@ -6,15 +6,42 @@ angular.module('starter.controllers')
     $scope.user = currentUser;
     $scope.roles = new Object();
     $scope.user_detail = User.getUserDetail(currentUser.password.email);
-    $scope.user_detail.$loaded().then(function(){
-        console.log("Role is");
-        console.log($scope.user_detail['role']);
-        $scope.roles = Roles.get_list();
-        $scope.roles.$loaded().then(function() {
-            console.log($scope.roles[$scope.user_detail['role']]);
-            $scope.role = $scope.roles[$scope.user_detail['role']];
+    $scope.roles = Roles.get_list();
+    if($scope.user_detail.$loaded()){
+        $scope.user_detail.$loaded().then(function(){
+            console.log("Role is");
+            console.log($scope.user_detail['role']);
+            if($scope.roles.$loaded()){
+                $scope.roles.$loaded().then(function() {
+                    console.log($scope.roles[$scope.user_detail['role']]);
+                    $scope.role = $scope.roles[$scope.user_detail['role']];
+                });
+            }else{
+                $scope.role = $scope.roles[$scope.user_detail['role']];
+            }
         });
-    });
+        $timeout(function(){
+            console.log("BRG Debug: user_detail Timed out");
+            User.on_timeout();
+            $scope.user_detail = User.getUserDetail(currentUser.password.email);
+            calcDistance();
+        }, 5000)
+    }else{
+        if($scope.roles.$loaded()){
+            $scope.roles.$loaded().then(function() {
+                console.log($scope.roles[$scope.user_detail['role']]);
+                $scope.role = $scope.roles[$scope.user_detail['role']];
+            });
+            $timeout(function(){
+                console.log("BRG Debug: store_array Timed out");
+                Roles.on_timeout();
+                $scope.roles = Roles.get_list();
+                $scope.role = $scope.roles[$scope.user_detail['role']];
+            }, 5000)
+        }else{
+            $scope.role = $scope.roles[$scope.user_detail['role']];
+        }
+    }
 
     $scope.current = {
         store_id: '',
