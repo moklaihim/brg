@@ -34,65 +34,10 @@
        
     </ion-content>
 
-    <ion-content padding="true" class="ng-hide" ng-show="showEditSaleDetail">
-        <label class="item item-input">
-            <span class="input-label">Item</span>
-            <span>{{sale.item_id | uppercase}}</span>
-        </label>
-        <label class="item item-input">
-            <span class="input-label">Retail Price</span>
-            <span>{{sale.retail_price | currency:"$"}}</span>
-        </label>
-            <div class="item item-input-inset" ng-show="showDisOption">
-                <label class="item item-input-wrapper" style="padding:0px 0px 0px 5px; background:#fff; border-style: none">
-                    <span class="input-label">Discount(%)</span>
-                </label>
-                    <ion-scroll direction="x" style="width: 200px">
-                        <button id="5" class="button button-positive" data-ng-click="dButton($event)">5%</button>
-                        <button id="10" class="button button-positive" data-ng-click="dButton($event)">10%</button>
-                        <button id="15" class="button button-positive" data-ng-click="dButton($event)">15%</button>
-                        <button id="20" class="button button-positive" data-ng-click="dButton($event)">20%</button>
-                        <button id="25" class="button button-positive" data-ng-click="dButton($event)">25%</button>
-                        <button id="30" class="button button-positive" data-ng-click="dButton($event)">30%</button>
-                        <button id="35" class="button button-positive" data-ng-click="dButton($event)">35%</button>
-                        <button id="40" class="button button-positive" data-ng-click="dButton($event)">40%</button>
-                        <button id="45" class="button button-positive" data-ng-click="dButton($event)">45%</button>
-                        <button id="50" class="button button-positive" data-ng-click="dButton($event)">50%</button>
-                    </ion-scroll>
-                    <button class="button button-clear button-small button-positive" ng-click="dOption()">></button>
-            </div>
-        <ion-list>
-            <div class="item item-input-inset" ng-hide="showDisOption">
-            <!-- <span class="input-label">code</span> -->
-                <label class="item item-input-wrapper" style="padding:0px 0px 0px 5px; background:#fff; border-style: none">
-                    <span class="input-label">Discount(%)</span>
-                    <input type="text" min="0" max="100" ng-model="sale.discount_rate" ng-change="sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100">
-                </label>
-                <button class="button button-clear button-small button-positive" ng-click="dOption()">>
-              </button>
-            </div>
-        </ion-list>
-        <label class="item item-input">
-            <span class="input-label">Sale Price</span>
-            <input type="number" min="0" ng-model="sale.sale_price" ></input>
-        </label>
-    </ion-content>
-
- <!--    <ion-footer-bar class="bar-subfooter bar-energized ng-hide" ng-if="!salesClosed" ng-show="!salesClosed">
-        <div class="button-bar">
-            <button class="button" ng-click="closeSales()">Close sales for the day.</button>
-        </div>
-    </ion-footer-bar> -->
     <ion-footer-bar class="bar-balanced ng-hide" ng-if="!salesClosed" ng-show="!salesClosed">
         <div class="button-bar">
             <a class="button" ui-sref="main.sales_add" ><i class="ion-plus-round"></i> Add</a>
             <a class="button" ui-sref="main.sales_scanadd" ><i class="ion-ios-barcode-outline"></i> Scan</a>
-        </div>
-    </ion-footer-bar>
-     <ion-footer-bar keyboard-attach class="bar-balanced ng-hide" ng-show="showEditBtns">
-        <div class="button-bar">
-            <a class="button" ng-click="editSaleUpdateBtn()" >Update</a>
-            <a class="button" ng-click="editSaleCancelBtn()" >Cancel</a>
         </div>
     </ion-footer-bar>
     <ion-footer-bar class="bar-energized ng-hide" ng-if="showClosedMessage" ng-show="showClosedMessage">
