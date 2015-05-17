@@ -11,14 +11,16 @@ angular.module('starter.controllers')
     if($scope.users.$loaded){
         $scope.users.$loaded().then(function(){
             console.log("Role is");
-            //console.log($scope.user_detail['role']);
+            //console.log($scope.u['role']);
+            $scope.user_detail = User.getUserDetail(currentUser.password.email);
             if($scope.roles.$loaded){
                 $scope.roles.$loaded().then(function() {
-                    console.log($scope.roles[User.getUserDetail(currentUser.password.email)['role']]);
-                    $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
+                    console.log($scope.roles[$scope.user_detail['role']]);
+                    $scope.role = $scope.roles[$scope.user_detail['role']];
                 });
             }else{
-                $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
+                $scope.user_detail = User.getUserDetail(currentUser.password.email);
+                $scope.role = $scope.roles[$scope.user_detail['role']];
             }
         });
         // $timeout(function(){
@@ -27,10 +29,11 @@ angular.module('starter.controllers')
         //     $scope.user_detail = User.getUserDetail(currentUser.password.email);
         // }, 5000)
     }else{
+        $scope.user_detail = User.getUserDetail(currentUser.password.email);
         if($scope.roles.$loaded){
             $scope.roles.$loaded().then(function() {
-                console.log($scope.roles[User.getUserDetail(currentUser.password.email)['role']]);
-                $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
+                console.log($scope.roles[$scope.user_detail['role']]);
+                $scope.role = $scope.roles[$scope.user_detail['role']];
             });
             // $timeout(function(){
             //     console.log("BRG Debug: store_array Timed out");
@@ -39,7 +42,7 @@ angular.module('starter.controllers')
             //     $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
             // }, 5000)
         }else{
-            $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
+            $scope.role = $scope.roles[$scope.user_detail['role']];
         }
     }
 
