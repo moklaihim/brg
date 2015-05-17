@@ -83,7 +83,7 @@
             <button class="button" ng-click="closeSales()">Close sales for the day.</button>
         </div>
     </ion-footer-bar> -->
-    <ion-footer-bar class="bar-balanced ng-hide" ng-if="!salesClosed" ng-show="!salesClosed">
+    <ion-footer-bar class="bar-balanced ng-hide" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed">
         <div class="button-bar">
             <a class="button" ui-sref="main.sales_add" ><i class="ion-plus-round"></i> Add</a>
             <a class="button" ui-sref="main.sales_scanadd" ><i class="ion-ios-barcode-outline"></i> Scan</a>

@@ -24,3 +24,9 @@
   -moz-background-clip: padding;
   background-clip: padding-box;
 }
+
+.role-table {
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  background: #f7f7f7;
+}

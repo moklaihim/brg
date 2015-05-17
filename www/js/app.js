@@ -98,6 +98,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         cache: false,
         templateUrl: 'templates/tab-store_list.html',
         controller: 'StoreListController'
+    })
+
+    .state('main.roles_list', {
+        url: '/roles/list',
+        cache: false,
+        templateUrl: 'templates/role_list.html',
+        controller: 'RoleListController'
     });
 
     // if none of the above states are matched, use this as the fallback

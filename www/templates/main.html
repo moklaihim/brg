@@ -17,13 +17,15 @@
             <h1 class="title">BRG</h1>
         </ion-header-bar>
         <ion-content>
-            <span class="title">{{user.password.email}}</span>
+            <span class="title">{{user_detail.name}}</span><br>
+            <span class="title">{{user_detail.email}}</span><br>
+            <span class="title">{{roles[user_detail.role].name}}</span><br>
             <ion-list>
-                <ion-item menu-close href="#/sales/list">
+                <ion-item menu-close href="#/main/sales/list">
                     Sales
                 </ion-item>
-                <ion-item menu-close href="#/items/list">
-                    Items
+                <ion-item menu-close ng-if="role.allowAccessRolesMenu" ng-show="role.allowAccessRolesMenu" href="#/main/roles/list">
+                    Roles
                 </ion-item>
                 <ion-item menu-close ng-click="logout()">
                     Sign out
