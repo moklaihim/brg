@@ -22,8 +22,9 @@ angular.module('starter.controllers')
 
     $scope.items = Items.get();
     $scope.items_array = Items.get_as_array();
+    $scope.items_ids = Object.keys($scope.items);
     $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
-
+    console.log ($scope.items_ids);
     $scope.item_brand = '';
     $scope.item_code = '';
     $scope.item_color = '';
@@ -79,12 +80,11 @@ angular.module('starter.controllers')
         $scope.showItemList = true;
     }
 
-    $scope.showItemListPage = function(){
-        $scope.showItemList = true;
-        $scope.showSaleDetail = false;
-        // $scope.hideSearchButtons = false;
-
-    };
+    // $scope.showItemListPage = function(){
+    //     $scope.showItemList = true;
+    //     $scope.showSaleDetail = false;
+    //     // $scope.hideSearchButtons = false;
+    // };
 
     function selectItem($item_id){
         console.log("sselectItem function called");
