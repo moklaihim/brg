@@ -56,6 +56,7 @@ angular.module('starter.controllers')
         set_date: '',
         raw_set_date: new Date(),
         item_id: '',
+        item_key: '',
         fb_restored: false
     };
 

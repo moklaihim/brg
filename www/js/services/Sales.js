@@ -89,7 +89,7 @@ angular.module('starter.services')
 
         },
 
-        add: function(store_id, item_id, sale_price, year, month, day){
+        add: function(store_id, item_id, sale_price, year, month, day, sale_key){
             var now = new Date();
             var hour = now.getHours();
             var minute = now.getMinutes();
@@ -97,8 +97,13 @@ angular.module('starter.services')
             var time = hour + ':' + minute;
             var current_ut = now.getTime();
 
+            if (sale_key){
+                current_ut = sale_key;
+            }
+
             if(is_online){
-                console.log("https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + current_ut);
+
+                console.log("Sale_key FAILED in Sales.js")
                 var fSale = new Firebase("https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + current_ut);
                 var sale = $firebaseObject(fSale);
 
@@ -108,7 +113,9 @@ angular.module('starter.services')
                 sale.time = time;
                 sale.timestamp = current_ut;
                 sale.$save();
+                
             }else{
+
                 sales[current_ut] = new Object();
                 sales[current_ut].item = item_id;
                 sales[current_ut].price = sale_price;
@@ -135,19 +142,6 @@ angular.module('starter.services')
             }else{
                 delete sales[key];
             }
-        },
-
-        save: function(key, item_id, sale_price, year, month, day){
-            var now = new Date();
-            var hour = now.getHours();
-            var minute = now.getMinutes();
-            if (minute < 10) { minute = '0' + minute; }
-            var time = hour + ':' + minute;
-            // var current_ut = now.getTime();
-
-            sales[key] = {item: item_id, price: sale_price, date: year + "/" + month + "/" + day, time: time};
-            sales.$save();
-
         },
 
         close: function(store_id, year, month, day){

@@ -18,56 +18,13 @@ angular.module('starter.controllers')
     $scope.removeSale = function(key) {
         console.log("remove key: " + key);
         Sales.remove($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, key);
-    };
+    }
 
     $scope.editSale = function(key) {
-        $scope.sale.key = key;
-        var AllItems = Items.get();
-        var retailP = AllItems[$scope.sales[key].item].retail_price;
-        $scope.showSalesView = false;
-        $scope.showEditSaleDetail = true;
-        $scope.salesClosed = true;
-        $scope.showEditBtns = true;
-        $scope.sale.item_id = $scope.sales[key].item;
-        $scope.sale.retail_price = retailP;
-        $scope.sale.sale_price = $scope.sales[key].price;
-    };
-
-    $scope.dOption= function(){
-        $scope.showDisOption = !$scope.showDisOption;
-        // console.log("button clicked");
-    };
-
-    $scope.dButton= function(event){
-        var disc = event.target.id;
-        $scope.showDisOption = !$scope.showDisOption;
-        $scope.sale.discount_rate = disc;
-        $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * disc / 100
-        console.log(disc);
-        
-        // console.log("button clicked");
-    };
-
-    $scope.editSaleUpdateBtn= function(){
-        // console.log("update clicked");
-        // console.log("key is"+$scope.sale.key);
-        Sales.save($scope.sale.key,$scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
-        // $ionicListDelegate.closeOptionButtons();
-        $scope.showSalesView = true;
-        $scope.showEditSaleDetail = false;
-        $scope.salesClosed = false;
-        $scope.showEditBtns = false;
-        updateSales();
-    };
-
-    $scope.editSaleCancelBtn= function(){
-        // console.log("cancel clicked");
-        $scope.showSalesView = true;
-        $scope.showEditSaleDetail = false;
-        $scope.salesClosed = false;
-        $scope.showEditBtns = false;
-        updateSales();
-    };
+        console.log("Key clicked is : " + key) 
+        $scope.current.item_key = key;
+        $state.go('main.sales_add');
+    }
 
     $scope.closeSales = function(){
         console.log("Close Sales");
