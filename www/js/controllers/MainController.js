@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$cordovaNetwork", "$cordovaDatePicker", "Roles", "User", "currentUser", function($rootScope, $scope, $state, $timeout, $cordovaNetwork, $cordovaDatePicker, Roles, User, currentUser) {
+.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "$cordovaNetwork", "$cordovaDatePicker", "Roles", "User", "currentUser", function($rootScope, $scope, $state, $timeout, $ionicPopup, $cordovaNetwork, $cordovaDatePicker, Roles, User, currentUser) {
     console.log("MainController started");
     console.log(currentUser);
 
@@ -102,6 +102,10 @@ angular.module('starter.controllers')
 
     $scope.showDatePicker = function(){
         var deviceInformation = ionic.Platform.device();
+        $ionicPopup.alert({
+            title: 'Information',
+            template: deviceInformation.platform
+        });
         if(deviceInformation.platform == "Android" || deviceInformation.platform == "iOS"){
             var options = {
                 mode: 'date',
