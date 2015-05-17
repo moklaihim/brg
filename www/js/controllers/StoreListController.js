@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('StoreListController', ["$ionicPlatform", "$rootScope", "$scope", "$timeout", "$state", "$cordovaNetwork", "$cordovaGeolocation", "Stores", function($ionicPlatform, $rootScope, $scope, $timeout, $state, $cordovaNetwork, $cordovaGeolocation, Stores) {
+.controller('StoreListController', ["$ionicPlatform", "$rootScope", "$scope", "$timeout", "$state", "$cordovaGeolocation", "Stores", function($ionicPlatform, $rootScope, $scope, $timeout, $state, $cordovaGeolocation, Stores) {
     console.log("BRG Debug: StoreListController Started");
 
     var stores_array;
@@ -37,18 +37,11 @@ angular.module('starter.controllers')
                 })
                 .catch(function(err) {
                     console.error("BRG Debug: stores_array loaded failed" + err);
-                    Stores.on_timeout();
                     stores_array = Stores.get_list_as_array();
                     calcDistance();
                 });
 
             console.log("BRG Debug: Setting timeout");
-            // $timeout(function(){
-            //     console.log("BRG Debug: store_array Timed out");
-            //     Stores.on_timeout();
-            //     stores_array = Stores.get_list_as_array();
-            //     calcDistance();
-            // }, 5000)
         }else{
             console.log("BRG Debug: This is just an array");
             calcDistance();

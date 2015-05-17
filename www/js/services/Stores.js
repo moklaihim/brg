@@ -1,26 +1,10 @@
 angular.module('starter.services')
-.factory('Stores', ["$rootScope", "$cordovaNetwork", "$firebaseObject", "$firebaseArray", function($rootScope, $cordovaNetwork, $firebaseObject, $firebaseArray) {
+.factory('Stores', ["$firebaseObject", "$firebaseArray", function($firebaseObject, $firebaseArray) {
     var stores;
     var stores_array;
-    var is_online = false;
+    var is_online;
 
-    var deviceInformation = ionic.Platform.device();
-    if(deviceInformation.platform == "Android" || deviceInformation.platform == "iOS"){
-        ionic.Platform.ready(function(){
-            var isOffline = $cordovaNetwork.isOffline();
-
-            if(isOffline){
-                console.log("Stores detected Offline");
-                onOffline();
-            }else{
-                console.log("Stores detected Online");
-                onOnline();
-            }
-        });
-    }else{
-        onOnline();
-        //createInitialData();
-    }
+    //createInitialDate();
 
     function createInitialData(){
         stores['taka'] = {id: 'taka', name: 'TAKA', lat: 1.302479, lng: 103.834615, timestamp: 1430663266989};
@@ -42,10 +26,8 @@ angular.module('starter.services')
         stores.$save();
     };
 
-    function onOnline() {
-        if(!is_online){
-            is_online = true;
-
+    return {
+        online: function(){
             var fb_path = "https://fiery-heat-6039.firebaseio.com/stores";
             var fStores = new Firebase(fb_path);
 
@@ -57,25 +39,16 @@ angular.module('starter.services')
 
             stores = $firebaseObject(fStores);
             stores_array = $firebaseArray(fStores);
-        }
-    }
-
-    function onOffline(){
-        is_online = false;
-        stores = JSON.parse(localStorage.getItem('brg_stores'));
-        stores_array = Object.keys(stores).map(function(key) { return stores[key] });
-        $rootScope.$on('$cordovaNetwork:online', onOnline);
-    }
-
-    return {
+        },
+        offline: function(){
+            stores = JSON.parse(localStorage.getItem('brg_stores'));
+            stores_array = Object.keys(stores).map(function(key) { return stores[key] });
+        },
         get_list: function(){
             return stores;
         },
         get_list_as_array: function(){
             return stores_array;
-        },
-        on_timeout: function(){
-            onOffline();
         }
     }
 }]);

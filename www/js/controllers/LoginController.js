@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('LoginController', ["$rootScope", "$scope", "$state", "$ionicPopup", "$cordovaNetwork", "$cordovaDatePicker", "User", function($rootScope, $scope, $state, $ionicPopup, $cordovaNetwork, $cordovaDatePicker, User) {
+.controller('LoginController', ["$scope", "$state", "$ionicPopup", "Auth", function($scope, $state, $ionicPopup, Auth) {
     console.log("LoginController started");
     $scope.showLoginView = true;
 
@@ -11,7 +11,7 @@ angular.module('starter.controllers')
     };
 
     $scope.login = function (){ 
-        User.login($scope.user.email, $scope.user.password, function(res){   
+        Auth.login($scope.user.email, $scope.user.password, function(res){   
             if (res.uid) {
                 if(res.password.isTemporaryPassword){
                     console.log("Temporary Password");
@@ -31,7 +31,7 @@ angular.module('starter.controllers')
 
     $scope.change_pw = function(){
         if($scope.user.new_password == $scope.user.new_password_again){
-            User.change_pw($scope.user.email, $scope.user.password, $scope.user.new_password);
+            Auth.change_pw($scope.user.email, $scope.user.password, $scope.user.new_password);
             $state.go('main.sales_list');
         }else{
             $scope.showPasswordNoMatchError = true;

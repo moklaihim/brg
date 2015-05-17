@@ -1,40 +1,13 @@
 angular.module('starter.services')
-.factory('Sales', ["$rootScope", "$cordovaNetwork", "$firebaseObject", function($rootScope, $cordovaNetwork, $firebaseObject) {
+.factory('Sales', ["$firebaseObject", function($firebaseObject) {
     var sales = new Object();
     var fSales = {};
-    var is_online = false;
-    //localStorage.clear();
+    var is_online;
 
-    var deviceInformation = ionic.Platform.device();
-    if(deviceInformation.platform == "Android" || deviceInformation.platform == "iOS"){
-        ionic.Platform.ready(function(){
-            var isOffline = $cordovaNetwork.isOffline();
-
-            if(isOffline){
-                is_online = false;
-                console.log("Sales detected Offline");
-                //stores = JSON.parse(localStorage.getItem('stores'));
-                //stores_array = Object.keys(stores).map(function(key) { return stores[key] });
-                $rootScope.$on('$cordovaNetwork:online', onOnline);
-            }else{
-                console.log("Sales detected Online");
-                onOnline();
-            }
-        });
-    }else{
-        onOnline();
-    }
-
-    function onOnline() {
-        if(!is_online){
-            is_online = true;
-
+    return {
+        online: function(){
             for ( var i = 0, len = localStorage.length; i < len; ++i ) {
-                //if(localStorage.key(i)){
-                console.log("Checking " + i + " for " + localStorage.key(i));
                 if(localStorage.key(i) !== null && localStorage.key(i).indexOf('brg_sales-') == 0){
-                    console.log("Get brg_sales offline data for " + localStorage.key(i));
-                    //This is brg_sales_ data
                     var key_tmp = localStorage.key(i);
                     var keys_tmp = key_tmp.split('-');
                     var store_id = keys_tmp[1];
@@ -42,7 +15,7 @@ angular.module('starter.services')
                     var month = keys_tmp[3];
                     var day = keys_tmp[4];
                     var local_sales = JSON.parse(localStorage.getItem(localStorage.key(i)));
-                    console.log("key_tmp:" + key_tmp + ", store_id:" + store_id + ", year:" + year + ", month:" + month + ", day:" + day);
+                    //console.log("key_tmp:" + key_tmp + ", store_id:" + store_id + ", year:" + year + ", month:" + month + ", day:" + day);
 
                     for (var key_ut in local_sales) {
                         console.log("Adding https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key_ut);
@@ -61,19 +34,12 @@ angular.module('starter.services')
                     console.log("Deleting " + localStorage.key(i));
                     localStorage.removeItem(localStorage.key(i--));
                 }
-                //}
-
             }
-        }
-    }
-
-    function onOffline() {
-        is_online = false;
-        sales = new Object();
-        $rootScope.$on('$cordovaNetwork:online', onOnline);
-    }
-
-    return {
+            is_online = true;
+        },
+        offline: function(){
+            is_online = false;
+        },
         get: function(store_id, year, month, day){
             if(is_online){
                 fSales = new Firebase("https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day);

@@ -1,37 +1,13 @@
 angular.module('starter.services')
-.factory('Items', ["$rootScope", "$cordovaNetwork", "$firebaseObject", "$firebaseArray", function($rootScope, $cordovaNetwork, $firebaseObject, $firebaseArray) {
+.factory('Items', ["$firebaseObject", "$firebaseArray", function($firebaseObject, $firebaseArray) {
 
-    //OfflineFirebase.restore();
-    //localStorage.clear();
     var items = new Object();
     var items_array = new Array();
-    var is_online = false;
+    var is_online;
 
-    var deviceInformation = ionic.Platform.device();
-    if(deviceInformation.platform == "Android" || deviceInformation.platform == "iOS"){
-        ionic.Platform.ready(function(){
-            var isOffline = $cordovaNetwork.isOffline();
-            if(isOffline){
-                console.log("Items detected Offline");
-                is_online = false;
-                items = JSON.parse(localStorage.getItem('brg_items'));
-                items_array = Object.keys(items).map(function(key) { return items[key] });
-                $rootScope.$on('$cordovaNetwork:online', onOnline);
-            }else{
-                console.log("Items detected Online");
-                onOnline();
-            }
-        });
-    }else{
-        onOnline();
-    }
-
-    function onOnline() {
-        if(!is_online){
-            is_online = true;
-
+    return {
+        online: function(){
             var fItems = new Firebase("https://fiery-heat-6039.firebaseio.com/items");
-
             fItems.on("value", function(snapshot) {
                 localStorage.setItem('brg_items', JSON.stringify(snapshot.val()));
             }, function (errorObject) {
@@ -40,11 +16,15 @@ angular.module('starter.services')
 
             items = $firebaseObject(fItems);
             items_array = $firebaseArray(fItems);
+            is_online = true;
+        },
 
-        }   
-    }
+        offline: function(){
+            items = JSON.parse(localStorage.getItem('brg_items'));
+            items_array = Object.keys(items).map(function(key) { return items[key] });
+            is_online = false;
+        },
 
-    return {
         get: function(){
             return items;
         },
@@ -74,7 +54,6 @@ angular.module('starter.services')
                 items[item_id].timestamp = current_ut;
                 items.$save();
             }else{
-                //dont do anything
                 items[item_id] = new Object();
                 items[item_id].id = item_id;
                 items[item_id].retail_price = retail_price;

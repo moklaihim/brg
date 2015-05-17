@@ -58,9 +58,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         cache: false,
         controller: 'MainController',
         resolve: {
-            "currentUser": ["User", function(User) {
+            "currentAuth": ["Auth", function(Auth) {
                 console.log("currentAuth started");
-                return User.getAuth().$requireAuth();
+                return Auth.getAuth().$requireAuth();
             }]
         }
     })
