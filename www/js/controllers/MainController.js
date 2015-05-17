@@ -101,12 +101,11 @@ angular.module('starter.controllers')
     }
 
     $scope.showDatePicker = function(){
-        var deviceInformation = ionic.Platform.device();
-        $ionicPopup.alert({
-            title: 'Information',
-            template: deviceInformation.platform
-        });
-        if(deviceInformation.platform == "Android" || deviceInformation.platform == "iOS"){
+        if(ionic.Platform.isAndroid() || ionic.Platform.isIOS()){
+            $ionicPopup.alert({
+                title: 'Information',
+                template: "on mobile device"
+            });
             var options = {
                 mode: 'date',
                 date: new Date(),
