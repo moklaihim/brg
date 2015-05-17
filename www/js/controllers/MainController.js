@@ -1,45 +1,45 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$cordovaNetwork", "$cordovaDatePicker", "Roles", "User", "currentUser", function($rootScope, $scope, $state, $cordovaNetwork, $cordovaDatePicker, Roles, User, currentUser) {
+.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$cordovaNetwork", "$cordovaDatePicker", "Roles", "User", "currentUser", function($rootScope, $scope, $state, $timeout, $cordovaNetwork, $cordovaDatePicker, Roles, User, currentUser) {
     console.log("MainController started");
     console.log(currentUser);
 
     $scope.user = currentUser;
     $scope.roles = new Object();
-    $scope.user_detail = User.getUserDetail(currentUser.password.email);
+    //$scope.user_detail = User.getUserDetail(currentUser.password.email);
+    $scope.users = User.get_list();
     $scope.roles = Roles.get_list();
-    if($scope.user_detail.$loaded()){
-        $scope.user_detail.$loaded().then(function(){
+    if($scope.users.$loaded){
+        $scope.users.$loaded().then(function(){
             console.log("Role is");
-            console.log($scope.user_detail['role']);
-            if($scope.roles.$loaded()){
+            //console.log($scope.user_detail['role']);
+            if($scope.roles.$loaded){
                 $scope.roles.$loaded().then(function() {
-                    console.log($scope.roles[$scope.user_detail['role']]);
-                    $scope.role = $scope.roles[$scope.user_detail['role']];
+                    console.log($scope.roles[User.getUserDetail(currentUser.password.email)['role']]);
+                    $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
                 });
             }else{
-                $scope.role = $scope.roles[$scope.user_detail['role']];
+                $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
             }
         });
         $timeout(function(){
             console.log("BRG Debug: user_detail Timed out");
             User.on_timeout();
             $scope.user_detail = User.getUserDetail(currentUser.password.email);
-            calcDistance();
         }, 5000)
     }else{
-        if($scope.roles.$loaded()){
+        if($scope.roles.$loaded){
             $scope.roles.$loaded().then(function() {
-                console.log($scope.roles[$scope.user_detail['role']]);
-                $scope.role = $scope.roles[$scope.user_detail['role']];
+                console.log($scope.roles[User.getUserDetail(currentUser.password.email)['role']]);
+                $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
             });
             $timeout(function(){
                 console.log("BRG Debug: store_array Timed out");
                 Roles.on_timeout();
                 $scope.roles = Roles.get_list();
-                $scope.role = $scope.roles[$scope.user_detail['role']];
+                $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
             }, 5000)
         }else{
-            $scope.role = $scope.roles[$scope.user_detail['role']];
+            $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
         }
     }
 

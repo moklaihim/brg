@@ -1,9 +1,9 @@
 angular.module('starter.services')
-.factory('User', ["$timeout", "$firebaseAuth", "$firebaseObject", function($timeout, $firebaseAuth, $firebaseObject) {
+.factory('User', ["$rootScope", "$timeout", "$firebaseAuth", "$firebaseObject", function($rootScope, $timeout, $firebaseAuth, $firebaseObject) {
     var ref = new Firebase("https://fiery-heat-6039.firebaseIO.com/");
     var auth = $firebaseAuth(ref);
     var user = {}; 
-    var is_online = true;
+    var is_online = false;
     var fUser;
     var user_detail;
     init();
@@ -114,6 +114,10 @@ angular.module('starter.services')
             var user_id = email.replace("@", "_").replace(/\./g, "_");
             console.log(user_id);
             return users[user_id];
+        },
+
+        get_list: function(){
+            return users;
         },
 
         getAuth: function() {

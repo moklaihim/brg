@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SaleListController', ["$scope", "$state", "$ionicPopup", "$ionicListDelegate", "Sales", "Items", function($scope, $state, $ionicPopup, $ionicListDelegate, Sales, Items) {
+.controller('SaleListController', ["$scope", "$state", "$timeout", "$ionicPopup", "$ionicListDelegate", "Sales", "Items", function($scope, $state, $timeout, $ionicPopup, $ionicListDelegate, Sales, Items) {
     console.log("SaleListController started");
 
     updateSales();
