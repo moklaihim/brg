@@ -90,6 +90,7 @@ angular.module('starter.controllers')
         console.log("sselectItem function called");
         $scope.headerCloseButton = false;
         $scope.searchButtons = false;
+        $scope.hideQtyField = false;
         $scope.query.text = $item_id;
         $scope.headerLabel = "ADDING SALES : ";
         $scope.showItemList = false;
@@ -107,6 +108,7 @@ angular.module('starter.controllers')
         $scope.headerCloseButton = false;
         $scope.searchButtons = false;
         $scope.showItemList = false;
+        $scope.hideQtyField = true;
         $scope.sales.$loaded().then(function(){
             $scope.sale.sale_key = $key;
             // $scope.query.text = $item_id;
@@ -122,6 +124,7 @@ angular.module('starter.controllers')
 
     $scope.cancel = function(){
         $scope.current.item_id = "";
+        $scope.current.item_key = "";
         $state.go('main.sales_list');
     };
 
@@ -136,6 +139,7 @@ angular.module('starter.controllers')
             }
         }
         $scope.current.item_id = "";
+        $scope.current.item_key = "";
         $state.go('main.sales_list');
     };
 
@@ -143,7 +147,7 @@ angular.module('starter.controllers')
         $scope.current.item_id = $scope.query.text;
         $state.go('main.items_add');
     }
-    
+
     $scope.dOption= function(){
         $scope.showDisOption = !$scope.showDisOption;
         console.log("button clicked");

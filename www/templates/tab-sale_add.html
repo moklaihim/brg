@@ -119,7 +119,7 @@
             <span class="input-label">Sale Price</span>
             <input type="number" min="0" ng-model="sale.sale_price">
         </label>
-        <label class="item item-input">
+        <label class="item item-input" ng-hide="hideQtyField">
             <span class="input-label">Qty</span>
             <input type="number" min="1" ng-model="sale.qty">
         </label>
