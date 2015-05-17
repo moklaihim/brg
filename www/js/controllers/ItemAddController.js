@@ -10,6 +10,13 @@ angular.module('starter.controllers')
     $scope.item_color = '';
     $scope.item_size = '';
 
+    var brandbtns = ["HB", "F", "R", "H"];
+    var colorbtns = ["BLK", "BLU", "GRN", "BRN"];
+    var sizebtns = ["38", "39", "40", "41", "42", "43", "44", "45"];
+    var allbtns = brandbtns.concat(colorbtns,sizebtns);
+
+    // console.log("current itemid is" + $scope.current.item_id )
+
 
     if ($scope.current.item_id){
         $scope.new_item.id = $scope.current.item_id;
@@ -27,15 +34,15 @@ angular.module('starter.controllers')
         $state.go('main.sales_list');
     };
 
-    $scope.btn_brand= function(event){
-        var btns = ["HB", "F", "R", "H"];
-        $scope.item_brand = event.target.id;
-        for (btn in btns) {
-            if (btns[btn] == $scope.item_brand){
-                document.getElementById(btns[btn]).className = "button active";
+   $scope.btn_brand= function(event){
+                
+        for (btn in brandbtns) {
+            if (brandbtns[btn] == event.target.id){
+                document.getElementById(brandbtns[btn]).className = "button active";
+                $scope.item_brand = brandbtns[btn];
             }
             else{
-                document.getElementById(btns[btn]).className = "button";
+                document.getElementById(brandbtns[btn]).className = "button";
             }
         }
         itemId();
@@ -47,28 +54,30 @@ angular.module('starter.controllers')
     };
 
     $scope.btn_color= function(event){
-        var btns = ["BLK", "BLU", "GRN", "BRN"];
-        $scope.item_color =  event.target.id;
-        for (btn in btns) {
-            if (btns[btn] == $scope.item_color){
-                document.getElementById(btns[btn]).className = "button active";
+        
+        $scope.ClearBg = {};
+        for (btn in colorbtns) {
+            if (colorbtns[btn] == event.target.id){
+                document.getElementById(colorbtns[btn]).className = "button active";
+                $scope.item_color = colorbtns[btn];
             }
             else{
-                document.getElementById(btns[btn]).className = "button";
+                document.getElementById(colorbtns[btn]).className = "button";
             }
         }
         itemId();
     };
 
     $scope.btn_size= function(event){
-        var btns = ["38", "39", "40", "41", "42", "43", "44", "45"];
-        $scope.item_size = event.target.id;
-        for (btn in btns) {
-            if (btns[btn] == $scope.item_size){
-                document.getElementById(btns[btn]).className = "button active";
+        
+        $scope.ClearBg = {};
+        for (btn in sizebtns) {
+            if (sizebtns[btn] == event.target.id){
+                document.getElementById(sizebtns[btn]).className = "button active";
+                $scope.item_size = sizebtns[btn];
             }
             else{
-                document.getElementById(btns[btn]).className = "button";
+                document.getElementById(sizebtns[btn]).className = "button";
             }
         }
         itemId();
@@ -83,9 +92,18 @@ angular.module('starter.controllers')
         $scope.item_code ='';
         $scope.item_color ='';
         $scope.item_size = '';
-        $scope.ClearBg = {"background-color":"#f8f8f8", "border-color":"#b2b2b2"};
+        for (btn in allbtns) {
+            document.getElementById(allbtns[btn]).className = "button";
+        }
+
+        // $scope.ClearBg = {"background-color":"#f8f8f8", "border-color":"#b2b2b2"};
         itemId();
     };
+
+    function itemId(){
+        $scope.new_item.id= $scope.item_brand + $scope.item_code + $scope.item_color + $scope.item_size;
+    };
+    $scope.itemId = itemId;
 
     var itemCode = angular.element(document.querySelector('#itemCode'));
     $ionicGesture.on('tap', function(e) {
@@ -112,12 +130,5 @@ angular.module('starter.controllers')
     $scope.$watch('new_item.id', function(val) {
         $scope.new_item.id = $filter('uppercase')(val);
     }, true);
-
-    function itemId(){
-        $scope.new_item.id = $scope.item_brand + $scope.item_code + $scope.item_color + $scope.item_size;
-        
-    };
-    $scope.itemId = itemId;
-
 
 }])
