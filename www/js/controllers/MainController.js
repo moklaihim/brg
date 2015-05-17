@@ -3,23 +3,16 @@ angular.module('starter.controllers')
     console.log("MainController started");
     console.log(currentAuth);
 
-    $scope.user = currentAuth;
-    $scope.roles = new Object();
-    //$scope.user_detail = Users.getUserDetail(currentAuth.password.email);
     $scope.users = Users.get_list();
     $scope.roles = Roles.get_list();
     if($scope.users.$loaded){
         $scope.users.$loaded().then(function(){
-            console.log("Role is");
-            //console.log($scope.u['role']);
             $scope.user_detail = Users.getUserDetail(currentAuth.password.email);
             if($scope.roles.$loaded){
                 $scope.roles.$loaded().then(function() {
-                    console.log($scope.roles[$scope.user_detail['role']]);
                     $scope.role = $scope.roles[$scope.user_detail['role']];
                 });
             }else{
-                $scope.user_detail = Users.getUserDetail(currentAuth.password.email);
                 $scope.role = $scope.roles[$scope.user_detail['role']];
             }
         });
@@ -27,7 +20,6 @@ angular.module('starter.controllers')
         $scope.user_detail = Users.getUserDetail(currentAuth.password.email);
         if($scope.roles.$loaded){
             $scope.roles.$loaded().then(function() {
-                console.log($scope.roles[$scope.user_detail['role']]);
                 $scope.role = $scope.roles[$scope.user_detail['role']];
             });
         }else{
@@ -90,6 +82,7 @@ angular.module('starter.controllers')
     }
 
     $scope.showDatePicker = function(){
+        /*
         if(Env.isMobile()){
             var options = {
                 mode: 'date',
@@ -105,8 +98,9 @@ angular.module('starter.controllers')
                 setDate(date, false);
             });
         }else{
+        */
             $scope.showPCDatePicker = !$scope.showPCDatePicker;
-        }
+        //}
     }
 
     $scope.$watch('current.raw_set_date', function(){
@@ -117,7 +111,6 @@ angular.module('starter.controllers')
     $scope.logout = function(){
         console.log("logout started");
         Auth.logout();
-        $scope.user = {};
         $state.go('login');
     };
 }])
