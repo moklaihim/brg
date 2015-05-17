@@ -67,6 +67,12 @@ angular.module('starter.services')
         }
     }
 
+    function onOffline() {
+        is_online = false;
+        sales = new Object();
+        $rootScope.$on('$cordovaNetwork:online', onOnline);
+    }
+
     return {
         get: function(store_id, year, month, day){
             if(is_online){
@@ -160,6 +166,10 @@ angular.module('starter.services')
             sale.time = time;
             sale.timestamp = current_ut;
             sale.$save();
+        },
+
+        on_timeout: function(){
+            onOffline();
         }
     }
 }]);

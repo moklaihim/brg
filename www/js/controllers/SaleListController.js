@@ -107,6 +107,13 @@ angular.module('starter.controllers')
                 .catch(function(err) {
                     console.error(err);
                 });
+
+            $timeout(function(){
+                console.log("BRG Debug: sales Timed out");
+                Sales.on_timeout();
+                $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+            }, 5000)
+
         }else{
             console.log("Loaded is not there");
             if('CLOSED' in $scope.sales){
