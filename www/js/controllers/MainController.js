@@ -1,46 +1,27 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "$cordovaNetwork", "$cordovaDatePicker", "Roles", "User", "currentUser", function($rootScope, $scope, $state, $timeout, $ionicPopup, $cordovaNetwork, $cordovaDatePicker, Roles, User, currentUser) {
+.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "$cordovaDatePicker", "Roles", "Auth", "Users", "Env", "currentAuth", function($rootScope, $scope, $state, $timeout, $ionicPopup, $cordovaDatePicker, Roles, Auth, Users, Env, currentAuth) {
     console.log("MainController started");
-    console.log(currentUser);
+    console.log(currentAuth);
 
-    $scope.user = currentUser;
-    $scope.roles = new Object();
-    //$scope.user_detail = User.getUserDetail(currentUser.password.email);
-    $scope.users = User.get_list();
+    $scope.users = Users.get_list();
     $scope.roles = Roles.get_list();
     if($scope.users.$loaded){
         $scope.users.$loaded().then(function(){
-            console.log("Role is");
-            //console.log($scope.u['role']);
-            $scope.user_detail = User.getUserDetail(currentUser.password.email);
+            $scope.user_detail = Users.getUserDetail(currentAuth.password.email);
             if($scope.roles.$loaded){
                 $scope.roles.$loaded().then(function() {
-                    console.log($scope.roles[$scope.user_detail['role']]);
                     $scope.role = $scope.roles[$scope.user_detail['role']];
                 });
             }else{
-                $scope.user_detail = User.getUserDetail(currentUser.password.email);
                 $scope.role = $scope.roles[$scope.user_detail['role']];
             }
         });
-        // $timeout(function(){
-        //     console.log("BRG Debug: user_detail Timed out");
-        //     User.on_timeout();
-        //     $scope.user_detail = User.getUserDetail(currentUser.password.email);
-        // }, 5000)
     }else{
-        $scope.user_detail = User.getUserDetail(currentUser.password.email);
+        $scope.user_detail = Users.getUserDetail(currentAuth.password.email);
         if($scope.roles.$loaded){
             $scope.roles.$loaded().then(function() {
-                console.log($scope.roles[$scope.user_detail['role']]);
                 $scope.role = $scope.roles[$scope.user_detail['role']];
             });
-            // $timeout(function(){
-            //     console.log("BRG Debug: store_array Timed out");
-            //     Roles.on_timeout();
-            //     $scope.roles = Roles.get_list();
-            //     $scope.role = $scope.roles[User.getUserDetail(currentUser.password.email)['role']];
-            // }, 5000)
         }else{
             $scope.role = $scope.roles[$scope.user_detail['role']];
         }
@@ -101,11 +82,8 @@ angular.module('starter.controllers')
     }
 
     $scope.showDatePicker = function(){
-        if(ionic.Platform.isAndroid() || ionic.Platform.isIOS()){
-            $ionicPopup.alert({
-                title: 'Information',
-                template: "on mobile device"
-            });
+        /*
+        if(Env.isMobile()){
             var options = {
                 mode: 'date',
                 date: new Date(),
@@ -120,8 +98,9 @@ angular.module('starter.controllers')
                 setDate(date, false);
             });
         }else{
+        */
             $scope.showPCDatePicker = !$scope.showPCDatePicker;
-        }
+        //}
     }
 
     $scope.$watch('current.raw_set_date', function(){
@@ -131,8 +110,7 @@ angular.module('starter.controllers')
 
     $scope.logout = function(){
         console.log("logout started");
-        User.logout();
-        $scope.user = {};
+        Auth.logout();
         $state.go('login');
     };
 }])

@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('RoleListController', ["$scope", "$state", "$ionicPopup", "$ionicListDelegate", "Roles", function($scope, $state, $ionicPopup, $ionicListDelegate, Roles) {
+.controller('RoleListController', ["$scope", "$state", "$ionicPopup", "Roles", function($scope, $state, $ionicPopup, Roles) {
     console.log("RoleListController started");
 
     $scope.roles = Roles.get_list();
@@ -9,7 +9,8 @@ angular.module('starter.controllers')
     };
 
     $scope.cancel = function(){
-        $scope.roles = Roles.reload_list();
+        Roles.online();
+        $scope.roles = Roles.get_list();
     };
 
 }])

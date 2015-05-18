@@ -13,22 +13,30 @@
     </ion-side-menu-content>
 
     <ion-side-menu side="left">
-        <ion-header-bar align-title="center" class="bar-stable">
-            <h1 class="title">BRG</h1>
-        </ion-header-bar>
         <ion-content>
-            <span class="title">{{user_detail.name}}</span><br>
-            <span class="title">{{user_detail.email}}</span><br>
-            <span class="title">{{roles[user_detail.role].name}}</span><br>
-            <ion-list>
-                <ion-item menu-close href="#/main/sales/list">
-                    Sales
+            <div class="sidemenu_header">
+                <div class="sidemenu_header_top">
+                </div>
+                <div class="sidemenu_header_user_detail">
+                    <span class="sidemenu_username">{{user_detail.name}}</span><br>
+                    <span class="sidemenu_email">{{user_detail.email}}</span><br>
+                    <span class="sidemenu_role">{{roles[user_detail.role].name}}</span><br>
+                </div>
+            </div>
+            <div class="sidemenu_border">
+            </div>
+            <ion-list class="sidemenu_list">
+                <ion-item class="sidemenu_item" menu-close href="#/main/sales/list">
+                    <img class="sidemenu_item_icon" src="img/shopping.svg" />
+                    <span class="sidemenu_item_text">Sales</span>
                 </ion-item>
-                <ion-item menu-close ng-if="role.allowAccessRolesMenu" ng-show="role.allowAccessRolesMenu" href="#/main/roles/list">
-                    Roles
+                <ion-item class="sidemenu_item" menu-close ng-if="role.allowAccessRolesMenu" ng-show="role.allowAccessRolesMenu" href="#/main/roles/list">
+                    <img class="sidemenu_item_icon" src="img/account-key.svg" />
+                    <span class="sidemenu_item_text">Roles</span>
                 </ion-item>
-                <ion-item menu-close ng-click="logout()">
-                    Sign out
+                <ion-item class="sidemenu_item" href="#" menu-close ng-click="logout()">
+                    <img class="sidemenu_item_icon" src="img/logout.svg" />
+                    <span class="sidemenu_item_text">Sign Out</span>
                 </ion-item>
             </ion-list>
         </ion-content>
