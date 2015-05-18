@@ -41,7 +41,8 @@ angular.module('starter.controllers')
         raw_set_date: new Date(),
         item_id: '',
         item_key: '',
-        fb_restored: false
+        fb_restored: false,
+        view: ''
     };
 
     /*
