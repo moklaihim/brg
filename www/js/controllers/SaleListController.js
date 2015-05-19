@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SaleListController', ["$scope", "$state", "$timeout", "$ionicPopup", "$ionicListDelegate", "Sales", "Items", function($scope, $state, $timeout, $ionicPopup, $ionicListDelegate, Sales, Items) {
+.controller('SaleListController', ["$scope", "$state", "$timeout", "$ionicPopup", "$ionicListDelegate", "Sales", "Items", "Env", function($scope, $state, $timeout, $ionicPopup, $ionicListDelegate, Sales, Items, Env) {
     console.log("SaleListController started");
     $scope.current.view = 'sales_list';
 
@@ -91,6 +91,14 @@ angular.module('starter.controllers')
     }
     $scope.$on('changedDate', updateSales);
 
+    var online_watch = $scope.$watch(Env.isOnline, function(val){
+        console.log("isOnline changed");
+        if(val == true){
+            updateSales();
+            online_watch();
+        }
+    }, false);
+
     // Alert Function----------------------------------------
     function showAlert(){
         // var msg = item_id;
@@ -103,6 +111,4 @@ angular.module('starter.controllers')
         });
     };
     $scope.showAlert = showAlert;
-
-
 }])

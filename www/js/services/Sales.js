@@ -52,7 +52,6 @@ angular.module('starter.services')
                 }
             }
             return sales;
-
         },
 
         add: function(store_id, item_id, sale_price, year, month, day, sale_key){
