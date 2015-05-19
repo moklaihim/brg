@@ -72,6 +72,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'SaleListController'
     })
 
+    .state('main.item_list', {
+        url: '/items/list',
+        cache: false,
+        templateUrl: 'templates/tab-item_list.html',
+        controller: 'ItemListController'
+    })
+
     .state('main.sales_add', {
         url: '/sales/add',
         cache: false,
