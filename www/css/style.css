@@ -59,6 +59,10 @@
     border-width: 0px;
 }
 
+.sidemenu_item.active {
+    background-color: #ebebeb;
+}
+
 .sidemenu_item_icon{
     width: 56px;
     height: 48px;

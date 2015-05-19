@@ -26,11 +26,11 @@
             <div class="sidemenu_border">
             </div>
             <ion-list class="sidemenu_list">
-                <ion-item class="sidemenu_item" menu-close href="#/main/sales/list">
+                <ion-item class="sidemenu_item" ng-class="{active: current.view == 'sales_list'}" menu-close href="#/main/sales/list">
                     <img class="sidemenu_item_icon" src="img/shopping.svg" />
                     <span class="sidemenu_item_text">Sales</span>
                 </ion-item>
-                <ion-item class="sidemenu_item" menu-close ng-if="role.allowAccessRolesMenu" ng-show="role.allowAccessRolesMenu" href="#/main/roles/list">
+                <ion-item class="sidemenu_item" ng-class="{active: current.view == 'roles_list'}" menu-close ng-if="role.allowAccessRolesMenu" ng-show="role.allowAccessRolesMenu" href="#/main/roles/list">
                     <img class="sidemenu_item_icon" src="img/account-key.svg" />
                     <span class="sidemenu_item_text">Roles</span>
                 </ion-item>
