@@ -3,7 +3,7 @@ angular.module('starter.controllers')
     $scope.showDisOption = false;
 
     $scope.sale = {
-        sale_key: '',
+        // sale_key: '',
         item_id: '',
         retail_price: '',
         sale_price: '',
@@ -27,8 +27,6 @@ angular.module('starter.controllers')
     }else if ($scope.current.item_key){
         $scope.hideQtyField = true;
         $scope.sales.$loaded().then(function(){
-            $scope.sale.sale_key = $scope.current.item_key;
-            // $scope.query.text = $item_id;
             $scope.headerLabel = "EDITING SALES : ";
             $scope.sale.item_id = $scope.sales[$scope.current.item_key].item;
             $scope.sale.sale_price = Number($scope.sales[$scope.current.item_key].price);
@@ -48,9 +46,8 @@ angular.module('starter.controllers')
     };
 
     $scope.ok = function(){
-        if ($scope.sale.sale_key){
-            // console.log("Sale_key got result in saleController.js")
-            Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, $scope.sale.sale_key);
+        if ($scope.current.item_key){
+            Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, $scope.current.item_key);
         }else {
             for (var i = 0; i < $scope.sale.qty; i++) {
                 console.log("Sale_key FAIL in Sales.js")
@@ -87,5 +84,6 @@ angular.module('starter.controllers')
         });
     };
     $scope.showAlert = showAlert;
+    // $scope.$digest();
 
 }])

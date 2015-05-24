@@ -1,29 +1,21 @@
 angular.module('starter.controllers')
 .controller('ItemListController', ["$scope", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$cordovaBarcodeScanner", "$ionicPlatform","Items", "Sales", function($scope, $ionicGesture, $state, $filter, $ionicPopup, $cordovaBarcodeScanner, $ionicPlatform, Items, Sales) {
 
-    $scope.headerLabel = "SEARCH : ";
+    $scope.headerLabel = "ITEM LIST : ";
     $scope.headerCloseButton = true;
-    $scope.searchButtons = true;
+    $scope.current.item_id ='';
+    $scope.showBrandInput = true;
+    $scope.showColorInput = false;
+    $scope.showSizeInput = false;
+    $scope.showCodeInput = false;
 
-    $scope.items = Items.get();
-    $scope.items_array = Items.get_as_array();
-    // ** Make array to only include items ids and exclude $$conf, $id, $priority **
-    $scope.items_ids = Object.keys($scope.items);
-    for(var i = $scope.items_ids.length - 1; i >= 0; i--) {
-        if($scope.items_ids[i] === "$$conf") {
-           $scope.items_ids.splice(i, 1);
-        }
-        if($scope.items_ids[i] === "$id") {
-           $scope.items_ids.splice(i, 1);
-        }
-        if($scope.items_ids[i] === "$priority") {
-           $scope.items_ids.splice(i, 1);
-        }
-    }
-    $scope.item_brand = '';
-    $scope.item_code = '';
-    $scope.item_color = '';
-    $scope.item_size = '';
+    updateItems();
+    //** Make array to only include items ids and exclude $$conf, $id, $priority **
+    
+    $scope.current.item_brand = '';
+    $scope.current.item_code = '';
+    $scope.current.item_color = '';
+    $scope.current.item_size = '';
 
     var brandbtns = ["HB", "F", "R", "H"];
     var colorbtns = ["BLK", "BLU", "GRN", "BRN"];
@@ -70,28 +62,79 @@ angular.module('starter.controllers')
         $state.go('main.items_add');
     }
 
+    $scope.editItem = function($item_id) {
+        $scope.current.item_id = $item_id;
+        $scope.current.editItemKey = "true";
+        $scope.current.editItemPrice = $scope.items[$item_id].retail_price;
+        $state.go('main.items_add');
+    }
+
+    $scope.removeItem = function($item_id) {
+        console.log("remove Item item_id: " + $item_id);
+        Items.remove($item_id);
+        $scope.items_array = Items.get_as_array();
+
+    }
+
+    
+
+    function updateItems(){
+        $scope.items = Items.get();
+        $scope.items_array = Items.get_as_array();
+
+        // $scope.items_ids = Object.keys($scope.items);
+        // for(var i = $scope.items_ids.length - 1; i >= 0; i--) {
+        //     if($scope.items_ids[i] === "$$conf") {
+        //        $scope.items_ids.splice(i, 1);
+        //     }
+        //     if($scope.items_ids[i] === "$id") {
+        //        $scope.items_ids.splice(i, 1);
+        //     }
+        //     if($scope.items_ids[i] === "$priority") {
+        //        $scope.items_ids.splice(i, 1);
+        //     }
+        // }
+    }
+    $scope.$on(updateItems);
+
     $scope.$watch('current.item_id', function(val) {
         $scope.current.item_id = $filter('uppercase')(val);
     }, true);
 
-    $scope.btn_brand= function(event){
+       $scope.btn_brand= function(event){
                 
         for (btn in brandbtns) {
             if (brandbtns[btn] == event.target.id){
                 document.getElementById(brandbtns[btn]).className = "button active";
-                $scope.item_brand = brandbtns[btn];
+                $scope.current.item_brand = brandbtns[btn];
             }
             else{
                 document.getElementById(brandbtns[btn]).className = "button";
             }
         }
         itemId();
+        $scope.showBrandInput = false;
+        $scope.showCodeInput = true;
+        $scope.showColorInput = false;
+        $scope.showSizeInput = false;
     };
 
     $scope.btn_code= function(event){
-        $scope.item_code = $scope.item_code + event.target.id;
+        $scope.current.item_code = $scope.current.item_code + event.target.id;
         itemId();
     };
+
+    $scope.btn_code_ok = function(){
+        $scope.showBrandInput = false;
+        $scope.showCodeInput = false;
+        $scope.showColorInput = true;
+        $scope.showSizeInput = false;
+    }
+
+    $scope.btn_code_clear = function(){
+        $scope.current.item_code = '';
+        itemId();
+    }
 
     $scope.btn_color= function(event){
         
@@ -99,13 +142,17 @@ angular.module('starter.controllers')
         for (btn in colorbtns) {
             if (colorbtns[btn] == event.target.id){
                 document.getElementById(colorbtns[btn]).className = "button active";
-                $scope.item_color = colorbtns[btn];
+                $scope.current.item_color = colorbtns[btn];
             }
             else{
                 document.getElementById(colorbtns[btn]).className = "button";
             }
         }
         itemId();
+        $scope.showBrandInput = false;
+        $scope.showCodeInput = false;
+        $scope.showColorInput = false;
+        $scope.showSizeInput = true;
     };
 
     $scope.btn_size= function(event){
@@ -114,24 +161,46 @@ angular.module('starter.controllers')
         for (btn in sizebtns) {
             if (sizebtns[btn] == event.target.id){
                 document.getElementById(sizebtns[btn]).className = "button active";
-                $scope.item_size = sizebtns[btn];
+                $scope.current.item_size = sizebtns[btn];
             }
             else{
                 document.getElementById(sizebtns[btn]).className = "button";
             }
         }
         itemId();
+        $scope.showBrandInput = false;
+        $scope.showCodeInput = false;
+        $scope.showColorInput = false;
+        $scope.showSizeInput = false;
     };
 
-    $scope.btn_price= function(event){
-        $scope.new_item.retail_price = $scope.new_item.retail_price + event.target.id;
+    $scope.btn_back= function(event){
+
+        if (event.target.id == "codeBack"){
+            $scope.showBrandInput = true;
+            $scope.showCodeInput = false;
+            $scope.showColorInput = false;
+            $scope.showSizeInput = false;
+        }
+        if (event.target.id == "colorBack"){
+            $scope.showBrandInput = false;
+            $scope.showCodeInput = true;
+            $scope.showColorInput = false;
+            $scope.showSizeInput = false;
+        }
+        if (event.target.id == "sizeBack"){
+            $scope.showBrandInput = false;
+            $scope.showCodeInput = false;
+            $scope.showColorInput = true;
+            $scope.showSizeInput = false;
+        }    
     };
 
     $scope.itemIdClear= function(){
-        $scope.item_brand = '';
-        $scope.item_code ='';
-        $scope.item_color ='';
-        $scope.item_size = '';
+        $scope.current.item_brand = '';
+        $scope.current.item_code ='';
+        $scope.current.item_color ='';
+        $scope.current.item_size = '';
         for (btn in allbtns) {
             document.getElementById(allbtns[btn]).className = "button";
         }
@@ -139,7 +208,7 @@ angular.module('starter.controllers')
     };
 
     function itemId(){
-        $scope.current.item_id = $scope.item_brand + $scope.item_code + $scope.item_color + $scope.item_size;
+        $scope.current.item_id = $scope.current.item_brand + $scope.current.item_code + $scope.current.item_color + $scope.current.item_size;
     };
     $scope.itemId = itemId;
 

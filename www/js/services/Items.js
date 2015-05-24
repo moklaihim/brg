@@ -33,21 +33,30 @@ angular.module('starter.services')
             return items_array;
         },
 
+        remove: function(key){
+
+            if(is_online){
+                // var fSale = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key);
+                var fItems = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + key);
+                var item = $firebaseObject(fItems);
+                item.$remove().then(function(fItems){
+                    console.log("Item" + key +"removed from server");
+                }, function(error) {
+                    console.log("Error:", error);
+                });
+            }else{
+                delete items[key];
+            }
+        },
+
         add: function(item_id, retail_price){
             var now = new Date();
             var current_ut = now.getTime();
 
             if(is_online){
-                /*
-                var fItem = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + item_id);
-                //localStorage.clear();
-                var item = $firebaseObject(fItem);
-
-                item.id = item_id;
-                item.retail_price = retail_price;
-                item.timestamp = current_ut;
-                item.$save();
-                */
+                // if(!item_edit_key){
+                //     items[item_id] = new Object();
+                // }
                 items[item_id] = new Object();
                 items[item_id].id = item_id;
                 items[item_id].retail_price = retail_price;
