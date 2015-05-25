@@ -1,23 +1,16 @@
-<ion-view hide-back-button="true">
+<ion-view view-title="Sales" hide-back-button="true">
     <ion-nav-buttons side="right">
-        <div style="min-width: 250px; text-align:right;">
-        <a class="button" ui-sref="main.stores_list">{{current.store_name}}</a>
-        <button class="button" ng-click="showDatePicker($event)">{{current.set_date}}</button>
-        <div class="dropdown-menu" ng-if="showPCDatePicker" ng-show="showPCDatePicker" ng-click="$event.preventDefault();$event.stopPropagation()">
-            <div date-picker="current.raw_set_date" view="date" max-view="date" min-view="date" auto-close="false"></div>
-        </div>
-    </div>
     </ion-nav-buttons>
     
-    <ion-header-bar align-title="left" class="bar-subheader bar-balanced" ng-style="CloseStyle">
-        <h1 class="title">Sales</h1>
-    </ion-header-bar>
-
     <ion-content padding="true" ng-show="showSpinner">
         <ion-spinner icon="ripple"></ion-spinner>
     </ion-content>
     
-    <ion-content padding="false" class="ng-hide" ng-show="showSalesView" style="margin-bottom: 50px">
+    <ion-content padding="false" class="ng-hide" ng-show="showSalesView">
+    <div class="button-bar" style="background-color:#795548;" ng-style="CloseStyle">
+        <button class="button button-flat" ui-sref="main.stores_list">{{current.store_name}}</button>
+        <button class="button button-flat" ng-click="showDatePicker($event)">{{current.set_date}}</button>
+    </div>
         <ion-list>
             <ion-item class="ng-hide" ng-repeat="(key, sale) in sales" ng-show="!sale.removed">
                 <b>{{sale.item}}</b><span style="float: right;">{{sale.price | currency:"$"}}</span>
@@ -28,21 +21,18 @@
             </ion-item>
              <ion-item class="ng-hide energized item-icon-left" ng-if="!salesClosed" ng-show="!salesClosed">
                 <i class="icon ion-chevron-left"></i>Swipe left to close sales for today
-                <ion-option-button class="button-energized" ng-click="closeSales()"> Close today's sales<i class="ion-android-done-all" style="font-size: 30px; padding-left: 10px"></i></ion-option-button>
+                <ion-option-button class="button button-energized" ng-click="closeSales()"> Close today's sales<i class="ion-android-done-all" style="font-size: 30px; padding-left: 10px"></i></ion-option-button>
             </ion-item>
         </ion-list>
     </ion-content>
+    <button class="button button-fab mdi mdi-barcode button-fab-bottom-right" style="color:white; background-color:#647683;" ui-sref="main.sales_scanadd" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed"></button>
+    <button class="button button-fab mdi mdi-plus button-fab-bottom-left" style="color:white; background-color:#647683;" ui-sref="main.item_list" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed"></button>
 
-    <ion-footer-bar class="bar-balanced ng-hide" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed">
-        <div class="button-bar">
-            <a class="button" ui-sref="main.item_list" ><i class="ion-plus-round"></i> Add</a>
-            <a class="button" ui-sref="main.sales_scanadd" ><i class="ion-ios-barcode-outline"></i> Scan</a>
-        </div>
-    </ion-footer-bar>
     <ion-footer-bar class="bar-energized ng-hide" ng-if="showClosedMessage" ng-show="showClosedMessage">
         <div class="button-bar ">
             <button class="button button-energized" on-hold="reOpenSales()">Sales Closed. Press and hold to re-open sales</button>
         </div>
     </ion-footer-bar>
+
 </ion-view>
 

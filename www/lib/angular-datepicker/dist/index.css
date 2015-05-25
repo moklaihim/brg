@@ -85,6 +85,8 @@
 }
 [date-picker] table {
   margin: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 [date-picker] td,
 [date-picker] th {

@@ -4,7 +4,7 @@ angular.module('starter.services')
     var is_online;
 
     function createInitialData(){
-        console.log("createInitialData started");
+        //console.log("createInitialData started");
         var fb_users = "https://fiery-heat-6039.firebaseio.com/users";
         var fUsers = new Firebase(fb_users);
         users = $firebaseObject(fUsers);
@@ -21,7 +21,7 @@ angular.module('starter.services')
             fUsers.on("value", function(snapshot) {
                 localStorage.setItem('brg_users', JSON.stringify(snapshot.val()));
             }, function (errorObject) {
-                console.log("BRG Debug: The read failed: " + errorObject.code);
+                //console.log("BRG Debug: The read failed: " + errorObject.code);
             });
 
             users = $firebaseObject(fUsers);
@@ -34,9 +34,9 @@ angular.module('starter.services')
         },
 
         getUserDetail: function(email){
-            console.log("getUserDetail started");
+            //console.log("getUserDetail started");
             var user_id = email.replace("@", "_").replace(/\./g, "_");
-            console.log(user_id);
+            //console.log(user_id);
             return users[user_id];
         },
 

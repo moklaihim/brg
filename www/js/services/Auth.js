@@ -6,14 +6,14 @@ angular.module('starter.services')
 
     return {
         login: function(email, password, callback){
-            console.log("login started");
+            //console.log("login started");
             auth.$authWithPassword({
                 email: email,
                 password: password
             }).then(function(res) {
-                console.log("login succeeded");
+                //console.log("login succeeded");
                 user = res;
-                console.log(user);
+                //console.log(user);
                 if (callback) {
                     $timeout(function() {
                         callback(res);
@@ -30,7 +30,7 @@ angular.module('starter.services')
                 oldPassword: old_password,
                 newPassword: new_password
             }).then(function(){
-                console.log("Password changed successfully!");
+                //console.log("Password changed successfully!");
             }).catch(function(error) {
                 console.error("Error: ", error);
             });
@@ -52,8 +52,8 @@ angular.module('starter.services')
         },
 
         getAuth: function() {
-            console.log("getAuth started");
-            console.log(auth);
+            //console.log("getAuth started");
+            //console.log(auth);
             return auth;
         },
 

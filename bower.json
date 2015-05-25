@@ -7,7 +7,10 @@
     "ngstorage": "~0.3.0",
     "ngCordova": "~0.1.14-alpha",
     "offline-firebase": "https://github.com/yeldarby/offline-firebase.git",
-    "angular-datepicker": "https://github.com/g00fy-/angular-datepicker.git#~1.0.4"
+    "angular-datepicker": "https://github.com/g00fy-/angular-datepicker.git#~1.0.4",
+    "ionic-material": "~0.4.2",
+    "robotodraft": "~1.1.0",
+    "mdi": "~1.0.62-beta"
   },
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.0.0-rc.2",

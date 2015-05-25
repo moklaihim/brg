@@ -27,6 +27,12 @@ Module.filter('time',function () {
   };
 });
 
+Module.filter('firstletter', [function () {
+    return function (text) {
+        return text.charAt(0);
+    };
+}]);
+
 Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function datePickerDirective(datePickerConfig, datePickerUtils) {
 
   //noinspection JSUnusedLocalSymbols
@@ -621,7 +627,7 @@ angular.module("datePicker").run(["$templateCache", function($templateCache) {
     "\n" +
     "      <tr>\r" +
     "\n" +
-    "        <th ng-repeat=\"day in weekdays\" style=\"overflow: hidden\">{{ day|date:\"EEE\" }}</th>\r" +
+    "        <th ng-repeat=\"day in weekdays\" style=\"overflow: hidden\">{{ day|date:\"EEE\"|firstletter }}</th>\r" +
     "\n" +
     "      </tr>\r" +
     "\n" +

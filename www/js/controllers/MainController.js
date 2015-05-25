@@ -1,7 +1,9 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "$cordovaDatePicker", "Roles", "Auth", "Users", "Env", "currentAuth", function($rootScope, $scope, $state, $timeout, $ionicPopup, $cordovaDatePicker, Roles, Auth, Users, Env, currentAuth) {
-    console.log("MainController started");
-    console.log(currentAuth);
+.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "ionicMaterialInk", "$cordovaDatePicker", "Roles", "Auth", "Users", "Env", "currentAuth", function($rootScope, $scope, $state, $timeout, $ionicPopup, ionicMaterialInk, $cordovaDatePicker, Roles, Auth, Users, Env, currentAuth) {
+    //console.log("MainController started");
+    //console.log(currentAuth);
+
+    var datePickerPopup = {close: false};
 
     $scope.users = Users.get_list();
     $scope.roles = Roles.get_list();
@@ -45,14 +47,10 @@ angular.module('starter.controllers')
         view: ''
     };
 
-    /*
-    if(!$scope.current.fb_restored){
-        OfflineFirebase.restore();
-        $scope.current.fb_restored = true;
-    }
-    */
 
     setDate(new Date(), true);
+
+    //ionicMaterialInk.displayEffect();
 
     if(window.localStorage.getItem('store_date') == $scope.current.today_date){
         $scope.current.store_id = window.localStorage.getItem('store_id');
@@ -62,7 +60,7 @@ angular.module('starter.controllers')
     }
 
     function setDate(date, today){
-        console.log(date);
+        //console.log(date);
         var year = date.getFullYear();
         var month = date.getMonth()+1;
         if (month < 10) { month = '0' + month; }
@@ -78,30 +76,19 @@ angular.module('starter.controllers')
         $scope.current.set_month = month;
         $scope.current.set_day = day;
         $scope.current.set_date = year + "/" + month + "/" + day;
-        console.log("Date changed: " + $scope.current.today_date + " " + $scope.current.set_date);
+        //console.log("Date changed: " + $scope.current.today_date + " " + $scope.current.set_date);
         $rootScope.$broadcast('changedDate');
+        if(datePickerPopup.close){
+            datePickerPopup.close();
+        }
     }
 
     $scope.showDatePicker = function(){
-        /*
-        if(Env.isMobile()){
-            var options = {
-                mode: 'date',
-                date: new Date(),
-                allowOldDates: true,
-                allowFutureDates: true,
-                doneButtonLabel: 'DONE',
-                doneButtonColor: '#F2F3F4',
-                cancelButtonLabel: 'CANCEL',
-                cancelButtonColor: '#000000'
-            };
-            $cordovaDatePicker.show(options).then(function(date){
-                setDate(date, false);
-            });
-        }else{
-        */
-            $scope.showPCDatePicker = !$scope.showPCDatePicker;
-        //}
+        datePickerPopup = $ionicPopup.show({
+            title: 'Select Date',
+            template: '<div date-picker="current.raw_set_date" view="date" max-view="date" min-view="date" auto-close="false"></div>',
+            scope: $scope
+        });
     }
 
     $scope.$watch('current.raw_set_date', function(){
@@ -110,8 +97,9 @@ angular.module('starter.controllers')
     });
 
     $scope.logout = function(){
-        console.log("logout started");
+        //console.log("logout started");
         Auth.logout();
         $state.go('login');
     };
+
 }])
