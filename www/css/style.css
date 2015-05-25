@@ -8,6 +8,10 @@
     background-color: white;
 }
 
+.bar .button {
+    max-width: 100%;
+}
+
 .sidemenu_header{
     background-image: url(../img/sidemenu_header_bg.jpg);
 }

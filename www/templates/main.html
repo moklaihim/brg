@@ -30,6 +30,10 @@
                     <img class="sidemenu_item_icon" src="img/shopping.svg" />
                     <span class="sidemenu_item_text">Sales</span>
                 </ion-item>
+                <ion-item class="sidemenu_item" ng-class="{active: current.view == 'item_list'}" menu-close href="#/main/items/list">
+                    <img class="sidemenu_item_icon" src="img/package-variant-closed.svg" />
+                    <span class="sidemenu_item_text">Items</span>
+                </ion-item>
                 <ion-item class="sidemenu_item" ng-class="{active: current.view == 'roles_list'}" menu-close ng-if="role.allowAccessRolesMenu" ng-show="role.allowAccessRolesMenu" href="#/main/roles/list">
                     <img class="sidemenu_item_icon" src="img/account-key.svg" />
                     <span class="sidemenu_item_text">Roles</span>
