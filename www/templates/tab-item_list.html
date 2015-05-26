@@ -31,30 +31,30 @@
         <div ng-hide = "hideSearchButtons" style="position:fixed; bottom:0%; width:100%;">
             <!-- <div class="item" style="padding:5px">
                 <ion-scroll direction="x" style="width:100%">
-                    <button id = "HB" class="button" ng-click="btn_brand($event)">HB</button>
-                    <button id = "F" class="button" ng-click="btn_brand($event)">F</button>
-                    <button id = "R" class="button" ng-click="btn_brand($event)">R</button>
-                    <button id = "H" class="button" ng-click="btn_brand($event)">H</button>
+                    <button id = "HB" class="button" ng-click="btn_brand($event)" ng-style="ClearBg">HB</button>
+                    <button id = "F" class="button" ng-click="btn_brand($event)" ng-style="ClearBg">F</button>
+                    <button id = "R" class="button" ng-click="btn_brand($event)" ng-style="ClearBg">R</button>
+                    <button id = "H" class="button" ng-click="btn_brand($event)" ng-style="ClearBg">H</button>
                 </ion-scroll>
             </div>
             <div class="item" style="padding:5px">
                 <ion-scroll direction="x" style="width:100%">
-                    <button id = "BLK" class="button" ng-click="btn_color($event)">BLK</button>
-                    <button id = "BLU" class="button" ng-click="btn_color($event)">BLU</button>
-                    <button id = "GRN" class="button" ng-click="btn_color($event)">GRN</button>
-                    <button id = "BRN" class="button" ng-click="btn_color($event)">BRN</button>
+                    <button id = "BLK" class="button" ng-click="btn_color($event)" ng-style="ClearBg">BLK</button>
+                    <button id = "BLU" class="button" ng-click="btn_color($event)" ng-style="ClearBg">BLU</button>
+                    <button id = "GRN" class="button" ng-click="btn_color($event)" ng-style="ClearBg">GRN</button>
+                    <button id = "BRN" class="button" ng-click="btn_color($event)" ng-style="ClearBg">BRN</button>
                 </ion-scroll>
             </div>
             <div class="item" style="padding:5px">
                 <ion-scroll direction="x" style="width:100%">
-                    <button id = "38" class="button" ng-click="btn_size($event)">38</button>
-                    <button id = "39" class="button" ng-click="btn_size($event)">39</button>
-                    <button id = "40" class="button" ng-click="btn_size($event)">40</button>
-                    <button id = "41" class="button" ng-click="btn_size($event)">41</button>
-                    <button id = "42" class="button" ng-click="btn_size($event)">42</button>
-                    <button id = "43" class="button" ng-click="btn_size($event)">43</button>
-                    <button id = "44" class="button" ng-click="btn_size($event)">44</button>
-                    <button id = "45" class="button" ng-click="btn_size($event)">45</button>
+                    <button id = "38" class="button" ng-click="btn_size($event)" ng-style="ClearBg">38</button>
+                    <button id = "39" class="button" ng-click="btn_size($event)" ng-style="ClearBg">39</button>
+                    <button id = "40" class="button" ng-click="btn_size($event)" ng-style="ClearBg">40</button>
+                    <button id = "41" class="button" ng-click="btn_size($event)" ng-style="ClearBg">41</button>
+                    <button id = "42" class="button" ng-click="btn_size($event)" ng-style="ClearBg">42</button>
+                    <button id = "43" class="button" ng-click="btn_size($event)" ng-style="ClearBg">43</button>
+                    <button id = "44" class="button" ng-click="btn_size($event)" ng-style="ClearBg">44</button>
+                    <button id = "45" class="button" ng-click="btn_size($event)" ng-style="ClearBg">45</button>
                 </ion-scroll>
             </div>
             <div class="button-bar">
@@ -73,13 +73,35 @@
             </div> -->
             <div ng-show="showBrandInput" class="item item-input-inset bar-dark" style="padding:5px">
                 <ion-scroll direction="x" style="width:100%">
-                    <button id = "HB" class="button" ng-click="btn_brand($event)">HB</button>
-                    <button id = "F" class="button" ng-click="btn_brand($event)">F</button>
-                    <button id = "R" class="button" ng-click="btn_brand($event)">R</button>
-                    <button id = "H" class="button" ng-click="btn_brand($event)">H</button>
+                    <button id = "HB" class="button" ng-click="btn_brand($event)" ng-style="ClearBg">HB</button>
+                    <button id = "F" class="button" ng-click="btn_brand($event)" ng-style="ClearBg">F</button>
+                    <button id = "R" class="button" ng-click="btn_brand($event)" ng-style="ClearBg">R</button>
+                    <button id = "H" class="button" ng-click="btn_brand($event)" ng-style="ClearBg">H</button>
                 </ion-scroll>
             </div>
-            <div ng-show="showCodeInput" class="item bar-dark">
+            <div ng-show="showColorInput" class="item item-input-inset" style="padding:5px">
+                <button id = "colorBack" class="button" ng-click="btn_back($event)"><</button>
+                <ion-scroll direction="x" style="width:100%">
+                    <button id = "BLK" class="button" ng-click="btn_color($event)" ng-style="ClearBg">BLK</button>
+                    <button id = "BLU" class="button" ng-click="btn_color($event)" ng-style="ClearBg">BLU</button>
+                    <button id = "GRN" class="button" ng-click="btn_color($event)" ng-style="ClearBg">GRN</button>
+                    <button id = "BRN" class="button" ng-click="btn_color($event)" ng-style="ClearBg">BRN</button>
+                </ion-scroll>
+            </div>
+            <div ng-show="showSizeInput" class="item item-input-inset" style="padding:5px">
+                    <button id = "sizeBack" class="button" ng-click="btn_back($event)"><</button>
+                <ion-scroll direction="x" style="width:100%">
+                    <button id = "38" class="button" ng-click="btn_size($event)">38</button>
+                    <button id = "39" class="button" ng-click="btn_size($event)">39</button>
+                    <button id = "40" class="button" ng-click="btn_size($event)">40</button>
+                    <button id = "41" class="button" ng-click="btn_size($event)">41</button>
+                    <button id = "42" class="button" ng-click="btn_size($event)">42</button>
+                    <button id = "43" class="button" ng-click="btn_size($event)">43</button>
+                    <button id = "44" class="button" ng-click="btn_size($event)">44</button>
+                    <button id = "45" class="button" ng-click="btn_size($event)">45</button>
+                </ion-scroll>
+            </div>
+            <div ng-show="showCodeInput">
                 <button id = "codeBack" class="button" ng-click= "btn_back($event)"><</button>
                 <div class="button-bar" style="padding-top:4px">
                     <button id = "1" class="button" ng-click="btn_code($event)">1</button>

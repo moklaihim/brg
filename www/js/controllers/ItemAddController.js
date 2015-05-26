@@ -102,7 +102,7 @@ angular.module('starter.controllers')
 
     $scope.btn_color= function(event){
         
-        // $scope.ClearBg = {};
+        $scope.ClearBg = {};
         for (btn in colorbtns) {
             if (colorbtns[btn] == event.target.id){
                 document.getElementById(colorbtns[btn]).className = "button active";
@@ -121,7 +121,7 @@ angular.module('starter.controllers')
 
     $scope.btn_size= function(event){
         
-        // $scope.ClearBg = {};
+        $scope.ClearBg = {};
         for (btn in sizebtns) {
             if (sizebtns[btn] == event.target.id){
                 document.getElementById(sizebtns[btn]).className = "button active";
@@ -136,7 +136,6 @@ angular.module('starter.controllers')
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
-        $scope.hideKBButtons = true;
     };
 
     $scope.btn_price= function(event){
@@ -178,12 +177,6 @@ angular.module('starter.controllers')
         // $scope.ClearBg = {"background-color":"#f8f8f8", "border-color":"#b2b2b2"};
         itemId();
     };
-    
-    $scope.priceClear= function(){
-        $scope.new_item.retail_price = '';
-        $scope.current.editItemPrice = $scope.new_item.retail_price;
-    };
-
 
     function itemId(){
         $scope.current.item_id= $scope.current.item_brand + $scope.current.item_code + $scope.current.item_color + $scope.current.item_size;
@@ -195,7 +188,6 @@ angular.module('starter.controllers')
         if ($scope.current.editItemKey){
         $scope.hideKBButtons = true;
         }else{
-            $scope.hideKBButtons = !$scope.hideKBButtons;
             $scope.showBrandInput = true;
             $scope.showCodeInput = false;
             $scope.showColorInput = false;
