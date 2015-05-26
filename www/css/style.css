@@ -1,21 +1,11 @@
 /* Empty. Add your own CSS if you like */
 
-.button .mdi:before, .button.mdi:before, .button.icon-left:before, .button.icon-right:before{
-    font-size: 24px;
-}
-
-.item, .item-complex .item-content, .item-radio .item-content {
-    background-color: white;
-}
-
-.bar .button {
-    max-width: 100%;
-}
+@font-face{font-family:'Roboto';font-style:normal;font-weight:400;src:local('Roboto'), local('Roboto-Regular'), url("../lib/ionic/fonts/Roboto-Regular.woff2") format('woff2');}
+@font-face{font-family:'Roboto';font-style:normal;font-weight:500;src:local('Roboto Medium'), local('Roboto-Medium'), url("../lib/ionic/fonts/Roboto-Medium.woff2") format('woff2');}
 
 .sidemenu_header{
     background-image: url(../img/sidemenu_header_bg.jpg);
 }
-
 .sidemenu_header_top{
     height: 64px;
 }
@@ -28,6 +18,7 @@
 }
 
 .sidemenu_username {
+    font-family: 'Roboto';
     font-weight: 500;
     font-size: 14px;
     margin: 16px;
@@ -35,6 +26,7 @@
 }
 
 .sidemenu_email {
+    font-family: 'Roboto';
     font-weight: 400;
     font-size: 14px;
     margin: 16px;
@@ -42,6 +34,7 @@
 }
 
 .sidemenu_role {
+    font-family: 'Roboto';
     font-weight: 400;
     font-size: 14px;
     margin: 16px;
@@ -59,6 +52,7 @@
 
 .sidemenu_item {
     height: 48px;
+    font-family: 'Roboto';
     font-weight: 500;
     font-size: 14px;
     line-height: 48px;
@@ -70,12 +64,23 @@
 }
 
 .sidemenu_item_icon{
+    width: 56px;
+    height: 48px;
     padding: 12px 16px 12px 16px;
     vertical-align: middle;
 }
 
+.sidemenu_item_text{
+    height: 48px;
+    line-height: 48px;
+    vertical-align: middle;
+    padding: 0px 0px 0px 16px;
+}
+
 .sidemenu_item .item-content{
     padding: 0px 0px 0px 0px;
+    height: 48px;
+    vertical-align: middle;
 }
 
 .dropdown-menu {

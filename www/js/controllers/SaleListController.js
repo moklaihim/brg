@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 .controller('SaleListController', ["$scope", "$state", "$timeout", "$ionicPopup", "$ionicListDelegate", "Sales", "Items", "Env", function($scope, $state, $timeout, $ionicPopup, $ionicListDelegate, Sales, Items, Env) {
-    //console.log("SaleListController started");
+    console.log("SaleListController started");
     $scope.current.view = 'sales_list';
 
     updateSales();
@@ -18,24 +18,24 @@ angular.module('starter.controllers')
 
 
     $scope.removeSale = function(key) {
-        //console.log("remove key: " + key);
+        console.log("remove key: " + key);
         Sales.remove($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, key);
     }
 
     $scope.editSale = function(key) {
-        //console.log("Key clicked is : " + key) 
+        console.log("Key clicked is : " + key) 
         $scope.current.item_key = key;
         $state.go('main.sales_add');
     }
 
     $scope.closeSales = function(){
-        //console.log("Close Sales");
+        console.log("Close Sales");
         Sales.close($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
         updateSales();
     }
 
     $scope.reOpenSales = function(){
-        //console.log("ReOpenSales");
+        console.log("ReOpenSales");
         Sales.remove($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day,"CLOSED");
         updateSales();
     }
@@ -45,36 +45,43 @@ angular.module('starter.controllers')
         $scope.showSpinner = true;
         $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
         if($scope.sales.$loaded){
-            //console.log("Loaded is there");
+            console.log("Loaded is there");
             $scope.sales.$loaded()
                 .then(function() {
-                    //console.log($scope.sales);
+                    console.log($scope.sales);
                     if('CLOSED' in $scope.sales){
-                        //console.log("Already Closed");
+                        console.log("Already Closed");
                         $scope.showSpinner = false;
                         $scope.salesClosed = true;
                         $scope.showClosedMessage = true;
-                        $scope.CloseStyle = {"background-color":"#616161"};
+                        $scope.CloseStyle = {"background-color":"#ffc900", "border-color":"#e6b500"}
                     }else{
-                        //console.log("Has not Closed");
+                        console.log("Has not Closed");
                         $scope.showSpinner = false;
                         $scope.salesClosed = false;
                         $scope.showClosedMessage = false;
-                        $scope.CloseStyle = {"background-color":"#795548"};
+                        $scope.CloseStyle = {"background-color":"#33cd5f", "border-color":"#28a54c"}
                     }
                 })
                 .catch(function(err) {
                     console.error(err);
                 });
+
+            // $timeout(function(){
+            //     console.log("BRG Debug: sales Timed out");
+            //     Sales.on_timeout();
+            //     $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+            // }, 5000)
+
         }else{
-            //console.log("Loaded is not there");
+            console.log("Loaded is not there");
             if('CLOSED' in $scope.sales){
-                //console.log("Already Closed");
+                console.log("Already Closed");
                 $scope.showSpinner = false;
                 $scope.salesClosed = true;
                 $scope.showClosedMessage = true;
             }else{
-                //console.log("Has not Closed");
+                console.log("Has not Closed");
                 $scope.showSpinner = false;
                 $scope.salesClosed = false;
             }
@@ -86,7 +93,7 @@ angular.module('starter.controllers')
     $scope.$on('changedDate', updateSales);
 
     var online_watch = $scope.$watch(Env.isOnline, function(val){
-        //console.log("isOnline changed");
+        console.log("isOnline changed");
         if(val == true){
             updateSales();
             online_watch();
@@ -101,7 +108,7 @@ angular.module('starter.controllers')
          template: 'over scroll '
         });
         alertPopup.then(function(res) {
-         //console.log('over scroll');
+         console.log('over scroll');
         });
     };
     $scope.showAlert = showAlert;

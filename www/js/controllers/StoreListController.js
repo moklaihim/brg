@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 .controller('StoreListController', ["$ionicPlatform", "$rootScope", "$scope", "$timeout", "$state", "$cordovaGeolocation", "Stores", function($ionicPlatform, $rootScope, $scope, $timeout, $state, $cordovaGeolocation, Stores) {
-    //console.log("BRG Debug: StoreListController Started");
+    console.log("BRG Debug: StoreListController Started");
 
     var stores_array;
     showStoreList();
@@ -22,17 +22,17 @@ angular.module('starter.controllers')
     }
 
     function showStoreList(){
-        //console.log("BRG Debug: showStoreList started");
+        console.log("BRG Debug: showStoreList started");
         $scope.showSpinner = true;
-        //console.log("BRG Debug: showStoreList step2");
+        console.log("BRG Debug: showStoreList step2");
         stores_array = Stores.get_list_as_array();
-        //console.log(stores_array);
+        console.log(stores_array);
 
         if(stores_array.$loaded){
-            //console.log("BRG Debug: This is angularfire_array object");
+            console.log("BRG Debug: This is angularfire_array object");
             stores_array.$loaded()
                 .then(function() {
-                    //console.log("BRG Debug: stores_array loaded successfully");
+                    console.log("BRG Debug: stores_array loaded successfully");
                     calcDistance();
                 })
                 .catch(function(err) {
@@ -41,9 +41,9 @@ angular.module('starter.controllers')
                     calcDistance();
                 });
 
-            //console.log("BRG Debug: Setting timeout");
+            console.log("BRG Debug: Setting timeout");
         }else{
-            //console.log("BRG Debug: This is just an array");
+            console.log("BRG Debug: This is just an array");
             calcDistance();
         }
     }
@@ -55,10 +55,10 @@ angular.module('starter.controllers')
             .then(function (position) {
                 var lat = position.coords.latitude;
                 var lng = position.coords.longitude;
-                //console.log("BRG Debug: showStoreList step4");
+                console.log("BRG Debug: showStoreList step4");
                 //console.log(lat + " " + lng + " OK");
                 for (var i = 0; i < stores_array.length; i++) {
-                    //console.log("BRG Debug: Calculate distance for " + stores_array[i].name);
+                    console.log("BRG Debug: Calculate distance for " + stores_array[i].name);
                     stores_array[i].distance = Math.round(distance(lat, lng, stores_array[i].lat, stores_array[i].lng, "K")*1000);
                     if(stores_array[i].distance > 1000){
                         stores_array[i].distance_disp = Math.round(stores_array[i].distance / 100) / 10 + "km";
@@ -68,15 +68,15 @@ angular.module('starter.controllers')
                     //console.log($scope.stores_array[i].name + " " + $scope.stores_array[i].distance_disp + " OK");
                 }
 
-                //console.log("BRG Debug: showStoreList step5");
+                console.log("BRG Debug: showStoreList step5");
                 $scope.showSpinner = false;
                 $scope.stores_array = stores_array;
             }, function(err) {
-                //console.log("BRG Debug: Error on getting current position");
+                console.log("BRG Debug: Error on getting current position");
                 $scope.showSpinner = false;
                 $scope.stores_array = stores_array;
             });
-        //console.log("BRG Debug: showStoreList end");
+        console.log("BRG Debug: showStoreList end");
     }
 
     $scope.selectStore = function(store_id, store_name){
@@ -87,7 +87,7 @@ angular.module('starter.controllers')
         $scope.current.store_id = store_id;
         $scope.current.store_name = store_name;
 
-        //console.log("CurrentStore set to id: " + $scope.current.store_id + " name: " + $scope.current.store_name);
+        console.log("CurrentStore set to id: " + $scope.current.store_id + " name: " + $scope.current.store_name);
         $state.go('main.sales_list');
     };
 
