@@ -138,7 +138,7 @@ angular.module('starter.controllers')
 
     $scope.btn_color= function(event){
         
-        $scope.ClearBg = {};
+        // $scope.ClearBg = {};
         for (btn in colorbtns) {
             if (colorbtns[btn] == event.target.id){
                 document.getElementById(colorbtns[btn]).className = "button active";
@@ -157,7 +157,7 @@ angular.module('starter.controllers')
 
     $scope.btn_size= function(event){
         
-        $scope.ClearBg = {};
+        // $scope.ClearBg = {};
         for (btn in sizebtns) {
             if (sizebtns[btn] == event.target.id){
                 document.getElementById(sizebtns[btn]).className = "button active";
