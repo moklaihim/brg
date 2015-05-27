@@ -1,5 +1,5 @@
 <ion-side-menus enable-menu-with-back-views="false">
-    <ion-side-menu-content>
+    <ion-side-menu-content drag-content="false">
         <ion-nav-bar class="bar-stable">
             <ion-nav-back-button>
             </ion-nav-back-button>
@@ -26,20 +26,20 @@
             <div class="sidemenu_border">
             </div>
             <ion-list class="sidemenu_list">
-                <ion-item class="sidemenu_item" ng-class="{active: current.view == 'sales_list'}" menu-close href="#/main/sales/list">
-                    <img class="sidemenu_item_icon" src="img/shopping.svg" />
+                <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'sales_list'}" menu-close href="#/main/sales/list">
+                    <i class="icon mdi mdi-shopping sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Sales</span>
                 </ion-item>
-                <ion-item class="sidemenu_item" ng-class="{active: current.view == 'item_list'}" menu-close href="#/main/items/list">
-                    <img class="sidemenu_item_icon" src="img/shopping.svg" />
+                <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'item_list'}" menu-close href="#/main/items/list">
+                    <i class="icon mdi mdi-package-variant sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Items</span>
                 </ion-item>
-                <ion-item class="sidemenu_item" ng-class="{active: current.view == 'roles_list'}" menu-close ng-if="role.allowAccessRolesMenu" ng-show="role.allowAccessRolesMenu" href="#/main/roles/list">
-                    <img class="sidemenu_item_icon" src="img/account-key.svg" />
+                <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'roles_list'}" menu-close ng-if="role.allowAccessRolesMenu" ng-show="role.allowAccessRolesMenu" href="#/main/roles/list">
+                    <i class="icon mdi mdi-account-key sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Roles</span>
                 </ion-item>
-                <ion-item class="sidemenu_item" href="#" menu-close ng-click="logout()">
-                    <img class="sidemenu_item_icon" src="img/logout.svg" />
+                <ion-item class="item-icon-left sidemenu_item" href="#" menu-close ng-click="logout()">
+                    <i class="icon mdi mdi-logout sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Sign Out</span>
                 </ion-item>
             </ion-list>
