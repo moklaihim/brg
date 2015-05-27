@@ -22,7 +22,6 @@ angular.module('starter.services')
         stores['metro_paragon'] = {id: 'metro_paragon', name: 'Metro Paragon', lat: 1.303753, lng: 103.835716, timestamp: 1430663266989};
         stores['metro_woodlands'] = {id: 'metro_woodlands', name: 'Metro Woodlands', lat: 1.435820, lng: 103.786139, timestamp: 1430663266989};
         stores['metro_city_sq'] = {id: 'metro_city_sq', name: 'Metro City Sq', lat: 1.311333, lng: 103.856434, timestamp: 1430663266989};
-        stores['events_atriums'] = {id: 'events_atriums', name: 'Events / Atriums', lat: 0, lng: 0, timestamp: 1430663266989};
         stores.$save();
     };
 
