@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ItemListController', ["$scope", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ZBar", "$ionicPlatform","Items", "Sales", function($scope, $ionicGesture, $state, $filter, $ionicPopup, $ZBar, $ionicPlatform, Items, Sales) {
+.controller('ItemListController', ["$scope", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", function($scope, $ionicGesture, $state, $filter, $ionicPopup, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales) {
 
     $scope.headerLabel = "ITEM LIST : ";
     $scope.headerCloseButton = true;
@@ -25,6 +25,7 @@ angular.module('starter.controllers')
     if($state.current.name === "main.sales_scanadd"){
         $ionicPlatform.ready(function(){
             $ZBar
+            //$cordovaBarcodeScanner
                 .scan()
                 .then(
                     function(barcodeData) {
