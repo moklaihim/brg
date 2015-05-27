@@ -31,6 +31,43 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     //           }, 100);
 }])
 
+.filter('itemFilter', function() {
+
+  // In the return function, we must pass in a single parameter which will be the data we will work on.
+  // We have the ability to support multiple other parameters that can be passed into the filter optionally
+  return function(input, filterKey, filterType) {
+
+    var output = new Array();
+
+    if(filterKey){
+
+        if(filterType == 'brand'){
+            regexp = new RegExp('^' + filterKey);
+        }else if(filterType == 'color'){
+            regexp = new RegExp('-' + filterKey + '-');
+        }else if(filterType == 'size'){
+            regexp = new RegExp('-' + filterKey + '$');
+        }else if(filterType == 'code'){
+            regexp = new RegExp(filterKey);
+        }
+
+        for (var i = 0; i < input.length; i++) {
+            if (regexp.test(input[i].id)){
+                output.push(input[i]);
+            }
+        }
+    }else{
+        output = input;
+    }
+
+    // Do filter work here
+
+    return output;
+
+  }
+
+})
+
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     $ionicConfigProvider.tabs.position("bottom");

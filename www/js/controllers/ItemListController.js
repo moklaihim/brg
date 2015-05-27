@@ -45,7 +45,8 @@ angular.module('starter.controllers')
                         // An error occurred
                     },
                     {
-                        text_title: "OPTIONAL"
+                        text_title: "OPTIONAL",
+                        flash: "on"
                     }
                 );
         }); 
@@ -214,7 +215,7 @@ angular.module('starter.controllers')
     };
 
     function itemId(){
-        $scope.current.item_id = $scope.current.item_brand + $scope.current.item_code + $scope.current.item_color + $scope.current.item_size;
+        $scope.current.item_id = $scope.current.item_brand + $scope.current.item_code + '-' + $scope.current.item_color + '-' + $scope.current.item_size;
     };
     $scope.itemId = itemId;
 
