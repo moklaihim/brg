@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ItemListController', ["$scope", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$cordovaBarcodeScanner", "$ionicPlatform","Items", "Sales", function($scope, $ionicGesture, $state, $filter, $ionicPopup, $cordovaBarcodeScanner, $ionicPlatform, Items, Sales) {
+.controller('ItemListController', ["$scope", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ZBar", "$ionicPlatform","Items", "Sales", function($scope, $ionicGesture, $state, $filter, $ionicPopup, $ZBar, $ionicPlatform, Items, Sales) {
 
     $scope.headerLabel = "ITEM LIST : ";
     $scope.headerCloseButton = true;
@@ -24,25 +24,28 @@ angular.module('starter.controllers')
 
     if($state.current.name === "main.sales_scanadd"){
         $ionicPlatform.ready(function(){
-            $cordovaBarcodeScanner
+            $ZBar
                 .scan()
-                .then(function(barcodeData) {
-                    // showAlert();
-                    if (!$scope.items.hasOwnProperty(barcodeData.text)){
-                        $scope.current.item_id = barcodeData.text;
-                        $state.go('main.items_add');
-                    };
-                    if ($scope.items.hasOwnProperty(barcodeData.text)){
-                        selectItem(barcodeData.text);
-                    };
-                    if (barcodeData.cancelled){
-                        $state.go('main.sales_list');
-                    };
-                },  function(error) {
-                    // An error occurred
+                .then(
+                    function(barcodeData) {
+                        //showAlert(barcodeData.text);
+                        //console.log(barcodeData);
+                        if (!$scope.items.hasOwnProperty(barcodeData)){
+                            $scope.current.item_id = barcodeData;
+                            $state.go('main.items_add');
+                        };
+                        if ($scope.items.hasOwnProperty(barcodeData)){
+                            selectItem(barcodeData);
+                        };
+                        if (barcodeData.cancelled){
+                            $state.go('main.sales_list');
+                        };
+                    },
+                    function(error) {
+                        // An error occurred
                     },
                     {
-                        "showFlipCameraButton" : false
+                        text_title: "OPTIONAL"
                     }
                 );
         }); 
