@@ -167,6 +167,10 @@ angular.module('starter.controllers')
     };
 
     $scope.itemIdClear= function(){
+        $scope.showBrandInput = true;
+        $scope.showCodeInput = false;
+        $scope.showColorInput = false;
+        $scope.showSizeInput = false;
         $scope.current.item_brand = '';
         $scope.current.item_code ='';
         $scope.current.item_color ='';

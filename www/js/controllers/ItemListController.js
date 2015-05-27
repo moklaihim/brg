@@ -27,6 +27,7 @@ angular.module('starter.controllers')
             $cordovaBarcodeScanner
                 .scan()
                 .then(function(barcodeData) {
+                    // showAlert();
                     if (!$scope.items.hasOwnProperty(barcodeData.text)){
                         $scope.current.item_id = barcodeData.text;
                         $state.go('main.items_add');
@@ -75,8 +76,6 @@ angular.module('starter.controllers')
         $scope.items_array = Items.get_as_array();
 
     }
-
-    
 
     function updateItems(){
         $scope.items = Items.get();
@@ -197,6 +196,10 @@ angular.module('starter.controllers')
     };
 
     $scope.itemIdClear= function(){
+        $scope.showBrandInput = true;
+        $scope.showCodeInput = false;
+        $scope.showColorInput = false;
+        $scope.showSizeInput = false;
         $scope.current.item_brand = '';
         $scope.current.item_code ='';
         $scope.current.item_color ='';
@@ -228,8 +231,8 @@ angular.module('starter.controllers')
     function showAlert(){
         // var msg = item_id;
         var alertPopup = $ionicPopup.alert({
-         title: 'Warning!',
-         template: 'You are not entering sales for today\'s date'
+         title: 'Scan!',
+         template: barcodeData.text
         });
         alertPopup.then(function(res) {
          console.log('Thank you for different date');
