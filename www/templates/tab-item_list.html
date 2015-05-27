@@ -20,7 +20,8 @@
             
             <ion-item ng-click="addItem()"><center><b>Not Found. Add New Item?</b></center></ion-item>
             
-            <ion-item ng-repeat="(key,item) in items_array | filter : current.item_brand | filter : current.item_color | filter : current.item_size | filter : current.item_code | uppercase" ng-click="selectItem(item.id)" ><b>{{item.id}}</b>
+            <ion-item ng-repeat="item in items_array | itemFilter : current.item_brand:'brand' | itemFilter : current.item_code:'code' | itemFilter : current.item_color:'color' | itemFilter : current.item_size:'size' | uppercase" ng-click="selectItem(item.id)" ><b>{{item.id}}</b>
+            <!-- <ion-item ng-repeat="item in items_array | itemFilter : current.item_brand:'brand' | uppercase" ng-click="selectItem(item.id)" ><b>{{item.id}}</b> -->
             <ion-option-button class="button-positive ion-edit" ng-click="editItem(item.id)"></ion-option-button>
             <ion-option-button class="button-assertive ion-close-round" ng-click="removeItem(item.id)"></ion-option-button>
             </ion-item>
