@@ -173,7 +173,7 @@ typedef enum zbar_config_e {
 
     //ZBAR_CFG_X_DENSITY = 0x100, /**< image scanner vertical scan density */
     ZBAR_CFG_X_DENSITY = 0, /**< image scanner vertical scan density */
-    ZBAR_CFG_Y_DENSITY = 2,         /**< image scanner horizontal scan density */
+    ZBAR_CFG_Y_DENSITY = 1,         /**< image scanner horizontal scan density */
 } zbar_config_t;
 
 /** decoder symbology modifier flags.
