@@ -30,9 +30,13 @@
                     <i class="icon mdi mdi-shopping sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Sales</span>
                 </ion-item>
-                <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'item_list'}" menu-close href="#/main/items/list">
+                <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'items_list'}" menu-close href="#/main/items/list">
                     <i class="icon mdi mdi-package-variant sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Items</span>
+                </ion-item>
+                <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'users_list'}" menu-close ng-if="role.allowAccessUsersMenu" ng-show="role.allowAccessUsersMenu" href="#/main/users/list">
+                    <i class="icon mdi mdi-account-multiple sidemenu_item_icon"></i>
+                    <span class="sidemenu_item_text">Users</span>
                 </ion-item>
                 <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'roles_list'}" menu-close ng-if="role.allowAccessRolesMenu" ng-show="role.allowAccessRolesMenu" href="#/main/roles/list">
                     <i class="icon mdi mdi-account-key sidemenu_item_icon"></i>

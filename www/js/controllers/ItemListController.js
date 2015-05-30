@@ -1,6 +1,5 @@
 angular.module('starter.controllers')
 .controller('ItemListController', ["$scope", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", function($scope, $ionicGesture, $state, $filter, $ionicPopup, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales) {
-
     $scope.headerLabel = "ITEM LIST : ";
     $scope.headerCloseButton = true;
     $scope.current.item_id ='';
@@ -8,6 +7,7 @@ angular.module('starter.controllers')
     $scope.showColorInput = false;
     $scope.showSizeInput = false;
     $scope.showCodeInput = false;
+    $scope.current.view = 'items_list';
 
     updateItems();
     //** Make array to only include items ids and exclude $$conf, $id, $priority **
