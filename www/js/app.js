@@ -38,17 +38,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   return function(input, filterKey, filterType) {
 
     var output = new Array();
-
+    // var SC = '';
+    if(filterKey == 'SC'){
+       var SC = filterKey;
+    }
     if(filterKey){
 
-        if(filterType == 'brand'){
-            regexp = new RegExp('^' + filterKey);
-        }else if(filterType == 'color'){
-            regexp = new RegExp('-' + filterKey + '-');
-        }else if(filterType == 'size'){
-            regexp = new RegExp('-' + filterKey + '$');
-        }else if(filterType == 'code'){
-            regexp = new RegExp(filterKey);
+        if(SC){
+            if(filterType == 'brand'){
+                regexp = new RegExp('^' + filterKey);
+            }else if(filterType == 'color'){
+                console.log("SC color filter")
+                regexp = new RegExp('-' + filterKey);
+            }else if(filterType == 'size'){
+                regexp = new RegExp(filterKey + '$');
+                SC='';
+            }else if(filterType == 'code'){
+                regexp = new RegExp('S' + filterKey);
+            }
+        }
+        else{
+            if(filterType == 'brand'){
+                regexp = new RegExp('^' + filterKey);
+            }else if(filterType == 'color'){
+                console.log("normal color filter")
+                regexp = new RegExp('-' + filterKey + '-');
+            }else if(filterType == 'size'){
+                regexp = new RegExp('-' + filterKey + '$');
+            }else if(filterType == 'code'){
+                regexp = new RegExp(filterKey);
+            }
         }
 
         for (var i = 0; i < input.length; i++) {

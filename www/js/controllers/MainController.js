@@ -41,7 +41,7 @@ angular.module('starter.controllers')
         raw_set_date: new Date(),
         item_id: '',
         item_key: '',
-        editItemKey: '',
+        // editItemKey: '',
         editItemPrice:'',
         fb_restored: false,
         item_brand: '',

@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ItemAddController', ["$scope", "$cordovaKeyboard", "$ionicGesture", "$filter", "$state", "Items", function($scope, $cordovaKeyboard, $ionicGesture, $filter, $state, Items) {
+.controller('ItemAddController', ["$scope", "$cordovaKeyboard", "$ionicPopup", "$ionicGesture", "$filter", "$state", "Items", function($scope, $cordovaKeyboard, $ionicPopup, $ionicGesture, $filter, $state, Items) {
  
 
     $scope.new_item = {
@@ -48,8 +48,11 @@ angular.module('starter.controllers')
 
     $scope.addItemOK = function(){
         Items.add($scope.current.item_id, $scope.new_item.retail_price);
+        showItemAddAlert();
         $scope.current.item_id = '';
         $state.go('main.sales_list');
+        
+
     };
 
     $scope.editItemOK = function(){
@@ -215,12 +218,17 @@ angular.module('starter.controllers')
     }, itemCode);
 
 
-    // var retailPrice = angular.element(document.querySelector('#retailPrice'));
-    // $ionicGesture.on('tap', function(e) {
-    //     console.log("hide2");
-    //     $scope.hideNUMButtons = !$scope.hideNUMButtons;
-    //     $scope.$digest();
-    // }, retailPrice);
+    function showItemAddAlert(){
+        // var msg = item_id;
+        var alertPopup = $ionicPopup.alert({
+         title: 'ADDED ITEM',
+         template: $scope.current.item_id
+        });
+        // alertPopup.then(function(res) {
+        //  console.log('Thank you for different date');
+        // });
+    };
+    $scope.showItemAddAlert = showItemAddAlert;
 
 
     $scope.$watch('new_item.id', function(val) {
