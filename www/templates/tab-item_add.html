@@ -1,4 +1,9 @@
 <ion-view>
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button ng-click="cancel()">
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    
     <ion-header-bar align-title="left" class="bar-subheader bar-balanced">
         <!-- <span><h1 class="title">Add Item</h1></span> -->
         <span id="itemCode" class="title" ng-model="new_item.id">{{headerLabel }}: {{current.item_id}}</h1></span>

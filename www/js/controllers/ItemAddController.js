@@ -68,7 +68,16 @@ angular.module('starter.controllers')
         $state.go('main.sales_add');
     };
 
-   $scope.btn_brand= function(event){
+    $scope.cancel = function(){
+        $scope.current.item_id = ""; 
+        $scope.current.item_key = ""; 
+        $ionicHistory.nextViewOptions({
+              historyRoot: true
+        }); 
+        $state.go('main.sales_list');
+    }; 
+
+    $scope.btn_brand= function(event){
                 
         for (btn in brandbtns) {
             if (brandbtns[btn] == event.target.id){
