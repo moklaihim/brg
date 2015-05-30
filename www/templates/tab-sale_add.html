@@ -1,8 +1,13 @@
 <ion-view>
-    <ion-nav-buttons side="right">
-        <a class="button" ui-sref="main.stores_list">{{current.store_name}}</a>
-        <button class="button" ng-click="showDatePicker()">{{current.set_date}}</button>
-    </ion-nav-buttons>
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button ng-click="cancel()">
+        </ion-nav-back-button>
+
+        <ion-nav-buttons side="right">
+            <a class="button" ui-sref="main.stores_list">{{current.store_name}}</a>
+            <button class="button" ng-click="showDatePicker()">{{current.set_date}}</button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
 
     <ion-header-bar align-title="left" class="bar-subheader bar-balanced" >
      <span id="searchItem" class="title" ng-model="query.text">{{headerLabel + current.item_id}}</h1></span>

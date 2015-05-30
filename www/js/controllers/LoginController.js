@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('LoginController', ["$scope", "$state", "$ionicPopup", "Auth", function($scope, $state, $ionicPopup, Auth) {
+.controller('LoginController', ["$scope", "$state", "$ionicPopup", "$ionicHistory", "Auth", function($scope, $state, $ionicPopup, $ionicHistory, Auth) {
     console.log("LoginController started");
     $scope.showLoginView = true;
 
@@ -9,6 +9,10 @@ angular.module('starter.controllers')
         new_password: '',
         new_password_again: ''
     };
+
+    $ionicHistory.nextViewOptions({
+        historyRoot: true
+    });
 
     $scope.login = function (){ 
         Auth.login($scope.user.email, $scope.user.password, function(res){   

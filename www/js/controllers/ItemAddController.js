@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ItemAddController', ["$scope", "$cordovaKeyboard", "$ionicGesture", "$filter", "$state", "Items", function($scope, $cordovaKeyboard, $ionicGesture, $filter, $state, Items) {
+.controller('ItemAddController', ["$scope", "$cordovaKeyboard", "$ionicGesture", "$ionicHistory", "$filter", "$state", "Items", function($scope, $cordovaKeyboard, $ionicGesture, $ionicHistory, $filter, $state, Items) {
  
 
     $scope.new_item = {
@@ -49,6 +49,9 @@ angular.module('starter.controllers')
     $scope.addItemOK = function(){
         Items.add($scope.current.item_id, $scope.new_item.retail_price);
         $scope.current.item_id = '';
+        $ionicHistory.nextViewOptions({
+            historyRoot: true
+        });
         $state.go('main.sales_list');
     };
 

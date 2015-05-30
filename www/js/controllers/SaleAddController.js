@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SaleAddController', ["$scope", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$cordovaBarcodeScanner", "$ionicPlatform","Items", "Sales", function($scope, $ionicGesture, $state, $filter, $ionicPopup, $cordovaBarcodeScanner, $ionicPlatform, Items, Sales) {
+.controller('SaleAddController', ["$scope", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ionicPlatform","Items", "Sales", function($scope, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ionicPlatform, Items, Sales) {
     $scope.showDisOption = false;
 
     $scope.sale = {
@@ -42,6 +42,9 @@ angular.module('starter.controllers')
     $scope.cancel = function(){
         $scope.current.item_id = "";
         $scope.current.item_key = "";
+        $ionicHistory.nextViewOptions({
+              historyRoot: true
+        });
         $state.go('main.sales_list');
     };
 
@@ -56,6 +59,9 @@ angular.module('starter.controllers')
         }
         $scope.current.item_id = "";
         $scope.current.item_key = "";
+        $ionicHistory.nextViewOptions({
+              historyRoot: true
+        });
         $state.go('main.sales_list');
     };
 
