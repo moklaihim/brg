@@ -1,0 +1,16 @@
+<ion-view view-title="Users">
+    <ion-nav-buttons side="right">
+        <button class="button" ng-click="addUser()">
+            <i class="icon mdi mdi-plus"></i>
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content padding="false">
+        <ion-list>
+            <ion-item ng-repeat="user in users"><b>{{user.name}}</b>
+            <ion-option-button class="button-positive ion-edit" ng-click="editUser(user.id)"></ion-option-button>
+            <ion-option-button class="button-assertive ion-close-round" ng-click="removeUser(user.id)"></ion-option-button>
+            </ion-item>
+            </ion-list>
+    </ion-content>
+</ion-view>

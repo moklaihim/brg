@@ -144,6 +144,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'StoreListController'
     })
 
+    .state('main.users_list', {
+        url: '/users/list',
+        cache: false,
+        templateUrl: 'templates/user_list.html',
+        controller: 'UserListController'
+    })
+
+    .state('main.users_add', {
+        url: '/users/add',
+        cache: false,
+        templateUrl: 'templates/user_edit.html',
+        controller: 'UserEditController'
+    })
+
+    .state('main.users_edit', {
+        url: '/users/edit',
+        cache: false,
+        templateUrl: 'templates/user_edit.html',
+        controller: 'UserEditController'
+    })
+
     .state('main.roles_list', {
         url: '/roles/list',
         cache: false,

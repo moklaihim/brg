@@ -48,7 +48,8 @@ angular.module('starter.controllers')
         item_code: '',
         item_color: '',
         item_size: '',
-        view: ''
+        view: '',
+        user_id: ''
     };
 
     setDate(new Date(), true);
