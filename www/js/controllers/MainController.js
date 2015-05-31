@@ -42,7 +42,7 @@ angular.module('starter.controllers')
         item_id: '',
         item_key: '',
         // editItemKey: '',
-        editItemPrice:'',
+        // editItemPrice:'',
         fb_restored: false,
         item_brand: '',
         item_code: '',
