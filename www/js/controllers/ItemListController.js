@@ -1,6 +1,8 @@
 angular.module('starter.controllers')
 .controller('ItemListController', ["$scope", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", function($scope, $ionicGesture, $state, $filter, $ionicPopup, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales) {
 // Start of Item List to show only item list and Brand input
+//
+    $scope.current.view = 'items_list';
     $scope.headerLabel = "ITEM LIST : ";  // header will reflect ITEM List
     $scope.headerCloseButton = true; //enable clear item name
     $scope.current.item_id ='';

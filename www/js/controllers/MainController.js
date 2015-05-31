@@ -48,15 +48,9 @@ angular.module('starter.controllers')
         item_code: '',
         item_color: '',
         item_size: '',
-        view: ''
+        view: '',
+        user_id: ''
     };
-
-    /*
-    if(!$scope.current.fb_restored){
-        OfflineFirebase.restore();
-        $scope.current.fb_restored = true;
-    }
-    */
 
     setDate(new Date(), true);
 
@@ -89,38 +83,8 @@ angular.module('starter.controllers')
     }
 
     $scope.showDatePicker = function(){
-        /*
-        if(Env.isMobile()){
-            var options = {
-                mode: 'date',
-                date: new Date(),
-                allowOldDates: true,
-                allowFutureDates: true,
-                doneButtonLabel: 'DONE',
-                doneButtonColor: '#F2F3F4',
-                cancelButtonLabel: 'CANCEL',
-                cancelButtonColor: '#000000'
-            };
-            $cordovaDatePicker.show(options).then(function(date){
-                setDate(date, false);
-            });
-        }else{
-        */
-            $scope.showPCDatePicker = !$scope.showPCDatePicker;
-        //}
+        $scope.showPCDatePicker = !$scope.showPCDatePicker;
     }
-
-    // $scope.SideSaleBtn= function(event){
-    //     $scope.current.ItemOrSaleTrigger = event.target.id;
-    //     console.log($scope.current.ItemOrSaleTrigger);
-    //     $state.go('main.sales_list');
-    // }
-
-    // $scope.SideItemBtn= function(event){
-    //     $scope.current.ItemOrSaleTrigger = event.target.id;
-    //     console.log($scope.current.ItemOrSaleTrigger);
-    //     $state.go('main.items_list');
-    // }
 
     $scope.$watch('current.raw_set_date', function(){
         setDate($scope.current.raw_set_date, false);

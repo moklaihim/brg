@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('StoreListController', ["$ionicPlatform", "$rootScope", "$scope", "$timeout", "$state", "$cordovaGeolocation", "Stores", function($ionicPlatform, $rootScope, $scope, $timeout, $state, $cordovaGeolocation, Stores) {
+.controller('StoreListController', ["$ionicPlatform", "$rootScope", "$scope", "$timeout", "$state", "$ionicHistory", "$cordovaGeolocation", "Stores", function($ionicPlatform, $rootScope, $scope, $timeout, $state, $ionicHistory, $cordovaGeolocation, Stores) {
     console.log("BRG Debug: StoreListController Started");
 
     var stores_array;
@@ -88,7 +88,7 @@ angular.module('starter.controllers')
         $scope.current.store_name = store_name;
 
         console.log("CurrentStore set to id: " + $scope.current.store_id + " name: " + $scope.current.store_name);
-        $state.go('main.sales_list');
+        $ionicHistory.goBack();
     };
 
 }])

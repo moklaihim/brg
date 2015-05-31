@@ -1,6 +1,6 @@
 angular.module('starter.services')
-.factory('Users', ["$firebaseAuth", "$firebaseObject", function($firebaseAuth, $firebaseObject) {
-    var user = {}; 
+.factory('Users', ["$firebaseObject", "Auth", function($firebaseObject, Auth) {
+    var users = {}; 
     var is_online;
 
     function createInitialData(){
@@ -42,6 +42,35 @@ angular.module('starter.services')
 
         get_list: function(){
             return users;
+        },
+
+        edit: function(user_detail){
+            var now = new Date();
+            var current_ut = now.getTime();
+            var user_id;
+
+            if(is_online){
+                if(user_detail.id){
+                    user_id = user_detail.id;
+                }else{
+                    user_id = user_detail.email.replace("@", "_").replace(/\./g, "_");
+                }
+
+                Auth.register(user_detail.email, user_detail.password);
+                users[user_id] = new Object();
+                users[user_id].id = user_id;
+                users[user_id].email = user_detail.email;
+                users[user_id].name = user_detail.name;
+                users[user_id].role = user_detail.role;
+                users.$save();
+            }
+        },
+
+        remove: function(user_id){
+            if(is_online){
+                users[user_id] = new Object();
+                users.$save();
+            }
         }
     }
 }]);
