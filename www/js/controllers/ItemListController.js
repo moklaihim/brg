@@ -25,14 +25,13 @@ angular.module('starter.controllers')
     $scope.item_code = '';
     $scope.item_color = '';
     $scope.item_size = '';
-
+    var editItemClicked = false;
     var addItemClicked = false;
     var lastItemCodeEntered = false;
     $scope.searchInputStyle = {'position':'fixed','bottom':'0%','width':'100%'};
     var brandbtns = ["HB", "F", "R", "H", "S"];
     var colorbtns = ["BLK", "BLU", "GRN", "BRN"];
     var sizebtns = ["38", "39", "40", "41", "42", "43", "44", "45"];
-    var brandS = '';
     var allbtns = brandbtns.concat(colorbtns,sizebtns);
 
     if($state.current.name === "main.sales_scanadd"){
@@ -105,6 +104,7 @@ angular.module('starter.controllers')
         $scope.showSearchButtons = false;
         $scope.showConfirmBtns = true;
         $scope.showEditItemBtn = true;
+        editItemClicked = true; //When true , Price input will reset the field value
     }
 
     $scope.removeItem = function($item_id) {
@@ -165,7 +165,7 @@ angular.module('starter.controllers')
     $scope.btn_color= function(event){
         
         // if (brandS == S){
-            
+
         // }
         for (btn in colorbtns) {
             if (colorbtns[btn] == event.target.id){
@@ -208,6 +208,10 @@ angular.module('starter.controllers')
     };
 
     $scope.btn_price= function(event){
+        if(editItemClicked){
+            priceClear();
+            editItemClicked = false;
+        }
         $scope.retail_price = $scope.retail_price + event.target.id;
         // $scope.current.editItemPrice = $scope.new_item.retail_price;
     };

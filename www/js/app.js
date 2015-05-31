@@ -132,12 +132,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'ItemListController'
     })
 
-    .state('main.items_add', {
-        url: '/items/add',
-        cache: false,
-        templateUrl: 'templates/tab-item_add.html',
-        controller: 'ItemAddController'
-    })
+    // .state('main.items_add', {
+    //     url: '/items/add',
+    //     cache: false,
+    //     templateUrl: 'templates/tab-item_add.html',
+    //     controller: 'ItemAddController'
+    // })
 
     .state('main.stores_list', {
         url: '/stores/list',
