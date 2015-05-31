@@ -159,20 +159,21 @@ angular.module('starter.controllers')
             showItemAddError();
             return;
         };
-        Items.add($scope.current.item_id, $scope.retail_price);
-        // $scope.current.editItemKey = '';
-        
+        console.log("edit Ok Pressed");
+        $scope.showItemList = true;
+        Items.add($scope.current.item_id, $scope.retail_price); 
         $scope.retail_price = '';
         $scope.current.item_id = '';
         $scope.searchInputStyle = {'position':'fixed','bottom':'0%','width':'100%'};
         $scope.headerLabel = "ITEM LIST : ";
-        $scope.showItemList = true;
         $scope.showPriceInput = false;
         $scope.showBrandInput = true;
         $scope.showSearchButtons = true;
         $scope.showConfirmBtns = false;
         $scope.showEditItemBtn = false;
-        updateItems();
+        $scope.items_array = Items.get_as_array(); 
+        $scope.items_array.push();      
+        
         // $state.go('main.items_list');
     };
     //when individual item is slide and pressed delete
