@@ -40,11 +40,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     var output = new Array();
     if(filterKey){
 
-        console.log("filter is not S");
+        // console.log("filter is not S");
         if(filterType == 'brand'){
             regexp = new RegExp('^' + filterKey);
         }else if(filterType == 'color'){
-            console.log("normal color filter")
+            // console.log("normal color filter")
             regexp = new RegExp('-' + filterKey);
         }else if(filterType == 'size'){
             regexp = new RegExp(filterKey + '$');

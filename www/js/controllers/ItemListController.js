@@ -1,9 +1,10 @@
 angular.module('starter.controllers')
-.controller('ItemListController', ["$scope", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", function($scope, $ionicGesture, $state, $filter, $ionicPopup, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales) {
+.controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales) {
 // Start of Item List to show only item list and Brand input
 //
     $scope.current.view = 'items_list';
-    $scope.headerLabel = "ITEM LIST : ";  // header will reflect ITEM List
+    $scope.headerLabel = "ITEM SEARCH : ";  // header will reflect ITEM List
+    $scope.showInstruction = true;
     $scope.headerCloseButton = true; //enable clear item name
     $scope.current.item_id ='';
     $scope.showItemList = true;
@@ -31,6 +32,8 @@ angular.module('starter.controllers')
     var allbtns = brandbtns.concat(colorbtns,sizebtns);
 
     updateItems();
+    updateInstruction();
+
 
     if($state.current.name === "main.sales_scanadd"){
         $ionicPlatform.ready(function(){
@@ -75,6 +78,17 @@ angular.module('starter.controllers')
         $state.go("main.sales_scanadd");
         $scope.$broadcast('scroll.refreshComplete');
     };
+    function updateInstruction(){
+        if ($scope.showBrandInput == true){
+            $scope.instruction = "INPUT BRAND CODE";
+        }else if($scope.showCodeInput == true){
+            $scope.instruction = "INPUT ITEM CODE";
+        }else if($scope.showSizeInput == true){
+            $scope.instruction = "INPUT SIZE";
+        }else if($scope.showColorInput == true){
+            $scope.instruction = "INPUT COLOR";
+        }
+    }
 
     //update Items from Firebase
     function updateItems(){
@@ -100,8 +114,8 @@ angular.module('starter.controllers')
 
     //After completing adding new item form, add to sales button is clicked
     $scope.addSaleOK = function(){
-        if (!$scope.retail_price){
-            showItemAddError();
+        if (!$scope.retail_price || $scope.current.item_id == '--'){
+            showItemAddError(); //display error notification when price is not entered
             return;
         };
 
@@ -126,8 +140,8 @@ angular.module('starter.controllers')
     $scope.addItem = addItem;
     //After completing adding new item form, add to items only and display messgae item is added
     $scope.addItemOK = function(){
-        if (!$scope.retail_price){
-            showItemAddError();
+        if (!$scope.retail_price || $scope.current.item_id == '--'){
+            showItemAddError(); //display error notification when price is not entered
             return;
         };
 
@@ -145,6 +159,7 @@ angular.module('starter.controllers')
         $scope.searchInputStyle = {'position':'fixed','top':'100px','width':'100%'};
         $scope.headerLabel = "EDIT ITEM : ";
         $scope.headerCloseButton = false; //disable clear item name when edit
+        $scope.showInstruction = false;
         $scope.showItemList = false;
         $scope.showPriceInput = true;
         $scope.showBrandInput = false;
@@ -155,8 +170,8 @@ angular.module('starter.controllers')
     }
     //When finish editing form and pressed "Update Item" button
     $scope.editItemOK = function(){
-        if (!$scope.retail_price){
-            showItemAddError();
+        if (!$scope.retail_price || $scope.current.item_id == '--'){
+            showItemAddError(); //display error notification when price is not entered 
             return;
         };
         console.log("edit Ok Pressed");
@@ -165,14 +180,14 @@ angular.module('starter.controllers')
         $scope.retail_price = '';
         $scope.current.item_id = '';
         $scope.searchInputStyle = {'position':'fixed','bottom':'0%','width':'100%'};
-        $scope.headerLabel = "ITEM LIST : ";
+        $scope.headerLabel = "ITEM SEARCH : ";
         $scope.showPriceInput = false;
         $scope.showBrandInput = true;
         $scope.showSearchButtons = true;
         $scope.showConfirmBtns = false;
         $scope.showEditItemBtn = false;
-        $scope.items_array = Items.get_as_array(); 
-        $scope.items_array.push();      
+        $ionicListDelegate.closeOptionButtons();
+     
         
         // $state.go('main.items_list');
     };
@@ -199,27 +214,36 @@ angular.module('starter.controllers')
                 document.getElementById(brandbtns[btn]).className = "button";
             }
         }
-        itemId();
+        
         $scope.showBrandInput = false;
         $scope.showCodeInput = true;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
         lastItemCodeEntered = false;
+        itemId();
         // brandS = 'S';
     };
 
     $scope.btn_code= function(event){
         $scope.item_code = $scope.item_code + event.target.id;
+        if($scope.current.item_id.charAt( 0 ) == 'S'){
+            if($scope.item_code.charAt(1)){
+                if(!$scope.item_code.charAt(2)){
+                    $scope.item_code = $scope.item_code + "-";
+                }
+            }
+        }
         itemId();
         lastItemCodeEntered = false;
     };
 
     $scope.btn_code_ok = function(){
+
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
         $scope.showColorInput = true;
         $scope.showSizeInput = false;
-
+        itemId();
     }
 
     $scope.btn_code_clear = function(){
@@ -241,12 +265,13 @@ angular.module('starter.controllers')
                 document.getElementById(colorbtns[btn]).className = "button";
             }
         }
-        itemId();
+        
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = true;
         lastItemCodeEntered = false;
+        itemId();
     };
 
     $scope.btn_size= function(event){
@@ -261,7 +286,7 @@ angular.module('starter.controllers')
                 document.getElementById(sizebtns[btn]).className = "button";
             }
         }
-        itemId();
+        
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
@@ -270,6 +295,8 @@ angular.module('starter.controllers')
             $scope.showPriceInput = true;
         }
         lastItemCodeEntered = true;
+        $scope.showInstruction = false;
+        itemId();
     };
 
     $scope.btn_price= function(event){
@@ -288,18 +315,21 @@ angular.module('starter.controllers')
             $scope.showCodeInput = false;
             $scope.showColorInput = false;
             $scope.showSizeInput = false;
+            updateInstruction();
         }
         if (event.target.id == "colorBack"){
             $scope.showBrandInput = false;
             $scope.showCodeInput = true;
             $scope.showColorInput = false;
             $scope.showSizeInput = false;
+            updateInstruction();
         }
         if (event.target.id == "sizeBack"){
             $scope.showBrandInput = false;
             $scope.showCodeInput = false;
             $scope.showColorInput = true;
             $scope.showSizeInput = false;
+            updateInstruction();
         }   
         if (event.target.id == "PriceBackSpace"){
             $scope.retail_price = $scope.retail_price.length -1
@@ -308,6 +338,7 @@ angular.module('starter.controllers')
 
     //When the X button beside the ITEM name is clicked
     $scope.itemIdClear= function(){
+        $scope.showInstruction = true;
         $scope.showBrandInput = true;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
@@ -316,10 +347,11 @@ angular.module('starter.controllers')
         $scope.item_code ='';
         $scope.item_color ='';
         $scope.item_size = '';
+        $scope.current.item_id = '';
         for (btn in allbtns) {
             document.getElementById(allbtns[btn]).className = "button";
         }
-        itemId();
+        // itemId();
     };
 
     //When the X button beside the Retail Price is clicked
@@ -329,10 +361,13 @@ angular.module('starter.controllers')
     $scope.priceClear = priceClear;
     //Build item_id when individual input is keyed in
     function itemId(){
+        $ionicScrollDelegate.scrollTop();
         if($scope.item_brand == 'S'){
             $scope.current.item_id = $scope.item_brand + $scope.item_code + '-' + $scope.item_color + $scope.item_size;
+            updateInstruction();
         }else{
         $scope.current.item_id = $scope.item_brand + $scope.item_code + '-' + $scope.item_color + '-' + $scope.item_size;
+        updateInstruction();
         }
     };
     $scope.itemId = itemId;
@@ -367,7 +402,7 @@ angular.module('starter.controllers')
         // var msg = item_id;
         var alertPopup = $ionicPopup.alert({
          title: 'INCOMPLETE ENTRY',
-         template: 'Please complete the process'
+         template: 'Please complete ITEM NAME and RETAIL PRICE'
         });
         // alertPopup.then(function(res) {
         //  console.log('Thank you for different date');
