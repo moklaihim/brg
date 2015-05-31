@@ -19,8 +19,8 @@
   "cordovaPlugins": [
     "org.apache.cordova.splashscreen",
     "cordova-plugin-geolocation",
-    "phonegap-plugin-barcodescanner",
-    "org.cloudsky.cordovaplugins.zbar"
+    "org.cloudsky.cordovaplugins.zbar",
+    "cordova-plugin-whitelist"
   ],
   "cordovaPlatforms": [
     "ios",
