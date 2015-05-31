@@ -38,18 +38,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   return function(input, filterKey, filterType) {
 
     var output = new Array();
-
     if(filterKey){
 
+        console.log("filter is not S");
         if(filterType == 'brand'){
             regexp = new RegExp('^' + filterKey);
         }else if(filterType == 'color'){
-            regexp = new RegExp('-' + filterKey + '-');
+            console.log("normal color filter")
+            regexp = new RegExp('-' + filterKey);
         }else if(filterType == 'size'){
-            regexp = new RegExp('-' + filterKey + '$');
+            regexp = new RegExp(filterKey + '$');
         }else if(filterType == 'code'){
             regexp = new RegExp(filterKey);
         }
+    
 
         for (var i = 0; i < input.length; i++) {
             if (regexp.test(input[i].id)){
@@ -130,12 +132,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'ItemListController'
     })
 
-    .state('main.items_add', {
-        url: '/items/add',
-        cache: false,
-        templateUrl: 'templates/tab-item_add.html',
-        controller: 'ItemAddController'
-    })
+    // .state('main.items_add', {
+    //     url: '/items/add',
+    //     cache: false,
+    //     templateUrl: 'templates/tab-item_add.html',
+    //     controller: 'ItemAddController'
+    // })
 
     .state('main.stores_list', {
         url: '/stores/list',
