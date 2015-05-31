@@ -33,13 +33,14 @@
         </ion-list>
     </ion-content>
 
-    <ion-footer-bar class="bar-balanced ng-hide" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed">
+    <ion-footer-bar class="bar-balanced ng-hide" style="padding:0px" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed">
         <div class="button-bar">
-            <a class="button" ui-sref="main.items_list" ><i class="ion-plus-round"></i> Add</a>
-            <a class="button" ui-sref="main.sales_scanadd" ><i class="ion-ios-barcode-outline"></i> Scan</a>
+            <!-- <button class="button icon-right ion-plus-round button-balance" on-click="main.items_list">ADD</button> -->
+            <a class="button" ui-sref="main.items_list" style="font-size:17px"><i class="ion-plus-round" style="font-size:17px"></i> ADD</a>
+            <a class="button" ui-sref="main.sales_scanadd" style="font-size:17px" ><i class="ion-ios-barcode-outline" style="font-size:20px"></i> SCAN</a>
         </div>
     </ion-footer-bar>
-    <ion-footer-bar class="bar-energized ng-hide" ng-if="showClosedMessage" ng-show="showClosedMessage">
+    <ion-footer-bar class="bar-energized ng-hide" style="padding:0px" ng-if="showClosedMessage" ng-show="showClosedMessage">
         <div class="button-bar ">
             <button class="button button-energized" on-hold="reOpenSales()">Sales Closed. Press and hold to re-open sales</button>
         </div>
