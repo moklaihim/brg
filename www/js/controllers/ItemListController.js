@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales) {
+.controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", "Codes", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales, Codes) {
 // Start of Item List to show only item list and Brand input
 //
     $scope.current.view = 'items_list';
@@ -26,10 +26,10 @@ angular.module('starter.controllers')
     var addItemClicked = false;
     var lastItemCodeEntered = false;
     $scope.searchInputStyle = {'position':'fixed','bottom':'0%','width':'100%'};
-    var brandbtns = ["HB", "F", "R", "H", "S"];
-    var colorbtns = ["BLK", "BLU", "GRN", "BRN"];
-    var sizebtns = ["38", "39", "40", "41", "42", "43", "44", "45"];
-    var allbtns = brandbtns.concat(colorbtns,sizebtns);
+
+    $scope.brands_array = Codes.get_brands_as_array();
+    $scope.colors_array = Codes.get_colors_as_array();
+    $scope.sizes_array = Codes.get_sizes_as_array();
 
     updateItems();
     updateInstruction();
@@ -203,17 +203,8 @@ angular.module('starter.controllers')
     }, true);
 
     //---------------Custom Keyboard------------------------ 
-    $scope.btn_brand= function(event){
-                
-        for (btn in brandbtns) {
-            if (brandbtns[btn] == event.target.id){
-                document.getElementById(brandbtns[btn]).className = "button active";
-                $scope.item_brand = brandbtns[btn];
-            }
-            else{
-                document.getElementById(brandbtns[btn]).className = "button";
-            }
-        }
+    $scope.btn_brand= function(brand_id){
+        $scope.item_brand = brand_id;
         
         $scope.showBrandInput = false;
         $scope.showCodeInput = true;
@@ -251,20 +242,8 @@ angular.module('starter.controllers')
         itemId();
     }
 
-    $scope.btn_color= function(event){
-        
-        // if (brandS == S){
-
-        // }
-        for (btn in colorbtns) {
-            if (colorbtns[btn] == event.target.id){
-                document.getElementById(colorbtns[btn]).className = "button active";
-                $scope.item_color = colorbtns[btn];
-            }
-            else{
-                document.getElementById(colorbtns[btn]).className = "button";
-            }
-        }
+    $scope.btn_color= function(color_id){
+        $scope.item_color = color_id;
         
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
@@ -274,18 +253,8 @@ angular.module('starter.controllers')
         itemId();
     };
 
-    $scope.btn_size= function(event){
-        
-        // $scope.ClearBg = {};
-        for (btn in sizebtns) {
-            if (sizebtns[btn] == event.target.id){
-                document.getElementById(sizebtns[btn]).className = "button active";
-                $scope.item_size = sizebtns[btn];
-            }
-            else{
-                document.getElementById(sizebtns[btn]).className = "button";
-            }
-        }
+    $scope.btn_size= function(side_id){
+        $scope.item_size = size_id;
         
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
@@ -348,9 +317,6 @@ angular.module('starter.controllers')
         $scope.item_color ='';
         $scope.item_size = '';
         $scope.current.item_id = '';
-        for (btn in allbtns) {
-            document.getElementById(allbtns[btn]).className = "button";
-        }
         // itemId();
     };
 

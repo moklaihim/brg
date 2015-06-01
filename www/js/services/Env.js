@@ -1,5 +1,5 @@
 angular.module('starter.services')
-.factory('Env', ["Users", "Stores", "Items", "Roles", "Sales", function(Users, Stores, Items, Roles, Sales) {
+.factory('Env', ["Users", "Stores", "Items", "Roles", "Sales", "Codes", function(Users, Stores, Items, Roles, Sales, Codes) {
 
     var isMobile;
     var isOnline;
@@ -21,6 +21,7 @@ angular.module('starter.services')
             Stores.online();
             Roles.online();
             Sales.online();
+            Codes.online();
 
         } else {
             console.log("BRG Debug: Disconnected");
@@ -30,6 +31,7 @@ angular.module('starter.services')
             Stores.offline();
             Roles.offline();
             Sales.offline();
+            Codes.offline();
         }
     });
 
