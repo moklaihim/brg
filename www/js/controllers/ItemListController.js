@@ -7,6 +7,7 @@ angular.module('starter.controllers')
     $scope.showInstruction = true;
     $scope.headerCloseButton = true; //enable clear item name
     $scope.current.item_id ='';
+    // $scope.showInputButtons = true;
     $scope.showItemList = true;
     $scope.showBrandInput = true;
     $scope.showColorInput = false;
@@ -25,7 +26,7 @@ angular.module('starter.controllers')
     var editItemClicked = false;
     var addItemClicked = false;
     var lastItemCodeEntered = false;
-    $scope.searchInputStyle = {'position':'fixed','bottom':'0%','width':'100%'};
+    $scope.searchInputStyle = {'position':'fixed','top':'88px','width':'100%'};
 
     $scope.brands_array = Codes.get_brands_as_array();
     $scope.colors_array = Codes.get_colors_as_array();
@@ -132,7 +133,7 @@ angular.module('starter.controllers')
         if (lastItemCodeEntered){
             $scope.showPriceInput = true;
         }
-        $scope.searchInputStyle = {'position':'fixed','top':'100px','width':'100%'};
+        $scope.searchInputStyle = {'position':'fixed','top':'88px','width':'100%'};
         $scope.showConfirmBtns = true;
         $scope.showAddSaleBtn = true;
         $scope.showAddItemBtn = true;
@@ -162,8 +163,11 @@ angular.module('starter.controllers')
         $scope.showInstruction = false;
         $scope.showItemList = false;
         $scope.showPriceInput = true;
+        $scope.showSizeInput = false;
         $scope.showBrandInput = false;
-        $scope.showSearchButtons = false;
+        $scope.showCodeInput = false;
+        $scope.showBColorInput = false;
+        $scope.showInputButtons = false;
         $scope.showConfirmBtns = true;
         $scope.showEditItemBtn = true;
         editItemClicked = true; //When true , Price input will reset the field value
@@ -301,7 +305,8 @@ angular.module('starter.controllers')
             updateInstruction();
         }   
         if (event.target.id == "PriceBackSpace"){
-            $scope.retail_price = $scope.retail_price.length -1
+            // $scope.retail_price = $scope.retail_price.length -1
+            $scope.retail_price = $scope.retail_price.substring(0, $scope.retail_price.length - 1);
         }    
     };
 
