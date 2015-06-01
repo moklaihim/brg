@@ -16,7 +16,7 @@
             disable-pulling-rotation = "true"
             on-refresh="doRefresh()">
         </ion-refresher>
-        <ion-list ng-show = "showItemList">
+        <ion-list ng-if = "showItemList">
 
             <ion-item ng-click="addItem()"><center><b>Not Found? Add New Item.</b></center></ion-item>
             
@@ -71,7 +71,7 @@
                     <button id = "3" class="button" style="color:white; background-color:#387EF5" ng-click="btn_code($event)">3</button>
                     <button id = "4" class="button" style="color:white; background-color:#387EF5" ng-click="btn_code($event)">4</button>
                     <button id = "5" class="button" style="color:white; background-color:#387EF5" ng-click="btn_code($event)">5</button>
-                    <button id = "Clear" class="button icon ion-backspace-outline button-assertive" ng-click="btn_code_clear()"></button>
+                    <button id = "Clear" class="button icon ion-backspace-outline button-assertive" on-hold = "btn_code_clear()" ng-click="btn_code_backspace()"></button>
                 </div>
                 <div class="button-bar" style="padding-bottom:4px">
                     <button id = "-" class="button icon ion-minus" ng-click="btn_code($event)"></button>
@@ -111,7 +111,7 @@
                  <div class="button-bar">
                     <button id = "." class="button" ng-click="btn_price($event)">.</button>
                     <button id = "0" class="button" ng-click="btn_price($event)">0</button>
-                    <button id = "PriceBackSpace" class="button icon ion-backspace-outline" ng-click="btn_back($event)"></button>
+                    <button id = "PriceBackSpace" class="button icon ion-backspace-outline button-assertive" ng-click="btn_back($event)"></button>
                     
                 </div>
             </div>

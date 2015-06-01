@@ -81,13 +81,13 @@ angular.module('starter.controllers')
     };
     function updateInstruction(){
         if ($scope.showBrandInput == true){
-            $scope.instruction = "INPUT BRAND CODE";
+            $scope.instruction = "CHOOSE BRAND CODE";
         }else if($scope.showCodeInput == true){
-            $scope.instruction = "INPUT ITEM CODE";
+            $scope.instruction = "ENTER ITEM CODE";
         }else if($scope.showSizeInput == true){
-            $scope.instruction = "INPUT SIZE";
+            $scope.instruction = "CHOOSE SIZE";
         }else if($scope.showColorInput == true){
-            $scope.instruction = "INPUT COLOR";
+            $scope.instruction = "CHOOSE COLOR";
         }
     }
 
@@ -252,6 +252,11 @@ angular.module('starter.controllers')
 
     $scope.btn_code_clear = function(){
         $scope.item_code = '';
+        itemId();
+    }
+
+    $scope.btn_code_backspace = function(){
+        $scope.item_code = $scope.item_code.substring(0, $scope.item_code.length - 1);
         itemId();
     }
 
