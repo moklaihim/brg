@@ -34,33 +34,19 @@
             <ion-item style = "background-color: #387EF5; color: white; font-weight: bold; padding: 0px; text-align : center;" ng-if="showInstruction">{{instruction}}</ion-item>
             <div ng-show="showBrandInput" class="item item-input-inset" style="padding:5px">
                 <ion-scroll direction="x" style="width:100%">
-                    <button id = "HB" class="button" style="color:white; background-color:#387EF5" ng-click="btn_brand($event)">HB</button>
-                    <button id = "F" class="button" style="color:white; background-color:#387EF5" ng-click="btn_brand($event)">F</button>
-                    <button id = "R" class="button" style="color:white; background-color:#387EF5" ng-click="btn_brand($event)">R</button>
-                    <button id = "H" class="button" style="color:white; background-color:#387EF5" ng-click="btn_brand($event)">H</button>
-                    <button id = "S" class="button" style="color:white; background-color:#387EF5" ng-click="btn_brand($event)">S</button>
+                    <button ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button" style="color:white; background-color:#387EF5" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.id)">{{brand.name}}</button>
                 </ion-scroll>
             </div>
             <div ng-show="showColorInput" class="item item-input-inset" style="padding:5px">
                 <button id = "colorBack" class="button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button>
                 <ion-scroll direction="x" style="width:100%">
-                    <button id = "BLK" class="button" style="color:white; background-color:#387EF5" ng-click="btn_color($event)">BLK</button>
-                    <button id = "BLU" class="button" style="color:white; background-color:#387EF5" ng-click="btn_color($event)">BLU</button>
-                    <button id = "GRN" class="button" style="color:white; background-color:#387EF5" ng-click="btn_color($event)">GRN</button>
-                    <button id = "BRN" class="button" style="color:white; background-color:#387EF5" ng-click="btn_color($event)">BRN</button>
+                    <button ng-repeat="color in colors_array | orderBy:'order'" id="{{color.id}}" class="button" style="color:{{color.color}}; background-color:{{color.backgroundcolor}};" ng-class="{active: color.id == item_color}" ng-click="btn_color(color.id)">{{color.name}}</button>
                 </ion-scroll>
             </div>
             <div ng-show="showSizeInput" class="item item-input-inset" style="padding:5px">
                 <button id = "sizeBack" class="button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button>
                 <ion-scroll direction="x" style="width:100%">
-                    <button id = "38" class="button" style="color:white; background-color:#387EF5" ng-click="btn_size($event)">38</button>
-                    <button id = "39" class="button" style="color:white; background-color:#387EF5" ng-click="btn_size($event)">39</button>
-                    <button id = "40" class="button" style="color:white; background-color:#387EF5" ng-click="btn_size($event)">40</button>
-                    <button id = "41" class="button" style="color:white; background-color:#387EF5" ng-click="btn_size($event)">41</button>
-                    <button id = "42" class="button" style="color:white; background-color:#387EF5" ng-click="btn_size($event)">42</button>
-                    <button id = "43" class="button" style="color:white; background-color:#387EF5" ng-click="btn_size($event)">43</button>
-                    <button id = "44" class="button" style="color:white; background-color:#387EF5" ng-click="btn_size($event)">44</button>
-                    <button id = "45" class="button" style="color:white; background-color:#387EF5" ng-click="btn_size($event)">45</button>
+                    <button ng-repeat="size in sizes_array | orderBy:'order'" id ="{{size.id}}" class="button" style="color:white; background-color:#387EF5" ng-class="{active: size.id == item_size}" ng-click="btn_size({{size.id}})">{{size.name}}</button>
                 </ion-scroll>
             </div>
             <div ng-show="showCodeInput">                
