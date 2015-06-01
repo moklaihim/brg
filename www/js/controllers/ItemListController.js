@@ -90,6 +90,8 @@ angular.module('starter.controllers')
             $scope.instruction = "CHOOSE COLOR";
         }
     }
+    $scope.updateInstruction = updateInstruction;
+
 
     //update Items from Firebase
     function updateItems(){
@@ -129,6 +131,7 @@ angular.module('starter.controllers')
     function addItem(event){
         addItemClicked = true;
         $scope.headerLabel = "ADD ITEM : ";
+        $scope.headerCloseButton = true;
         $scope.showItemList = false;
         if (lastItemCodeEntered){
             $scope.showPriceInput = true;
@@ -261,9 +264,8 @@ angular.module('starter.controllers')
         itemId();
     };
 
-    $scope.btn_size= function(side_id){
+    $scope.btn_size= function(size_id){
         $scope.item_size = size_id;
-        
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
@@ -321,11 +323,13 @@ angular.module('starter.controllers')
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
+        $scope.showPriceInput = false;
         $scope.item_brand = '';
         $scope.item_code ='';
         $scope.item_color ='';
         $scope.item_size = '';
         $scope.current.item_id = '';
+        updateInstruction();
         // itemId();
     };
 
@@ -352,8 +356,8 @@ angular.module('starter.controllers')
     function showAlert(){
         // var msg = item_id;
         var alertPopup = $ionicPopup.alert({
-         title: 'Scan!',
-         template: barcodeData.text
+         title: 'Warning!',
+         template: 'You are not entering sales for today\'s date'
         });
         alertPopup.then(function(res) {
          console.log('Thank you for different date');

@@ -21,7 +21,7 @@
             <span class="input-label">Retail Price</span>
             <span>{{sale.retail_price | currency:"$"}}</span>
         </label>
-            <div class="item item-input-inset" ng-show="showDisOption">
+            <div class="item item-input-inset ng-hide" ng-show="showDisOption">
                 <label class="item item-input-wrapper" style="padding:0px 0px 0px 5px; background:#fff; border-style: none">
                     <span class="input-label">Discount(%)</span>
                 </label>
@@ -44,14 +44,14 @@
             <!-- <span class="input-label">code</span> -->
                 <label class="item item-input-wrapper" style="padding:0px 0px 0px 5px; background:#fff; border-style: none">
                     <span class="input-label">Discount(%)</span>
-                    <input type="number" min="0" max="100" style="font-size:16px" ng-model="sale.discount_rate" ng-change="sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100">
+                    <input type="number" min="0" max="100" style="font-size:16px" ng-model="sale.discount_rate" ng-change="{{sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100">%
                 </label>
                 <button class="button button-clear button-small button-positive" ng-click="dOption()">>
               </button>
             </div>
         </ion-list>
         <label class="item item-input">
-            <span class="input-label">Sale Price</span>
+            <span class="input-label">Sale Price</span><span style="float:right">$</span>
             <input type="number" min="0" style="font-size:16px" ng-model="sale.sale_price">
         </label>
         <label class="item item-input" ng-hide="hideQtyField">

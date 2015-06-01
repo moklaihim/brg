@@ -31,7 +31,8 @@ angular.module('starter.controllers')
             $scope.sale.item_id = $scope.sales[$scope.current.item_key].item;
             $scope.sale.sale_price = Number($scope.sales[$scope.current.item_key].price);
             $scope.sale.retail_price = $scope.items[$scope.sale.item_id].retail_price;
-            $scope.sale.discount_rate = 100 -($scope.sale.sale_price / $scope.sale.retail_price * 100);
+            $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
+
         });
     }else if ($state.current.name === "main.sales_scanadd"){
         $scope.showItemList = false;
