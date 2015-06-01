@@ -9,7 +9,7 @@
         <span style="float:right" ng-if = "headerCloseButton"><button class="button button-clear ion-close" ng-click="itemIdClear()"></button></span>
     </ion-header-bar>
 
-    <ion-content padding="true">
+    <ion-content style="top:200px" padding="true">
         <ion-refresher
             pulling-icon="ion-camera"
             pulling-text="Pull to Scan"
@@ -26,10 +26,11 @@
             <ion-option-button class="button-assertive ion-close-round" ng-click="removeItem(item.id)"></ion-option-button>
             </ion-item>
             </ion-list>
+
     </ion-content>
 
-        <!-- <div style="position:fixed; bottom:0%; width:100%;"> -->
-        <div ng-style="searchInputStyle">
+    <div ng-style="searchInputStyle">
+    <!-- <div class="has-header has-subheader"> -->
             <ion-item style = "background-color: #387EF5; color: white; font-weight: bold; padding: 0px; text-align : center;" ng-if="showInstruction">{{instruction}}</ion-item>
             <div ng-show="showBrandInput" class="item item-input-inset" style="padding:5px">
                 <ion-scroll direction="x" style="width:100%">
@@ -82,6 +83,7 @@
                     <button id = "OK" class="button icon ion-android-checkmark-circle button-balanced" ng-click="btn_code_ok()"></button>
                 </div>
             </div>
+        
 
              <div class = "ng-hide" ng-show="showPriceInput">
                 <ion-header-bar align-title="left" class="bar-subheader bar-positive button-calm" style="top:inherit">
@@ -114,6 +116,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- <div style="position:fixed; bottom:0%; width:100%;"> -->
+        
 
         <ion-footer-bar ng-show = "showConfirmBtns" keyboard-attach class="bar-positive" style="padding:0px;">
             <div class="button-bar">
