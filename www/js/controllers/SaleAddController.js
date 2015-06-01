@@ -71,10 +71,9 @@ angular.module('starter.controllers')
     };
 
     $scope.dButton= function(event){
-        // var disc = event.target.id;
         $scope.showDisOption = !$scope.showDisOption;
-        $scope.sale.discount_rate = event.target.id;
-        $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * disc / 100;
+        $scope.sale.discount_rate = parseFloat(event.target.id);
+        $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * event.target.id / 100;
 
     };
 

@@ -336,7 +336,8 @@ angular.module('starter.controllers')
             updateInstruction();
         }   
         if (event.target.id == "PriceBackSpace"){
-            $scope.retail_price = $scope.retail_price.length -1
+            // $scope.retail_price = $scope.retail_price.length -1
+            $scope.retail_price = $scope.retail_price.substring(0, $scope.retail_price.length - 1);
         }    
     };
 
