@@ -5,7 +5,7 @@ angular.module('starter.controllers')
     $scope.current.view = 'items_list';
     $scope.headerLabel = "ITEM SEARCH : ";  // header will reflect ITEM List
     $scope.showInstruction = true;
-    $scope.headerCloseButton = true; //enable clear item name
+    $scope.headerCloseButton = false; 
     $scope.current.item_id ='';
     // $scope.showInputButtons = true;
     $scope.showItemList = true;
@@ -17,6 +17,7 @@ angular.module('starter.controllers')
     $scope.showAddItemBtn = false;
     $scope.showEditItemBtn = false;
     $scope.showAddSaleBtn = false;
+    $scope.showBackButton = false;
     $scope.retail_price = '';
     
     $scope.item_brand = '';
@@ -26,7 +27,6 @@ angular.module('starter.controllers')
     var editItemClicked = false;
     var addItemClicked = false;
     var lastItemCodeEntered = false;
-    $scope.searchInputStyle = {'position':'fixed','top':'88px','width':'100%'};
 
     $scope.brands_array = Codes.get_brands_as_array();
     $scope.colors_array = Codes.get_colors_as_array();
@@ -79,15 +79,16 @@ angular.module('starter.controllers')
         $state.go("main.sales_scanadd");
         $scope.$broadcast('scroll.refreshComplete');
     };
+
     function updateInstruction(){
         if ($scope.showBrandInput == true){
-            $scope.instruction = "CHOOSE BRAND CODE";
+            $scope.headerLabel = "Choose Brand Code";
         }else if($scope.showCodeInput == true){
-            $scope.instruction = "ENTER ITEM CODE";
+            $scope.headerLabel = "Enter Item Code";
         }else if($scope.showSizeInput == true){
-            $scope.instruction = "CHOOSE SIZE";
+            $scope.headerLabel = "Choose Size";
         }else if($scope.showColorInput == true){
-            $scope.instruction = "CHOOSE COLOR";
+            $scope.headerLabel = "Choose Color";
         }
     }
     $scope.updateInstruction = updateInstruction;
@@ -130,18 +131,18 @@ angular.module('starter.controllers')
     //when search cannot find item and "Not Found? Add New Item." is clicked" 
     function addItem(event){
         addItemClicked = true;
-        $scope.headerLabel = "ADD ITEM : ";
-        $scope.headerCloseButton = true;
+        // $scope.headerLabel = "ADD ITEM : ";
         $scope.showItemList = false;
         if (lastItemCodeEntered){
             $scope.showPriceInput = true;
+            $scope.headerCloseButton = true;
         }
-        $scope.searchInputStyle = {'position':'fixed','top':'88px','width':'100%'};
         $scope.showConfirmBtns = true;
         $scope.showAddSaleBtn = true;
         $scope.showAddItemBtn = true;
     }
     $scope.addItem = addItem;
+
     //After completing adding new item form, add to items only and display messgae item is added
     $scope.addItemOK = function(){
         if (!$scope.retail_price || $scope.current.item_id == '--'){
@@ -160,8 +161,7 @@ angular.module('starter.controllers')
     $scope.editItem = function($item_id) {
         $scope.current.item_id = $item_id;
         $scope.retail_price = $scope.items[$item_id].retail_price;
-        $scope.searchInputStyle = {'position':'fixed','top':'100px','width':'100%'};
-        $scope.headerLabel = "EDIT ITEM : ";
+        $scope.headerLabel = "EDIT ITEM : " + $scope.current.item_id;
         $scope.headerCloseButton = false; //disable clear item name when edit
         $scope.showInstruction = false;
         $scope.showItemList = false;
@@ -186,13 +186,12 @@ angular.module('starter.controllers')
         Items.add($scope.current.item_id, $scope.retail_price); 
         $scope.retail_price = '';
         $scope.current.item_id = '';
-        $scope.searchInputStyle = {'position':'fixed','bottom':'0%','width':'100%'};
-        $scope.headerLabel = "ITEM SEARCH : ";
+        $scope.showInstruction = true;
         $scope.showPriceInput = false;
         $scope.showBrandInput = true;
-        $scope.showSearchButtons = true;
         $scope.showConfirmBtns = false;
         $scope.showEditItemBtn = false;
+        updateInstruction();
         $ionicListDelegate.closeOptionButtons();
      
         
@@ -217,6 +216,7 @@ angular.module('starter.controllers')
         $scope.showCodeInput = true;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
+        $scope.showBackButton = true;
         lastItemCodeEntered = false;
         itemId();
         // brandS = 'S';
@@ -241,6 +241,7 @@ angular.module('starter.controllers')
         $scope.showCodeInput = false;
         $scope.showColorInput = true;
         $scope.showSizeInput = false;
+
         itemId();
     }
 
@@ -272,10 +273,13 @@ angular.module('starter.controllers')
         $scope.showSizeInput = false;
         if(addItemClicked){
             $scope.showPriceInput = true;
+            $scope.headerCloseButton = true;
         }
         lastItemCodeEntered = true;
-        $scope.showInstruction = false;
+
+        // $scope.showInstruction = false;
         itemId();
+        $scope.headerLabel = "ITEM : " + $scope.current.item_id;
     };
 
     $scope.btn_price= function(event){
@@ -288,28 +292,73 @@ angular.module('starter.controllers')
     };
     //Control what type of input is next
     $scope.btn_back= function(event){
+        if(event.target.id == "inputBackBtn"){
+            if ($scope.showCodeInput){
+                $scope.showBackButton = false;
+                $scope.showBrandInput = true;
+                $scope.showCodeInput = false;
+                $scope.showColorInput = false;
+                $scope.showSizeInput = false;
+                $scope.item_code = "";
+                $scope.item_brand = "";
+                itemId();
+                updateInstruction();
+            }
 
-        if (event.target.id == "codeBack"){
-            $scope.showBrandInput = true;
-            $scope.showCodeInput = false;
-            $scope.showColorInput = false;
-            $scope.showSizeInput = false;
-            updateInstruction();
+            if($scope.showColorInput){
+                $scope.showBrandInput = false;
+                $scope.showCodeInput = true;
+                $scope.showColorInput = false;
+                $scope.showSizeInput = false;
+                $scope.item_code = "";
+                itemId();
+                updateInstruction();
+            }
+
+            if ($scope.showSizeInput){
+                $scope.showBrandInput = false;
+                $scope.showCodeInput = false;
+                $scope.showColorInput = true;
+                $scope.showSizeInput = false;
+                $scope.item_color = "";
+                itemId();
+                updateInstruction();
+            }  
+
+            if (lastItemCodeEntered) {
+                $scope.showBrandInput = false;
+                $scope.showCodeInput = false;
+                $scope.showColorInput = false;
+                $scope.showSizeInput = true;
+                $scope.item_size = "";
+                itemId();
+                lastItemCodeEntered =false;
+                updateInstruction();
+
+            }
         }
-        if (event.target.id == "colorBack"){
-            $scope.showBrandInput = false;
-            $scope.showCodeInput = true;
-            $scope.showColorInput = false;
-            $scope.showSizeInput = false;
-            updateInstruction();
-        }
-        if (event.target.id == "sizeBack"){
-            $scope.showBrandInput = false;
-            $scope.showCodeInput = false;
-            $scope.showColorInput = true;
-            $scope.showSizeInput = false;
-            updateInstruction();
-        }   
+
+        // if (event.target.id == "codeBack"){
+        //     $scope.showBrandInput = true;
+        //     $scope.showCodeInput = false;
+        //     $scope.showColorInput = false;
+        //     $scope.showSizeInput = false;
+        //     updateInstruction();
+        // }
+        // if (event.target.id == "colorBack"){
+        //     $scope.showBrandInput = false;
+        //     $scope.showCodeInput = true;
+        //     $scope.showColorInput = false;
+        //     $scope.showSizeInput = false;
+        //     updateInstruction();
+        // }
+        // if (event.target.id == "sizeBack"){
+        //     $scope.showBrandInput = false;
+        //     $scope.showCodeInput = false;
+        //     $scope.showColorInput = true;
+        //     $scope.showSizeInput = false;
+        //     updateInstruction();
+        // }   
         if (event.target.id == "PriceBackSpace"){
             // $scope.retail_price = $scope.retail_price.length -1
             $scope.retail_price = $scope.retail_price.substring(0, $scope.retail_price.length - 1);
@@ -319,11 +368,14 @@ angular.module('starter.controllers')
     //When the X button beside the ITEM name is clicked
     $scope.itemIdClear= function(){
         $scope.showInstruction = true;
+        $scope.headerCloseButton = false;
+
         $scope.showBrandInput = true;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
         $scope.showPriceInput = false;
+        $scope.showBackButton = false;
         $scope.item_brand = '';
         $scope.item_code ='';
         $scope.item_color ='';
