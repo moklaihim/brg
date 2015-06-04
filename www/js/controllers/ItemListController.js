@@ -5,7 +5,7 @@ angular.module('starter.controllers')
     $scope.current.view = 'items_list';
     $scope.headerLabel = "ITEM SEARCH : ";  // header will reflect ITEM List
     $scope.showInstruction = true;
-    $scope.headerCloseButton = false; 
+    $scope.headerCloseButton = true; 
     $scope.current.item_id ='';
     // $scope.showInputButtons = true;
     $scope.showItemList = true;
@@ -19,6 +19,7 @@ angular.module('starter.controllers')
     $scope.showAddSaleBtn = false;
     $scope.showBackButton = false;
     $scope.retail_price = '';
+    $scope.toggleBrand = true;
     
     $scope.item_brand = '';
     $scope.item_code = '';
@@ -208,21 +209,89 @@ angular.module('starter.controllers')
         $scope.current.item_id = $filter('uppercase')(val);
     }, true);
 
+    function trig_brand(event){
+
+        $scope.showBrandInput = !$scope.showBrandInput;;
+        $scope.showCodeInput = false;
+        $scope.showColorInput = false;
+        $scope.showSizeInput = false;
+        $scope.toggleBrand = !$scope.toggleBrand;
+        $scope.toggleCode = false;
+        $scope.toggleColor = false;
+        $scope.toggleSize = false;
+
+
+        // $scopr.showItemList
+
+    }
+    $scope.trig_brand = trig_brand;
+
+    function trig_code(event){
+        $scope.showBrandInput = false;
+        $scope.showCodeInput = !$scope.showCodeInput;
+        $scope.showColorInput = false;
+        $scope.showSizeInput = false;
+        $scope.toggleCode = !$scope.toggleCode;
+        $scope.toggleBrand = false;
+        $scope.toggleColor = false;
+        $scope.toggleSize = false;
+    }
+    $scope.trig_code = trig_code;
+
+    function trig_color(event){
+
+        $scope.showBrandInput = false;
+        $scope.showCodeInput = false;
+        $scope.showColorInput = !$scope.showColorInput;
+        $scope.showSizeInput = false;
+        $scope.toggleColor = !$scope.toggleColor;
+        $scope.toggleCode = false;
+        $scope.toggleBrand = false;
+        $scope.toggleSize = false;
+
+    }
+    $scope.trig_color = trig_color;
+
+    function trig_size(event){
+
+        $scope.showBrandInput = false;
+        $scope.showCodeInput = false;
+        $scope.showColorInput = false;
+        $scope.showSizeInput = !$scope.showSizeInput;
+        $scope.toggleSize = !$scope.toggleSize;
+        $scope.toggleCode = false;
+        $scope.toggleColor = false;
+        $scope.toggleBrand = false;
+
+    }
+    $scope.trig_size = trig_size;
+
+
+
     //---------------Custom Keyboard------------------------ 
     $scope.btn_brand= function(brand_id){
         $scope.item_brand = brand_id;
-        
         $scope.showBrandInput = false;
         $scope.showCodeInput = true;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
         $scope.showBackButton = true;
         lastItemCodeEntered = false;
-        itemId();
-        // brandS = 'S';
+        if($scope.item_code != "Item Code"){
+            $scope.item_code = "";
+        }
+        $scope.toggleBrand = false;
+        $scope.toggleCode = true;
+        // $scope.toggleSize = false;
+        updateInstruction();
+        
+
     };
 
     $scope.btn_code= function(event){
+        if($scope.item_code == "Item Code"){
+            $scope.item_code = "";
+        }
         $scope.item_code = $scope.item_code + event.target.id;
         if($scope.current.item_id.charAt( 0 ) == 'S'){
             if($scope.item_code.charAt(1)){
@@ -241,6 +310,8 @@ angular.module('starter.controllers')
         $scope.showCodeInput = false;
         $scope.showColorInput = true;
         $scope.showSizeInput = false;
+        $scope.toggleColor = true;
+        $scope.toggleCode = false;
 
         itemId();
     }
@@ -262,6 +333,8 @@ angular.module('starter.controllers')
         $scope.showColorInput = false;
         $scope.showSizeInput = true;
         lastItemCodeEntered = false;
+        $scope.toggleColor = false;
+        $scope.toggleSize = true;
         itemId();
     };
 
@@ -276,8 +349,8 @@ angular.module('starter.controllers')
             $scope.headerCloseButton = true;
         }
         lastItemCodeEntered = true;
+        $scope.toggleSize = false;
 
-        // $scope.showInstruction = false;
         itemId();
         $scope.headerLabel = "ITEM : " + $scope.current.item_id;
     };
@@ -288,7 +361,6 @@ angular.module('starter.controllers')
             editItemClicked = false;
         }
         $scope.retail_price = $scope.retail_price + event.target.id;
-        // $scope.current.editItemPrice = $scope.new_item.retail_price;
     };
     //Control what type of input is next
     $scope.btn_back= function(event){
@@ -368,7 +440,7 @@ angular.module('starter.controllers')
     //When the X button beside the ITEM name is clicked
     $scope.itemIdClear= function(){
         $scope.showInstruction = true;
-        $scope.headerCloseButton = false;
+        $scope.headerCloseButton = true;
 
         $scope.showBrandInput = true;
         $scope.showCodeInput = false;
