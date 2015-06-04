@@ -1,13 +1,10 @@
 angular.module('starter.services')
-.factory('Users', ["$firebaseObject", "Auth", function($firebaseObject, Auth) {
-    var users = {}; 
+.factory('Users', ["$q", "$firebaseObject", "Auth", function($q, $firebaseObject, Auth) {
+    var users = new Object(); 
+    var user = new Object();
     var is_online;
 
-    function createInitialData(){
-        console.log("createInitialData started");
-        var fb_users = "https://fiery-heat-6039.firebaseio.com/users";
-        var fUsers = new Firebase(fb_users);
-        users = $firebaseObject(fUsers);
+    function createSamplelData(){
         users['tom_tomonari_gmail_com'] = {id: 'tom_tomonari_gmail_com', email: 'tom.tomonari@gmail.com', name: 'Tom Tomonari', role: 'promoter'};
         users['ericong_kc_gmail_com'] = {id: 'ericong_kc_gmail_com', email: 'ericong.kc@gmail.com', name: 'Eric Ong', role: 'sales_rep'};
         users.$save();
@@ -15,33 +12,52 @@ angular.module('starter.services')
 
     return {
         online: function(){
-            var fb_users = "https://fiery-heat-6039.firebaseio.com/users";
-            var fUsers = new Firebase(fb_users);
-
-            fUsers.on("value", function(snapshot) {
-                localStorage.setItem('brg_users', JSON.stringify(snapshot.val()));
-            }, function (errorObject) {
-                console.log("BRG Debug: The read failed: " + errorObject.code);
-            });
-
-            users = $firebaseObject(fUsers);
             is_online = true;
         },
 
         offline: function(){
-            users = JSON.parse(localStorage.getItem('brg_users'));
             is_online = false;
         },
 
-        getUserDetail: function(email){
-            console.log("getUserDetail started");
-            var user_id = email.replace("@", "_").replace(/\./g, "_");
-            console.log(user_id);
-            return users[user_id];
+        get_list: function(){
+            var fb_users = "https://fiery-heat-6039.firebaseio.com/users";
+            var fUsers = new Firebase(fb_users);
+            users = $firebaseObject(fUsers);
+            //createSampleData();
+            return users;
         },
 
-        get_list: function(){
-            return users;
+        get_one: function(email){
+            console.log("Users get_one started");
+            var user_id = email.replace("@", "_").replace(/\./g, "_");
+            if(is_online){
+                console.log("get_one online");
+                var fb_user = "https://fiery-heat-6039.firebaseio.com/users/" + user_id;
+                var fUser = new Firebase(fb_user);
+
+                fUser.on("value", function(snapshot) {
+                    localStorage.setItem('brg_user_' + user_id, JSON.stringify(snapshot.val()));
+                });
+
+                user = $firebaseObject(fUser).$loaded();
+            }else{
+                console.log("get_one offline");
+                if(localStorage.getItem('brg_user_' + user_id) !== null){
+                    user = JSON.parse(localStorage.getItem('brg_user_' + user_id));
+                }else{
+                    user.active = true;
+                }
+            }
+            console.log("get_one");
+            console.log(user);
+            return $q.when(user);
+        },
+
+        logout: function(email){
+            var user_id = email.replace("@", "_").replace(/\./g, "_");
+            if(localStorage.getItem('brg_user_' + user_id) !== null){
+                localStorage.removeItem('brg_user_' + user_id);
+            }
         },
 
         edit: function(user_detail){
@@ -54,11 +70,12 @@ angular.module('starter.services')
                     user_id = user_detail.id;
                 }else{
                     user_id = user_detail.email.replace("@", "_").replace(/\./g, "_");
+                    Auth.register(user_detail.email, user_detail.password);
                 }
 
-                Auth.register(user_detail.email, user_detail.password);
                 users[user_id] = new Object();
                 users[user_id].id = user_id;
+                users[user_id].active = true;
                 users[user_id].email = user_detail.email;
                 users[user_id].name = user_detail.name;
                 users[user_id].role = user_detail.role;
@@ -68,7 +85,7 @@ angular.module('starter.services')
 
         remove: function(user_id){
             if(is_online){
-                users[user_id] = new Object();
+                users[user_id].active = false;
                 users.$save();
             }
         }

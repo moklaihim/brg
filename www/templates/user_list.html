@@ -7,7 +7,7 @@
 
     <ion-content padding="false">
         <ion-list>
-            <ion-item ng-repeat="user in users"><b>{{user.name}}</b>
+            <ion-item ng-repeat="user in users" ng-if="user.active"><b>{{user.name}}</b>
             <ion-option-button class="button-positive ion-edit" ng-click="editUser(user.id)"></ion-option-button>
             <ion-option-button class="button-assertive ion-close-round" ng-click="removeUser(user.id)"></ion-option-button>
             </ion-item>

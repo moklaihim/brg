@@ -1,31 +1,25 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "$cordovaDatePicker", "Roles", "Auth", "Users", "Env", "currentAuth", function($rootScope, $scope, $state, $timeout, $ionicPopup, $cordovaDatePicker, Roles, Auth, Users, Env, currentAuth) {
+.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", function($rootScope, $scope, $state, $timeout, $ionicPopup, $cordovaDatePicker, Roles, role, Auth, Users, user, Env, currentAuth) {
+//.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "$cordovaDatePicker", "Roles", "Auth", "Users", "Env", "currentAuth", function($rootScope, $scope, $state, $timeout, $ionicPopup, $cordovaDatePicker, Roles, Auth, Users, Env, currentAuth) {
     console.log("MainController started");
-    console.log(currentAuth);
 
-    $scope.users = Users.get_list();
-    $scope.roles = Roles.get_list();
-    if($scope.users.$loaded){
-        $scope.users.$loaded().then(function(){
-            $scope.user_detail = Users.getUserDetail(currentAuth.password.email);
-            if($scope.roles.$loaded){
-                $scope.roles.$loaded().then(function() {
-                    $scope.role = $scope.roles[$scope.user_detail['role']];
-                });
-            }else{
-                $scope.role = $scope.roles[$scope.user_detail['role']];
-            }
-        });
-    }else{
-        $scope.user_detail = Users.getUserDetail(currentAuth.password.email);
-        if($scope.roles.$loaded){
-            $scope.roles.$loaded().then(function() {
-                $scope.role = $scope.roles[$scope.user_detail['role']];
-            });
-        }else{
-            $scope.role = $scope.roles[$scope.user_detail['role']];
-        }
+    $scope.user_detail = user;
+    if(!$scope.user_detail.active){
+        console.log("User disabled");
+        logout();
     }
+    //$scope.roles = roles;
+    //$scope.role = $scope.roles[$scope.user_detail['role']];
+    $scope.role = role;
+
+    /*
+    console.log("Getting user");
+    console.log($scope.user_detail);
+    console.log("Getting role");
+    console.log($scope.role);
+    console.log("Getting role");
+    console.log($scope.role);
+    */
 
     $scope.current = {
         store_id: '',
@@ -61,8 +55,15 @@ angular.module('starter.controllers')
         $state.go('main.stores_list');
     }
 
+    function logout(){
+        console.log("logout started");
+        Users.logout(currentAuth.password.email);
+        Auth.logout();
+        $state.go('login');
+    }
+
     function setDate(date, today){
-        console.log(date);
+        //console.log(date);
         var year = date.getFullYear();
         var month = date.getMonth()+1;
         if (month < 10) { month = '0' + month; }
@@ -84,16 +85,47 @@ angular.module('starter.controllers')
 
     $scope.showDatePicker = function(){
         $scope.showPCDatePicker = !$scope.showPCDatePicker;
-    }
+    };
 
     $scope.$watch('current.raw_set_date', function(){
         setDate($scope.current.raw_set_date, false);
         $scope.showPCDatePicker = false;
     });
 
+    var user_active_watch = $scope.$watch('user_detail.active', function(){
+        if(!$scope.user_detail.active){
+            console.log("User disabled detected by watch 1");
+            logout();
+        }
+    });
+
+    var online_watch = $scope.$watch(Env.isOnline, function(val){
+        console.log("isOnline changed");
+        if(val == true){
+            user_active_watch();
+
+            var p_user_detail = Users.get_one(currentAuth.password.email);
+            p_user_detail.then(function(user_detail){
+                $scope.user_detail = user_detail;
+
+                var p_role_detail = Roles.get_one(user_detail.role);
+                p_role_detail.then(function(role_detail){
+                    $scope.role = role_detail;
+                });
+
+                $scope.$watch('user_detail.active', function(){
+                    if(!$scope.user_detail.active){
+                        console.log("User disabled detected by watch 2");
+                        logout();
+                    }
+                });
+            });
+            online_watch();
+        }   
+    }, false);
+
     $scope.logout = function(){
         console.log("logout started");
-        Auth.logout();
-        $state.go('login');
+        logout();
     };
 }])

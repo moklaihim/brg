@@ -48,7 +48,7 @@ angular.module('starter.controllers')
             console.log("Loaded is there");
             $scope.sales.$loaded()
                 .then(function() {
-                    console.log($scope.sales);
+                    //console.log($scope.sales);
                     if('CLOSED' in $scope.sales){
                         console.log("Already Closed");
                         $scope.showSpinner = false;
@@ -56,7 +56,7 @@ angular.module('starter.controllers')
                         $scope.showClosedMessage = true;
                         $scope.CloseStyle = {"background-color":"#ffc900", "border-color":"#e6b500"}
                     }else{
-                        console.log("Has not Closed");
+                        //console.log("Has not Closed");
                         $scope.showSpinner = false;
                         $scope.salesClosed = false;
                         $scope.showClosedMessage = false;
@@ -76,12 +76,12 @@ angular.module('starter.controllers')
         }else{
             console.log("Loaded is not there");
             if('CLOSED' in $scope.sales){
-                console.log("Already Closed");
+                //console.log("Already Closed");
                 $scope.showSpinner = false;
                 $scope.salesClosed = true;
                 $scope.showClosedMessage = true;
             }else{
-                console.log("Has not Closed");
+                //console.log("Has not Closed");
                 $scope.showSpinner = false;
                 $scope.salesClosed = false;
             }

@@ -1,14 +1,10 @@
 angular.module('starter.services')
-.factory('Roles', ["$firebaseObject", "$firebaseArray", function($firebaseObject, $firebaseArray) {
-    var roles;
-    var roles_array;
+.factory('Roles', ["$q", "$firebaseObject", function($q, $firebaseObject) {
+    var roles = new Object();
+    var roles_array = new Array();
     var is_online;
 
-    function createInitialData(){
-        console.log("Roles createInitialData started");
-        var fb_roles = "https://fiery-heat-6039.firebaseio.com/roles";
-        var fRoles = new Firebase(fb_roles);
-        roles = $firebaseObject(fRoles);
+    function createSampleData(){
         roles['promoter'] = {id: 'promoter', name: 'Promoter',       allowAccessUsersMenu: false, allowAccessRolesMenu: false, allowViewAllSales: false, allowAddSales: true,  allowEditAllSales: false, allowEditOwnSales: true, allowDeleteAllSales: false, allowDeleteOwnSales: true, allowCloseSales: true};
         roles['sales_rep'] = {id: 'sales_rep', name: 'Sales Rep',    allowAccessUsersMenu: false, allowAccessRolesMenu: false, allowViewAllSales: true,  allowAddSales: true,  allowEditAllSales: true,  allowEditOwnSales: true, allowDeleteAllSales: true,  allowDeleteOwnSales: true, allowCloseSales: true};
         roles['management'] = {id: 'management', name: 'Management', allowAccessUsersMenu: false, allowAccessRolesMenu: false, allowViewAllSales: true,  allowAddSales: true,  allowEditAllSales: false, allowEditOwnSales: true, allowDeleteAllSales: false, allowDeleteOwnSales: true, allowCloseSales: false};
@@ -18,36 +14,40 @@ angular.module('starter.services')
 
     return {
         online: function(){
-            var fb_roles = "https://fiery-heat-6039.firebaseio.com/roles";
-            var fRoles = new Firebase(fb_roles);
-
-            fRoles.on("value", function(snapshot) {
-                localStorage.setItem('brg_roles', JSON.stringify(snapshot.val()));
-            }, function (errorObject) {
-                console.log("BRG Debug: The read failed: " + errorObject.code);
-            });
-
-            roles = $firebaseObject(fRoles);
-            roles_array = $firebaseArray(fRoles);
             is_online = true;
         },
+
         offline: function(){
-            roles = JSON.parse(localStorage.getItem('brg_roles'));
-            roles_array = Object.keys(roles).map(function(key) { return roles[key] });
             is_online = false;
         },
+
         get_list: function(){
+            var fb_roles = "https://fiery-heat-6039.firebaseio.com/roles";
+            var fRoles = new Firebase(fb_roles);
+            roles = $firebaseObject(fRoles);
+            //createSampleData();
             return roles;
         },
-        get_list_as_array: function(){
-            return roles_array;
-        },
-        reload_list: function(){
-            //init();
-            return roles;
-        },
-        get_one: function(role){
-            return roles[role];
+
+        get_one: function(role_id){
+            var role = new Object();
+            if(is_online){
+                var fb_role = "https://fiery-heat-6039.firebaseio.com/roles/" + role_id;
+                var fRole = new Firebase(fb_role);
+
+                fRole.on("value", function(snapshot) {
+                    localStorage.setItem('brg_role_' + role_id, JSON.stringify(snapshot.val()));
+                });
+
+                role = $firebaseObject(fRole).$loaded();
+            }else{
+                if(localStorage.getItem('brg_role_' + role_id) !== null){
+                    role = JSON.parse(localStorage.getItem('brg_role_' + role_id));
+                }else{
+                    role = {id: 'temp', name: 'Temp', allowAccessUsersMenu: false, allowAccessRolesMenu: false, allowViewAllSales: false, allowAddSales: false,  allowEditAllSales: false, allowEditOwnSales: false, allowDeleteAllSales: false, allowDeleteOwnSales: false, allowCloseSales: false};
+                }
+            }
+            return $q.when(role);
         }
     }
 }]);

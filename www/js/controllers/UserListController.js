@@ -7,16 +7,16 @@ angular.module('starter.controllers')
     $scope.removeUser = function(user_id) {
         console.log("remove user: " + user_id);
         Users.remove(user_id);
-    }
+    };
 
     $scope.addUser = function(){
         $state.go('main.users_add');
-    }
+    };
 
     $scope.editUser = function(user_id) {
         console.log("Key clicked is : " + user_id) 
         $scope.current.user_id = user_id;
         $state.go('main.users_edit');
-    }
+    };
 
 }])

@@ -87,7 +87,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         url: '/login',
         cache: false,
         templateUrl: 'templates/login.html',
-        controller: 'LoginController'
+        controller: 'LoginController',
     })
 
     .state('main', {
@@ -100,6 +100,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             "currentAuth": ["Auth", function(Auth) {
                 console.log("currentAuth started");
                 return Auth.getAuth().$requireAuth();
+            }],
+            "user": ["currentAuth", "Users", function(currentAuth, Users){
+                return Users.get_one(currentAuth.password.email);
+            }],
+            "role": ["Roles", "user", function(Roles, user){
+                return Roles.get_one(user.role);
             }]
         }
     })
@@ -175,6 +181,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/main/sales/list');
+    $urlRouterProvider.otherwise('/login');
 });
 
