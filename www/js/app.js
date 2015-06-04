@@ -38,29 +38,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   return function(input, filterKey, filterType) {
 
     var output = new Array();
-    if(filterKey){
-
-        // console.log("filter is not S");
-        if(filterType == 'brand'){
-            regexp = new RegExp('^' + filterKey);
-        }else if(filterType == 'color'){
-            // console.log("normal color filter")
-            regexp = new RegExp('-' + filterKey);
-        }else if(filterType == 'size'){
-            regexp = new RegExp(filterKey + '$');
-        }else if(filterType == 'code'){
-            regexp = new RegExp(filterKey);
-        }
-    
-
-        for (var i = 0; i < input.length; i++) {
-            if (regexp.test(input[i].id)){
-                output.push(input[i]);
+        if(filterKey){
+            // console.log("filter is not S");
+            if(filterType == 'brand'){
+                regexp = new RegExp('^' + filterKey);
+            }else if(filterType == 'color'){
+                // console.log("normal color filter")
+                regexp = new RegExp('-' + filterKey);
+            }else if(filterType == 'size'){
+                regexp = new RegExp(filterKey + '$');
+            }else if(filterType == 'code'){
+                regexp = new RegExp(filterKey);
             }
+        
+
+            for (var i = 0; i < input.length; i++) {
+                if (regexp.test(input[i].id)){
+                    output.push(input[i]);
+                }
+            }
+        }else{
+            output = input;
         }
-    }else{
-        output = input;
-    }
 
     // Do filter work here
 
