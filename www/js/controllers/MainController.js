@@ -128,4 +128,5 @@ angular.module('starter.controllers')
         console.log("logout started");
         logout();
     };
+
 }])

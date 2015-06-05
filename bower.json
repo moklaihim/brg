@@ -6,7 +6,8 @@
     "angularfire": "~1.0.0",
     "ngCordova": "~0.1.14-alpha",
     "angular-datepicker": "https://github.com/g00fy-/angular-datepicker.git#~1.0.4",
-    "mdi": "~1.0.62-beta"
+    "mdi": "~1.0.62-beta",
+    "ionic-material": "~0.4.2"
   },
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.0.0",
