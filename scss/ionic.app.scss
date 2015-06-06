@@ -21,6 +21,14 @@ $RobotoDraftFontVersion: "1.0.0";
 
 @import "www/lib/robotodraft/sass/robotodraft.scss";
 
+$bar-height:                      56px !default;
+$button-bar-button-height:        56px !default;
+$bar-title-font-size:             20px !default;
+
+$font-family-sans-serif:          RobotoDraft, Roboto, "Helvetica Neue", "Roboto", "Segoe UI", sans-serif !default;
+$font-family-light-sans-serif:    RobotoDraft, Roboto, "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light !default;
+
+
 .scroll-content.vcenter {
   display: -webkit-box;
   display: -moz-box;

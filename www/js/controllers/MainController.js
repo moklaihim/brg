@@ -84,7 +84,18 @@ angular.module('starter.controllers')
     }
 
     $scope.showDatePicker = function(){
-        $scope.showPCDatePicker = !$scope.showPCDatePicker;
+        //$scope.showPCDatePicker = !$scope.showPCDatePicker;
+
+        var myPopup = $ionicPopup.show({
+            template: '<div date-picker="current.raw_set_date" view="date" max-view="date" min-view="date" auto-close="false"></div>',
+            title: '2017',
+            subTitle: 'Thu, Apr 13',
+            scope: $scope,
+            buttons: [
+                { text: 'Cancel' },
+                { text: 'OK' }
+            ]
+        });
     };
 
     $scope.$watch('current.raw_set_date', function(){
