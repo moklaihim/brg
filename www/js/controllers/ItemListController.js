@@ -20,6 +20,7 @@ angular.module('starter.controllers')
     $scope.showBackButton = false;
     $scope.retail_price = '';
     $scope.toggleBrand = true;
+    $scope.toggelSelected = false;
     
     $scope.item_brand = '';
     $scope.item_code = '';
@@ -104,7 +105,7 @@ angular.module('starter.controllers')
 
     //When selected individually from the item list, go to sales add
     function selectItem($item_id){
-        console.log("sselectItem function called" + $item_id);
+        console.log("selectItem function called" + $item_id);
         $scope.current.item_id = $item_id;
         $state.go('main.sales_add');
     };
@@ -135,12 +136,15 @@ angular.module('starter.controllers')
         $scope.headerLabel = "Adding "
         $scope.showInputSelections = true;
         // $scope.headerLabel = "ADD ITEM : ";
-        $scope.showItemList = false;
         if (lastItemCodeEntered){
             $scope.showPriceInput = true;
             $scope.headerCloseButton = true;
             $scope.showConfirmBtns = true;
             $scope.showInputSelections = false;
+            $scope.showItemList = false;
+            lastItemCodeEntered = false;
+        }else{
+            showItemAddError();
         }
         
         $scope.showAddSaleBtn = true;
@@ -183,28 +187,7 @@ angular.module('starter.controllers')
         editItemClicked = true; //When true , Price input will reset the field value
     }
 
-    $scope.CancelEdit = function() {
-        $scope.current.item_id = "";
-        $scope.retail_price = "";
-        $scope.headerLabel = "Searching "
-        $scope.headerCloseButton = true; //disable clear item name when edit
-        $scope.showInputSelections = true;
-        $scope.showItemList = true;
-        $scope.showPriceInput = false;
-        $scope.showSizeInput = false;
-        $scope.showBrandInput = true;
-        $scope.showCodeInput = false;
-        $scope.showColorInput = false;
-        $scope.showConfirmBtns = false;
-        $scope.showEditItemBtn = false;
-        $scope.showCancelBtn = false;
-        $scope.item_code = "";
-        $scope.item_brand =  "";
-        $scope.item_color = "";
-        $scope.item_size = "";
-        itemId();
-        editItemClicked = false; //When true , Price input will reset the field value
-    }
+
     //When finish editing form and pressed "Update Item" button
     $scope.editItemOK = function(){
         if (!$scope.retail_price || $scope.current.item_id == '--'){
@@ -306,12 +289,16 @@ angular.module('starter.controllers')
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
         $scope.showBackButton = true;
-        lastItemCodeEntered = false;
+        // lastItemCodeEntered = false;
         if($scope.item_code != "Item Code"){
             $scope.item_code = "";
         }
         $scope.toggleBrand = false;
         $scope.toggleCode = true;
+        if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
+            lastItemCodeEntered = true;
+            console.log("last item entered")
+        }
         itemId();
         // updateInstruction();
         
@@ -331,7 +318,10 @@ angular.module('starter.controllers')
             }
         }
         itemId();
-        lastItemCodeEntered = false;
+        if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
+            console.log("last item entered")
+            lastItemCodeEntered = true;
+        }
     };
 
     $scope.btn_code_ok = function(){
@@ -362,9 +352,12 @@ angular.module('starter.controllers')
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = true;
-        lastItemCodeEntered = false;
         $scope.toggleColor = false;
         $scope.toggleSize = true;
+        if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
+            console.log("last item entered")
+            lastItemCodeEntered = true;
+        }
         itemId();
     };
 
@@ -374,14 +367,18 @@ angular.module('starter.controllers')
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
-        if(addItemClicked){
+        if(addItemClicked){ //If add item is clicked
             $scope.showPriceInput = true;
             $scope.headerCloseButton = true;
             $scope.showInputSelections = false;
             $scope.showConfirmBtns = true;
+            $scope.showItemList = false;
         }
-        lastItemCodeEntered = true;
         $scope.toggleSize = false;
+        if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
+            console.log("last item entered")
+            lastItemCodeEntered = true;
+        }
 
         itemId();
         // $scope.headerLabel = "ITEM : " + $scope.current.item_id;
@@ -471,32 +468,46 @@ angular.module('starter.controllers')
 
     //When the X button beside the ITEM name is clicked
     $scope.itemIdClear= function(){
-        // $scope.showInputSelections = true;
+        //display main item search
+        $scope.showInputSelections = true;
         $scope.headerCloseButton = true;
+        $scope.showItemList = true;
         $scope.showBrandInput = true;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
+
+        //hide all others and reset
         $scope.showPriceInput = false;
-        $scope.showBackButton = false;
+        $scope.showCancelBtn = false;
+        $scope.showConfirmBtns = false;
+        $scope.showEditItemBtn = false;
+        $scope.showCancelBtn = false;
+        $scope.showAddItemBtn = false;
+        $scope.showAddSaleBtn = false;
+        $scope.toggleBrand = true;
+        $scope.toggleCode = false;
+        $scope.toggleColor = false;
+        $scope.toggleSize = false;
+
+
         $scope.item_brand = '';
         $scope.item_code ='';
         $scope.item_color ='';
         $scope.item_size = '';
+        addItemClicked = false;
+        lastItemCodeEntered = false;
+        editItemClicked = false;  //When true , Price input will reset the field value
+        priceClear();
+        itemId();
         $scope.current.item_id = '';
-        if(addItemClicked){
-            $scope.showInputSelections = true;
-            $scope.showConfirmBtns = false;
-            $scope.showItemList = true;
-            addItemClicked = false;
-            priceClear();
-        }
         if($scope.headerLabel == "Adding "){
             $scope.headerLabel = "Searching"
         }
         // updateInstruction();
         // itemId();
     };
+
 
     //When the X button beside the Retail Price is clicked
     function priceClear(){
@@ -512,6 +523,33 @@ angular.module('starter.controllers')
         }else{
         $scope.current.item_id = $scope.item_brand + $scope.item_code + '-' + $scope.item_color + '-' + $scope.item_size;
         // updateInstruction();
+        }
+        if($scope.item_brand){
+            $scope.brandHaveValue = true;
+        }
+        else{
+            $scope.brandHaveValue = false;
+        }
+
+        if($scope.item_code){
+            $scope.codeHaveValue = true;
+        }
+        else{
+            $scope.codeHaveValue = false;
+        }
+
+        if($scope.item_color){
+            $scope.colorHaveValue = true;
+        }
+        else{
+            $scope.colorHaveValue = false;
+        }
+
+        if($scope.item_size){
+            $scope.sizeHaveValue = true;
+        }
+        else{
+            $scope.sizeHaveValue = false;
         }
     };
     $scope.itemId = itemId;
