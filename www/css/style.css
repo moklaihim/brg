@@ -99,7 +99,8 @@
 
 .bar .button {
     min-width: 56px;
-    max-width: 56px;
+    max-width: 100%;
+    padding:0px;
     width: 56px;
 }
 
