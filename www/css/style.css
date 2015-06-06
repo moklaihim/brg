@@ -31,6 +31,42 @@
     color: #fff;
 }
 
+.bar .button {
+    min-width: 56px;
+    max-width: 56px;
+    width: 56px;
+}
+
+.button-fab{
+    font-size: 24px;
+}
+
+.bar .button-store {
+    max-width: 120px;
+    width: initial;
+    line-height: 56px;
+    font-weight: 400 !important;
+    font-size: 12px !important;
+}
+
+.item-complex .item-content, .item-radio .item-content {
+    padding: 16px 16px 16px 16px;
+}
+
+.button-option{
+    font-size: 24px !important;
+}
+
+.bar .title {
+    margin: 0 0px;
+    left: 72px !important;
+    right: 0px !important;
+}
+
+.item, .item-complex .item-content, .item-radio .item-content {
+      background-color: white;
+}
+
 .item-icon-left .icon, .item-icon-right .icon {
     font-size: 24px;
 }

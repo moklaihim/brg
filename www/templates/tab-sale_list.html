@@ -1,8 +1,8 @@
-<ion-view hide-back-button="true" title="Sales">
+<ion-view hide-back-button="true" view-title="Sales">
     <ion-nav-buttons side="right">
-        <div style="min-width: 250px; text-align:right;">
-        <a class="button" ui-sref="main.stores_list">{{current.store_name}}</a>
-        <button class="button button-icon button-cleear mdi mdi-calendar" style="color: white" ng-click="showDatePicker($event)"></button>
+        <div>
+        <a class="button button-clear button-store" ui-sref="main.stores_list">{{current.store_name}}</a>
+        <button class="button button-clear button-icon button-cleear mdi mdi-calendar" style="color: white" ng-click="showDatePicker($event)"></button>
         <div class="dropdown-menu" ng-if="showPCDatePicker" ng-show="showPCDatePicker" ng-click="$event.preventDefault();$event.stopPropagation()">
             <div date-picker="current.raw_set_date" view="date" max-view="date" min-view="date" auto-close="false"></div>
         </div>
@@ -13,13 +13,16 @@
         <ion-spinner icon="ripple"></ion-spinner>
     </ion-content>
     
-    <ion-content padding="false" class="ng-hide" ng-show="showSalesView" style="margin-bottom: 50px">
+    <ion-content padding="false" class="ng-hide" ng-show="showSalesView">
         <ion-list>
             <ion-item class="ng-hide" ng-repeat="(key, sale) in sales" ng-show="!sale.removed">
-                <b>{{sale.item}}</b><span style="float: right;">{{sale.price | currency:"$"}}</span>
+                <h2>{{sale.item}}</h2>
+                <p>{{sale.time}}
+                <span class="item-note">{{sale.price | currency:"$"}}</span>
+                </p>
                 <div ng-if="!salesClosed">
-                    <ion-option-button class="button-positive ion-edit" ng-click="editSale(key)"></ion-option-button>
-                    <ion-option-button class="button-assertive ion-close-round" ng-click="removeSale(key)"></ion-option-button>
+                    <ion-option-button class="button-option button-positive mdi mdi-pencil" ng-click="editSale(key)"></ion-option-button>
+                    <ion-option-button class="button-option button-assertive mdi mdi-delete" ng-click="removeSale(key)"></ion-option-button>
                 </div>
             </ion-item>
              <ion-item class="ng-hide energized item-icon-left" ng-if="!salesClosed" ng-show="!salesClosed">
@@ -29,6 +32,7 @@
         </ion-list>
     </ion-content>
     <button class="button button-fab button-fab-bottom-right button-assertive mdi mdi-plus ng-hide" ui-sref="main.items_list" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed"></button>
+    <button class="button button-fab button-fab-bottom-right button-dark mdi mdi-lock ng-hide" on-hold="reOpenSales()" ng-if="showClosedMessage" ng-show="showClosedMessage"></button>
 
     <!--
     <ion-footer-bar class="bar-balanced ng-hide" style="padding:0px" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed">
@@ -40,11 +44,11 @@
             <a class="button" ui-sref="main.sales_scanadd" style="font-size:17px" ><i class="ion-ios-barcode-outline" style="font-size:20px"></i> SCAN</a>
         </div>
     </ion-footer-bar>
-    -->
     <ion-footer-bar class="bar-energized ng-hide" style="padding:0px" ng-if="showClosedMessage" ng-show="showClosedMessage">
         <div class="button-bar ">
             <button class="button button-energized" on-hold="reOpenSales()">Sales Closed. Press and hold to re-open sales</button>
         </div>
     </ion-footer-bar>
+    -->
 </ion-view>
 
