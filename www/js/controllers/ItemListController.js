@@ -104,7 +104,7 @@ angular.module('starter.controllers')
 
     //When selected individually from the item list, go to sales add
     function selectItem($item_id){
-        console.log("sselectItem function called" + $item_id);
+        console.log("selectItem function called" + $item_id);
         $scope.current.item_id = $item_id;
         $state.go('main.sales_add');
     };
@@ -135,12 +135,15 @@ angular.module('starter.controllers')
         $scope.headerLabel = "Adding "
         $scope.showInputSelections = true;
         // $scope.headerLabel = "ADD ITEM : ";
-        $scope.showItemList = false;
         if (lastItemCodeEntered){
             $scope.showPriceInput = true;
             $scope.headerCloseButton = true;
             $scope.showConfirmBtns = true;
             $scope.showInputSelections = false;
+            $scope.showItemList = false;
+            lastItemCodeEntered = false;
+        }else{
+            showItemAddError();
         }
         
         $scope.showAddSaleBtn = true;
@@ -306,12 +309,16 @@ angular.module('starter.controllers')
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
         $scope.showBackButton = true;
-        lastItemCodeEntered = false;
+        // lastItemCodeEntered = false;
         if($scope.item_code != "Item Code"){
             $scope.item_code = "";
         }
         $scope.toggleBrand = false;
         $scope.toggleCode = true;
+        if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
+            lastItemCodeEntered = true;
+            console.log("last item entered")
+        }
         itemId();
         // updateInstruction();
         
@@ -331,7 +338,10 @@ angular.module('starter.controllers')
             }
         }
         itemId();
-        lastItemCodeEntered = false;
+        if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
+            console.log("last item entered")
+            lastItemCodeEntered = true;
+        }
     };
 
     $scope.btn_code_ok = function(){
@@ -362,9 +372,12 @@ angular.module('starter.controllers')
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = true;
-        lastItemCodeEntered = false;
         $scope.toggleColor = false;
         $scope.toggleSize = true;
+        if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
+            console.log("last item entered")
+            lastItemCodeEntered = true;
+        }
         itemId();
     };
 
@@ -374,14 +387,18 @@ angular.module('starter.controllers')
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
-        if(addItemClicked){
+        if(addItemClicked){ //If add item is clicked
             $scope.showPriceInput = true;
             $scope.headerCloseButton = true;
             $scope.showInputSelections = false;
             $scope.showConfirmBtns = true;
+            $scope.showItemList = false;
         }
-        lastItemCodeEntered = true;
         $scope.toggleSize = false;
+        if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
+            console.log("last item entered")
+            lastItemCodeEntered = true;
+        }
 
         itemId();
         // $scope.headerLabel = "ITEM : " + $scope.current.item_id;
