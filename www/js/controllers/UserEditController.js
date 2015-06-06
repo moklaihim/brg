@@ -2,6 +2,7 @@ angular.module('starter.controllers')
 .controller('UserEditController', ["$scope", "$ionicHistory", "$state", "Roles", "Users", function($scope, $ionicHistory, $state, Roles, Users) {
 
     $scope.roles = Roles.get_list();
+    $scope.users = Users.get_list();
 
     if ($state.current.name === "main.users_add"){
         $scope.user_detail = {
@@ -21,7 +22,7 @@ angular.module('starter.controllers')
                     id: $user.id,
                     name: $user.name,
                     role: $user.role,
-                    password: ''
+                    password: '',
                 }
             });
         }else{

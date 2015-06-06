@@ -43,7 +43,9 @@ angular.module('starter.services')
                     callback(res)
                 }
             }, function(err) {
-                callback(err);
+                if (callback) {
+                    callback(err);
+                }
             }); 
         },  
 
