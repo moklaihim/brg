@@ -20,6 +20,7 @@ angular.module('starter.controllers')
     $scope.showBackButton = false;
     $scope.retail_price = '';
     $scope.toggleBrand = true;
+    $scope.toggelSelected = false;
     
     $scope.item_brand = '';
     $scope.item_code = '';
@@ -186,28 +187,7 @@ angular.module('starter.controllers')
         editItemClicked = true; //When true , Price input will reset the field value
     }
 
-    $scope.CancelEdit = function() {
-        $scope.current.item_id = "";
-        $scope.retail_price = "";
-        $scope.headerLabel = "Searching "
-        $scope.headerCloseButton = true; //disable clear item name when edit
-        $scope.showInputSelections = true;
-        $scope.showItemList = true;
-        $scope.showPriceInput = false;
-        $scope.showSizeInput = false;
-        $scope.showBrandInput = true;
-        $scope.showCodeInput = false;
-        $scope.showColorInput = false;
-        $scope.showConfirmBtns = false;
-        $scope.showEditItemBtn = false;
-        $scope.showCancelBtn = false;
-        $scope.item_code = "";
-        $scope.item_brand =  "";
-        $scope.item_color = "";
-        $scope.item_size = "";
-        itemId();
-        editItemClicked = false; //When true , Price input will reset the field value
-    }
+
     //When finish editing form and pressed "Update Item" button
     $scope.editItemOK = function(){
         if (!$scope.retail_price || $scope.current.item_id == '--'){
@@ -488,34 +468,46 @@ angular.module('starter.controllers')
 
     //When the X button beside the ITEM name is clicked
     $scope.itemIdClear= function(){
-        // $scope.showInputSelections = true;
+        //display main item search
+        $scope.showInputSelections = true;
         $scope.headerCloseButton = true;
+        $scope.showItemList = true;
         $scope.showBrandInput = true;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
+
+        //hide all others and reset
         $scope.showPriceInput = false;
-        $scope.showBackButton = false;
+        $scope.showCancelBtn = false;
+        $scope.showConfirmBtns = false;
+        $scope.showEditItemBtn = false;
+        $scope.showCancelBtn = false;
+        $scope.showAddItemBtn = false;
+        $scope.showAddSaleBtn = false;
+        $scope.toggleBrand = true;
+        $scope.toggleCode = false;
+        $scope.toggleColor = false;
+        $scope.toggleSize = false;
+
+
         $scope.item_brand = '';
         $scope.item_code ='';
         $scope.item_color ='';
         $scope.item_size = '';
-        $scope.current.item_id = '';
+        addItemClicked = false;
         lastItemCodeEntered = false;
-        if(addItemClicked){
-            $scope.showInputSelections = true;
-            $scope.showConfirmBtns = false;
-            $scope.showItemList = true;
-            addItemClicked = false;
-            lastItemCodeEntered = false;
-            priceClear();
-        }
+        editItemClicked = false;  //When true , Price input will reset the field value
+        priceClear();
+        itemId();
+        $scope.current.item_id = '';
         if($scope.headerLabel == "Adding "){
             $scope.headerLabel = "Searching"
         }
         // updateInstruction();
         // itemId();
     };
+
 
     //When the X button beside the Retail Price is clicked
     function priceClear(){
@@ -531,6 +523,33 @@ angular.module('starter.controllers')
         }else{
         $scope.current.item_id = $scope.item_brand + $scope.item_code + '-' + $scope.item_color + '-' + $scope.item_size;
         // updateInstruction();
+        }
+        if($scope.item_brand){
+            $scope.brandHaveValue = true;
+        }
+        else{
+            $scope.brandHaveValue = false;
+        }
+
+        if($scope.item_code){
+            $scope.codeHaveValue = true;
+        }
+        else{
+            $scope.codeHaveValue = false;
+        }
+
+        if($scope.item_color){
+            $scope.colorHaveValue = true;
+        }
+        else{
+            $scope.colorHaveValue = false;
+        }
+
+        if($scope.item_size){
+            $scope.sizeHaveValue = true;
+        }
+        else{
+            $scope.sizeHaveValue = false;
         }
     };
     $scope.itemId = itemId;

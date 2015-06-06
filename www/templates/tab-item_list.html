@@ -110,7 +110,7 @@
     
     <ion-footer-bar ng-show = "showConfirmBtns" class="ng-hide" keyboard-attach class="bar-positive" style="padding:0px;">
         <div class="button-bar">
-            <button ng-show = "showCancelBtn" class="button button-assertive ng-hide" ng-click="CancelEdit()" >Cancel</button>
+            <button ng-show = "showCancelBtn" class="button button-assertive ng-hide" ng-click="itemIdClear()" >Cancel</button>
             <button ng-show = "showAddItemBtn" class="button button-positive ng-hide" ng-click="addItemOK()" >Add Item</button>
             <button ng-show = "showEditItemBtn" class="button button-positive ng-hide" ng-click="editItemOK()" >Update Item</button>
             <button ng-show = "showAddSaleBtn" class="button button-balanced ng-hide" ng-click="addSaleOK()">Add Sale</button>
@@ -122,10 +122,10 @@
 
     <ion-footer-bar ng-show = "showInputSelections" class="ng-hide" keyboard-attach class="bar-calm" style="padding:0px;">
         <div class="button-bar">
-            <button class="button" style="line-height:17px" ng-class="{'bluebutton': toggleBrand}" ng-click="trig_brand()">Brand</br><b>{{item_brand}}</b></button>
-            <button class="button" style="line-height:17px" ng-class="{'bluebutton': toggleCode}" ng-click="trig_code()">Code</br><b>{{item_code}}</b></button>
-            <button class="button" style="line-height:17px" ng-class="{'bluebutton': toggleColor}" ng-click="trig_color()">Color</br><b>{{item_color}}</b></button>
-            <button class="button" style="line-height:17px" ng-class="{'bluebutton': toggleSize}" ng-click="trig_size()">Size</br><b>{{item_size}}</b></button>
+            <button class="button" style="line-height:17px" ng-class="{'bluebutton': toggleBrand, 'greenbutton': brandHaveValue}" ng-click="trig_brand()">Brand</br><b>{{item_brand}}</b></button>
+            <button class="button" style="line-height:17px" ng-class="{'bluebutton': toggleCode, 'greenbutton': codeHaveValue}" ng-click="trig_code()">Code</br><b>{{item_code}}</b></button>
+            <button class="button" style="line-height:17px" ng-class="{'bluebutton': toggleColor, 'greenbutton': colorHaveValue}" ng-click="trig_color()">Color</br><b>{{item_color}}</b></button>
+            <button class="button" style="line-height:17px" ng-class="{'bluebutton': toggleSize, 'greenbutton': sizeHaveValue}" ng-click="trig_size()">Size</br><b>{{item_size}}</b></button>
         </div>
     </ion-footer-bar>
 
