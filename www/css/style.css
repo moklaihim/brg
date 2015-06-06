@@ -63,6 +63,10 @@
     color: #000;
 }
 
+.pcode-button{
+    box-shadow: none !important;
+}
+
 .popup-head{
     background-color: #009688;
     padding: 14px 18px;
