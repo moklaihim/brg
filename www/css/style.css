@@ -33,6 +33,7 @@
 
 .popup-head{
     background-color: #009688;
+    padding: 14px 18px;
 }
 
 .popup-head h3, h5{
@@ -53,6 +54,15 @@
 
 .popup-body{
     background-color: white;
+}
+
+.popup-buttons{
+    background-color: white;
+}
+
+.popup-buttons button{
+    color: #009688 !important;
+    padding: 0px !important;
 }
 
 .bar .button {

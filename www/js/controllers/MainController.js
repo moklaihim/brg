@@ -21,6 +21,9 @@ angular.module('starter.controllers')
     console.log($scope.role);
     */
 
+    var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
     $scope.current = {
         store_id: '',
         store_name: '',
@@ -33,6 +36,7 @@ angular.module('starter.controllers')
         set_day: '',
         set_date: '',
         raw_set_date: new Date(),
+        raw_new_set_date: new Date(),
         item_id: '',
         item_key: '',
         // editItemKey: '',
@@ -87,21 +91,35 @@ angular.module('starter.controllers')
         //$scope.showPCDatePicker = !$scope.showPCDatePicker;
 
         var myPopup = $ionicPopup.show({
-            template: '<div date-picker="current.raw_set_date" view="date" max-view="date" min-view="date" auto-close="false"></div>',
-            title: '2017',
-            subTitle: 'Thu, Apr 13',
+            template: '<div date-picker="current.raw_new_set_date" view="date" max-view="date" min-view="date" auto-close="false"></div>',
+            title: $scope.current.set_year,
+            subTitle: weekday[$scope.current.raw_set_date.getDay()] + ', ' + month[$scope.current.raw_set_date.getMonth()] + ' ' + $scope.current.raw_set_date.getDate(),
             scope: $scope,
             buttons: [
-                { text: 'Cancel' },
-                { text: 'OK' }
+                {
+                    text: 'CANCEL',
+                    type: 'button-flat',
+                    onTap: function() {
+                        $scope.current.raw_new_set_date = $scope.current.raw_set_date;
+                    }
+                },
+                {
+                    text: 'OK',
+                    type: 'button-flat',
+                    onTap: function() {
+                        $scope.current.raw_set_date = $scope.current.raw_new_set_date;
+                        setDate($scope.current.raw_set_date, false);
+                    }
+                }
             ]
         });
     };
-
+/*
     $scope.$watch('current.raw_set_date', function(){
         setDate($scope.current.raw_set_date, false);
-        $scope.showPCDatePicker = false;
+        //$scope.showPCDatePicker = false;
     });
+*/
 
     var user_active_watch = $scope.$watch('user_detail.active', function(){
         if(!$scope.user_detail.active){
