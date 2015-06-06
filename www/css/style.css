@@ -31,6 +31,38 @@
     color: #fff;
 }
 
+.brg-a-bg,
+.button-brg-a,
+.bar .button-brg-a,
+.header-brg-a,
+.button-bar-brg-a,
+.bar-brg-a,
+.brg-a-border,
+.brg-a-bg:hover,
+.button-brg-a:hover,
+.bar .button-brg-a:hover,
+.header-brg-a:hover,
+.button-bar-brg-a:hover,
+.bar-brg-a:hover,
+.brg-a-border:hover,
+.brg-a-bg:active,
+.button-brg-a:active,
+.bar .button-brg-a:active,
+.header-brg-a:active,
+.button-bar-brg-a:active,
+.bar-brg-a:active,
+.brg-a-border:active,
+.brg-a-bg.activated,
+.button-brg-a.activated,
+.bar .button-brg-a.activated,
+.header-brg-a.activated,
+.button-bar-brg-a.activated,
+.bar-brg-a.activated,
+.brg-a-border.activated {
+    background-color: #EEFF41;
+    color: #000;
+}
+
 .popup-head{
     background-color: #009688;
     padding: 14px 18px;
