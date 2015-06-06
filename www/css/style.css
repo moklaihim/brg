@@ -31,7 +31,7 @@
     color: #fff;
 }
 
-.button-fab{
+.item-icon-left .icon, .item-icon-right .icon {
     font-size: 24px;
 }
 

@@ -15,6 +15,12 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+$RobotoDraftFontPath: "../lib/robotodraft/fonts";
+$RobotoDraftFontName: "RobotoDraft";
+$RobotoDraftFontVersion: "1.0.0";
+
+@import "www/lib/robotodraft/sass/robotodraft.scss";
+
 .scroll-content.vcenter {
   display: -webkit-box;
   display: -moz-box;
