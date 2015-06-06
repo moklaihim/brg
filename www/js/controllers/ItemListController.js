@@ -501,11 +501,13 @@ angular.module('starter.controllers')
         $scope.item_color ='';
         $scope.item_size = '';
         $scope.current.item_id = '';
+        lastItemCodeEntered = false;
         if(addItemClicked){
             $scope.showInputSelections = true;
             $scope.showConfirmBtns = false;
             $scope.showItemList = true;
             addItemClicked = false;
+            lastItemCodeEntered = false;
             priceClear();
         }
         if($scope.headerLabel == "Adding "){
