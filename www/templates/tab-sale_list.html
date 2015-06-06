@@ -1,18 +1,14 @@
-<ion-view hide-back-button="true">
+<ion-view hide-back-button="true" title="Sales">
     <ion-nav-buttons side="right">
         <div style="min-width: 250px; text-align:right;">
         <a class="button" ui-sref="main.stores_list">{{current.store_name}}</a>
-        <button class="button" ng-click="showDatePicker($event)">{{current.set_date}}</button>
+        <button class="button button-icon button-cleear mdi mdi-calendar" style="color: white" ng-click="showDatePicker($event)"></button>
         <div class="dropdown-menu" ng-if="showPCDatePicker" ng-show="showPCDatePicker" ng-click="$event.preventDefault();$event.stopPropagation()">
             <div date-picker="current.raw_set_date" view="date" max-view="date" min-view="date" auto-close="false"></div>
         </div>
     </div>
     </ion-nav-buttons>
     
-    <ion-header-bar align-title="left" class="bar-subheader bar-balanced" ng-style="CloseStyle">
-        <h1 class="title">SALES LIST</h1>
-    </ion-header-bar>
-
     <ion-content padding="true" ng-show="showSpinner">
         <ion-spinner icon="ripple"></ion-spinner>
     </ion-content>
@@ -32,14 +28,19 @@
             </ion-item>
         </ion-list>
     </ion-content>
+    <button class="button button-fab button-fab-bottom-right button-assertive mdi mdi-plus ng-hide" ui-sref="main.items_list" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed"></button>
 
+    <!--
     <ion-footer-bar class="bar-balanced ng-hide" style="padding:0px" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed">
         <div class="button-bar">
+            -->
             <!-- <button class="button icon-right ion-plus-round button-balance" on-click="main.items_list">ADD</button> -->
+            <!--
             <a class="button" ui-sref="main.items_list" style="font-size:17px"><i class="ion-plus-round" style="font-size:17px"></i> ADD</a>
             <a class="button" ui-sref="main.sales_scanadd" style="font-size:17px" ><i class="ion-ios-barcode-outline" style="font-size:20px"></i> SCAN</a>
         </div>
     </ion-footer-bar>
+    -->
     <ion-footer-bar class="bar-energized ng-hide" style="padding:0px" ng-if="showClosedMessage" ng-show="showClosedMessage">
         <div class="button-bar ">
             <button class="button button-energized" on-hold="reOpenSales()">Sales Closed. Press and hold to re-open sales</button>

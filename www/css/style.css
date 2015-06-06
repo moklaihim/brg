@@ -1,7 +1,38 @@
 /* Empty. Add your own CSS if you like */
+.brg-bg,
+.button-brg,
+.bar .button-brg,
+.header-brg,
+.button-bar-brg,
+.bar-brg,
+.brg-border,
+.brg-bg:hover,
+.button-brg:hover,
+.bar .button-brg:hover,
+.header-brg:hover,
+.button-bar-brg:hover,
+.bar-brg:hover,
+.brg-border:hover,
+.brg-bg:active,
+.button-brg:active,
+.bar .button-brg:active,
+.header-brg:active,
+.button-bar-brg:active,
+.bar-brg:active,
+.brg-border:active,
+.brg-bg.activated,
+.button-brg.activated,
+.bar .button-brg.activated,
+.header-brg.activated,
+.button-bar-brg.activated,
+.bar-brg.activated,
+.brg-border.activated {
+    background-color: #5E3462;
+    color: #fff;
+}
 
-.item-icon-left .icon, .item-icon-right .icon {
-  font-size: 24px;
+.button-fab{
+    font-size: 24px;
 }
 
 .sidemenu_header{
