@@ -1,6 +1,5 @@
 <ion-view hide-back-button="true" view-title="Sales">
     <ion-nav-buttons side="right">
-        <div>
         <a class="button button-clear button-store" ui-sref="main.stores_list">{{current.store_name}}</a>
         <button class="button button-clear button-icon button-cleear mdi mdi-calendar" style="color: white" ng-click="showDatePicker($event)"></button>
         <!--
@@ -8,7 +7,6 @@
             <div date-picker="current.raw_set_date" view="date" max-view="date" min-view="date" auto-close="false"></div>
         </div>
         -->
-    </div>
     </ion-nav-buttons>
     
     <ion-content padding="true" ng-show="showSpinner">

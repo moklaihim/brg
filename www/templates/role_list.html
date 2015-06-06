@@ -1,7 +1,7 @@
-<ion-view hide-back-button="true">
-    <ion-header-bar align-title="left" class="bar-subheader bar-balanced" ng-style="CloseStyle">
-        <h1 class="title">Roles</h1>
-    </ion-header-bar>
+<ion-view hide-back-button="true" view-title="Roles">
+    <ion-nav-buttons side="right">
+        <button class="button button-clear button-icon button-cleear mdi mdi-undo" style="color: white" ng-click="cancel()"></button>
+    </ion-nav-buttons>
 
     <ion-content padding="true" ng-show="showSpinner">
         <ion-spinner icon="ripple"></ion-spinner>
@@ -33,12 +33,6 @@
             <div class="col role-table"><input type="checkbox" ng-model="role['allowCloseSales']"></div>
         </div>
     </ion-content>
-
-     <ion-footer-bar keyboard-attach class="bar-balanced">
-        <div class="button-bar">
-            <a class="button" ng-click="update()" >Update</a>
-            <a class="button" ng-click="cancel()" >Cancel</a>
-        </div>
-    </ion-footer-bar>
+    <button class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-content-save" ng-click="update()"></button>
 </ion-view>
 
