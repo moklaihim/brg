@@ -42,16 +42,13 @@
                 </ion-scroll>
             </div> -->
 
-            <div ng-show="showBrandInput" class="button-bar ng-hide">
-                <div style="width:100%">
-                    <button ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button addbutton pcode-button brg-bg" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</button>
-                </div>
+            <div ng-show="showBrandInput" class="button-bar ng-hide bar-positive">
+                <a ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button button-raised" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</a>
+                <!--button ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button button-raised addbutton pcode-button" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</button-->
             </div> 
-            <div ng-show="showColorInput" class="button-bar bar-positive ng-hide">
+            <div ng-repeat="colors in colors_array track by $index" ng-show="showColorInput" class="button-bar bar-positive ng-hide">
                 <!-- <button id = "colorBack" class="button pcode-button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
-                <div style="width:100%">
-                    <button ng-repeat="color in colors_array | orderBy:'order'" id="{{color.id}}" class="button addbutton pcode-button" style="color:{{color.color}}; background-color:{{color.backgroundcolor}};" ng-class="{active: color.id == item_color}" ng-click="btn_color(color.name)">{{color.name}}</button>
-                </div>
+                    <a ng-repeat="color in colors | orderBy:'order' track by $index" id="{{color.id}}" class="button button-raised" style="color:{{color.color}}; background-color:{{color.backgroundcolor}};" ng-class="{active: color.id == item_color}" ng-click="btn_color(color.name)">{{color.name}}</a>
             </div>
             <div ng-show="showSizeInput" class="button-bar ng-hide">
                 <!-- <button id = "sizeBack" class="button pcode-button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->

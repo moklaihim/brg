@@ -31,8 +31,25 @@ angular.module('starter.controllers')
     var lastItemCodeEntered = false;
 
     $scope.brands_array = Codes.get_brands_as_array();
-    $scope.colors_array = Codes.get_colors_as_array();
+
+    /* Make Color palate from here*/
+    $scope.colors_array = new Array();
+    var iil = 5;
+    var colors = Codes.get_colors_as_array();
+
+    for (var l = 0; l < Math.ceil(colors.length / iil); l++){
+        $scope.colors_array[l] = new Array();
+    }
+
+    for (var i = 0; i < colors.length; i++) {
+        j = Math.floor(i / iil);
+        k = i % iil;
+        $scope.colors_array[j][k] = colors[i];
+    }
+    /* Make Color palate to here*/
+
     $scope.sizes_array = Codes.get_sizes_as_array();
+
 
     updateItems();
     // updateInstruction();
