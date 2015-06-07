@@ -34,7 +34,7 @@ angular.module('starter.controllers')
 
     /* Make Color palate from here*/
     $scope.colors_array = new Array();
-    var iil = 5;
+    var iil = 5; //number of items in line
     var colors = Codes.get_colors_as_array();
 
     for (var l = 0; l < Math.ceil(colors.length / iil); l++){

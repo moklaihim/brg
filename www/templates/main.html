@@ -35,11 +35,19 @@
                     <i class="icon mdi mdi-package-variant sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Items</span>
                 </ion-item>
-                <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'users_list'}" menu-close ng-if="role.allowAccessUsersMenu" ng-show="role.allowAccessUsersMenu" href="#/main/users/list">
+                <ion-item class="item-icon-left sidemenu_item hidden" ng-class="{active: current.view == 'reports_list'}" menu-close href="#/main/reports/list" ng-if="role.allowAccessReportsMenu" ng-show="role.allowAccessUsersMenu">
+                    <i class="icon mdi mdi-file-document sidemenu_item_icon"></i>
+                    <span class="sidemenu_item_text">Reports</span>
+                </ion-item>
+                <ion-item class="item-icon-left sidemenu_item hidden" ng-class="{active: current.view == 'codes_list'}" menu-close href="#/main/codes/list" ng-if="role.allowAccessCodesMenu" ng-show="role.allowAccessCodesMenu">
+                    <i class="icon mdi mdi-tag-text-outline sidemenu_item_icon"></i>
+                    <span class="sidemenu_item_text">Codes</span>
+                </ion-item>
+                <ion-item class="item-icon-left sidemenu_item hidden" ng-class="{active: current.view == 'users_list'}" menu-close ng-if="role.allowAccessUsersMenu" ng-show="role.allowAccessUsersMenu" href="#/main/users/list">
                     <i class="icon mdi mdi-account-multiple sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Users</span>
                 </ion-item>
-                <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'roles_list'}" menu-close ng-if="role.allowAccessRolesMenu" ng-show="role.allowAccessRolesMenu" href="#/main/roles/list">
+                <ion-item class="item-icon-left sidemenu_item hidden" ng-class="{active: current.view == 'roles_list'}" menu-close ng-if="role.allowAccessRolesMenu" ng-show="role.allowAccessRolesMenu" href="#/main/roles/list">
                     <i class="icon mdi mdi-account-key sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Roles</span>
                 </ion-item>

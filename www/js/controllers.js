@@ -1,5 +1,7 @@
 angular.module('starter.controllers', [])
 document.write('<script type="text/javascript" src="js/controllers/LoginController.js"></script>');
+document.write('<script type="text/javascript" src="js/controllers/CodeListController.js"></script>');
+document.write('<script type="text/javascript" src="js/controllers/ReportListController.js"></script>');
 document.write('<script type="text/javascript" src="js/controllers/UserListController.js"></script>');
 document.write('<script type="text/javascript" src="js/controllers/UserEditController.js"></script>');
 document.write('<script type="text/javascript" src="js/controllers/MainController.js"></script>');

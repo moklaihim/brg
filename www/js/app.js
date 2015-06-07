@@ -151,6 +151,20 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         controller: 'StoreListController'
     })
 
+    .state('main.reports_list', {
+        url: '/reports/list',
+        cache: false,
+        templateUrl: 'templates/report_list.html',
+        controller: 'ReportListController'
+    })
+
+    .state('main.codes_list', {
+        url: '/codes/list',
+        cache: false,
+        templateUrl: 'templates/code_list.html',
+        controller: 'CodeListController'
+    })
+
     .state('main.users_list', {
         url: '/users/list',
         cache: false,

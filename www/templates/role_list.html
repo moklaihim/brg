@@ -10,6 +10,8 @@
     <ion-content padding="false">
         <div class="row">
             <div class="col role-table">Role</div>
+            <div class="col role-table">Access Reports Menu</div>
+            <div class="col role-table">Access Codes Menu</div>
             <div class="col role-table">Access Users Menu</div>
             <div class="col role-table">Access Roles Menu</div>
             <div class="col role-table">View All Sales</div>
@@ -22,6 +24,8 @@
         </div>
         <div class="row" ng-repeat="(key, role) in roles">
             <div class="col role-table">{{role['name']}}</div>
+            <div class="col role-table"><input type="checkbox" ng-model="role['allowAccessReportsMenu']"></div>
+            <div class="col role-table"><input type="checkbox" ng-model="role['allowAccessCodesMenu']"></div>
             <div class="col role-table"><input type="checkbox" ng-model="role['allowAccessUsersMenu']"></div>
             <div class="col role-table"><input type="checkbox" ng-model="role['allowAccessRolesMenu']"></div>
             <div class="col role-table"><input type="checkbox" ng-model="role['allowViewAllSales']"></div>
