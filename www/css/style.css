@@ -227,9 +227,20 @@
   color: white;
 }
 
+.bluebutton{
+  background-color: blue;
+  color: white;
+}
+
 .addbutton{
   min-width: 78px;
   max-width: 78px;
   padding: 0px;
 }
 
+.row{
+height: 60px;
+/*line-height: 30px;*/
+display: flex;
+align-items: center;
+}

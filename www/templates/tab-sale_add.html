@@ -13,7 +13,41 @@
      <span id="searchItem" class="title" ng-model="query.text">{{headerLabel + current.item_id}}</h1></span>
     </ion-header-bar>
     <ion-content padding="true">
-        <label class="item item-input">
+
+        <div class="row brg-bg" >
+            <div class="col">ITEM</div>
+            <div class="col">{{sale.item_id | uppercase}}</div>
+        </div>
+
+        <div class="row brg-bg">
+            <div class="col">RETAIL PRICE</div>
+            <div class="col">{{sale.retail_price | currency:"$"}}</div>
+        </div>
+
+        <div class="row brg-bg">
+            <div class="col">DISCOUNT(%)</div>
+            <div class="col"><button id="discount" ng-class="{'bluebutton': discountToggle, 'greenbutton': discountHaveValue}" class="button button-small" ng-click="priceToggle($event)">{{sale.discount_rate}}</button><button id="PriceBackSpace" ng-show="showDiscountDel" class="button icon ion-backspace-outline button-assertive ng-hide" ng-click="btn_back($event)"></button>
+            </div>
+        </div>
+
+        <div class="row brg-bg">
+            <div class="col" >SALE PRICE</div>
+            <div class="col"><button id="sale" ng-class="{'bluebutton': saleToggle, 'greenbutton': saleHaveValue}" class="button button-small" ng-click="priceToggle($event)">{{sale.sale_price | currency}}</button><button id="PriceBackSpace" ng-show="showSaleDel" class="button icon ion-backspace-outline button-assertive ng-hide" ng-click="btn_back($event)"></button>
+            </div>
+        </div>
+
+        <div class="row brg-bg" ng-show="showQtyField">
+            <div class="col">QTY</div>
+            <div class="col"><button id="qty" ng-class="{'bluebutton': qtyToggle, 'greenbutton': qtyHaveValue}" class="button button-small" ng-click="priceToggle($event)">{{sale.qty}}</button><button id="PriceBackSpace" ng-show="showQtyDel" class="button icon ion-backspace-outline button-assertive ng-hide" ng-click="btn_back($event)"></button>
+            </div>
+        </div>
+
+        
+       <!--  <button class="button brg-bg" style="width:100%"><span style="float:left; width:50px">ITEM : </span> <span style="float:left">{{sale.item_id | uppercase}}</span></button>
+        <button class="button brg-bg" style="width:100%"><span style="float:left">Retail Price : </span> {{sale.retail_price | currency:"$"}}</button>
+        <button class="button brg-bg" style="width:100%"><span style="float:left">ITEM : </span> {{sale.item_id | uppercase}}</button>
+         -->
+        <!-- <label class="item item-input">
             <span class="input-label">Item</span>
             <span>{{sale.item_id | uppercase}}</span>
         </label>
@@ -41,10 +75,9 @@
             </div>
         <ion-list>
             <div class="item item-input-inset" ng-hide="showDisOption">
-            <!-- <span class="input-label">code</span> -->
                 <label class="item item-input-wrapper" style="padding:0px 0px 0px 5px; background:#fff; border-style: none">
                     <span class="input-label">Discount(%)</span>
-                    <input type="number" min="0" max="100" style="font-size:16px" ng-model="sale.discount_rate" ng-change="sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100">%
+                    <input type="number" min="0" max="100" ng-model="sale.discount_rate" ng-change="sale.sale_price = sale.retail_price - sale.retail_price * sale.discount_rate / 100">%
                 </label>
                 <button class="button button-clear button-small button-positive" ng-click="dOption()">>
               </button>
@@ -52,13 +85,39 @@
         </ion-list>
         <label class="item item-input">
             <span class="input-label">Sale Price</span><span style="float:right">$</span>
-            <input type="number" min="0" style="font-size:16px" ng-model="sale.sale_price">
+            <input type="number" min="0" ng-model="sale.sale_price">
         </label>
         <label class="item item-input" ng-hide="hideQtyField">
             <span class="input-label">Qty</span>
             <input type="number" min="1" style="font-size:16px" ng-model="sale.qty">
-        </label>
+        </label> -->
     </ion-content>
+    <!-- <div style="position:absolute; bottom: 55px" class="button-bar ng-hide" ng-show="showDisOption"> -->
+    <div style="position:absolute; bottom: 55px; width:100%" class="ng-hide" ng-show="showPriceInput">
+        <div class="button-bar">
+            <button id = "1" class="button" ng-click="btn_price($event)">1</button>
+            <button id = "2" class="button" ng-click="btn_price($event)">2</button>
+            <button id = "3" class="button" ng-click="btn_price($event)">3</button>
+            
+        </div>
+        <div class="button-bar">
+            <button id = "4" class="button" ng-click="btn_price($event)">4</button>
+            <button id = "5" class="button" ng-click="btn_price($event)">5</button>
+            <button id = "6" class="button" ng-click="btn_price($event)">6</button>
+        </div>
+        <div class="button-bar">
+            <button id = "7" class="button" ng-click="btn_price($event)">7</button>
+            <button id = "8" class="button" ng-click="btn_price($event)">8</button>
+            <button id = "9" class="button" ng-click="btn_price($event)">9</button>
+            
+        </div>
+         <div class="button-bar">
+            <button id = "." class="button" ng-click="btn_price($event)">.</button>
+            <button id = "0" class="button" ng-click="btn_price($event)">0</button>
+            <button id = "." class="button" ng-click="btn_back($event)">.</button>
+            
+        </div>
+    </div>
 
     <ion-footer-bar keyboard-attach class="bar-balanced" style="padding:0px">
         <div class="button-bar">
