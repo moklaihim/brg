@@ -1,7 +1,6 @@
 angular.module('starter.controllers')
 .controller('LoginController', ["$scope", "$state", "$ionicPopup", "$ionicHistory", "Auth", function($scope, $state, $ionicPopup, $ionicHistory, Auth) {
     console.log("LoginController started");
-    $scope.showLoginView = true;
 
     $scope.user = {
         email: '',
@@ -31,12 +30,15 @@ angular.module('starter.controllers')
                 $scope.user.password = '';
                 window.localStorage.removeItem("brg_login_email");
                 window.localStorage.removeItem("brg_login_password");
+                $scope.showLoginView = true;
                 $ionicPopup.alert({
                     title: 'Login error!',
                     template: res.message
                 }); 
             }   
         }); 
+    }else{
+        $scope.showLoginView = true;
     }
 
     $scope.login = function (){ 

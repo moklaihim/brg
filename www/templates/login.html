@@ -1,5 +1,10 @@
 <ion-view view-title="Login">
-    <ion-content class="has-header padding" ng-show="showLoginView && user.uid == undefined">
+
+    <ion-content class="padding" ng-hide="showLoginView || showPasswordChangeView">
+        <ion-spinner icon="ripple"></ion-spinner>
+    </ion-content>
+
+    <ion-content class="padding ng-hide" ng-show="showLoginView && user.uid == undefined">
   	    <div class="list">
   		    <label class="item item-input item-floating-label">
   			    <span class="input-label">Email</span>
@@ -13,7 +18,7 @@
   		<button class="button button-block button-positive" ng-click="login()">Login</button>
     </ion-content>
 
-    <ion-content class="has-header padding hidden" ng-show="showPasswordChangeView">
+    <ion-content class="padding ng-hide" ng-show="showPasswordChangeView">
   	    <div class="list">
   		    <label class="item item-input item-floating-label">
   			    <span class="input-label">Email</span>
