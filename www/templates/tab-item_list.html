@@ -4,7 +4,7 @@
         <button class="button" ng-click="showDatePicker()">{{current.set_date}}</button>
     </ion-nav-buttons> -->
 
-    <ion-header-bar class="bar-subheader bar-positive" >
+    <ion-header-bar class="bar-subheader brg-bg" >
      <span id="searchItem" class="title" ng-model="query.text">{{headerLabel}}: {{current.item_id}}</h1></span>
         <span style="float:right" ng-if = "headerCloseButton"><button class="button button-clear ion-close" ng-click="itemIdClear()"></button></span>
     </ion-header-bar>
@@ -36,41 +36,47 @@
         </ion-content> -->
 
         <div style="position:absolute; bottom: 55px; width:100%">
-            <div ng-show="showBrandInput" class="item item-input-inset ng-hide" style="padding:0px">
+            <!-- <div ng-show="showBrandInput" class="item item-input-inset ng-hide" style="padding:0px">
                 <ion-scroll direction="x" style="width:100%">
-                    <button ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button" style="color:white; background-color:#387EF5" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</button>
+                    <button ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button pcode-button" style="color:white; background-color:#387EF5" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</button>
                 </ion-scroll>
+            </div> -->
+
+            <div ng-show="showBrandInput" class="button-bar ng-hide">
+                <div style="width:100%">
+                    <button ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button addbutton pcode-button brg-bg" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</button>
+                </div>
+            </div> 
+            <div ng-show="showColorInput" class="button-bar bar-positive ng-hide">
+                <!-- <button id = "colorBack" class="button pcode-button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
+                <div style="width:100%">
+                    <button ng-repeat="color in colors_array | orderBy:'order'" id="{{color.id}}" class="button addbutton pcode-button" style="color:{{color.color}}; background-color:{{color.backgroundcolor}};" ng-class="{active: color.id == item_color}" ng-click="btn_color(color.name)">{{color.name}}</button>
+                </div>
             </div>
-            <div ng-show="showColorInput" class="item item-input-inset ng-hide" style="padding:0px">
-                <!-- <button id = "colorBack" class="button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
-                <ion-scroll direction="x" style="width:100%">
-                    <button ng-repeat="color in colors_array | orderBy:'order'" id="{{color.id}}" class="button" style="color:{{color.color}}; background-color:{{color.backgroundcolor}};" ng-class="{active: color.id == item_color}" ng-click="btn_color(color.name)">{{color.name}}</button>
-                </ion-scroll>
-            </div>
-            <div ng-show="showSizeInput" class="item item-input-inset ng-hide" style="padding:0px">
-                <!-- <button id = "sizeBack" class="button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
-                <ion-scroll direction="x" style="width:100%">
-                    <button ng-repeat="size in sizes_array | orderBy:'order'" id ="{{size.id}}" class="button" style="color:white; background-color:#387EF5" ng-class="{active: size.id == item_size}" ng-click="btn_size({{size.id}})">{{size.name}}</button>
-                </ion-scroll>
+            <div ng-show="showSizeInput" class="button-bar ng-hide">
+                <!-- <button id = "sizeBack" class="button pcode-button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
+                <div style="width:100%">
+                    <button ng-repeat="size in sizes_array | orderBy:'order'" id ="{{size.id}}" class="button addbutton pcode-button brg-bg" ng-class="{active: size.id == item_size}" ng-click="btn_size({{size.id}})">{{size.name}}</button>
+                </div>
             </div>
             <div ng-show="showCodeInput" class="ng-hide">                
-                <div class="button-bar bar-positive">
+                <div class="button-bar">
                     <!-- <button id = "codeBack" class="button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
-                    <a id = "1" class="button button-rised ink-dark" ng-click="btn_code($event)">1</a>
-                    <a id = "2" class="button button-rised ink-dark" ng-click="btn_code($event)">2</a>
-                    <a id = "3" class="button button-rised ink-dark" ng-click="btn_code($event)">3</a>
-                    <a id = "4" class="button button-rised ink-dark" ng-click="btn_code($event)">4</a>
-                    <a id = "5" class="button button-rised ink-dark" ng-click="btn_code($event)">5</a>
-                    <a id = "Clear" class="button icon ion-backspace-outline button-assertive" on-hold = "btn_code_clear()" ng-click="btn_code_backspace()"></a>
+                    <a id = "1" class="button pcode-button button-rised ink-dark brg-bg" ng-click="btn_code($event)">1</a>
+                    <a id = "2" class="button pcode-button button-rised ink-dark brg-bg" ng-click="btn_code($event)">2</a>
+                    <a id = "3" class="button pcode-button button-rised ink-dark brg-bg" ng-click="btn_code($event)">3</a>
+                    <a id = "4" class="button pcode-button button-rised ink-dark brg-bg" ng-click="btn_code($event)">4</a>
+                    <a id = "5" class="button pcode-button button-rised ink-dark brg-bg" ng-click="btn_code($event)">5</a>
+                    <a id = "Clear" class="button pcode-button icon ion-backspace-outline button-assertive" on-hold = "btn_code_clear()" ng-click="btn_code_backspace()"></a>
                 </div>
-                <div class="button-bar bar-positive">
-                    <!-- <a id = "-" class="button icon ion-minus" ng-click="btn_code($event)"></a> -->
-                    <a id = "6" class="button button-rised ink-dark" ng-click="btn_code($event)">6</a>
-                    <a id = "7" class="button button-rised ink-dark" ng-click="btn_code($event)">7</a>
-                    <a id = "8" class="button button-rised ink-dark" ng-click="btn_code($event)">8</a>
-                    <a id = "9" class="button button-rised ink-dark" ng-click="btn_code($event)">9</a>
-                    <a id = "0" class="button button-rised ink-dark" ng-click="btn_code($event)">0</a>
-                    <a id = "OK" class="button icon ion-android-checkmark-circle button-balanced" ng-click="btn_code_ok()"></a>
+                <div class="button-bar">
+                    <!-- <a id = "-" class="button pcode-button icon ion-minus" ng-click="btn_code($event)"></a> -->
+                    <a id = "6" class="button pcode-button button-rised ink-dark brg-bg" ng-click="btn_code($event)">6</a>
+                    <a id = "7" class="button pcode-button button-rised ink-dark brg-bg" ng-click="btn_code($event)">7</a>
+                    <a id = "8" class="button pcode-button button-rised ink-dark brg-bg" ng-click="btn_code($event)">8</a>
+                    <a id = "9" class="button pcode-button button-rised ink-dark brg-bg" ng-click="btn_code($event)">9</a>
+                    <a id = "0" class="button pcode-button button-rised ink-dark brg-bg" ng-click="btn_code($event)">0</a>
+                    <a id = "OK" class="button pcode-button icon ion-android-checkmark-circle button-balanced" ng-click="btn_code_ok()"></a>
                 </div>
             </div>
         </div> 
@@ -122,10 +128,10 @@
 
     <ion-footer-bar ng-show = "showInputSelections" class="ng-hide" keyboard-attach class="bar-calm" style="padding:0px;">
         <div class="button-bar">
-            <button class="button pcode-button" style="line-height:17px" ng-class="{'bluebutton': toggleBrand, 'greenbutton': brandHaveValue}" ng-click="trig_brand()">Brand</br><b>{{item_brand}}</b></button>
-            <button class="button pcode-button" style="line-height:17px" ng-class="{'bluebutton': toggleCode, 'greenbutton': codeHaveValue}" ng-click="trig_code()">Code</br><b>{{item_code}}</b></button>
-            <button class="button pcode-button" style="line-height:17px" ng-class="{'bluebutton': toggleColor, 'greenbutton': colorHaveValue}" ng-click="trig_color()">Color</br><b>{{item_color}}</b></button>
-            <button class="button pcode-button" style="line-height:17px" ng-class="{'bluebutton': toggleSize, 'greenbutton': sizeHaveValue}" ng-click="trig_size()">Size</br><b>{{item_size}}</b></button>
+            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleBrand, 'greenbutton': brandHaveValue}" ng-click="trig_brand()">Brand</br><b>{{item_brand}}</b></button>
+            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleCode, 'greenbutton': codeHaveValue}" ng-click="trig_code()">Code</br><b>{{item_code}}</b></button>
+            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleColor, 'greenbutton': colorHaveValue}" ng-click="trig_color()">Color</br><b>{{item_color}}</b></button>
+            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleSize, 'greenbutton': sizeHaveValue}" ng-click="trig_size()">Size</br><b>{{item_size}}</b></button>
         </div>
     </ion-footer-bar>
 

@@ -97,7 +97,7 @@
 }
 
 .popup-buttons button{
-    color: #009688 !important;
+    color: #fff !important;
     padding: 0px !important;
 }
 
@@ -217,8 +217,8 @@
   background: #f7f7f7;
 }
 
-.bluebutton{
-  background-color: #387EF5;
+.purplebutton{
+  background-color: #5E3462;
   color: white;
 }
 
@@ -226,3 +226,10 @@
   background-color: #4CAF50;
   color: white;
 }
+
+.addbutton{
+  min-width: 78px;
+  max-width: 78px;
+  padding: 0px;
+}
+
