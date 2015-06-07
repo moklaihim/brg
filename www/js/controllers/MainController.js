@@ -61,6 +61,8 @@ angular.module('starter.controllers')
 
     function logout(){
         console.log("logout started");
+        window.localStorage.removeItem("brg_login_email");
+        window.localStorage.removeItem("brg_login_password");
         Users.logout(currentAuth.password.email);
         Auth.logout();
         $state.go('login');
