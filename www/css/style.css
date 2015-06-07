@@ -120,6 +120,10 @@
     font-size: 12px !important;
 }
 
+.item{
+    margin: 0px !important;
+}
+
 .item-complex .item-content, .item-radio .item-content {
     padding: 16px 16px 16px 16px;
 }
