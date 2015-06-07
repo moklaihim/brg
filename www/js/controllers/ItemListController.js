@@ -30,7 +30,20 @@ angular.module('starter.controllers')
     var addItemClicked = false;
     var lastItemCodeEntered = false;
 
-    $scope.brands_array = Codes.get_brands_as_array();
+    /* Make Brand palate from here*/
+    $scope.brands_array = new Array();
+    var iil = 5;
+    var brands = Codes.get_brands_as_array();
+
+    for (var l = 0; l < Math.ceil(brands.length / iil); l++){
+        $scope.brands_array[l] = new Array();
+    }
+
+    for (var i = 0; i < brands.length; i++) {
+        j = Math.floor(i / iil);
+        k = i % iil;
+        $scope.brands_array[j][k] = brands[i];
+    }
 
     /* Make Color palate from here*/
     $scope.colors_array = new Array();
@@ -46,9 +59,21 @@ angular.module('starter.controllers')
         k = i % iil;
         $scope.colors_array[j][k] = colors[i];
     }
-    /* Make Color palate to here*/
+    /* Make Size palate to here*/
+    $scope.sizes_array = new Array();
+    var iil = 5;
+    var sizes = Codes.get_sizes_as_array();
 
-    $scope.sizes_array = Codes.get_sizes_as_array();
+    for (var l = 0; l < Math.ceil(sizes.length / iil); l++){
+        $scope.sizes_array[l] = new Array();
+    }
+
+    for (var i = 0; i < sizes.length; i++) {
+        j = Math.floor(i / iil);
+        k = i % iil;
+        $scope.sizes_array[j][k] = sizes[i];
+    }
+
 
 
     updateItems();
