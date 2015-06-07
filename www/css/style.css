@@ -235,7 +235,6 @@
   background-color: blue;
   color: white;
 }
-<<<<<<< HEAD
 
 .addbutton{
   min-width: 78px;
@@ -248,9 +247,9 @@ height: 60px;
 /*line-height: 30px;*/
 display: flex;
 align-items: center;
-=======
+}
+
 .greenbutton{
   background-color: green;
   color: white;
->>>>>>> 1119e7d08a0dd6f334be35562c8c1a0e24c155e6
 }
