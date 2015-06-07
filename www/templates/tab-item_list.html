@@ -19,7 +19,11 @@
         
         <ion-list ng-if = "showItemList">
             <ion-item ng-click="addItem()"><center><b>Not Found? Add New Item.</b></center></ion-item>
+<<<<<<< HEAD
                 <ion-item ng-repeat="item in items_array | itemFilter : item_brand:'brand' | itemFilter : item_code:'code' | itemFilter : item_color:'color' | itemFilter : item_size:'size' | uppercase" ng-click="selectItem(item.id)" ><b><h2>{{item.id}}</h2></b>
+=======
+                <ion-item ng-repeat="item in items_array | itemFilter : item_brand:'brand' | itemFilter : item_code:'code' | itemFilter : item_color:'color' | itemFilter : item_size:'size' | uppercase" ng-click="selectItem(item.id)" ><b>{{item.id}}</b>
+>>>>>>> 1119e7d08a0dd6f334be35562c8c1a0e24c155e6
                 <!-- <ion-item ng-repeat="item in items_array | itemFilter : current.item_brand:'brand' | uppercase" ng-click="selectItem(item.id)" ><b>{{item.id}}</b> -->
                 <ion-option-button class="button-positive ion-edit" ng-click="editItem(item.id)"></ion-option-button>
                 <ion-option-button class="button-assertive ion-close-round" ng-click="removeItem(item.id)"></ion-option-button>
@@ -123,10 +127,17 @@
 
     <ion-footer-bar ng-show = "showInputSelections" class="ng-hide" keyboard-attach class="bar-calm" style="padding:0px;">
         <div class="button-bar">
+<<<<<<< HEAD
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleBrand, 'greenbutton': brandHaveValue}" ng-click="trig_brand()">Brand</br><b>{{item_brand}}</b></button>
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleCode, 'greenbutton': codeHaveValue}" ng-click="trig_code()">Code</br><b>{{item_code}}</b></button>
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleColor, 'greenbutton': colorHaveValue}" ng-click="trig_color()">Color</br><b>{{item_color}}</b></button>
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleSize, 'greenbutton': sizeHaveValue}" ng-click="trig_size()">Size</br><b>{{item_size}}</b></button>
+=======
+            <button class="button" style="line-height:17px" ng-class="{'bluebutton': toggleBrand, 'greenbutton': brandHaveValue}" ng-click="trig_brand()">Brand</br><b>{{item_brand}}</b></button>
+            <button class="button" style="line-height:17px" ng-class="{'bluebutton': toggleCode, 'greenbutton': codeHaveValue}" ng-click="trig_code()">Code</br><b>{{item_code}}</b></button>
+            <button class="button" style="line-height:17px" ng-class="{'bluebutton': toggleColor, 'greenbutton': colorHaveValue}" ng-click="trig_color()">Color</br><b>{{item_color}}</b></button>
+            <button class="button" style="line-height:17px" ng-class="{'bluebutton': toggleSize, 'greenbutton': sizeHaveValue}" ng-click="trig_size()">Size</br><b>{{item_size}}</b></button>
+>>>>>>> 1119e7d08a0dd6f334be35562c8c1a0e24c155e6
         </div>
     </ion-footer-bar>
 
