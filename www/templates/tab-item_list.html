@@ -48,7 +48,7 @@
             </div> 
             <div ng-repeat="colors in colors_array track by $index" ng-show="showColorInput" class="button-bar bar-positive ng-hide">
                 <!-- <button id = "colorBack" class="button pcode-button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
-                    <a ng-repeat="color in colors | orderBy:'order' track by $index" id="{{color.id}}" class="button button-raised" style="color:{{color.color}}; background-color:{{color.backgroundcolor}};" ng-class="{active: color.id == item_color}" ng-click="btn_color(color.name)">{{color.name}}</a>
+                    <a ng-repeat="color in colors | orderBy:'order' track by $index" id="{{color.id}}" class="button button-raised" style="color:{{color.color}}; background-color:{{color.backgroundcolor}}; padding:0" ng-class="{active: color.id == item_color}" ng-click="btn_color(color.name)">{{color.name}}</a>
             </div>
             <div ng-repeat="sizes in sizes_array track by $index" ng-show="showSizeInput" class="button-bar ng-hide">
                 <!-- <button id = "sizeBack" class="button pcode-button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->

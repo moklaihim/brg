@@ -240,6 +240,10 @@
   background-color: blue;
   color: white;
 }
+.bluebutton:hover{
+  /*background-color: blue;*/
+  color: white;
+}
 
 .addbutton{
   min-width: 78px;
