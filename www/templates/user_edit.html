@@ -2,17 +2,17 @@
 
     <ion-content padding="true">
         <div class="list">
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Email Address</span>
-                <input type="text" ng-disabled="user_detail.id" placeholder="email address" ng-model="user_detail.email">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Email address</span>
+                <input type="text" ng-disabled="user_detail.id" placeholder="Email address" ng-model="user_detail.email">
             </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Name</span>
-                <input type="text" placeholder="full name" ng-model="user_detail.name">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Full name</span>
+                <input type="text" placeholder="Full name" ng-model="user_detail.name">
             </label>
-            <label class="item item-input item-stacked-label">
+            <label class="item item-input item-floating-label">
                 <span class="input-label">Password</span>
-                <input class="hidden" type="password" placeholder="password" ng-model="user_detail.password" ng-show="!user_detail.id">
+                <input class="hidden" type="password" placeholder="Password" ng-model="user_detail.password" ng-show="!user_detail.id">
                 <button class="button button-small button-balanced hidden" ng-show="user_detail.id" ng-click="reset_pw()">Reset Password</button>
             </label>
             <label class="item item-input item-stacked-label">

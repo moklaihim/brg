@@ -22,7 +22,7 @@
             <div class="col role-table">Delete Own Sales</div>
             <div class="col role-table">Close Sales</div>
         </div>
-        <div class="row" ng-repeat="(key, role) in roles">
+        <div class="row" ng-repeat="role in roles">
             <div class="col role-table">{{role['name']}}</div>
             <div class="col role-table"><input type="checkbox" ng-model="role['allowAccessReportsMenu']"></div>
             <div class="col role-table"><input type="checkbox" ng-model="role['allowAccessCodesMenu']"></div>
