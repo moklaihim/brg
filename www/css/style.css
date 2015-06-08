@@ -226,6 +226,11 @@
   color: white;
 }
 
+.purplebutton:hover{
+  /*background-color: #5E3462;*/
+  color: white;
+}
+
 .greenbutton{
   background-color: #4CAF50;
   color: white;
@@ -249,7 +254,3 @@ display: flex;
 align-items: center;
 }
 
-.greenbutton{
-  background-color: green;
-  color: white;
-}
