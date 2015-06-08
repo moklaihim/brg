@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 .controller('SaleAddController', ["$scope", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ionicPlatform","Items", "Sales", function($scope, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ionicPlatform, Items, Sales) {
     $scope.showDisOption = false;
-    $scope.showPriceInput = true;
+    $scope.showPriceInput = false;
 
 
 
@@ -131,7 +131,7 @@ angular.module('starter.controllers')
     }
 
     $scope.priceToggle= function(event){
-        // $scope.showPriceInput = !$scope.showPriceInput;
+        $scope.showPriceInput = true;
         if(event.target.id == 'discount'){
             // $scope.showPriceInput = !$scope.showPriceInput;
             $scope.discountToggle = true;
@@ -169,13 +169,6 @@ angular.module('starter.controllers')
 
 
         console.log("button clicked");
-    };
-
-    $scope.dButton= function(event){
-        $scope.showDisOption = !$scope.showDisOption;
-        $scope.sale.discount_rate = parseFloat(event.target.id);
-        $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * event.target.id / 100;
-
     };
 
     // Alert Function----------------------------------------
