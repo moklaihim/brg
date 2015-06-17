@@ -8,50 +8,36 @@
     </ion-content>
     
     <ion-content padding="false">
-        <table>
-            <tr>
+        <table style="text-align: center; border: 1px solid black;">
+            <tr style="border: 1px solid black;">
                 <th>Role</th>
                 <th>Access Reports Menu</th>
                 <th>Access Codes Menu</th>
                 <th>Access Users Menu</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>Access Roles Menu</th>
+                <th>View All Sales</th>
+                <th>Add Sales</th>
+                <th>Edit All Sales</th>
+                <th>Edit Own Sales</th>
+                <th>Delete All Sales</th>
+                <th>Delete Own Sales</th>
+                <th>Close Sales</th>
+            </tr>
+            <tr ng-repeat="role in roles" style="border: 1px solid black;">
+                <td>{{role['name']}}</td>
+                <td><input type="checkbox" ng-model="role['allowAccessReportsMenu']"></td>
+                <td><input type="checkbox" ng-model="role['allowAccessCodesMenu']"></td>
+                <td><input type="checkbox" ng-model="role['allowAccessUsersMenu']"></td>
+                <td><input type="checkbox" ng-model="role['allowAccessRolesMenu']"></td>
+                <td><input type="checkbox" ng-model="role['allowViewAllSales']"></td>
+                <td><input type="checkbox" ng-model="role['allowAddSales']"></td>
+                <td><input type="checkbox" ng-model="role['allowEditAllSales']"></td>
+                <td><input type="checkbox" ng-model="role['allowEditOwnSales']"></td>
+                <td><input type="checkbox" ng-model="role['allowDeleteAllSales']"></td>
+                <td><input type="checkbox" ng-model="role['allowDeleteOwnSales']"></td>
+                <td><input type="checkbox" ng-model="role['allowCloseSales']"></td>
             </tr>
         </table>
-        <div class="row">
-            <div class="col role-table">Role</div>
-            <div class="col role-table">Access Reports Menu</div>
-            <div class="col role-table">Access Codes Menu</div>
-            <div class="col role-table">Access Users Menu</div>
-            <div class="col role-table">Access Roles Menu</div>
-            <div class="col role-table">View All Sales</div>
-            <div class="col role-table">Add Sales</div>
-            <div class="col role-table">Edit All Sales</div>
-            <div class="col role-table">Edit Own Sales</div>
-            <div class="col role-table">Delete All Sales</div>
-            <div class="col role-table">Delete Own Sales</div>
-            <div class="col role-table">Close Sales</div>
-        </div>
-        <div class="row" ng-repeat="role in roles">
-            <div class="col role-table">{{role['name']}}</div>
-            <div class="col role-table"><input type="checkbox" ng-model="role['allowAccessReportsMenu']"></div>
-            <div class="col role-table"><input type="checkbox" ng-model="role['allowAccessCodesMenu']"></div>
-            <div class="col role-table"><input type="checkbox" ng-model="role['allowAccessUsersMenu']"></div>
-            <div class="col role-table"><input type="checkbox" ng-model="role['allowAccessRolesMenu']"></div>
-            <div class="col role-table"><input type="checkbox" ng-model="role['allowViewAllSales']"></div>
-            <div class="col role-table"><input type="checkbox" ng-model="role['allowAddSales']"></div>
-            <div class="col role-table"><input type="checkbox" ng-model="role['allowEditAllSales']"></div>
-            <div class="col role-table"><input type="checkbox" ng-model="role['allowEditOwnSales']"></div>
-            <div class="col role-table"><input type="checkbox" ng-model="role['allowDeleteAllSales']"></div>
-            <div class="col role-table"><input type="checkbox" ng-model="role['allowDeleteOwnSales']"></div>
-            <div class="col role-table"><input type="checkbox" ng-model="role['allowCloseSales']"></div>
-        </div>
     </ion-content>
     <button class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-content-save" ng-click="update()"></button>
 </ion-view>

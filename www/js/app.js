@@ -155,7 +155,12 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         url: '/reports/list',
         cache: false,
         templateUrl: 'templates/report_list.html',
-        controller: 'ReportListController'
+        controller: 'ReportListController',
+        resolve: {
+            "items": ["Items", function(Items) {
+                return Items.get();
+            }]
+        }
     })
 
     .state('main.codes_list', {

@@ -1,17 +1,69 @@
 angular.module('starter.controllers')
-.controller('ReportListController', ["$scope", "$state", "$ionicPopup", "Roles", function($scope, $state, $ionicPopup, Roles) {
+.controller('ReportListController', ["$scope", "Stores", "Sales", "Env", "Items", "items", "$cordovaEmailComposer", function($scope, Stores, Sales, Env, Items, items, $cordovaEmailComposer) {
     console.log("ReportListController started");
     $scope.current.view = 'reports_list';
+    var emailbody = '';
 
-    $scope.roles = Roles.get_list();
+    $scope.stores = Stores.get_list();
+    updateReport();
 
-    $scope.update = function(){
-        $scope.roles.$save();
+    function updateReport(){
+        $scope.sales4stores = new Object();
+        $scope.total4stores = new Object();
+        $scope.grandtotal = 0;
+
+        angular.forEach($scope.stores, function(value, key) {
+            $scope.sales4stores[key] = Sales.get(key, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+            $scope.total4stores[key] = 0;
+            if($scope.sales4stores[key].$loaded){
+                $scope.sales4stores[key].$loaded().then(function() {
+                    emailbody += $scope.stores[key].name + "\n";
+                    angular.forEach($scope.sales4stores[key], function(sale, i) {
+                        if(sale.item != "CLOSED"){
+                            $scope.sales4stores[key][i].retail_price = items[sale.item].retail_price;
+                            $scope.sales4stores[key][i].discount_rate = 100 - Math.round(sale.price / items[sale.item].retail_price * 1000) / 10;
+                            $scope.total4stores[key] += sale.price * 1;
+                            $scope.grandtotal += sale.price * 1;
+                            emailbody += sale.item  + " $" + sale.retail_price + " * " + sale.discount_rate + "% = " + sale.price + "\n";
+                        }
+                    });
+                    emailbody += "------------------------\n";
+                    emailbody += "Total: $" + $scope.total4stores[key] + "\n";
+                });
+            }
+        });
+        emailbody += "------------------------\n";
+        emailbody += "Grand total: $" + $scope.grandtotal + "\n";
+    }
+
+    $scope.send = function(){
+        $cordovaEmailComposer.isAvailable().then(function() {
+            // is available
+            var email = {
+                to: ['tom.tomonari@gmail.com', 'ericong.kc@gmail.com'],
+                subject: 'Daily report for ' + $scope.current.set_date,
+                body: emailbody,
+                isHtml: false
+            };
+
+            $cordovaEmailComposer.open(email).then(null, function () {
+                // user cancelled email
+            });
+
+        }, function () {
+            // not available
+        });
     };
 
-    $scope.cancel = function(){
-        Roles.online();
-        $scope.roles = Roles.get_list();
-    };
+    $scope.$on('changedDate', updateReport);
+
+    var online_watch = $scope.$watch(Env.isOnline, function(val){
+        console.log("isOnline changed");
+        if(val == true){
+            items = Items.get();
+            updateReport();
+            online_watch();
+        }
+    }, false);
 
 }])
