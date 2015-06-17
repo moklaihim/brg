@@ -46,10 +46,11 @@ angular.module('starter.controllers')
     }
 
     /* Make Color palate from here*/
-    $scope.colors_array = new Array();
-    var iil = 5; //number of items in line
-    var colors = Codes.get_colors_as_array();
+    //$scope.colors_array = new Array();
+    //var iil = 5; //number of items in line
+    $scope.colors_array = Codes.get_colors_as_array();
 
+    /**
     for (var l = 0; l < Math.ceil(colors.length / iil); l++){
         $scope.colors_array[l] = new Array();
     }
@@ -59,6 +60,7 @@ angular.module('starter.controllers')
         k = i % iil;
         $scope.colors_array[j][k] = colors[i];
     }
+    **/
     /* Make Size palate to here*/
     $scope.sizes_array = new Array();
     var iil = 5;
@@ -298,6 +300,7 @@ angular.module('starter.controllers')
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
         $scope.showColorInput = !$scope.showColorInput;
+        $scope.showItemList = !$scope.showColorInput;
         $scope.showSizeInput = false;
         $scope.toggleColor = !$scope.toggleColor;
         $scope.toggleCode = false;

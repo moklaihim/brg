@@ -17,12 +17,21 @@
             on-refresh="doRefresh()">
         </ion-refresher>
         
-        <ion-list ng-if = "showItemList">
+        <ion-list ng-if="showItemList">
             <ion-item ng-click="addItem()"><center><b>Not Found? Add New Item.</b></center></ion-item>
                 <ion-item ng-repeat="item in items_array | itemFilter : item_brand:'brand' | itemFilter : item_code:'code' | itemFilter : item_color:'color' | itemFilter : item_size:'size' | uppercase" ng-click="selectItem(item.id)" ><b><h2>{{item.id}}</h2></b>
                 <!-- <ion-item ng-repeat="item in items_array | itemFilter : current.item_brand:'brand' | uppercase" ng-click="selectItem(item.id)" ><b>{{item.id}}</b> -->
                 <ion-option-button class="button-positive ion-edit" ng-click="editItem(item.id)"></ion-option-button>
                 <ion-option-button class="button-assertive ion-close-round" ng-click="removeItem(item.id)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+
+        <ion-list ng-if="showColorInput">
+            <ion-item class="item item-avatar" ng-repeat="color in colors_array | orderBy: 'order'" ng-click="btn_color(color.name)">
+                <img style="background-color:{{color.backgroundcolor}};">
+                <h2>{{color.name}}</h2>
+                <p>{{color.fullname}}　</p>
+                <!--a ng-repeat="color in colors | orderBy:'order' track by $index" id="{{color.id}}" class="button button-raised" style="color:{{color.color}}; background-color:{{color.backgroundcolor}}; padding:0" ng-class="{active: color.id == item_color}" ng-click="btn_color(color.name)">{{color.name}}</a-->
             </ion-item>
         </ion-list>
     </ion-content>
@@ -46,10 +55,15 @@
                 <a ng-repeat="brand in brands | orderBy:'order' track by $index" id="{{brand.id}}" class="button button-raised" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</a>
                 <!--button ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button button-raised addbutton pcode-button" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</button-->
             </div> 
+
+            <!--
             <div ng-repeat="colors in colors_array track by $index" ng-show="showColorInput" class="button-bar bar-positive ng-hide">
+                -->
                 <!-- <button id = "colorBack" class="button pcode-button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
-                    <a ng-repeat="color in colors | orderBy:'order' track by $index" id="{{color.id}}" class="button button-raised" style="color:{{color.color}}; background-color:{{color.backgroundcolor}}; padding:0" ng-class="{active: color.id == item_color}" ng-click="btn_color(color.name)">{{color.name}}</a>
+                    <!--a ng-repeat="color in colors | orderBy:'order' track by $index" id="{{color.id}}" class="button button-raised" style="color:{{color.color}}; background-color:{{color.backgroundcolor}}; padding:0" ng-class="{active: color.id == item_color}" ng-click="btn_color(color.name)">{{color.name}}</a-->
+            <!--
             </div>
+            -->
             <div ng-repeat="sizes in sizes_array track by $index" ng-show="showSizeInput" class="button-bar ng-hide">
                 <!-- <button id = "sizeBack" class="button pcode-button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
                     <a ng-repeat="size in sizes | orderBy:'order' track by $index" id ="{{size.id}}" class="button button-raised" ng-class="{active: size.id == item_size}" ng-click="btn_size({{size.id}})">{{size.name}}</a>
