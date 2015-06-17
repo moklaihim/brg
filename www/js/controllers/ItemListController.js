@@ -379,6 +379,7 @@ angular.module('starter.controllers')
         $scope.showSizeInput = false;
         $scope.toggleColor = true;
         $scope.toggleCode = false;
+        $scope.showItemList = false;
 
         itemId();
     }
