@@ -156,11 +156,11 @@ angular.module('starter.controllers')
     $scope.selectItem = selectItem;
 
     //Show or hide when tap on the item name
-    var searchItem = angular.element(document.querySelector('#searchItem'));
-    $ionicGesture.on('tap', function(e) {
-        $scope.hideSearchButtons = !$scope.hideSearchButtons;
-        $scope.$digest();
-    }, searchItem);
+    // var searchItem = angular.element(document.querySelector('#searchItem'));
+    // $ionicGesture.on('tap', function(e) {
+    //     $scope.hideSearchButtons = !$scope.hideSearchButtons;
+    //     $scope.$digest();
+    // }, searchItem);
 
     //After completing adding new item form, add to sales button is clicked
     $scope.addSaleOK = function(){
@@ -268,7 +268,8 @@ angular.module('starter.controllers')
 
     function trig_brand(event){
 
-        $scope.showBrandInput = !$scope.showBrandInput;;
+        $scope.showBrandInput = !$scope.showBrandInput;
+        $scope.showItemList = true;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
@@ -284,6 +285,7 @@ angular.module('starter.controllers')
     $scope.trig_brand = trig_brand;
 
     function trig_code(event){
+        $scope.showItemList = true;
         $scope.showBrandInput = false;
         $scope.showCodeInput = !$scope.showCodeInput;
         $scope.showColorInput = false;
@@ -311,7 +313,7 @@ angular.module('starter.controllers')
     $scope.trig_color = trig_color;
 
     function trig_size(event){
-
+        $scope.showItemList = true;
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
@@ -377,6 +379,7 @@ angular.module('starter.controllers')
         $scope.showSizeInput = false;
         $scope.toggleColor = true;
         $scope.toggleCode = false;
+        $scope.showItemList = false;
 
         itemId();
     }
@@ -392,10 +395,12 @@ angular.module('starter.controllers')
     }
 
     $scope.btn_color= function(color_id){
-        $scope.item_color = color_id;        
+        $scope.item_color = color_id;
+        $scope.showItemList = true;        
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
+        $scope.showColorFilter = false;
         $scope.showSizeInput = true;
         $scope.toggleColor = false;
         $scope.toggleSize = true;
@@ -569,6 +574,8 @@ angular.module('starter.controllers')
         $scope.current.item_id = $scope.item_brand + $scope.item_code + '-' + $scope.item_color + '-' + $scope.item_size;
         // updateInstruction();
         }
+
+        console.log("the item code is " + $scope.current.item_id)
         if($scope.item_brand){
             $scope.brandHaveValue = true;
         }
