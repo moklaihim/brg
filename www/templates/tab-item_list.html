@@ -4,12 +4,21 @@
         <button class="button" ng-click="showDatePicker()">{{current.set_date}}</button>
     </ion-nav-buttons> -->
 
-    <ion-header-bar class="bar-subheader brg-bg" >
-     <span id="searchItem" class="title" ng-model="query.text">{{headerLabel}}: {{current.item_id}}</h1></span>
-        <span style="float:right" ng-if = "headerCloseButton"><button class="button button-clear ion-close" ng-click="itemIdClear()"></button></span>
+    <ion-header-bar ng-show = "showInputSelections" class="bar-subheader ng-hide" style="padding:0px;">
+        <div class="button-bar">
+            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleBrand, 'greenbutton': brandHaveValue}" ng-click="trig_brand()">Brand</br><b>{{item_brand}}</b></button>
+            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleCode, 'greenbutton': codeHaveValue}" ng-click="trig_code()">Code</br><b>{{item_code}}</b></button>
+            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleColor, 'greenbutton': colorHaveValue}" ng-click="trig_color()">Color</br><b>{{item_color}}</b></button>
+            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleSize, 'greenbutton': sizeHaveValue}" ng-click="trig_size()">Size</br><b>{{item_size}}</b></button>
+        </div>
     </ion-header-bar>
 
-    <ion-content padding="true">
+<!-- <ion-header-bar class="bar-subheader brg-bg" >
+     <span id="searchItem" class="title" ng-model="query.text">{{headerLabel}}: {{current.item_id}}</h1></span>
+        <span style="float:right" ng-if = "headerCloseButton"><button class="button button-clear ion-close" ng-click="itemIdClear()"></button></span>
+    </ion-header-bar> -->
+
+    <ion-content padding="true" >
         <ion-refresher
             pulling-icon="ion-camera"
             pulling-text="Pull to Scan"
@@ -27,7 +36,7 @@
         </ion-list>
 
         <ion-list ng-if="showColorInput">
-            <ion-item class="item item-avatar" ng-repeat="color in colors_array | orderBy: 'order'" ng-click="btn_color(color.name)">
+            <ion-item class="item item-avatar" ng-repeat="color in colors_array | startsWith : filterLetters | orderBy: 'order'" ng-click="btn_color(color.name)">
                 <img style="background-color:{{color.backgroundcolor}};">
                 <h2>{{color.name}}</h2>
                 <p>{{color.fullname}}　</p>
@@ -44,14 +53,14 @@
             </div>
         </ion-content> -->
 
-        <div style="position:absolute; bottom: 55px; width:100%">
+        <div style="position:absolute; bottom: 0px; width:100%">
             <!-- <div ng-show="showBrandInput" class="item item-input-inset ng-hide" style="padding:0px">
                 <ion-scroll direction="x" style="width:100%">
                     <button ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button pcode-button" style="color:white; background-color:#387EF5" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</button>
                 </ion-scroll>
             </div> -->
 
-            <div ng-repeat="brands in brands_array track by $index" ng-show="showBrandInput" class="button-bar ng-hide bar-positive">
+            <div ng-repeat="brands in brands_array track by $index" ng-show="showBrandInput" class="button-bar ng-hide bar-royal">
                 <a ng-repeat="brand in brands | orderBy:'order' track by $index" id="{{brand.id}}" class="button button-raised" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</a>
                 <!--button ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button button-raised addbutton pcode-button" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</button-->
             </div> 
@@ -64,7 +73,7 @@
             <!--
             </div>
             -->
-            <div ng-repeat="sizes in sizes_array track by $index" ng-show="showSizeInput" class="button-bar ng-hide">
+            <div ng-repeat="sizes in sizes_array track by $index" ng-show="showSizeInput" class="button-bar ng-hide bar-royal">
                 <!-- <button id = "sizeBack" class="button pcode-button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
                     <a ng-repeat="size in sizes | orderBy:'order' track by $index" id ="{{size.id}}" class="button button-raised" ng-class="{active: size.id == item_size}" ng-click="btn_size({{size.id}})">{{size.name}}</a>
             </div>
@@ -86,6 +95,23 @@
                     <a id = "9" class="button button-raised ink-dark" ng-click="btn_code($event)">9</a>
                     <a id = "0" class="button button-raised ink-dark" ng-click="btn_code($event)">0</a>
                     <a id = "OK" class="button icon ion-android-checkmark-circle button-balanced" ng-click="btn_code_ok()"></a>
+                </div>
+            </div>
+            <div ng-show="showColorInput" class="ng-hide" style="padding:0px">                
+                <div class="button-bar bar-royal">
+                    <!-- <button id = "codeBack" class="button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
+                    <a id = "ABC" class="button button-raised ink-dark" ng-click="filterLetters = 'ABC'">ABC</a>
+                    <a id = "DEF" class="button button-raised ink-dark" ng-click="filterLetters = 'DEF'">DEF</a>
+                    <a id = "GHI" class="button button-raised ink-dark" ng-click="filterLetters = 'GHI'">GHI</a>
+                    <a id = "JKL" class="button button-raised ink-dark" ng-click="filterLetters = 'JKL'">JKL</a>
+                    <a id = "MNO" class="button button-raised ink-dark" ng-click="filterLetters = 'MNO'">MNO</a>
+                </div>
+                <div class="button-bar bar-royal">
+                    <!-- <button id = "codeBack" class="button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
+                    <a id = "PQR" class="button button-raised ink-dark" ng-click="filterLetters = 'PQR'">PQR</a>
+                    <a id = "STU" class="button button-raised ink-dark" ng-click="filterLetters = 'STU'">STU</a>
+                    <a id = "VWX" class="button button-raised ink-dark" ng-click="filterLetters = 'VWX'">VWX</a>
+                    <a id = "YZ" class="button button-raised ink-dark" ng-click="filterLetters = 'YZ'">YZ</a>
                 </div>
             </div>
         </div> 
@@ -135,14 +161,14 @@
         <!-- <div style="position:fixed; bottom:0%; width:100%;"> -->
         
 
-    <ion-footer-bar ng-show = "showInputSelections" class="ng-hide" keyboard-attach class="bar-calm" style="padding:0px;">
+    <!-- <ion-footer-bar ng-show = "showInputSelections" class="ng-hide" keyboard-attach class="bar-calm" style="padding:0px;">
         <div class="button-bar">
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleBrand, 'greenbutton': brandHaveValue}" ng-click="trig_brand()">Brand</br><b>{{item_brand}}</b></button>
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleCode, 'greenbutton': codeHaveValue}" ng-click="trig_code()">Code</br><b>{{item_code}}</b></button>
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleColor, 'greenbutton': colorHaveValue}" ng-click="trig_color()">Color</br><b>{{item_color}}</b></button>
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleSize, 'greenbutton': sizeHaveValue}" ng-click="trig_size()">Size</br><b>{{item_size}}</b></button>
         </div>
-    </ion-footer-bar>
+    </ion-footer-bar> -->
 
 
 </ion-view>

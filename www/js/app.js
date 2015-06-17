@@ -43,7 +43,6 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
             if(filterType == 'brand'){
                 regexp = new RegExp('^' + filterKey);
             }else if(filterType == 'color'){
-                // console.log("normal color filter")
                 regexp = new RegExp('-' + filterKey);
             }else if(filterType == 'size'){
                 regexp = new RegExp(filterKey + '$');
@@ -68,6 +67,141 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
   }
 
 })
+
+.filter('startsWith', function () {
+    return function (input, filterLetters) {
+        var output = [];
+        if(filterLetters == "ABC"){
+            for (var i = 0; i < input.length; i++) {
+                var item = input[i];
+                if (/a/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/b/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/c/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+            }
+        }
+        else if(filterLetters == "DEF"){
+            for (var i = 0; i < input.length; i++) {
+                var item = input[i];
+                if (/d/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/e/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/f/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+            }
+        }
+        else if(filterLetters == "GHI"){
+            for (var i = 0; i < input.length; i++) {
+                var item = input[i];
+                if (/g/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/h/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/i/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+            }
+        }
+        else if(filterLetters == "JKL"){
+            for (var i = 0; i < input.length; i++) {
+                var item = input[i];
+                if (/j/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/k/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/l/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+            }
+        }
+        else if(filterLetters == "MNO"){
+            for (var i = 0; i < input.length; i++) {
+                var item = input[i];
+                if (/m/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/n/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/o/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+            }
+        }
+        else if(filterLetters == "PQR"){
+            for (var i = 0; i < input.length; i++) {
+                var item = input[i];
+                if (/p/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/q/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/r/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+            }
+        }
+        else if(filterLetters == "STU"){
+            for (var i = 0; i < input.length; i++) {
+                var item = input[i];
+                if (/s/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/t/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/u/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+            }
+        }
+        else if(filterLetters == "VWX"){
+            for (var i = 0; i < input.length; i++) {
+                var item = input[i];
+                if (/v/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/w/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/x/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+            }
+        }
+        else if(filterLetters == "YZ"){
+            for (var i = 0; i < input.length; i++) {
+                var item = input[i];
+                if (/y/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+                if (/z/i.test(item.name.substring(0, 1))) {
+                    output.push(item);
+                }
+            }
+        }
+        else{
+            output = input;
+        }
+        
+        return output;
+    }
+})
+
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
