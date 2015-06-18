@@ -3,9 +3,8 @@ angular.module('starter.controllers')
 // Start of Item List to show only item list and Brand input
 //
     $scope.current.view = 'items_list';
-    $scope.headerLabel = "Searching ";  // header will reflect ITEM List
+    $scope.headerLabel = "Shoes List ";  // header will reflect ITEM List
     $scope.showInputSelections = true;
-    $scope.headerCloseButton = true; 
     $scope.current.item_id ='';
     // $scope.showInputButtons = true;
     $scope.showItemList = true;
@@ -21,6 +20,7 @@ angular.module('starter.controllers')
     $scope.retail_price = '';
     $scope.toggleBrand = true;
     $scope.toggelSelected = false;
+    $scope.showItemCodeInputs = true;
     
     $scope.item_brand = '';
     $scope.item_code = '';
@@ -177,15 +177,18 @@ angular.module('starter.controllers')
     //when search cannot find item and "Not Found? Add New Item." is clicked" 
     function addItem(event){
         addItemClicked = true;
-        $scope.headerLabel = "Adding "
-        $scope.showInputSelections = true;
-        // $scope.headerLabel = "ADD ITEM : ";
+        $scope.headerLabel = "Shoes List (Adding) "
+        // $scope.showInputSelections = true;
         if (lastItemCodeEntered){
             $scope.showPriceInput = true;
-            $scope.headerCloseButton = true;
+            $scope.showSelectedItem = true;
+            $scope.headerCloseButton = true; 
+            // $scope.showColorInput = false;
+            // $scope.headerCloseButton = true;
             $scope.showConfirmBtns = true;
-            $scope.showInputSelections = false;
+            // $scope.showInputSelections = false;
             $scope.showItemList = false;
+            $scope.showItemCodeInputs = false;
             lastItemCodeEntered = false;
         }else{
             showItemAddError();
@@ -214,9 +217,10 @@ angular.module('starter.controllers')
     $scope.editItem = function($item_id) {
         $scope.current.item_id = $item_id;
         $scope.retail_price = $scope.items[$item_id].retail_price;
-        $scope.headerLabel = "Editing "
+        $scope.headerLabel = "Shoes List (Editing) "
         $scope.headerCloseButton = false; //disable clear item name when edit
         $scope.showInputSelections = false;
+        $scope.showSelectedItem = true;
         $scope.showItemList = false;
         $scope.showPriceInput = true;
         $scope.showSizeInput = false;
@@ -244,6 +248,7 @@ angular.module('starter.controllers')
         $scope.retail_price = '';
         $scope.current.item_id = '';
         $scope.showInputSelections = true;
+        $scope.showSelectedItem = false;
         $scope.showPriceInput = false;
         $scope.showBrandInput = true;
         $scope.showConfirmBtns = false;
@@ -489,27 +494,6 @@ angular.module('starter.controllers')
             }
         }
 
-        // if (event.target.id == "codeBack"){
-        //     $scope.showBrandInput = true;
-        //     $scope.showCodeInput = false;
-        //     $scope.showColorInput = false;
-        //     $scope.showSizeInput = false;
-        //     updateInstruction();
-        // }
-        // if (event.target.id == "colorBack"){
-        //     $scope.showBrandInput = false;
-        //     $scope.showCodeInput = true;
-        //     $scope.showColorInput = false;
-        //     $scope.showSizeInput = false;
-        //     updateInstruction();
-        // }
-        // if (event.target.id == "sizeBack"){
-        //     $scope.showBrandInput = false;
-        //     $scope.showCodeInput = false;
-        //     $scope.showColorInput = true;
-        //     $scope.showSizeInput = false;
-        //     updateInstruction();
-        // }   
         if (event.target.id == "PriceBackSpace"){
             // $scope.retail_price = $scope.retail_price.length -1
             $scope.retail_price = $scope.retail_price.substring(0, $scope.retail_price.length - 1);
@@ -519,9 +503,10 @@ angular.module('starter.controllers')
     //When the X button beside the ITEM name is clicked
     $scope.itemIdClear= function(){
         //display main item search
+        $scope.showItemCodeInputs = true;
         $scope.showInputSelections = true;
+        $scope.showSelectedItem = false;
         $scope.headerCloseButton = true;
-        $scope.showItemList = true;
         $scope.showBrandInput = true;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
@@ -540,7 +525,6 @@ angular.module('starter.controllers')
         $scope.toggleColor = false;
         $scope.toggleSize = false;
 
-
         $scope.item_brand = '';
         $scope.item_code ='';
         $scope.item_color ='';
@@ -551,11 +535,10 @@ angular.module('starter.controllers')
         priceClear();
         itemId();
         $scope.current.item_id = '';
-        if($scope.headerLabel == "Adding "){
-            $scope.headerLabel = "Searching"
-        }
-        // updateInstruction();
-        // itemId();
+        $scope.showItemList = true;
+
+        // $state.go($state.current, {}, {reload: true})
+
     };
 
 

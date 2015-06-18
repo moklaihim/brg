@@ -1,4 +1,4 @@
-<ion-view title="Shoes List">
+<ion-view title= {{headerLabel}} >
     <!-- <ion-nav-buttons side="right">
         <a class="button" ui-sref="main.stores_list">{{current.store_name}}</a> 
         <button class="button" ng-click="showDatePicker()">{{current.set_date}}</button>
@@ -13,12 +13,12 @@
         </div>
     </ion-header-bar>
 
-<!-- <ion-header-bar class="bar-subheader brg-bg" >
-     <span id="searchItem" class="title" ng-model="query.text">{{headerLabel}}: {{current.item_id}}</h1></span>
-        <span style="float:right" ng-if = "headerCloseButton"><button class="button button-clear ion-close" ng-click="itemIdClear()"></button></span>
-    </ion-header-bar> -->
+    <ion-header-bar ng-show= "showSelectedItem" class="bar-subheader brg-bg ng-hide" >
+         <span id="searchItem" class="title" ng-model="query.text">{{current.item_id}}</h1></span>
+            <span style="float:right" ng-if = "headerCloseButton"><button class="button button-clear ion-close" ng-click="itemIdClear()"></button></span>
+    </ion-header-bar>
 
-    <ion-content padding="true" style="margin-bottom:100px">
+    <ion-content padding="true" style="margin-bottom:100px" class="has-subheader">
         <ion-refresher
             pulling-icon="ion-camera"
             pulling-text="Pull to Scan"
@@ -53,7 +53,7 @@
             </div>
         </ion-content> -->
 
-        <div style="position:absolute; bottom: 0px; width:100%">
+        <div style="position:absolute; bottom: 0px; width:100%" ng-show="showItemCodeInputs" class="ng-hide">
             <!-- <div ng-show="showBrandInput" class="item item-input-inset ng-hide" style="padding:0px">
                 <ion-scroll direction="x" style="width:100%">
                     <button ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button pcode-button" style="color:white; background-color:#387EF5" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</button>
@@ -123,7 +123,8 @@
             <span style="float:right"><button class="button button-clear ion-close" ng-click="priceClear()"></button><span>
         </ion-header-bar >
     </ion-content>
-    <div ng-show="showPriceInput" class="ng-hide" style="position:absolute; bottom: 55px; width:100%">
+
+<!--     <div ng-show="showPriceInput" class="ng-hide" style="position:absolute; bottom: 55px; width:100%">
         <div class="button-bar" style="padding-top:40px">
             <button id = "1" class="button" ng-click="btn_price($event)">1</button>
             <button id = "2" class="button" ng-click="btn_price($event)">2</button>
@@ -145,6 +146,32 @@
             <button id = "." class="button" ng-click="btn_price($event)">.</button>
             <button id = "0" class="button" ng-click="btn_price($event)">0</button>
             <button id = "PriceBackSpace" class="button icon ion-backspace-outline button-assertive" ng-click="btn_back($event)"></button>
+            
+        </div>
+    </div> -->
+
+     <div ng-show="showPriceInput" class="ng-hide" style="position:absolute; bottom: 55px; width:100%">
+        <div class="button-bar">
+            <button id = "1" class="button" ng-click="btn_price($event)">1</button>
+            <button id = "2" class="button" ng-click="btn_price($event)">2</button>
+            <button id = "3" class="button" ng-click="btn_price($event)">3</button>
+            
+        </div>
+        <div class="button-bar">
+            <button id = "4" class="button" ng-click="btn_price($event)">4</button>
+            <button id = "5" class="button" ng-click="btn_price($event)">5</button>
+            <button id = "6" class="button" ng-click="btn_price($event)">6</button>
+        </div>
+        <div class="button-bar">
+            <button id = "7" class="button" ng-click="btn_price($event)">7</button>
+            <button id = "8" class="button" ng-click="btn_price($event)">8</button>
+            <button id = "9" class="button" ng-click="btn_price($event)">9</button>
+            
+        </div>
+         <div class="button-bar">
+            <button class="button icon ion-chevron-down" ng-click="showPriceInput=false"></button>
+            <button id = "0" class="button" ng-click="btn_price($event)">0</button>
+            <button id = "." class="button" ng-click="btn_price($event)">.</button>
             
         </div>
     </div>
