@@ -186,7 +186,7 @@ angular.module('starter.controllers')
             // $scope.showColorInput = false;
             // $scope.headerCloseButton = true;
             $scope.showConfirmBtns = true;
-            // $scope.showInputSelections = false;
+            $scope.showInputSelections = false;
             $scope.showItemList = false;
             $scope.showItemCodeInputs = false;
             lastItemCodeEntered = false;
@@ -218,7 +218,7 @@ angular.module('starter.controllers')
         $scope.current.item_id = $item_id;
         $scope.retail_price = $scope.items[$item_id].retail_price;
         $scope.headerLabel = "Shoes List (Editing) "
-        $scope.headerCloseButton = false; //disable clear item name when edit
+        $scope.headerCloseButton = true; 
         $scope.showInputSelections = false;
         $scope.showSelectedItem = true;
         $scope.showItemList = false;
@@ -505,7 +505,7 @@ angular.module('starter.controllers')
         //display main item search
         $scope.showItemCodeInputs = true;
         $scope.showInputSelections = true;
-        $scope.showSelectedItem = false;
+        $scope.showItemList = true;
         $scope.headerCloseButton = true;
         $scope.showBrandInput = true;
         $scope.showCodeInput = false;
@@ -513,6 +513,7 @@ angular.module('starter.controllers')
         $scope.showSizeInput = false;
 
         //hide all others and reset
+        $scope.showSelectedItem = false;
         $scope.showPriceInput = false;
         $scope.showCancelBtn = false;
         $scope.showConfirmBtns = false;
@@ -535,7 +536,6 @@ angular.module('starter.controllers')
         priceClear();
         itemId();
         $scope.current.item_id = '';
-        $scope.showItemList = true;
 
         // $state.go($state.current, {}, {reload: true})
 

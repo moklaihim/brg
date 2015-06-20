@@ -1,5 +1,5 @@
 <ion-view title="Edit/Add Sale">
-    <ion-content padding="false">
+    <ion-content padding="false" ng-class="{'smallscreen': smallScreenDetected}">
 
         <div class="row" >
             <div class="col">ITEM</div>
@@ -68,7 +68,7 @@
             
         </div>
          <div class="button-bar">
-            <button class="button icon ion-chevron-down" ng-click="showPriceInput=false"></button>
+            <button id = "hideKeypad" class="button icon ion-chevron-down" ng-click="hideNumpad()"></button>
             <button id = "0" class="button" ng-click="btn_price($event)">0</button>
             <button id = "." class="button" ng-click="btn_price($event)">.</button>
             
