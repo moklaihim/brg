@@ -1,10 +1,11 @@
 <ion-view title= {{headerLabel}} >
+<!-- <ion-nav-bar align-title="right"></ion-nav-bar> -->
     <!-- <ion-nav-buttons side="right">
         <a class="button" ui-sref="main.stores_list">{{current.store_name}}</a> 
         <button class="button" ng-click="showDatePicker()">{{current.set_date}}</button>
     </ion-nav-buttons> -->
 
-    <ion-header-bar class="bar-subheader brg-bg" style="padding:0px;">
+    <ion-header-bar class="bar-subheader brg-bg" style="padding:0px">
         <div class="button-bar ng-hide" ng-show = "showInputSelections">
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleBrand, 'greenbutton': brandHaveValue}" ng-click="trig_brand()">Brand</br><b>{{item_brand}}</b></button>
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleCode, 'greenbutton': codeHaveValue}" ng-click="trig_code()">Code</br><b>{{item_code}}</b></button>
@@ -78,7 +79,7 @@
                 <!-- <button id = "sizeBack" class="button pcode-button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
                     <a ng-repeat="size in sizes | orderBy:'order' track by $index" id ="{{size.id}}" class="button button-raised" ng-class="{active: size.id == item_size}" ng-click="btn_size({{size.id}})">{{size.name}}</a>
             </div>
-            <div ng-show="showCodeInput" class="ng-hide">                
+            <div id="slideup" ng-show="showCodeInput" class="ng-hide">                
                 <div class="button-bar bar-royal">
                     <!-- <button id = "codeBack" class="button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
                     <a id = "1" class="button button-raised ink-dark" ng-click="btn_code($event)">1</a>

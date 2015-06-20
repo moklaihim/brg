@@ -18,7 +18,6 @@ angular.module('starter.services')
         brands['h'] = {id: 'h', name: 'H', order: 4};
         brands['s'] = {id: 's', name: 'S', order: 5};
 
-
         brands.$save();
 
         colors['alm'] = {id: 'alm', name: 'ALM', color: '#000000', backgroundcolor: '#ffffff', order: 1};

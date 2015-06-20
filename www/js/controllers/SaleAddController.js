@@ -123,7 +123,7 @@ angular.module('starter.controllers')
             $scope.showPriceInput = false;
             $timeout(function() {
                 $ionicScrollDelegate.scrollTop();
-            },100);
+            },500);
     }
 
     $scope.hideNumpad = hideNumpad;
@@ -154,12 +154,15 @@ angular.module('starter.controllers')
             $scope.smallScreenDetected = true;
             $timeout(function() {
                 $ionicScrollDelegate.scrollBottom();
-            },100);
+            },500);
         }
 
         $scope.showPriceInput = true;
         if(event.target.id == 'discount'){
             // $scope.showPriceInput = !$scope.showPriceInput;
+            if($scope.sale.qty == ''){
+                $scope.sale.qty = 1;
+            }
             $scope.discountToggle = true;
             $scope.saleToggle = false;
             $scope.qtyToggle = false;
@@ -173,6 +176,9 @@ angular.module('starter.controllers')
 
         if(event.target.id == 'sale'){
             // $scope.showPriceInput = !$scope.showPriceInput;
+            if($scope.sale.qty == ''){
+                $scope.sale.qty = 1;
+            }
             $scope.discountToggle = false;
             $scope.saleToggle = true;
             $scope.qtyToggle = false;

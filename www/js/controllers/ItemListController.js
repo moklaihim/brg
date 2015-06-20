@@ -299,6 +299,10 @@ angular.module('starter.controllers')
         $scope.toggleBrand = false;
         $scope.toggleColor = false;
         $scope.toggleSize = false;
+        var slide = document.getElementById('slideup');
+        move(slide)
+        .set('margin-left', 200)
+        .end();
     }
     $scope.trig_code = trig_code;
 
