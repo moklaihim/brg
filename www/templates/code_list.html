@@ -1,13 +1,38 @@
 <ion-view view-title="Codes">
-    <ion-content padding="false">
-        <ion-list>
-            <ion-item ng-repeat="user in users" ng-if="user.active">
-            <h2>{{user.name}}</h2>
-            <p>{{user.email}}</p>
-            <ion-option-button class="button-option button-positive mdi mdi-pencil" ng-click="editUser(user.id)"></ion-option-button>
-            <ion-option-button class="button-option button-assertive mdi mdi-delete" ng-click="removeUser(user.id)"></ion-option-button>
-            </ion-item>
-            </ion-list>
+        <ion-content class="has-header">
+        <div class="list">
+            <div class="item item-input-inset">
+                <label class="item-input-wrapper">
+                    <span class="input-label">Brand Code :</span>
+                    <input type="text" ng-model="code.brandCode">
+                </label>
+                <button id="brands" class="button button-small" ng-click="submitCode($event)">
+                    Submit
+                </button>
+            </div>
+            <div class="item item-input-inset">
+                <label class="item-input-wrapper">
+                    <span class="input-label">Color Code :</span>
+                    <input type="text" ng-model="code.colorCode" >
+                </label>
+                <button id="colors" class="button button-small" ng-click="submitCode($event)">
+                    Submit
+                </button>
+            </div>
+            <div class="item item-input-inset">
+                <label class="item-input-wrapper">
+                    <span class="input-label">Size :</span>
+                    <input type="number" ng-model="code.sizeCode">
+                </label>
+                <button id="sizes" class="button button-small" ng-click="submitCode($event)">
+                    Submit
+                </button>
+            </div>
+            <!-- <div class="item">
+                123
+                {{code.brandCode}}
+            </div> -->
+        </div>
     </ion-content>
-    <button class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-account-plus" ng-click="addUser()"></button>
+   <!--  <button class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-account-plus" ng-click="addUser()"></button> -->
 </ion-view>

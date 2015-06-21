@@ -150,6 +150,7 @@ angular.module('starter.services')
             is_online = false;
         },
 
+
         get_brands: function(){
             return brands;
         },
@@ -172,6 +173,74 @@ angular.module('starter.services')
 
         get_sizes_as_array: function(){
             return sizes_array;
+        },
+
+        remove: function(code, type){
+            if(is_online){
+                if(type == "sizes"){
+                    var fCodes = new Firebase("https://fiery-heat-6039.firebaseio.com/codes/" + type + "/" + code);
+                }else{
+                    var fCodes = new Firebase("https://fiery-heat-6039.firebaseio.com/codes/" + type + "/" + code.toLowerCase());
+                }
+                var code = $firebaseObject(fCodes);
+                code.$remove().then(function(fCodes){
+                        console.log("Data removed from server");
+                    }, function(error) {
+                        console.log("Error:", error);
+                    });
+            }
+            else{
+                if(type == "brand"){
+                    delete brands[code];
+                }
+                if(type == "color"){
+                    delete color[code];
+                }
+                if(type == "size"){
+                    delete size[code];
+                }
+
+            }
+        },
+
+        add: function(code, type){
+
+            if(is_online){
+                if(type == "brands"){
+                    brands[code] = new Object();
+                    brands[code].id = code;
+                    brands[code].name = code.toUpperCase();
+                    brands.$save();
+                }
+                if(type == "colors"){
+                    colors[code] = new Object();
+                    colors[code].id = code;
+                    colors[code].name = code.toUpperCase();
+                    colors.$save();
+                }
+                if(type == "sizes"){
+                    sizes[code] = new Object();
+                    sizes[code].id = code;
+                    sizes[code].name = code;
+                    sizes.$save();
+                }
+            }else{
+                if(type == "brands"){
+                    brands[code] = new Object();
+                    brands[code].id = code;
+                    brands[code].name = code.toUpperCase();
+                }
+                if(type == "colors"){
+                    colors[code] = new Object();
+                    colors[code].id = code;
+                    colors[code].name = code.toUpperCase();
+                }
+                if(type == "sizes"){
+                    sizes[code] = new Object();
+                    sizes[code].id = code;
+                    sizes[code].name = code;
+                }
+            }
         }
     }
 }]);
