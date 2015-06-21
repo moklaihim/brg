@@ -446,37 +446,8 @@ angular.module('starter.controllers')
 
     $scope.filterColor = function(event){
         $ionicScrollDelegate.scrollTop();
-        
-        if(event.target.id == 'ABC'){
-            $scope.filterLetters = 'ABC'
-        }
-        if(event.target.id == 'DEF'){
-            $scope.filterLetters = 'DEF'
-        }
-        if(event.target.id == 'GHI'){
-            $scope.filterLetters = 'GHI'
-        }
-        if(event.target.id == 'JKL'){
-            $scope.filterLetters = 'JKL'
-        }
-        if(event.target.id == 'MNO'){
-            $scope.filterLetters = 'MNO'
-        }
-        if(event.target.id == 'PQR'){
-            $scope.filterLetters = 'PQR'
-        }
-        if(event.target.id == 'STU'){
-            $scope.filterLetters = 'STU'
-        }
-        if(event.target.id == 'VWX'){
-            $scope.filterLetters = 'VWX'
-        }
-        if(event.target.id == 'YZ'){
-            $scope.filterLetters = 'YZ'
-        }
+        $scope.filterLetters = event.target.id;
     }
-
-
 
     //Control what type of input is next
     $scope.btn_back= function(event){

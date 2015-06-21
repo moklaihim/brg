@@ -20,7 +20,7 @@
         
     </ion-header-bar> -->
 
-    <ion-content padding="true" style="margin-bottom:100px">
+    <ion-content padding="false" style="margin-bottom:100px">
         <ion-refresher
             pulling-icon="ion-camera"
             pulling-text="Pull to Scan"
@@ -38,8 +38,8 @@
         </ion-list>
 
         <ion-list ng-if="showColorInput">
-            <ion-item class="item item-avatar" ng-repeat="color in colors_array | startsWith : filterLetters | orderBy: 'order'" ng-click="btn_color(color.name)">
-                <img style="background-color:{{color.backgroundcolor}};">
+            <ion-item class="item item-avatar" ng-repeat="color in colors_array | startsWith : filterLetters | orderBy: 'order'" ng-click="btn_color(color.name)" style="background-color:#B39DDB">
+                <!-- <img style="background-color:{{color.backgroundcolor}};"> -->
                 <h2>{{color.name}}</h2>
                 <p>{{color.fullname}}</p>
                 <!--a ng-repeat="color in colors | orderBy:'order' track by $index" id="{{color.id}}" class="button button-raised" style="color:{{color.color}}; background-color:{{color.backgroundcolor}}; padding:0" ng-class="{active: color.id == item_color}" ng-click="btn_color(color.name)">{{color.name}}</a-->
