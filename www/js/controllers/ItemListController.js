@@ -272,37 +272,30 @@ angular.module('starter.controllers')
     }, true);
 
     function trig_brand(event){
-
-        $scope.showBrandInput = !$scope.showBrandInput;
-        $scope.showItemList = true;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
+        $scope.showBrandInput = !$scope.showBrandInput;
+        $scope.showItemList = true;
         $scope.toggleBrand = !$scope.toggleBrand;
         $scope.toggleCode = false;
         $scope.toggleColor = false;
         $scope.toggleSize = false;
-
-
         // $scopr.showItemList
-
     }
     $scope.trig_brand = trig_brand;
 
     function trig_code(event){
+        $scope.showCodeInput = !$scope.showCodeInput;
         $scope.showItemList = true;
         $scope.showBrandInput = false;
-        $scope.showCodeInput = !$scope.showCodeInput;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
         $scope.toggleCode = !$scope.toggleCode;
         $scope.toggleBrand = false;
         $scope.toggleColor = false;
         $scope.toggleSize = false;
-        var slide = document.getElementById('slideup');
-        move(slide)
-        .set('margin-left', 200)
-        .end();
+        
     }
     $scope.trig_code = trig_code;
 
