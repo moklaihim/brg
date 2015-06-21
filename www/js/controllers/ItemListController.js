@@ -436,13 +436,48 @@ angular.module('starter.controllers')
         // $scope.headerLabel = "ITEM : " + $scope.current.item_id;
     };
 
-    $scope.btn_price= function(event){
+    $scope.btn_price = function(event){
         if(editItemClicked){
             priceClear();
             editItemClicked = false;
         }
         $scope.retail_price = $scope.retail_price + event.target.id;
     };
+
+    $scope.filterColor = function(event){
+        $ionicScrollDelegate.scrollTop();
+        
+        if(event.target.id == 'ABC'){
+            $scope.filterLetters = 'ABC'
+        }
+        if(event.target.id == 'DEF'){
+            $scope.filterLetters = 'DEF'
+        }
+        if(event.target.id == 'GHI'){
+            $scope.filterLetters = 'GHI'
+        }
+        if(event.target.id == 'JKL'){
+            $scope.filterLetters = 'JKL'
+        }
+        if(event.target.id == 'MNO'){
+            $scope.filterLetters = 'MNO'
+        }
+        if(event.target.id == 'PQR'){
+            $scope.filterLetters = 'PQR'
+        }
+        if(event.target.id == 'STU'){
+            $scope.filterLetters = 'STU'
+        }
+        if(event.target.id == 'VWX'){
+            $scope.filterLetters = 'VWX'
+        }
+        if(event.target.id == 'YZ'){
+            $scope.filterLetters = 'YZ'
+        }
+    }
+
+
+
     //Control what type of input is next
     $scope.btn_back= function(event){
         if(event.target.id == "inputBackBtn"){
