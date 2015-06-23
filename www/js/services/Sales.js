@@ -1,5 +1,5 @@
 angular.module('starter.services')
-.factory('Sales', ["$firebaseObject", function($firebaseObject) {
+.factory('Sales', ["$firebaseObject", "Auth", function($firebaseObject, Auth) {
     var sales = new Object();
     var fSales = {};
     var is_online;
@@ -29,6 +29,7 @@ angular.module('starter.services')
                         sale.date = local_sales[key_ut].date;
                         sale.time = local_sales[key_ut].time;
                         sale.timestamp = local_sales[key_ut].timestamp;
+                        sale.user = local_sales[key_ut].user;
                         sale.$save();
                     }
                     console.log("Deleting " + localStorage.key(i));
@@ -54,7 +55,7 @@ angular.module('starter.services')
             return sales;
         },
 
-        add: function(store_id, item_id, sale_price, year, month, day, sale_key){
+        add: function(store_id, item_id, sale_price, year, month, day, sale_key, user_id){
             var now = new Date();
             var hour = now.getHours();
             var minute = now.getMinutes();
@@ -77,6 +78,7 @@ angular.module('starter.services')
                 sale.date = year + "/" + month + "/" + day;
                 sale.time = time;
                 sale.timestamp = current_ut;
+                sale.user = user_id;
                 sale.$save();
                 
             }else{
@@ -87,6 +89,7 @@ angular.module('starter.services')
                 sales[current_ut].date = year + "/" + month + "/" + day;
                 sales[current_ut].time = time;
                 sales[current_ut].timestamp = current_ut;
+                sales[current_ut].user = user_id;
 
                 localStorage.setItem('brg_sales-' + store_id + '-' + year + '-' + month + '-' + day, JSON.stringify(sales));
             }
@@ -109,7 +112,7 @@ angular.module('starter.services')
             }
         },
 
-        close: function(store_id, year, month, day){
+        close: function(store_id, year, month, day, user_id){
             var now = new Date();
             var hour = now.getHours();
             var minute = now.getMinutes();
@@ -124,6 +127,7 @@ angular.module('starter.services')
             sale.date = year + "/" + month + "/" + day;
             sale.time = time;
             sale.timestamp = current_ut;
+            sale.user = user_id;
             sale.$save();
         },
 

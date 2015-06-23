@@ -30,7 +30,7 @@ angular.module('starter.controllers')
 
     $scope.closeSales = function(){
         console.log("Close Sales");
-        Sales.close($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+        Sales.close($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, $scope.user_detail.email);
         updateSales();
     }
 

@@ -197,6 +197,7 @@
 }
 [date-picker] th:hover,
 [date-picker] [ng-switch-when="date"] td span:hover {
+  color: #000000;
   background: #eeeeee;
   cursor: pointer;
 }
