@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ReportListController', ["$scope", "Stores", "Sales", "Env", "Items", "items", "$cordovaEmailComposer", function($scope, Stores, Sales, Env, Items, items, $cordovaEmailComposer) {
+.controller('ReportListController', ["$scope", "Stores", "Sales", "Env", "Items", "items", "Env", "$cordovaEmailComposer", function($scope, Stores, Sales, Env, Items, items, Env, $cordovaEmailComposer) {
     console.log("ReportListController started");
     $scope.current.view = 'reports_list';
 
@@ -30,6 +30,8 @@ angular.module('starter.controllers')
     }
 
     $scope.send = function(){
+        var tos = 'tom.tomonari@gmail.com';
+        var subject = 'Daily report for ' + $scope.current.set_date;
         var emailbody = 'Daily report for ' + $scope.current.set_date + "\n\n";
         angular.forEach($scope.stores, function(value, key) {
             emailbody += $scope.stores[key].name;
@@ -48,22 +50,26 @@ angular.module('starter.controllers')
         emailbody += "------------------------\n";
         emailbody += "Grand total: $" + $scope.grandtotal + "\n";
 
-        $cordovaEmailComposer.isAvailable().then(function() {
-            // is available
-            var email = {
-                to: ['tom.tomonari@gmail.com', 'ericong.kc@gmail.com'],
-                subject: 'Daily report for ' + $scope.current.set_date,
-                body: emailbody,
-                isHtml: false
-            };
+        if(Env.isMobile()){
+            $cordovaEmailComposer.isAvailable().then(function() {
+                // is available
+                var email = {
+                    to: tos,
+                    subject: subject,
+                    body: emailbody,
+                    isHtml: false
+                };
 
-            $cordovaEmailComposer.open(email).then(null, function () {
-                // user cancelled email
+                $cordovaEmailComposer.open(email).then(null, function () {
+                    // user cancelled email
+                });
+
+            }, function () {
+                // not available
             });
-
-        }, function () {
-            // not available
-        });
+        }else{
+            window.location.href = "mailto:" + tos + "?subject=" + subject + "&body=" + encodeURIComponent(emailbody);
+        }
     };
 
     $scope.$on('changedDate', updateReport);
