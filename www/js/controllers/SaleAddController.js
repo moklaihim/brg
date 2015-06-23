@@ -200,23 +200,7 @@ angular.module('starter.controllers')
             $scope.sale.qty = '';
         }
 
-
-
         console.log("button clicked");
     };
-
-    // Alert Function----------------------------------------
-    function showAlert(){
-        // var msg = item_id;
-        var alertPopup = $ionicPopup.alert({
-         title: 'Warning!',
-         template: 'You are not entering sales for today\'s date'
-        });
-        alertPopup.then(function(res) {
-         console.log('Thank you for different date');
-        });
-    };
-    $scope.showAlert = showAlert;
-    // $scope.$digest();
 
 }])
