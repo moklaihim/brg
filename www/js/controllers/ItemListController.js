@@ -32,7 +32,7 @@ angular.module('starter.controllers')
 
     /* Make Brand palate from here*/
     $scope.brands_array = new Array();
-    var iil = 5;
+    var iil = 3;
     var brands = Codes.get_brands_as_array();
 
     for (var l = 0; l < Math.ceil(brands.length / iil); l++){

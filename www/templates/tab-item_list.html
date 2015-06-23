@@ -20,7 +20,7 @@
         
     </ion-header-bar> -->
 
-    <ion-content padding="false" style="margin-bottom:100px">
+    <ion-content padding="false" style="margin-bottom:94px">
         <ion-refresher
             pulling-icon="ion-camera"
             pulling-text="Pull to Scan"
@@ -38,7 +38,7 @@
         </ion-list>
 
         <ion-list ng-if="showColorInput">
-            <ion-item class="item item-avatar" ng-repeat="color in colors_array | startsWith : filterLetters | orderBy: 'name'" ng-click="btn_color(color.name)" style="background-color:#B39DDB">
+            <ion-item class="item item-avatar" ng-repeat="color in colors_array | startsWith : filterLetters | orderBy: 'name'" ng-click="btn_color(color.name)" style="background-color:white">
                 <!-- <img style="background-color:{{color.backgroundcolor}};"> -->
                 <h2>{{color.name}}</h2>
                 <p>{{color.fullname}}</p>
@@ -62,7 +62,7 @@
                 </ion-scroll>
             </div> -->
 
-            <div ng-repeat="brands in brands_array track by $index" ng-show="showBrandInput" class="button-bar ng-hide bar-royal" ng-class="{'animated slideInUp': showBrandInput}">
+            <div ng-repeat="brands in brands_array track by $index" ng-show="showBrandInput" class="button-bar ng-hide bar-royal" style="background-color: #BA68C8; color: white;" ng-class="{'animated slideInUp': showBrandInput}">
                 <a ng-repeat="brand in brands | orderBy:'name' track by $index" id="{{brand.id}}" class="button button-raised" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</a>
                 <!--button ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button button-raised addbutton pcode-button" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</button-->
             </div> 
