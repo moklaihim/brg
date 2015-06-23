@@ -221,6 +221,56 @@
   background: #f7f7f7;
 }
 
+#role-table-header{
+    height: 56px;
+    font-weight: 500 !important;
+    font-size: 12px !important;
+    color: #727272;
+    border: 1px solid #e0e0e0;
+}
+
+#role-table-header th{
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.role-table-data{
+    height: 48px;
+    font-weight: 400 !important;
+    font-size: 13px !important;
+    color: #212121;
+    border: 1px solid #e0e0e0;
+}
+
+.role-table-data td{
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.role-table-data{
+    height: 48px;
+    font-weight: 400 !important;
+    font-size: 13px !important;
+    color: #212121;
+    border: 1px solid #e0e0e0;
+}
+
+.role-table-data td{
+    vertical-align: middle;
+    text-align: center;
+}
+
+.purplebutton{
+  background-color: #5E3462;
+  color: white;
+}
+
+}
+
 .purplebutton{
   background-color: #5E3462;
   color: white;

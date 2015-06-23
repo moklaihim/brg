@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", "Codes", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales, Codes) {
+.controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", "Codes", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales, Codes) {
 // Start of Item List to show only item list and Brand input
 //
     $scope.current.view = 'items_list';
@@ -76,11 +76,8 @@ angular.module('starter.controllers')
         $scope.sizes_array[j][k] = sizes[i];
     }
 
-
-
     updateItems();
     // updateInstruction();
-
 
     if($state.current.name === "main.sales_scanadd"){
         $ionicPlatform.ready(function(){
@@ -102,11 +99,13 @@ angular.module('starter.controllers')
                             selectItem(barcodeData);
                         };
                         if (barcodeData.cancelled){
-                            $state.go('main.sales_list');
+                            //$state.go('main.sales_list');
+                            $ionicHistory.goBack();
                         };
                     },
                     function(error) {
-                        $state.go('main.sales_list');
+                        //$state.go('main.sales_list');
+                        $ionicHistory.goBack();
                     },
                     {
                         text_title: "OPTIONAL",
