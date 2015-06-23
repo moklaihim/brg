@@ -75,7 +75,8 @@ angular.module('starter.controllers')
     function alertRequireInput(){
         var alertPopup = $ionicPopup.alert({
          title: 'Error',
-         template: 'Please enter a value'
+         template: 'Please enter a value',
+         okType: 'button-flat'
         });
     };
     $scope.alertRequireInput = alertRequireInput;
@@ -83,7 +84,8 @@ angular.module('starter.controllers')
     function alertAdded(type, inputCode){
         var alertPopup = $ionicPopup.alert({
          title: 'Code Added',
-         template: 'Code "' + inputCode + '" is added to the '+ type + ' database'
+         template: 'Code "' + inputCode + '" is added to the '+ type + ' database',
+         okType: 'button-flat'
         });
     };
     $scope.alertAdded = alertAdded;
@@ -91,7 +93,9 @@ angular.module('starter.controllers')
     function alertExist(type, inputCode){
        var confirmPopup = $ionicPopup.confirm({
          title: 'Code Exist',
-         template: 'This Code "' + inputCode + '" exist in the '+ type + ' database, do you want to delete?'
+         template: 'This Code "' + inputCode + '" exist in the '+ type + ' database, do you want to delete?',
+         okType: 'button-flat',
+         cancelType: 'button-flat'
        });
         confirmPopup.then(function(res) {
             if(res) {

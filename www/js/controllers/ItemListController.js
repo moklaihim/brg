@@ -596,11 +596,12 @@ angular.module('starter.controllers')
     function showAlert(){
         // var msg = item_id;
         var alertPopup = $ionicPopup.alert({
-         title: 'Warning!',
-         template: 'You are not entering sales for today\'s date'
+            title: 'Warning!',
+            template: 'You are not entering sales for today\'s date',
+            okType: 'button-flat'
         });
         alertPopup.then(function(res) {
-         console.log('Thank you for different date');
+            console.log('Thank you for different date');
         });
     };
     $scope.showAlert = showAlert;
@@ -609,7 +610,8 @@ angular.module('starter.controllers')
         // var msg = item_id;
         var alertPopup = $ionicPopup.alert({
          title: 'ADDED ITEM',
-         template: $scope.current.item_id
+         template: $scope.current.item_id,
+         okType: 'button-flat'
         });
         // alertPopup.then(function(res) {
         //  console.log('Thank you for different date');
@@ -621,7 +623,8 @@ angular.module('starter.controllers')
         // var msg = item_id;
         var alertPopup = $ionicPopup.alert({
          title: 'INCOMPLETE ENTRY',
-         template: 'Please complete ITEM NAME and RETAIL PRICE'
+         template: 'Please complete ITEM NAME and RETAIL PRICE',
+         okType: 'button-flat'
         });
         // alertPopup.then(function(res) {
         //  console.log('Thank you for different date');

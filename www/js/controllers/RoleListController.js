@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('RoleListController', ["$scope", "$state", "$ionicPopup", "Roles", function($scope, $state, $ionicPopup, Roles) {
+.controller('RoleListController', ["$scope", "$state", "Roles", function($scope, $state, Roles) {
     console.log("RoleListController started");
     $scope.current.view = 'roles_list';
 

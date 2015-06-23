@@ -105,7 +105,8 @@ angular.module('starter.controllers')
         // var msg = item_id;
         var alertPopup = $ionicPopup.alert({
          title: 'hey!',
-         template: 'over scroll '
+         template: 'over scroll ',
+         okType: 'button-flat'
         });
         alertPopup.then(function(res) {
          console.log('over scroll');

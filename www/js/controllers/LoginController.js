@@ -33,7 +33,8 @@ angular.module('starter.controllers')
                 $scope.showLoginView = true;
                 $ionicPopup.alert({
                     title: 'Login error!',
-                    template: res.message
+                    template: res.message,
+                    okType: 'button-flat'
                 }); 
             }   
         }); 
@@ -56,7 +57,8 @@ angular.module('starter.controllers')
             } else {
                 $ionicPopup.alert({
                     title: 'Login error!',
-                    template: res.message
+                    template: res.message,
+                    okType: 'button-flat'
                 }); 
             }   
         }); 
