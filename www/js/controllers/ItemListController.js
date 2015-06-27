@@ -7,8 +7,6 @@ angular.module('starter.controllers')
     $scope.headerLabel = "Shoes List ";  // header will reflect ITEM List
     $scope.showInputSelections = true;
     $scope.current.item_id ='';
-    $scope.current.itemAddMode = '';
-    // $scope.showInputButtons = true;
     $scope.showItemList = true;
     $scope.showBrandInput = true;
     $scope.showColorInput = false;
@@ -177,8 +175,6 @@ angular.module('starter.controllers')
             $scope.showPriceInput = true;
             $scope.showSelectedItem = true;
             $scope.headerCloseButton = true; 
-            // $scope.showColorInput = false;
-            // $scope.headerCloseButton = true;
             $scope.showConfirmBtns = true;
             $scope.showInputSelections = false;
             $scope.showItemList = false;
@@ -186,7 +182,7 @@ angular.module('starter.controllers')
             if($scope.current.itemAddMode == "fromsale"){
                 $scope.showAddItemBtn = false;
                 $scope.showAddSaleBtn = true;
-            }else{
+            }else if($scope.current.itemAddMode == "fromitem"){
                 $scope.showAddItemBtn = true;
                 $scope.showAddSaleBtn = false;
             }
@@ -209,9 +205,9 @@ angular.module('starter.controllers')
 
         Items.add($scope.current.item_id, $scope.retail_price);
         showItemAddAlert();
-        $scope.current.item_id = '';
-        $state.go('main.sales_list');
+        itemIdClear();
         priceClear();
+        
 
     };
     //when individual item is slide and pressed edit
@@ -276,28 +272,26 @@ angular.module('starter.controllers')
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
-        $scope.showBrandInput = true;
+        $scope.showBrandInput = !$scope.showBrandInput;
         $scope.showItemList = true;
-        $scope.toggleBrand = true;
+        $scope.toggleBrand = !$scope.toggleBrand;
         $scope.toggleCode = false;
         $scope.toggleColor = false;
         $scope.toggleSize = false;
-        $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
         // $scopr.showItemList
     }
     $scope.trig_brand = trig_brand;
 
     function trig_code(event){
+        $scope.showCodeInput = !$scope.showCodeInput;
         $scope.showItemList = true;
         $scope.showBrandInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
-        $scope.showCodeInput = true;
-        $scope.toggleCode = true;
+        $scope.toggleCode = !$scope.toggleCode;
         $scope.toggleBrand = false;
         $scope.toggleColor = false;
         $scope.toggleSize = false;
-        $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
         
     }
     $scope.trig_code = trig_code;
@@ -306,14 +300,13 @@ angular.module('starter.controllers')
 
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
-        $scope.showColorInput = true;
+        $scope.showColorInput = !$scope.showColorInput;
         $scope.showItemList = !$scope.showColorInput;
         $scope.showSizeInput = false;
-        $scope.toggleColor = true;
+        $scope.toggleColor = !$scope.toggleColor;
         $scope.toggleCode = false;
         $scope.toggleBrand = false;
         $scope.toggleSize = false;
-        $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
 
     }
     $scope.trig_color = trig_color;
@@ -323,12 +316,11 @@ angular.module('starter.controllers')
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
-        $scope.showSizeInput = true;
-        $scope.toggleSize = true;
+        $scope.showSizeInput = !$scope.showSizeInput;
+        $scope.toggleSize = !$scope.toggleSize;
         $scope.toggleCode = false;
         $scope.toggleColor = false;
         $scope.toggleBrand = false;
-        $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
 
     }
     $scope.trig_size = trig_size;
@@ -508,7 +500,7 @@ angular.module('starter.controllers')
     };
 
     //When the X button beside the ITEM name is clicked
-    $scope.itemIdClear= function(){
+    function itemIdClear(){
         //display main item search
         $scope.showItemCodeInputs = true;
         $scope.showInputSelections = true;
@@ -547,6 +539,7 @@ angular.module('starter.controllers')
         // $state.go($state.current, {}, {reload: true})
 
     };
+    $scope.itemIdClear = itemIdClear;
 
 
     //When the X button beside the Retail Price is clicked
