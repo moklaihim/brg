@@ -118,7 +118,8 @@ angular.module('starter.controllers')
     $scope.checkHaveValue = checkHaveValue;
 
     function hideNumpad(){
-            $scope.smallScreenDetected = false;
+            $scope.ss480Detected = false;
+            $scope.ss568Detected = false;
             $scope.showPriceInput = false;
             $timeout(function() {
                 $ionicScrollDelegate.scrollTop();
