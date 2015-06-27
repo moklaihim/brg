@@ -125,10 +125,6 @@ $dark:                            #444 !default;
     transform: translate3d(0, 0, 0);
     opacity: 1; }
 
-.animation-element-bar {
-  -webkit-transition: 150ms linear all;
-  transition: 150ms linear all; }
-
 .scroll-content.vcenter {
   display: -webkit-box;
   display: -moz-box;

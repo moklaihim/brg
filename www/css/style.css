@@ -16,10 +16,6 @@
     color: #fff;
 }
 
-.keypad-ok .icon:before, .keypad-ok.icon:before, .keypad-ok.icon-left:before, .keypad-ok.icon-right:before {
-    font-size: 40px;
-}
-
 .pcode-button{
     background-color: #F3E5F5;
     box-shadow: none !important;
