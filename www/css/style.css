@@ -265,8 +265,12 @@ display: flex;
 align-items: center;
 }
 
-.smallscreen{
-  height: 100%;
+.ss480{
+  height: 236px;
+}
+
+.ss568{
+  height: 324px;
 }
 
 .center{

@@ -149,12 +149,14 @@ angular.module('starter.controllers')
 
 
     $scope.priceToggle= function(event){
-        if($scope.iframeHeight < 500){
-            $scope.smallScreenDetected = true;
-            $timeout(function() {
-                $ionicScrollDelegate.scrollBottom();
-            },500);
+        if($scope.iframeHeight < 481){
+            $scope.ss480Detected = true;
+        }else if($scope.iframeHeight < 569){
+            $scope.ss568Detected = true;
         }
+        $timeout(function() {
+            $ionicScrollDelegate.scrollTo(0,160,true);
+        },500);
 
         $scope.showPriceInput = true;
         if(event.target.id == 'discount'){

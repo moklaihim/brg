@@ -9,7 +9,7 @@
         -->
     </ion-nav-buttons>
     
-    <ion-content padding="false" ng-class="{'smallscreen': smallScreenDetected}">
+    <ion-content padding="true" ng-class="{'ss480': ss480Detected, 'ss568': ss568Detected}">
         <div class="list">
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Item code</span>
@@ -17,10 +17,10 @@
             </label>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Retail price</span>
-                <input type="text" disabled ng-model="sale.retail_price | currency:'$'">
+                <input type="text" disabled value="{{sale.retail_price | currency:'$'}}">
             </label>
             <label class="item item-input item-stacked-label">
-                <span class="input-label">Discount rate</span>
+                <span class="input-label">Discount rate (%)</span>
                 <div class="button-bar">
                     <button id="discount" ng-class="{'purplebutton': discountToggle, 'greenbutton': discountHaveValue}" class="button button-small pcode-button" ng-click="priceToggle($event)">{{sale.discount_rate}}%
                     </button>
