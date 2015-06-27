@@ -1,66 +1,8 @@
 /* Empty. Add your own CSS if you like */
-.brg-bg,
-.button-brg,
-.bar .button-brg,
-.header-brg,
-.button-bar-brg,
-.bar-brg,
-.brg-border,
-.brg-bg:hover,
-.button-brg:hover,
-.bar .button-brg:hover,
-.header-brg:hover,
-.button-bar-brg:hover,
-.bar-brg:hover,
-.brg-border:hover,
-.brg-bg:active,
-.button-brg:active,
-.bar .button-brg:active,
-.header-brg:active,
-.button-bar-brg:active,
-.bar-brg:active,
-.brg-border:active,
-.brg-bg.activated,
-.button-brg.activated,
-.bar .button-brg.activated,
-.header-brg.activated,
-.button-bar-brg.activated,
-.bar-brg.activated,
-.brg-border.activated {
-    background-color: #5E3462;
-    color: #fff;
-}
-
-.brg-a-bg,
-.button-brg-a,
-.bar .button-brg-a,
-.header-brg-a,
-.button-bar-brg-a,
-.bar-brg-a,
-.brg-a-border,
-.brg-a-bg:hover,
-.button-brg-a:hover,
-.bar .button-brg-a:hover,
-.header-brg-a:hover,
-.button-bar-brg-a:hover,
-.bar-brg-a:hover,
-.brg-a-border:hover,
-.brg-a-bg:active,
-.button-brg-a:active,
-.bar .button-brg-a:active,
-.header-brg-a:active,
-.button-bar-brg-a:active,
-.bar-brg-a:active,
-.brg-a-border:active,
-.brg-a-bg.activated,
-.button-brg-a.activated,
-.bar .button-brg-a.activated,
-.header-brg-a.activated,
-.button-bar-brg-a.activated,
-.bar-brg-a.activated,
-.brg-a-border.activated {
-    background-color: #EEFF41;
-    color: #000;
+.loading-text{
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    color: #5d5c5e;
 }
 
 .bar-royal .button {
@@ -309,5 +251,100 @@ align-items: center;
 
 .smallscreen{
   height: 180px;
+}
+
+.center{
+  display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.brg-bg,
+.button-brg,
+.bar .button-brg,
+.header-brg,
+.button-bar-brg,
+.bar-brg,
+.brg-border,
+.brg-bg:hover,
+.button-brg:hover,
+.bar .button-brg:hover,
+.header-brg:hover,
+.button-bar-brg:hover,
+.bar-brg:hover,
+.brg-border:hover,
+.brg-bg:active,
+.button-brg:active,
+.bar .button-brg:active,
+.header-brg:active,
+.button-bar-brg:active,
+.bar-brg:active,
+.brg-border:active,
+.brg-bg.activated,
+.button-brg.activated,
+.bar .button-brg.activated,
+.header-brg.activated,
+.button-bar-brg.activated,
+.bar-brg.activated,
+.brg-border.activated {
+    background-color: #5E3462;
+    color: #fff;
+}
+
+.brg-a-bg,
+.button-brg-a,
+.bar .button-brg-a,
+.header-brg-a,
+.button-bar-brg-a,
+.bar-brg-a,
+.brg-a-border,
+.brg-a-bg:hover,
+.button-brg-a:hover,
+.bar .button-brg-a:hover,
+.header-brg-a:hover,
+.button-bar-brg-a:hover,
+.bar-brg-a:hover,
+.brg-a-border:hover,
+.brg-a-bg:active,
+.button-brg-a:active,
+.bar .button-brg-a:active,
+.header-brg-a:active,
+.button-bar-brg-a:active,
+.bar-brg-a:active,
+.brg-a-border:active,
+.brg-a-bg.activated,
+.button-brg-a.activated,
+.bar .button-brg-a.activated,
+.header-brg-a.activated,
+.button-bar-brg-a.activated,
+.bar-brg-a.activated,
+.brg-a-border.activated {
+    background-color: #EEFF41;
+    color: #000;
 }
 

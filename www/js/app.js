@@ -202,7 +202,6 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
     }
 })
 
-
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     $ionicConfigProvider.tabs.position("bottom");

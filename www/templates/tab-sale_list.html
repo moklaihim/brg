@@ -9,8 +9,13 @@
         -->
     </ion-nav-buttons>
     
-    <ion-content padding="true" ng-show="showSpinner">
-        <ion-spinner icon="ripple"></ion-spinner>
+    <ion-content padding="true" class="center" ng-show="showSpinner">
+        <div class="row">
+            <div class="col" style="text-align: center;">
+                <p class="loading-text">Getting sales</p>
+                <ion-spinner icon="android"></ion-spinner>
+            </div>
+        </div>
     </ion-content>
     
     <ion-content padding="false" class="ng-hide" ng-show="showSalesView">

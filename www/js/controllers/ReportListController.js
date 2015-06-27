@@ -2,6 +2,7 @@ angular.module('starter.controllers')
 .controller('ReportListController', ["$scope", "Stores", "Sales", "Env", "Items", "items", "Env", "$cordovaEmailComposer", function($scope, Stores, Sales, Env, Items, items, Env, $cordovaEmailComposer) {
     console.log("ReportListController started");
     $scope.current.view = 'reports_list';
+    $scope.checkStore();
 
     $scope.stores = Stores.get_list();
     updateReport();

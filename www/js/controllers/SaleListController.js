@@ -2,6 +2,7 @@ angular.module('starter.controllers')
 .controller('SaleListController', ["$scope", "$state", "$timeout", "$ionicPopup", "$ionicHistory", "$ionicListDelegate", "Sales", "Items", "Env", function($scope, $state, $timeout, $ionicPopup, $ionicHistory, $ionicListDelegate, Sales, Items, Env) {
     console.log("SaleListController started");
     $scope.current.view = 'sales_list';
+    $scope.checkStore();
 
     updateSales();
     $scope.showDisOption = false;

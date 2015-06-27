@@ -1,9 +1,8 @@
 <ion-view title= {{headerLabel}} >
-<!-- <ion-nav-bar align-title="right"></ion-nav-bar> -->
-    <!-- <ion-nav-buttons side="right">
-        <a class="button" ui-sref="main.stores_list">{{current.store_name}}</a> 
-        <button class="button" ng-click="showDatePicker()">{{current.set_date}}</button>
-    </ion-nav-buttons> -->
+    <ion-nav-buttons side="right">
+        <a class="button button-clear button-store" ui-sref="main.stores_list">{{current.store_name}}</a>
+        <button class="button button-clear button-icon button-cleear mdi mdi-calendar" style="color: white" ng-click="showDatePicker($event)"></button>
+    </ion-nav-buttons>
 
     <ion-header-bar class="bar-subheader brg-bg" style="padding:0px">
         <div class="button-bar ng-hide" ng-show = "showInputSelections">
