@@ -5,12 +5,23 @@
     color: #5d5c5e;
 }
 
+.button-keypad .icon:before, .button-small.icon:before, .button-small.icon-left:before, .button-small.icon-right:before {
+    font-size: 24px;
+    color: #a8adaf;
+}
+
 .bar-keypad{
     border-color: #263238;
     background-color: #263238;
 }
 
 .bar-keypad .button {
+    border-color: #263238;
+    background-color: #263238;
+    color: #fff;
+}
+
+.button-keypad{
     border-color: #263238;
     background-color: #263238;
     color: #fff;
@@ -255,7 +266,7 @@ align-items: center;
 }
 
 .smallscreen{
-  height: 180px;
+  height: 100%;
 }
 
 .center{

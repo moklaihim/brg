@@ -79,7 +79,7 @@
                 <!-- <button id = "sizeBack" class="button pcode-button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
                     <a ng-repeat="size in sizes | orderBy:'name' track by $index" id ="{{size.id}}" class="button button-raised" ng-class="{active: size.id == item_size}" ng-click="btn_size({{size.id}})">{{size.name}}</a>
             </div>
-            <div ng-show="showCodeInput" class="ng-hide" ng-class="{'animated slideInUp': showCodeInput}">             
+            <div ng-show="showCodeInput" class="ng-hide">             
                 <div class="button-bar bar-keypad">
                     <!-- <button id = "codeBack" class="button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
                     <a id = "1" class="button button-raised ink-dark" ng-click="btn_code($event)">1</a>
@@ -99,7 +99,7 @@
                     <a id = "OK" class="button button-raised keypad-ok icon ion-ios-checkmark" style="color: #4cb5ab;" ng-click="btn_code_ok()"></a>
                 </div>
             </div>
-            <div ng-show="showColorInput" class="ng-hide" ng-class="{'animated slideInUp': showColorInput}" style="padding:0px">                
+            <div ng-show="showColorInput" class="ng-hide" style="padding:0px">                
                 <div class="button-bar bar-keypad">
                     <!-- <button id = "codeBack" class="button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
                     <a id = "ABC" class="button button-raised ink-dark" ng-click="filterColor($event)">ABC</a>

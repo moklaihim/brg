@@ -171,9 +171,7 @@ angular.module('starter.controllers')
             $scope.sale.discount_rate = 0;
             $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * $scope.sale.discount_rate / 100;
 
-        }
-
-        if(event.target.id == 'sale'){
+        } else if(event.target.id == 'sale'){
             // $scope.showPriceInput = !$scope.showPriceInput;
             if($scope.sale.qty == ''){
                 $scope.sale.qty = 1;
@@ -186,9 +184,8 @@ angular.module('starter.controllers')
             $scope.showQtyDel = false;
             $scope.sale.sale_price = '';
             $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
-        }
 
-        if(event.target.id == 'qty'){
+        } else if(event.target.id == 'qty'){
             // $scope.showPriceInput = !$scope.showPriceInput;
             $scope.discountToggle = false;
             $scope.saleToggle = false;
