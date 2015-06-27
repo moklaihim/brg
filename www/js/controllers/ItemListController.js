@@ -80,6 +80,14 @@ angular.module('starter.controllers')
     // updateInstruction();
 
     if($state.current.name === "main.sales_scanadd"){
+        scanFunction();
+    };
+
+    if($scope.current.today_date != $scope.current.set_date) {
+        showAlert();
+    }
+
+    function scanFunction() {
         $ionicPlatform.ready(function(){
             $ZBar
             //$cordovaBarcodeScanner
@@ -88,16 +96,9 @@ angular.module('starter.controllers')
                     function(barcodeData) {
                         //showAlert(barcodeData.text);
                         //console.log(barcodeData);
-                        if (!$scope.items.hasOwnProperty(barcodeData)){
-                            $scope.current.item_id = barcodeData;
-                            // $state.go('main.items_add');
-                            lastItemCodeEntered = true;
-                            $scope.showBrandInput = false;
-                            addItem();
-                        };
-                        if ($scope.items.hasOwnProperty(barcodeData)){
-                            selectItem(barcodeData);
-                        };
+                        if(barcodeData){
+                            confirmScanResult(barcodeData);
+                        }
                         if (barcodeData.cancelled){
                             //$state.go('main.sales_list');
                             $ionicHistory.goBack();
@@ -114,29 +115,21 @@ angular.module('starter.controllers')
                 );
         }); 
     };
+    $scope.scanFunction = scanFunction;
 
-    if($scope.current.today_date != $scope.current.set_date) {
-        showAlert();
-    }
 
-    //When pulled item list go to scanadd
-    $scope.doRefresh = function() {
-        $state.go("main.sales_scanadd");
-        $scope.$broadcast('scroll.refreshComplete');
-    };
-
-    function updateInstruction(){
-        if ($scope.showBrandInput == true){
-            $scope.headerLabel = "Choose Brand Code";
-        }else if($scope.showCodeInput == true){
-            $scope.headerLabel = "Enter Item Code";
-        }else if($scope.showSizeInput == true){
-            $scope.headerLabel = "Choose Size";
-        }else if($scope.showColorInput == true){
-            $scope.headerLabel = "Choose Color";
-        }
-    }
-    $scope.updateInstruction = updateInstruction;
+    // function updateInstruction(){
+    //     if ($scope.showBrandInput == true){
+    //         $scope.headerLabel = "Choose Brand Code";
+    //     }else if($scope.showCodeInput == true){
+    //         $scope.headerLabel = "Enter Item Code";
+    //     }else if($scope.showSizeInput == true){
+    //         $scope.headerLabel = "Choose Size";
+    //     }else if($scope.showColorInput == true){
+    //         $scope.headerLabel = "Choose Color";
+    //     }
+    // }
+    // $scope.updateInstruction = updateInstruction;
 
 
     //update Items from Firebase
@@ -634,5 +627,33 @@ angular.module('starter.controllers')
         // });
     };
     $scope.showItemAddError = showItemAddError;
+
+    function confirmScanResult(barcodeData){
+       var confirmPopup = $ionicPopup.confirm({
+         title: 'Verify Scanned Code',
+         template: 'Scanned : ' +  '<h2>'+ barcodeData + '</h2>',
+         okType: 'button-flat',
+         cancelType: 'button-flat'
+       });
+        confirmPopup.then(function(res) {
+            if(res) {
+                console.log('You are sure');
+                if (!$scope.items.hasOwnProperty(barcodeData)){
+                    $scope.current.item_id = barcodeData;
+                    // $state.go('main.items_add');
+                    lastItemCodeEntered = true;
+                    $scope.showBrandInput = false;
+                    addItem();
+                };
+                if ($scope.items.hasOwnProperty(barcodeData)){
+                    selectItem(barcodeData);
+                };
+            } if(!res) {
+                console.log('You are not sure');
+                scanFunction();
+            }
+        });
+    };
+    $scope.confirmScanResult = confirmScanResult;
 
 }])
