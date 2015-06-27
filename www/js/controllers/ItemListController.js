@@ -2,10 +2,12 @@ angular.module('starter.controllers')
 .controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", "Codes", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales, Codes) {
 // Start of Item List to show only item list and Brand input
 //
+    console.log("current Mode is : " + $scope.current.itemAddMode);
     $scope.current.view = 'items_list';
     $scope.headerLabel = "Shoes List ";  // header will reflect ITEM List
     $scope.showInputSelections = true;
     $scope.current.item_id ='';
+    $scope.current.itemAddMode = '';
     // $scope.showInputButtons = true;
     $scope.showItemList = true;
     $scope.showBrandInput = true;
@@ -181,13 +183,20 @@ angular.module('starter.controllers')
             $scope.showInputSelections = false;
             $scope.showItemList = false;
             $scope.showItemCodeInputs = false;
+            if($scope.current.itemAddMode == "fromsale"){
+                $scope.showAddItemBtn = false;
+                $scope.showAddSaleBtn = true;
+            }else{
+                $scope.showAddItemBtn = true;
+                $scope.showAddSaleBtn = false;
+            }
             lastItemCodeEntered = false;
         }else{
             showItemAddError();
         }
         
-        $scope.showAddSaleBtn = true;
-        $scope.showAddItemBtn = true;
+        
+        // $scope.showAddItemBtn = true;
     }
     $scope.addItem = addItem;
 

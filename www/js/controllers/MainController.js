@@ -46,6 +46,7 @@ angular.module('starter.controllers')
         item_code: '',
         item_color: '',
         item_size: '',
+        itemAddMode: '',
         view: '',
         user_id: ''
     };
