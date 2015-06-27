@@ -27,7 +27,7 @@ angular.module('starter.controllers')
     $scope.item_color = '';
     $scope.item_size = '';
     var editItemClicked = false;
-    var addItemClicked = false;
+    // var addItemClicked = false;
     var lastItemCodeEntered = false;
 
     /* Make Brand palate from here*/
@@ -175,7 +175,7 @@ angular.module('starter.controllers')
     };
     //when search cannot find item and "Not Found? Add New Item." is clicked" 
     function addItem(event){
-        addItemClicked = true;
+        // addItemClicked = true;
         $scope.headerLabel = "Shoes List (Adding) "
         // $scope.showInputSelections = true;
         if (lastItemCodeEntered){
@@ -337,7 +337,6 @@ angular.module('starter.controllers')
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
         $scope.showBackButton = true;
-        // lastItemCodeEntered = false;
         if($scope.item_code != "Item Code"){
             $scope.item_code = "";
         }
@@ -418,13 +417,13 @@ angular.module('starter.controllers')
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
-        if(addItemClicked){ //If add item is clicked
-            $scope.showPriceInput = true;
-            $scope.headerCloseButton = true;
-            $scope.showInputSelections = false;
-            $scope.showConfirmBtns = true;
-            $scope.showItemList = false;
-        }
+        // if(addItemClicked){ //If add item is clicked
+        //     $scope.showPriceInput = true;
+        //     $scope.headerCloseButton = true;
+        //     $scope.showInputSelections = false;
+        //     $scope.showConfirmBtns = true;
+        //     $scope.showItemList = false;
+        // }
         $scope.toggleSize = false;
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
             console.log("last item entered")
@@ -532,7 +531,7 @@ angular.module('starter.controllers')
         $scope.item_code ='';
         $scope.item_color ='';
         $scope.item_size = '';
-        addItemClicked = false;
+        // addItemClicked = false;
         lastItemCodeEntered = false;
         editItemClicked = false;  //When true , Price input will reset the field value
         priceClear();
@@ -623,7 +622,7 @@ angular.module('starter.controllers')
         // var msg = item_id;
         var alertPopup = $ionicPopup.alert({
          title: 'INCOMPLETE ENTRY',
-         template: 'Please complete ITEM NAME and RETAIL PRICE',
+         template: 'Please complete all fields',
          okType: 'button-flat'
         });
         // alertPopup.then(function(res) {
