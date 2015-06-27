@@ -5,10 +5,19 @@
     color: #5d5c5e;
 }
 
-.bar-royal .button {
-    border-color: #CE93D8;
-    background-color: #CE93D8;
-    color: #000;
+.bar-keypad{
+    border-color: #263238;
+    background-color: #263238;
+}
+
+.bar-keypad .button {
+    border-color: #263238;
+    background-color: #263238;
+    color: #fff;
+}
+
+.keypad-ok .icon:before, .keypad-ok.icon:before, .keypad-ok.icon-left:before, .keypad-ok.icon-right:before {
+    font-size: 40px;
 }
 
 .pcode-button{
