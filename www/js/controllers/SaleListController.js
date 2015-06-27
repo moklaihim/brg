@@ -3,6 +3,7 @@ angular.module('starter.controllers')
     console.log("SaleListController started");
     $scope.current.view = 'sales_list';
     $scope.current.showAddItemBtn = '';
+    $scope.checkStore();
 
     updateSales();
     $scope.showDisOption = false;

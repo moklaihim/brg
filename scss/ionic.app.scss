@@ -28,6 +28,45 @@ $bar-title-font-size:             20px !default;
 $font-family-sans-serif:          RobotoDraft, Roboto, "Helvetica Neue", "Roboto", "Segoe UI", sans-serif !default;
 $font-family-light-sans-serif:    RobotoDraft, Roboto, "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light !default;
 
+.animation-element {
+    -webkit-transition: 150ms linear all;
+    transition: 150ms linear all;
+    
+    // アニメ中はblockにしてやる
+    &.ng-hide-add,
+    &.ng-hide-remove {
+      display: block !important;
+    }
+
+    // 表示→非表示
+    &.ng-hide-add {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+    &.ng-hide-add-active {
+      -webkit-transform: translate3d(0, 10px, 0);
+      transform: translate3d(0, 10px, 0);
+      opacity: 0;
+    }
+
+    // 非表示→表示
+    &.ng-hide-remove {
+      -webkit-transform: translate3d(0, 10px, 0);
+      transform: translate3d(0, 10px, 0);
+      opacity: 0;
+    }
+    &.ng-hide-remove-active {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+}
+
+.animation-element-bar{
+    -webkit-transition: 150ms linear all;
+    transition: 150ms linear all;
+}
 
 .scroll-content.vcenter {
   display: -webkit-box;

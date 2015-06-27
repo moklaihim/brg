@@ -103,6 +103,32 @@ $dark:                            #444 !default;
   font-style: normal; }
 
 /* END Black */
+.animation-element {
+  -webkit-transition: 150ms linear all;
+  transition: 150ms linear all; }
+  .animation-element.ng-hide-add, .animation-element.ng-hide-remove {
+    display: block !important; }
+  .animation-element.ng-hide-add {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1; }
+  .animation-element.ng-hide-add-active {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+    opacity: 0; }
+  .animation-element.ng-hide-remove {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+    opacity: 0; }
+  .animation-element.ng-hide-remove-active {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1; }
+
+.animation-element-bar {
+  -webkit-transition: 150ms linear all;
+  transition: 150ms linear all; }
+
 .scroll-content.vcenter {
   display: -webkit-box;
   display: -moz-box;

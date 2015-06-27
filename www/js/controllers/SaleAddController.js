@@ -3,8 +3,7 @@ angular.module('starter.controllers')
     $scope.showDisOption = false;
     $scope.showPriceInput = false;
     $scope.iframeHeight = window.innerHeight;
-
-
+    $scope.checkStore();
 
     $scope.sale = {
         // sale_key: '',

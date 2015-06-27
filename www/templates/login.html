@@ -1,7 +1,12 @@
 <ion-view view-title="Login">
 
-    <ion-content class="padding" ng-hide="showLoginView || showPasswordChangeView">
-        <ion-spinner icon="ripple"></ion-spinner>
+    <ion-content padding="true" class="center" ng-hide="showLoginView || showPasswordChangeView">
+        <div class="row">
+            <div class="col" style="text-align: center;">
+                <p class="loading-text">Logging in</p>
+                <ion-spinner icon="android"></ion-spinner>
+            </div>
+        </div>
     </ion-content>
 
     <ion-content class="padding ng-hide" ng-show="showLoginView && user.uid == undefined">
