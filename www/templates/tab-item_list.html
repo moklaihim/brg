@@ -54,14 +54,15 @@
             </div>
         </ion-content> -->
 
-        <div style="position:absolute; bottom: 0px; width:100%" ng-show="showItemCodeInputs" class="ng-hide">
+        <div style="position:absolute; bottom: 0px; width:100%" ng-show="showItemCodeInputs" class="ng-hide animation-element">
+        <!--div style="position:absolute; bottom: 0px; width:100%" ng-show="showItemCodeInputs" class="ng-hide animation-element"-->
             <!-- <div ng-show="showBrandInput" class="item item-input-inset ng-hide" style="padding:0px">
                 <ion-scroll direction="x" style="width:100%">
                     <button ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button pcode-button" style="color:white; background-color:#387EF5" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</button>
                 </ion-scroll>
             </div> -->
 
-            <div ng-repeat="brands in brands_array track by $index" ng-show="showBrandInput" class="button-bar ng-hide bar-keypad" style="background-color: #BA68C8; color: white;" ng-class="{'animated slideInUp': showBrandInput}">
+            <div ng-repeat="brands in brands_array track by $index" ng-show="showBrandInput" class="button-bar ng-hide bar-keypad" style="background-color: #BA68C8; color: white;">
                 <a ng-repeat="brand in brands | orderBy:'name' track by $index" id="{{brand.id}}" class="button button-raised" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</a>
                 <!--button ng-repeat="brand in brands_array | orderBy:'order'" id="{{brand.id}}" class="button button-raised addbutton pcode-button" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</button-->
             </div> 
@@ -74,7 +75,7 @@
             <!--
             </div>
             -->
-            <div ng-repeat="sizes in sizes_array track by $index" ng-show="showSizeInput" class="button-bar ng-hide bar-keypad" ng-class="{'animated slideInUp': showSizeInput}">
+            <div ng-repeat="sizes in sizes_array track by $index" ng-show="showSizeInput" class="button-bar ng-hide bar-keypad">
                 <!-- <button id = "sizeBack" class="button pcode-button icon ion-ios-arrow-back button-calm" ng-click="btn_back($event)"></button> -->
                     <a ng-repeat="size in sizes | orderBy:'name' track by $index" id ="{{size.id}}" class="button button-raised" ng-class="{active: size.id == item_size}" ng-click="btn_size({{size.id}})">{{size.name}}</a>
             </div>

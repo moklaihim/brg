@@ -274,26 +274,28 @@ angular.module('starter.controllers')
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
-        $scope.showBrandInput = !$scope.showBrandInput;
+        $scope.showBrandInput = true;
         $scope.showItemList = true;
-        $scope.toggleBrand = !$scope.toggleBrand;
+        $scope.toggleBrand = true;
         $scope.toggleCode = false;
         $scope.toggleColor = false;
         $scope.toggleSize = false;
+        $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
         // $scopr.showItemList
     }
     $scope.trig_brand = trig_brand;
 
     function trig_code(event){
-        $scope.showCodeInput = !$scope.showCodeInput;
         $scope.showItemList = true;
         $scope.showBrandInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
-        $scope.toggleCode = !$scope.toggleCode;
+        $scope.showCodeInput = true;
+        $scope.toggleCode = true;
         $scope.toggleBrand = false;
         $scope.toggleColor = false;
         $scope.toggleSize = false;
+        $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
         
     }
     $scope.trig_code = trig_code;
@@ -302,13 +304,14 @@ angular.module('starter.controllers')
 
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
-        $scope.showColorInput = !$scope.showColorInput;
+        $scope.showColorInput = true;
         $scope.showItemList = !$scope.showColorInput;
         $scope.showSizeInput = false;
-        $scope.toggleColor = !$scope.toggleColor;
+        $scope.toggleColor = true;
         $scope.toggleCode = false;
         $scope.toggleBrand = false;
         $scope.toggleSize = false;
+        $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
 
     }
     $scope.trig_color = trig_color;
@@ -318,11 +321,12 @@ angular.module('starter.controllers')
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
-        $scope.showSizeInput = !$scope.showSizeInput;
-        $scope.toggleSize = !$scope.toggleSize;
+        $scope.showSizeInput = true;
+        $scope.toggleSize = true;
         $scope.toggleCode = false;
         $scope.toggleColor = false;
         $scope.toggleBrand = false;
+        $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
 
     }
     $scope.trig_size = trig_size;
