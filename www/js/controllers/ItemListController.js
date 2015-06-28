@@ -476,64 +476,14 @@ angular.module('starter.controllers')
         $scope.retail_price = $scope.retail_price + event.target.id;
     };
 
+    $scope.btn_back = function(){
+        console.log = ("button back pressed");
+    }
+
     $scope.filterColor = function(event){
         $ionicScrollDelegate.scrollTop();
         $scope.filterLetters = event.target.id;
     }
-
-    //Control what type of input is next
-    $scope.btn_back= function(event){
-        if(event.target.id == "inputBackBtn"){
-            if ($scope.showCodeInput){
-                $scope.showBackButton = false;
-                $scope.showBrandInput = true;
-                $scope.showCodeInput = false;
-                $scope.showColorInput = false;
-                $scope.showSizeInput = false;
-                $scope.item_code = "";
-                $scope.item_brand = "";
-                itemId();
-                // updateInstruction();
-            }
-
-            if($scope.showColorInput){
-                $scope.showBrandInput = false;
-                $scope.showCodeInput = true;
-                $scope.showColorInput = false;
-                $scope.showSizeInput = false;
-                $scope.item_code = "";
-                itemId();
-                // updateInstruction();
-            }
-
-            if ($scope.showSizeInput){
-                $scope.showBrandInput = false;
-                $scope.showCodeInput = false;
-                $scope.showColorInput = true;
-                $scope.showSizeInput = false;
-                $scope.item_color = "";
-                itemId();
-                // updateInstruction();
-            }  
-
-            if (lastItemCodeEntered) {
-                $scope.showBrandInput = false;
-                $scope.showCodeInput = false;
-                $scope.showColorInput = false;
-                $scope.showSizeInput = true;
-                $scope.item_size = "";
-                itemId();
-                lastItemCodeEntered =false;
-                // updateInstruction();
-
-            }
-        }
-
-        if (event.target.id == "PriceBackSpace"){
-            // $scope.retail_price = $scope.retail_price.length -1
-            $scope.retail_price = $scope.retail_price.substring(0, $scope.retail_price.length - 1);
-        }    
-    };
 
     //When the X button beside the ITEM name is clicked
     function itemIdClear(){

@@ -128,35 +128,13 @@
             </label>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Retail price</span>
-                <input type="text" disabled ng-model="retail_price | currency:'$'">
-            </label>
-            <!-- <label class="item item-input item-stacked-label">
-                <span class="input-label">Discount rate</span>
                 <div class="button-bar">
-                    <button id="discount" ng-class="{'bluebutton': discountToggle, 'greenbutton': discountHaveValue}" class="button button-small" ng-click="priceToggle($event)">{{sale.discount_rate}}%
+                    <button class="button button-small pcode-button" >{{retail_price | currency}}
                     </button>
-                    <button id="PriceBackSpace" style="padding:0px" ng-show="showDiscountDel" class="button button-small icon ion-backspace-outline button-assertive ng-hide" ng-click="btn_back($event)">
+                    <button class="button button-small icon ion-backspace-outline button-assertive" ng-click="btn_back()">
                     </button>
                 </div>
             </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Sale price</span>
-                <div class="button-bar">
-                    <button id="sale" ng-class="{'bluebutton': saleToggle, 'greenbutton': saleHaveValue}" class="button button-small" ng-click="priceToggle($event)">{{sale.sale_price | currency}}
-                    </button>
-                    <button id="PriceBackSpace" style="padding:0px" ng-show="showSaleDel" class="button button-small icon ion-backspace-outline button-assertive ng-hide" ng-click="btn_back($event)">
-                    </button>
-                </div>
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Quantity</span>
-                <div class="button-bar">
-                    <button id="qty" ng-class="{'bluebutton': qtyToggle, 'greenbutton': qtyHaveValue}" class="button button-small" ng-click="priceToggle($event)">{{sale.qty}}
-                    </button>
-                    <button id="PriceBackSpace" style="padding:0px" ng-show="showQtyDel" class="button button-small icon ion-backspace-outline button-assertive ng-hide" ng-click="btn_back($event)">
-                    </button>
-                </div>
-            </label> -->
         </div>
         <!-- <button class="button button-block button-positive" ng-click="ok()">Save</button> -->
         <div ng-show = "showConfirmBtns" class="ng-hide" >
@@ -194,7 +172,7 @@
         </div>
     </div> -->
 
-     <div ng-show="showPriceInput" class="ng-hide" style="position:absolute; bottom:0px; width:100%" ng-class="{'animated slideInUp': showPriceInput}">
+    <div ng-show="showPriceInput" class="ng-hide bar-keypad animation-element" style="position:absolute; bottom:0px; width:100%" >
         <div class="button-bar">
             <button id = "1" class="button" ng-click="btn_price($event)">1</button>
             <button id = "2" class="button" ng-click="btn_price($event)">2</button>
