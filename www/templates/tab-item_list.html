@@ -38,10 +38,8 @@
 
         <ion-list ng-if="showColorInput">
             <ion-item class="item item-avatar" ng-repeat="color in colors_array | startsWith : filterLetters | orderBy: 'name'" ng-click="btn_color(color.name)" style="background-color:white">
-                <!-- <img style="background-color:{{color.backgroundcolor}};"> -->
                 <h2>{{color.name}}</h2>
                 <p>{{color.fullname}}</p>
-                <!--a ng-repeat="color in colors | orderBy:'order' track by $index" id="{{color.id}}" class="button button-raised" style="color:{{color.color}}; background-color:{{color.backgroundcolor}}; padding:0" ng-class="{active: color.id == item_color}" ng-click="btn_color(color.name)">{{color.name}}</a-->
             </ion-item>
         </ion-list>
     </ion-content>
@@ -119,18 +117,56 @@
         </div> 
         
     <ion-content ng-show="showPriceInput" class="ng-hide" >
-        <ion-header-bar class="bar-subheader bar-positive button-calm" style="top:inherit">
-    <!-- <span><h1 class="title">Add Item</h1></span> -->
+        <!-- <ion-header-bar class="bar-subheader bar-positive button-calm" style="top:inherit">
             <span id="retailPrice" class="title" ng-model="new_item.retail_price">RETAIL PRICE : ${{retail_price}}</h1></span>
             <span style="float:right"><button class="button button-clear ion-close" ng-click="priceClear()"></button><span>
-        </ion-header-bar >
-    </ion-content>
-        <div ng-show = "showConfirmBtns" class="button-bar ng-hide" style="margin-top:175px">
-            <button ng-show = "showCancelBtn" class="button button-assertive ng-hide" ng-click="itemIdClear()" >Cancel</button>
-            <button ng-show = "showAddItemBtn" class="button button-calm ng-hide" ng-click="addItemOK()" >Add Item</button>
-            <button ng-show = "showEditItemBtn" class="button button-calm ng-hide" ng-click="editItemOK()" >Update Item</button>
-            <button ng-show = "showAddSaleBtn" class="button button-balanced ng-hide" ng-click="addSaleOK()">Add Sale</button>
+        </ion-header-bar > -->
+        <div class="list">
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Item code</span>
+                <input type="text" disabled ng-model="current.item_id">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Retail price</span>
+                <input type="text" disabled ng-model="retail_price | currency:'$'">
+            </label>
+            <!-- <label class="item item-input item-stacked-label">
+                <span class="input-label">Discount rate</span>
+                <div class="button-bar">
+                    <button id="discount" ng-class="{'bluebutton': discountToggle, 'greenbutton': discountHaveValue}" class="button button-small" ng-click="priceToggle($event)">{{sale.discount_rate}}%
+                    </button>
+                    <button id="PriceBackSpace" style="padding:0px" ng-show="showDiscountDel" class="button button-small icon ion-backspace-outline button-assertive ng-hide" ng-click="btn_back($event)">
+                    </button>
+                </div>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Sale price</span>
+                <div class="button-bar">
+                    <button id="sale" ng-class="{'bluebutton': saleToggle, 'greenbutton': saleHaveValue}" class="button button-small" ng-click="priceToggle($event)">{{sale.sale_price | currency}}
+                    </button>
+                    <button id="PriceBackSpace" style="padding:0px" ng-show="showSaleDel" class="button button-small icon ion-backspace-outline button-assertive ng-hide" ng-click="btn_back($event)">
+                    </button>
+                </div>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Quantity</span>
+                <div class="button-bar">
+                    <button id="qty" ng-class="{'bluebutton': qtyToggle, 'greenbutton': qtyHaveValue}" class="button button-small" ng-click="priceToggle($event)">{{sale.qty}}
+                    </button>
+                    <button id="PriceBackSpace" style="padding:0px" ng-show="showQtyDel" class="button button-small icon ion-backspace-outline button-assertive ng-hide" ng-click="btn_back($event)">
+                    </button>
+                </div>
+            </label> -->
         </div>
+        <!-- <button class="button button-block button-positive" ng-click="ok()">Save</button> -->
+        <div ng-show = "showConfirmBtns" class="ng-hide" >
+            <button ng-show = "showCancelBtn" class="button button-block button-assertive ng-hide" ng-click="itemIdClear()" >Cancel</button>
+            <button ng-show = "showAddItemBtn" class="button button-block button-calm ng-hide" ng-click="addItemOK()" >Add Item</button>
+            <button ng-show = "showEditItemBtn" class="button button-block button-calm ng-hide" ng-click="editItemOK()" >Update Item</button>
+            <button ng-show = "showAddSaleBtn" class="button button-block button-balanced ng-hide" ng-click="addSaleOK()">Add Sale</button>
+        </div>
+    </ion-content>
+        
 
 <!--     <div ng-show="showPriceInput" class="ng-hide" style="position:absolute; bottom: 55px; width:100%">
         <div class="button-bar" style="padding-top:40px">
