@@ -118,7 +118,8 @@ angular.module('starter.controllers')
     $scope.checkHaveValue = checkHaveValue;
 
     function hideNumpad(){
-            $scope.smallScreenDetected = false;
+            $scope.ss480Detected = false;
+            $scope.ss568Detected = false;
             $scope.showPriceInput = false;
             $timeout(function() {
                 $ionicScrollDelegate.scrollTop();
@@ -149,12 +150,14 @@ angular.module('starter.controllers')
 
 
     $scope.priceToggle= function(event){
-        if($scope.iframeHeight < 500){
-            $scope.smallScreenDetected = true;
-            $timeout(function() {
-                $ionicScrollDelegate.scrollBottom();
-            },500);
+        if($scope.iframeHeight < 481){
+            $scope.ss480Detected = true;
+        }else if($scope.iframeHeight < 569){
+            $scope.ss568Detected = true;
         }
+        $timeout(function() {
+            $ionicScrollDelegate.scrollTo(0,160,true);
+        },500);
 
         $scope.showPriceInput = true;
         if(event.target.id == 'discount'){
@@ -171,9 +174,7 @@ angular.module('starter.controllers')
             $scope.sale.discount_rate = 0;
             $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * $scope.sale.discount_rate / 100;
 
-        }
-
-        if(event.target.id == 'sale'){
+        } else if(event.target.id == 'sale'){
             // $scope.showPriceInput = !$scope.showPriceInput;
             if($scope.sale.qty == ''){
                 $scope.sale.qty = 1;
@@ -186,9 +187,8 @@ angular.module('starter.controllers')
             $scope.showQtyDel = false;
             $scope.sale.sale_price = '';
             $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
-        }
 
-        if(event.target.id == 'qty'){
+        } else if(event.target.id == 'qty'){
             // $scope.showPriceInput = !$scope.showPriceInput;
             $scope.discountToggle = false;
             $scope.saleToggle = false;

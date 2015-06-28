@@ -4,7 +4,7 @@ angular.module('starter.controllers')
 //
     console.log("current Mode is : " + $scope.current.itemAddMode);
     $scope.current.view = 'items_list';
-    $scope.headerLabel = "Shoes List ";  // header will reflect ITEM List
+    $scope.headerLabel = "Items";  // header will reflect ITEM List
     $scope.showInputSelections = true;
     $scope.current.item_id ='';
     $scope.showItemList = true;
