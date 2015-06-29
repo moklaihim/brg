@@ -1,7 +1,7 @@
 <ion-view title= {{headerLabel}} >
     <ion-nav-buttons side="right">
         <a class="button button-clear button-store" ui-sref="main.stores_list">{{current.store_name}}</a>
-        <button class="button button-clear button-icon button-cleear mdi mdi-calendar" style="color: white" ng-click="showDatePicker($event)"></button>
+        <button class="button button-clear button-icon button-cleear mdi mdi-calendar" style="color: white" ng-click="showDatePicker()"></button>
     </ion-nav-buttons>
 
     <ion-header-bar class="bar-subheader brg-bg" style="padding:0px">
@@ -116,7 +116,7 @@
             </div>
         </div> 
         
-    <ion-content ng-show="showPriceInput" class="ng-hide" >
+    <ion-content padding="true" ng-show="showPriceInput" class="ng-hide" >
         <!-- <ion-header-bar class="bar-subheader bar-positive button-calm" style="top:inherit">
             <span id="retailPrice" class="title" ng-model="new_item.retail_price">RETAIL PRICE : ${{retail_price}}</h1></span>
             <span style="float:right"><button class="button button-clear ion-close" ng-click="priceClear()"></button><span>
@@ -129,10 +129,8 @@
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Retail price</span>
                 <div class="button-bar">
-                    <button class="button button-small pcode-button" >{{retail_price | currency}}
-                    </button>
-                    <button class="button button-small icon ion-backspace-outline button-assertive" ng-click="btn_back()">
-                    </button>
+                    <button class="button button-small pcode-button" >{{retail_price | currency}}</button>
+                    <button class="button button-small icon ion-backspace-outline button-assertive" ng-click="showDatePicker()"></button>
                 </div>
             </label>
         </div>

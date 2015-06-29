@@ -214,7 +214,7 @@ angular.module('starter.controllers')
     $scope.editItem = function($item_id) {
         $scope.current.item_id = $item_id;
         $scope.retail_price = $scope.items[$item_id].retail_price;
-        $scope.headerLabel = "Shoes List (Editing) "
+        $scope.headerLabel = "Shoes List (Editing) ";
         $scope.headerCloseButton = true; 
         $scope.showInputSelections = false;
         $scope.showSelectedItem = true;
@@ -250,7 +250,7 @@ angular.module('starter.controllers')
         $scope.showBrandInput = true;
         $scope.showConfirmBtns = false;
         $scope.showEditItemBtn = false;
-        $scope.headerLabel = "Searching "
+        $scope.headerLabel = "Searching ";
         // updateInstruction();
         $ionicListDelegate.closeOptionButtons();
      
@@ -378,7 +378,7 @@ angular.module('starter.controllers')
         $scope.toggleCode = true;
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
             lastItemCodeEntered = true;
-            console.log("last item entered")
+            console.log("last item entered");
         }
         itemId();
         // updateInstruction();
@@ -400,7 +400,7 @@ angular.module('starter.controllers')
         }
         itemId();
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
-            console.log("last item entered")
+            console.log("last item entered");
             lastItemCodeEntered = true;
         }
     };
@@ -439,7 +439,7 @@ angular.module('starter.controllers')
         $scope.toggleColor = false;
         $scope.toggleSize = true;
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
-            console.log("last item entered")
+            console.log("last item entered");
             lastItemCodeEntered = true;
         }
         itemId();
@@ -460,7 +460,7 @@ angular.module('starter.controllers')
         // }
         $scope.toggleSize = false;
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
-            console.log("last item entered")
+            console.log("last item entered");
             lastItemCodeEntered = true;
         }
 
@@ -477,13 +477,13 @@ angular.module('starter.controllers')
     };
 
     $scope.btn_back = function(){
-        console.log = ("button back pressed");
-    }
+        console.log("button back pressed");
+    };
 
     $scope.filterColor = function(event){
         $ionicScrollDelegate.scrollTop();
         $scope.filterLetters = event.target.id;
-    }
+    };
 
     //When the X button beside the ITEM name is clicked
     function itemIdClear(){
@@ -544,7 +544,7 @@ angular.module('starter.controllers')
         // updateInstruction();
         }
 
-        console.log("the item code is " + $scope.current.item_id)
+        console.log("the item code is " + $scope.current.item_id);
         if($scope.item_brand){
             $scope.brandHaveValue = true;
         }
