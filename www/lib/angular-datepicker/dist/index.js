@@ -28,9 +28,9 @@ Module.filter('time',function () {
 });
 
 Module.filter('initial',function () {
-  return function (string) {
-    return string.substr(0,1);
-  };
+      return function (string) {
+              return string.substr(0,1);
+                };  
 });
 
 Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function datePickerDirective(datePickerConfig, datePickerUtils) {
@@ -196,6 +196,13 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function 
           date.setFullYear(date.getFullYear() + delta);
           break;
         case 'date':
+          /* Reverting from ISSUE #113
+          var dt = new Date(date);
+          date.setMonth(date.getMonth() + delta);
+          if (date.getDate() < dt.getDate()) {
+            date.setDate(0);
+          }
+          */
           date.setMonth(date.getMonth() + delta);
           break;
         case 'hours':
@@ -269,6 +276,9 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function 
 'use strict';
 
 angular.module('datePicker').factory('datePickerUtils', function(){
+  var truncateToDay = function(date){
+    date.setHours(0 - date.getTimezoneOffset() / 60, 0, 0, 0);
+  };
   return {
     getVisibleMinutes : function(date, step) {
       date = new Date(date || new Date());
@@ -284,18 +294,20 @@ angular.module('datePicker').factory('datePickerUtils', function(){
     getVisibleWeeks : function(date) {
       date = new Date(date || new Date());
       var startMonth = date.getMonth(), startYear = date.getYear();
+      // set date to start of the week
       date.setDate(1);
-      date.setHours(0);
-      date.setMinutes(0);
-      date.setSeconds(0);
-      date.setMilliseconds(0);
+      // truncate date to get rid of time informations
+      truncateToDay(date);
 
       if (date.getDay() === 0) {
+        // day is sunday, let's get back to the previous week
         date.setDate(-5);
       } else {
+        // day is not sunday, let's get back to the start of the week
         date.setDate(date.getDate() - (date.getDay() - 1));
       }
       if (date.getDate() === 1) {
+        // day is monday, let's get back to the previous week
         date.setDate(-6);
       }
 
@@ -316,15 +328,22 @@ angular.module('datePicker').factory('datePickerUtils', function(){
       var years = [];
       date = new Date(date || new Date());
       date.setFullYear(date.getFullYear() - (date.getFullYear() % 10));
+      date.setMonth(0);
+      date.setDate(1);
+      truncateToDay(date);
+      var pushedDate;
       for (var i = 0; i < 12; i++) {
-        years.push(new Date(date.getFullYear() + (i - 1), 0, 1));
+        pushedDate = new Date(date);
+        pushedDate.setFullYear(date.getFullYear() + (i - 1));
+        years.push(pushedDate);
       }
       return years;
     },
     getDaysOfWeek : function(date) {
       date = new Date(date || new Date());
       date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-      date.setDate(date.getDate() - (date.getDay()));
+      date.setDate(date.getDate() - (date.getDay() - 1));
+      truncateToDay(date);
       var days = [];
       for (var i = 0; i < 7; i++) {
         days.push(new Date(date));
@@ -336,17 +355,17 @@ angular.module('datePicker').factory('datePickerUtils', function(){
       date = new Date(date || new Date());
       var year = date.getFullYear();
       var months = [];
+      var pushedDate;
       for (var month = 0; month < 12; month++) {
-        months.push(new Date(year, month, 1));
+        pushedDate = new Date(year, month, 1);
+        truncateToDay(pushedDate);
+        months.push(pushedDate);
       }
       return months;
     },
     getVisibleHours : function(date) {
       date = new Date(date || new Date());
-      date.setHours(0);
-      date.setMinutes(0);
-      date.setSeconds(0);
-      date.setMilliseconds(0);
+      truncateToDay(date);
       var hours = [];
       for (var i = 0; i < 24; i++) {
         hours.push(date);
@@ -357,12 +376,12 @@ angular.module('datePicker').factory('datePickerUtils', function(){
     isAfter : function(model, date) {
       model = (model !== undefined) ? new Date(model) : model;
       date = new Date(date);
-      return model && model.getTime() <= date.getTime();
+      return model && model.getTime() >= date.getTime();
     },
     isBefore : function(model, date) {
       model = (model !== undefined) ? new Date(model) : model;
       date = new Date(date);
-      return model.getTime() >= date.getTime();
+      return model.getTime() <= date.getTime();
     },
     isSameYear :   function(model, date) {
       model = (model !== undefined) ? new Date(model) : model;
@@ -619,7 +638,7 @@ angular.module("datePicker").run(["$templateCache", function($templateCache) {
     "\n" +
     "        <th ng-click=\"prev()\">&lsaquo;</th>\r" +
     "\n" +
-    "        <th colspan=\"5\" class=\"switch\" ng-click=\"setView('month')\">{{date|date:\"yyyy MMMM\"}}</th>\r" +
+    "        <th colspan=\"5\" class=\"switch\" ng-click=\"setView('month')\" ng-bind=\"date|date:'yyyy MMMM'\"></th>\r" +
     "\n" +
     "        <th ng-click=\"next()\">&rsaquo;</i></th>\r" +
     "\n" +
@@ -627,7 +646,7 @@ angular.module("datePicker").run(["$templateCache", function($templateCache) {
     "\n" +
     "      <tr>\r" +
     "\n" +
-    "        <th ng-repeat=\"day in weekdays\" style=\"overflow: hidden\">{{ day|date:\"EEE\"|initial }}</th>\r" +
+    "        <th ng-repeat=\"day in weekdays\" style=\"overflow: hidden\" ng-bind=\"day|date:'EEE'|initial\" ></th>\r" +
     "\n" +
     "      </tr>\r" +
     "\n" +
@@ -665,7 +684,7 @@ angular.module("datePicker").run(["$templateCache", function($templateCache) {
     "\n" +
     "        <th ng-click=\"prev(10)\">&lsaquo;</th>\r" +
     "\n" +
-    "        <th colspan=\"5\" class=\"switch\">{{years[0].getFullYear()}}-{{years[years.length-1].getFullYear()}}</th>\r" +
+    "        <th colspan=\"5\" class=\"switch\"ng-bind=\"years[0].getFullYear()+' - '+years[years.length-1].getFullYear()\"></th>\r" +
     "\n" +
     "        <th ng-click=\"next(10)\">&rsaquo;</i></th>\r" +
     "\n" +
@@ -705,7 +724,7 @@ angular.module("datePicker").run(["$templateCache", function($templateCache) {
     "\n" +
     "        <th ng-click=\"prev()\">&lsaquo;</th>\r" +
     "\n" +
-    "        <th colspan=\"5\" class=\"switch\" ng-click=\"setView('year')\">{{ date|date:\"yyyy\" }}</th>\r" +
+    "        <th colspan=\"5\" class=\"switch\" ng-click=\"setView('year')\" ng-bind=\"date|date:'yyyy'\"></th>\r" +
     "\n" +
     "        <th ng-click=\"next()\">&rsaquo;</i></th>\r" +
     "\n" +
@@ -747,7 +766,7 @@ angular.module("datePicker").run(["$templateCache", function($templateCache) {
     "\n" +
     "        <th ng-click=\"prev(24)\">&lsaquo;</th>\r" +
     "\n" +
-    "        <th colspan=\"5\" class=\"switch\" ng-click=\"setView('date')\">{{ date|date:\"dd MMMM yyyy\" }}</th>\r" +
+    "        <th colspan=\"5\" class=\"switch\" ng-click=\"setView('date')\" ng-bind=\"date|date:'dd MMMM yyyy'\"></th>\r" +
     "\n" +
     "        <th ng-click=\"next(24)\">&rsaquo;</i></th>\r" +
     "\n" +
@@ -787,9 +806,7 @@ angular.module("datePicker").run(["$templateCache", function($templateCache) {
     "\n" +
     "        <th ng-click=\"prev()\">&lsaquo;</th>\r" +
     "\n" +
-    "        <th colspan=\"5\" class=\"switch\" ng-click=\"setView('hours')\">{{ date|date:\"dd MMMM yyyy\" }}\r" +
-    "\n" +
-    "        </th>\r" +
+    "        <th colspan=\"5\" class=\"switch\" ng-click=\"setView('hours')\" ng-bind=\"date|date:'dd MMMM yyyy'\"></th>\r" +
     "\n" +
     "        <th ng-click=\"next()\">&rsaquo;</i></th>\r" +
     "\n" +
