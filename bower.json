@@ -5,7 +5,7 @@
     "firebase": "2.2.2",
     "angularfire": "~1.0.0",
     "ngCordova": "~0.1.14-alpha",
-    "angular-datepicker": "https://github.com/g00fy-/angular-datepicker.git#~1.0.4",
+    "angular-datepicker": "~1.0.12",
     "mdi": "~1.0.62-beta",
     "ionic-material": "~0.4.2",
     "robotodraft": "~1.1.0"

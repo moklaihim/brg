@@ -72,7 +72,6 @@ angular.module('starter.controllers')
     }
 
     function setDate(date, today){
-        //console.log(date);
         var year = date.getFullYear();
         var month = date.getMonth()+1;
         if (month < 10) { month = '0' + month; }
@@ -93,8 +92,6 @@ angular.module('starter.controllers')
     }
 
     $scope.showDatePicker = function(){
-        //$scope.showPCDatePicker = !$scope.showPCDatePicker;
-
         var myPopup = $ionicPopup.show({
             template: '<div date-picker="current.raw_new_set_date" view="date" max-view="date" min-view="date" auto-close="false"></div>',
             title: $scope.current.set_year,
@@ -112,8 +109,18 @@ angular.module('starter.controllers')
                     text: 'OK',
                     type: 'button-flat',
                     onTap: function() {
-                        $scope.current.raw_set_date = $scope.current.raw_new_set_date;
-                        setDate($scope.current.raw_set_date, false);
+                        var today_day = new Date();
+                        var max_date = new Date(today_day.getFullYear(), today_day.getMonth() + 1, today_day.getDate());
+                        var min_date = new Date(today_day.getFullYear(), today_day.getMonth() - 1, today_day.getDate());
+
+                        if($scope.current.raw_new_set_date > min_date && $scope.current.raw_new_set_date < max_date){
+                            $scope.current.raw_set_date = $scope.current.raw_new_set_date;
+                            setDate($scope.current.raw_set_date, false);
+                        }else{
+                            console.log("Date over limit");
+                            $scope.current.raw_new_set_date = $scope.current.raw_set_date;
+                            showAlert();
+                        }
                     }
                 }
             ]
@@ -163,4 +170,15 @@ angular.module('starter.controllers')
         logout();
     };
 
+    function showAlert(){
+        // var msg = item_id;
+        var alertPopup = $ionicPopup.alert({
+         title: 'Error',
+         template: 'You can only access 1 month before or after today',
+         okType: 'button-flat'
+        }); 
+        alertPopup.then(function(res) {
+         console.log('over scroll');
+        }); 
+    };  
 }])
