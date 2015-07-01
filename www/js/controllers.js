@@ -9,5 +9,5 @@ document.write('<script type="text/javascript" src="js/controllers/SaleListContr
 document.write('<script type="text/javascript" src="js/controllers/SaleAddController.js"></script>');
 document.write('<script type="text/javascript" src="js/controllers/ItemListController.js"></script>');
 document.write('<script type="text/javascript" src="js/controllers/StoreListController.js"></script>');
-// document.write('<script type="text/javascript" src="js/controllers/ItemAddController.js"></script>');
+document.write('<script type="text/javascript" src="js/controllers/ItemAddController.js"></script>');
 document.write('<script type="text/javascript" src="js/controllers/RoleListController.js"></script>');

@@ -2,7 +2,6 @@ angular.module('starter.controllers')
 .controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", "Codes", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales, Codes) {
 // Start of Item List to show only item list and Brand input
 //
-    console.log("current Mode is : " + $scope.current.itemAddMode);
     $scope.current.view = 'items_list';
     $scope.headerLabel = "Items";  // header will reflect ITEM List
     $scope.showInputSelections = true;
@@ -12,12 +11,6 @@ angular.module('starter.controllers')
     $scope.showColorInput = false;
     $scope.showSizeInput = false;
     $scope.showCodeInput = false;
-    $scope.showConfirmBtns = false;
-    $scope.showAddItemBtn = false;
-    $scope.showEditItemBtn = false;
-    $scope.showAddSaleBtn = false;
-    $scope.showBackButton = false;
-    $scope.retail_price = '';
     $scope.toggleBrand = true;
     $scope.toggelSelected = false;
     $scope.showItemCodeInputs = true;
@@ -46,22 +39,8 @@ angular.module('starter.controllers')
     }
 
     /* Make Color palate from here*/
-    //$scope.colors_array = new Array();
-    //var iil = 5; //number of items in line
     $scope.colors_array = Codes.get_colors_as_array();
 
-    /**
-    for (var l = 0; l < Math.ceil(colors.length / iil); l++){
-        $scope.colors_array[l] = new Array();
-    }
-
-    for (var i = 0; i < colors.length; i++) {
-        j = Math.floor(i / iil);
-        k = i % iil;
-        $scope.colors_array[j][k] = colors[i];
-    }
-    **/
-    /* Make Size palate to here*/
     $scope.sizes_array = new Array();
     var iil = 5;
     var sizes = Codes.get_sizes_as_array();
@@ -77,7 +56,6 @@ angular.module('starter.controllers')
     }
 
     updateItems();
-    // updateInstruction();
 
     if($state.current.name === "main.sales_scanadd"){
         scanFunction();
@@ -117,21 +95,6 @@ angular.module('starter.controllers')
     };
     $scope.scanFunction = scanFunction;
 
-
-    // function updateInstruction(){
-    //     if ($scope.showBrandInput == true){
-    //         $scope.headerLabel = "Choose Brand Code";
-    //     }else if($scope.showCodeInput == true){
-    //         $scope.headerLabel = "Enter Item Code";
-    //     }else if($scope.showSizeInput == true){
-    //         $scope.headerLabel = "Choose Size";
-    //     }else if($scope.showColorInput == true){
-    //         $scope.headerLabel = "Choose Color";
-    //     }
-    // }
-    // $scope.updateInstruction = updateInstruction;
-
-
     //update Items from Firebase
     function updateItems(){
         $scope.items = Items.get();
@@ -147,116 +110,29 @@ angular.module('starter.controllers')
     };
     $scope.selectItem = selectItem;
 
-    //Show or hide when tap on the item name
-    // var searchItem = angular.element(document.querySelector('#searchItem'));
-    // $ionicGesture.on('tap', function(e) {
-    //     $scope.hideSearchButtons = !$scope.hideSearchButtons;
-    //     $scope.$digest();
-    // }, searchItem);
-
-    //After completing adding new item form, add to sales button is clicked
-    $scope.addSaleOK = function(){
-        if (!$scope.retail_price || $scope.current.item_id == '--'){
-            showItemAddError(); //display error notification when price is not entered
-            return;
-        };
-
-        Items.add($scope.current.item_id, $scope.retail_price);
-        $state.go('main.sales_add');
-        priceClear();
-
-    };
-    //when search cannot find item and "Not Found? Add New Item." is clicked" 
     function addItem(event){
-        // addItemClicked = true;
+    // addItemClicked = true;
         $scope.headerLabel = "Shoes List (Adding) "
         // $scope.showInputSelections = true;
         if (lastItemCodeEntered){
-            $scope.showPriceInput = true;
-            $scope.showSelectedItem = true;
-            $scope.headerCloseButton = true; 
-            $scope.showConfirmBtns = true;
-            $scope.showInputSelections = false;
-            $scope.showItemList = false;
-            $scope.showItemCodeInputs = false;
-            if($scope.current.itemAddMode == "fromsale"){
-                $scope.showAddItemBtn = false;
-                $scope.showAddSaleBtn = true;
-            }else if($scope.current.itemAddMode == "fromitem"){
-                $scope.showAddItemBtn = true;
-                $scope.showAddSaleBtn = false;
-            }
-            lastItemCodeEntered = false;
-        }else{
+            $state.go('main.items_add');  
+        }
+        else{
             showItemAddError();
         }
-        
-        
-        // $scope.showAddItemBtn = true;
     }
     $scope.addItem = addItem;
 
-    //After completing adding new item form, add to items only and display messgae item is added
-    $scope.addItemOK = function(){
-        if (!$scope.retail_price || $scope.current.item_id == '--'){
-            showItemAddError(); //display error notification when price is not entered
-            return;
-        };
-
-        Items.add($scope.current.item_id, $scope.retail_price);
-        showItemAddAlert();
-        itemIdClear();
-        priceClear();
-        
-
-    };
     //when individual item is slide and pressed edit
     $scope.editItem = function($item_id) {
         $scope.current.item_id = $item_id;
-        $scope.retail_price = $scope.items[$item_id].retail_price;
-        $scope.headerLabel = "Shoes List (Editing) ";
-        $scope.headerCloseButton = true; 
-        $scope.showInputSelections = false;
-        $scope.showSelectedItem = true;
-        $scope.showItemList = false;
-        $scope.showPriceInput = true;
-        $scope.showSizeInput = false;
-        $scope.showBrandInput = false;
-        $scope.showCodeInput = false;
-        $scope.showColorInput = false;
-        $scope.showConfirmBtns = true;
-        $scope.showEditItemBtn = true;
-        $scope.showCancelBtn = true;
-        $scope.showAddItemBtn = false;
-        $scope.showAddSaleBtn = false;
-        editItemClicked = true; //When true , Price input will reset the field value
+        $scope.current.retail_price = $scope.items[$item_id].retail_price;
+        $scope.current.itemAddMode = 'fromedit';
+        $state.go('main.items_add');
+        $ionicListDelegate.closeOptionButtons();
+         //When true , Price input will reset the field value
     }
 
-
-    //When finish editing form and pressed "Update Item" button
-    $scope.editItemOK = function(){
-        if (!$scope.retail_price || $scope.current.item_id == '--'){
-            showItemAddError(); //display error notification when price is not entered 
-            return;
-        };
-        console.log("edit Ok Pressed");
-        $scope.showItemList = true;
-        Items.add($scope.current.item_id, $scope.retail_price); 
-        $scope.retail_price = '';
-        $scope.current.item_id = '';
-        $scope.showInputSelections = true;
-        $scope.showSelectedItem = false;
-        $scope.showPriceInput = false;
-        $scope.showBrandInput = true;
-        $scope.showConfirmBtns = false;
-        $scope.showEditItemBtn = false;
-        $scope.headerLabel = "Searching ";
-        // updateInstruction();
-        $ionicListDelegate.closeOptionButtons();
-     
-        
-        // $state.go('main.items_list');
-    };
     //when individual item is slide and pressed delete
     $scope.removeItem = function($item_id) {
         console.log("remove Item item_id: " + $item_id);
@@ -451,13 +327,6 @@ angular.module('starter.controllers')
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
-        // if(addItemClicked){ //If add item is clicked
-        //     $scope.showPriceInput = true;
-        //     $scope.headerCloseButton = true;
-        //     $scope.showInputSelections = false;
-        //     $scope.showConfirmBtns = true;
-        //     $scope.showItemList = false;
-        // }
         $scope.toggleSize = false;
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
             console.log("last item entered");
@@ -468,72 +337,12 @@ angular.module('starter.controllers')
         // $scope.headerLabel = "ITEM : " + $scope.current.item_id;
     };
 
-    $scope.btn_price = function(event){
-        if(editItemClicked){
-            priceClear();
-            editItemClicked = false;
-        }
-        $scope.retail_price = $scope.retail_price + event.target.id;
-    };
-
-    $scope.btn_back = function(){
-        console.log("button back pressed");
-    };
-
     $scope.filterColor = function(event){
         $ionicScrollDelegate.scrollTop();
         $scope.filterLetters = event.target.id;
     };
 
-    //When the X button beside the ITEM name is clicked
-    function itemIdClear(){
-        //display main item search
-        $scope.showItemCodeInputs = true;
-        $scope.showInputSelections = true;
-        $scope.showItemList = true;
-        $scope.headerCloseButton = true;
-        $scope.showBrandInput = true;
-        $scope.showCodeInput = false;
-        $scope.showColorInput = false;
-        $scope.showSizeInput = false;
-
-        //hide all others and reset
-        $scope.showSelectedItem = false;
-        $scope.showPriceInput = false;
-        $scope.showCancelBtn = false;
-        $scope.showConfirmBtns = false;
-        $scope.showEditItemBtn = false;
-        $scope.showCancelBtn = false;
-        $scope.showAddItemBtn = false;
-        $scope.showAddSaleBtn = false;
-        $scope.toggleBrand = true;
-        $scope.toggleCode = false;
-        $scope.toggleColor = false;
-        $scope.toggleSize = false;
-
-        $scope.item_brand = '';
-        $scope.item_code ='';
-        $scope.item_color ='';
-        $scope.item_size = '';
-        // addItemClicked = false;
-        lastItemCodeEntered = false;
-        editItemClicked = false;  //When true , Price input will reset the field value
-        priceClear();
-        itemId();
-        $scope.current.item_id = '';
-
-        // $state.go($state.current, {}, {reload: true})
-
-    };
-    $scope.itemIdClear = itemIdClear;
-
-
     //When the X button beside the Retail Price is clicked
-    function priceClear(){
-        $scope.retail_price = '';
-    };
-    $scope.priceClear = priceClear;
-    //Build item_id when individual input is keyed in
     function itemId(){
         $ionicScrollDelegate.scrollTop();
         if($scope.item_brand == 'S'){
@@ -590,19 +399,6 @@ angular.module('starter.controllers')
     };
     $scope.showAlert = showAlert;
 
-    function showItemAddAlert(){
-        // var msg = item_id;
-        var alertPopup = $ionicPopup.alert({
-         title: 'ADDED ITEM',
-         template: $scope.current.item_id,
-         okType: 'button-flat'
-        });
-        // alertPopup.then(function(res) {
-        //  console.log('Thank you for different date');
-        // });
-    };
-    $scope.showItemAddAlert = showItemAddAlert;
-
     function showItemAddError(){
         // var msg = item_id;
         var alertPopup = $ionicPopup.alert({
@@ -628,13 +424,11 @@ angular.module('starter.controllers')
                 console.log('You are sure');
                 if (!$scope.items.hasOwnProperty(barcodeData)){
                     $scope.current.item_id = barcodeData;
-                    // $state.go('main.items_add');
-                    lastItemCodeEntered = true;
-                    $scope.showBrandInput = false;
-                    addItem();
+                    $state.go('main.items_add');
                 };
                 if ($scope.items.hasOwnProperty(barcodeData)){
-                    selectItem(barcodeData);
+                    $scope.current.item_id = barcodeData;
+                    $state.go('main.sales_add');
                 };
             } if(!res) {
                 console.log('You are not sure');

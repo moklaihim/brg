@@ -253,6 +253,13 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         controller: 'SaleListController'
     })
 
+    .state('main.sales_add', {
+        url: '/sales/add',
+        cache: false,
+        templateUrl: 'templates/tab-sale_add.html',
+        controller: 'SaleAddController'
+    })
+
     .state('main.items_list', {
         url: '/items/list',
         cache: false,
@@ -260,11 +267,11 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         controller: 'ItemListController'
     })
 
-    .state('main.sales_add', {
-        url: '/sales/add',
+    .state('main.items_add', {
+        url: '/items/add',
         cache: false,
-        templateUrl: 'templates/tab-sale_add.html',
-        controller: 'SaleAddController'
+        templateUrl: 'templates/tab-item_add.html',
+        controller: 'ItemAddController'
     })
 
     .state('main.sales_scanadd', {
@@ -273,13 +280,6 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         templateUrl: 'templates/tab-item_list.html',
         controller: 'ItemListController'
     })
-
-    // .state('main.items_add', {
-    //     url: '/items/add',
-    //     cache: false,
-    //     templateUrl: 'templates/tab-item_add.html',
-    //     controller: 'ItemAddController'
-    // })
 
     .state('main.stores_list', {
         url: '/stores/list',

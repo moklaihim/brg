@@ -129,6 +129,7 @@ angular.module('starter.controllers')
     $scope.hideNumpad = hideNumpad;
 
     $scope.btn_back=function(){
+        console.log("button back clicked");
         if ($scope.discountToggle){
             // $scope.retail_price = $scope.retail_price.length -1
             $scope.sale.discount_rate = $scope.sale.discount_rate.substring(0, $scope.sale.discount_rate.length - 1);
