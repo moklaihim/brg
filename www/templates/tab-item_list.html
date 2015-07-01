@@ -1,4 +1,4 @@
-<ion-view title= {{headerLabel}} >
+<ion-view title= "Items" >
     <ion-nav-buttons side="right">
         <a class="button button-clear button-store" ui-sref="main.stores_list">{{current.store_name}}</a>
         <button class="button button-clear button-icon button-cleear mdi mdi-calendar" style="color: white" ng-click="showDatePicker()"></button>
@@ -15,11 +15,18 @@
 
     <ion-content padding="false" style="margin-bottom:94px">
         <ion-list ng-if="showItemList">
-            <ion-item ng-click="addItem()"><center><b>Not Found? Add New Item.</b></center></ion-item>
-                <ion-item ng-repeat="item in items_array | itemFilter : item_brand:'brand' | itemFilter : item_code:'code' | itemFilter : item_color:'color' | itemFilter : item_size:'size' | uppercase" ng-click="selectItem(item.id)" ><b><h2>{{item.id}}</h2></b>
-                <!-- <ion-item ng-repeat="item in items_array | itemFilter : current.item_brand:'brand' | uppercase" ng-click="selectItem(item.id)" ><b>{{item.id}}</b> -->
-                <ion-option-button class="button-positive ion-edit" ng-click="editItem(item.id)"></ion-option-button>
-                <ion-option-button class="button-assertive ion-close-round" ng-click="removeItem(item.id)"></ion-option-button>
+            <ion-item ng-click="addItem()">
+                <center><b>Not Found? Add New Item.</b></center>
+            </ion-item>
+            <ion-item ng-repeat="item in items_array | itemFilter : item_brand:'brand' | itemFilter : item_code:'code' | itemFilter : item_color:'color' | itemFilter : item_size:'size' | uppercase" ng-click="selectItem(item.id)">
+                <h2>{{item.id}}</h2>
+                <p>{{item.timestamp}}
+                <span class="item-note">{{item.retail_price | currency:"$"}}</span>
+                </p>
+                <div>
+                    <ion-option-button class="button-option button-positive mdi mdi-pencil" ng-click="editItem(item.id)"></ion-option-button>
+                    <ion-option-button class="button-option button-assertive mdi mdi-delete" ng-click="removeItem(item.id)"></ion-option-button>
+                </div>
             </ion-item>
         </ion-list>
 
