@@ -130,25 +130,23 @@ angular.module('starter.controllers')
 
     $scope.btn_back=function(){
         console.log("button back clicked");
-        if ($scope.discountToggle){
-            // $scope.retail_price = $scope.retail_price.length -1
-            $scope.sale.discount_rate = $scope.sale.discount_rate.substring(0, $scope.sale.discount_rate.length - 1);
+        if($scope.discountToggle){
+            $scope.sale.discount_rate = $scope.sale.discount_rate.slice(0, -1);
             $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * $scope.sale.discount_rate / 100;
-        }   if($scope.sale.discount_rate == ''){
+            if($scope.sale.discount_rate == ''){
                 $scope.sale.discount_rate = 0;
             }
-        if ($scope.saleToggle){
-            // $scope.retail_price = $scope.retail_price.length -1
-            $scope.sale.sale_price = $scope.sale.sale_price.substring(0, $scope.sale.sale_price.length - 1);
+        }else if($scope.saleToggle){
+            if($scope.sale.sale_price.endsWith('.')){
+                $scope.sale.sale_price = $scope.sale.sale_price.slice(0, -2);
+            }else{
+                $scope.sale.sale_price = $scope.sale.sale_price.slice(0, -1);
+            }
             $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
+        }else if($scope.qtyToggle){
+            $scope.sale.qty = $scope.sale.qty.slice(0, -1);
         }
-        if ($scope.qtyToggle){
-            // $scope.retail_price = $scope.retail_price.length -1
-            $scope.sale.qty = $scope.sale.qty.substring(0, $scope.sale.qty.length - 1);
-        }
-
     }
-
 
     $scope.priceToggle= function(event){
         if($scope.iframeHeight < 481){

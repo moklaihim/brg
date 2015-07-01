@@ -66,6 +66,15 @@ angular.module('starter.controllers')
         $scope.current.retail_price='';
     };
 
+    $scope.priceBackSpace = function(){
+        $scope.showPriceInput=true;
+        if($scope.current.retail_price.endsWith('.')){
+            $scope.current.retail_price = $scope.current.retail_price.slice(0, -2);
+        }else{
+            $scope.current.retail_price = $scope.current.retail_price.slice(0, -1);
+        }
+    };
+
     //When the X button beside the Retail Price is clicked
     function priceClear(){
         $scope.current.retail_price = '';

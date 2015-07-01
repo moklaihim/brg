@@ -19,7 +19,6 @@
                 <span class="input-label">Retail price</span>
                 <input type="text" disabled value="{{sale.retail_price | currency:'$'}}">
             </label>
-            <label class="item item-input item-stacked-label">
                 <span class="input-label">Discount rate (%)</span>
                 <div class="button-bar">
                     <button id="discount" ng-class="{'purplebutton': discountToggle, 'greenbutton': discountHaveValue}" class="button button-small pcode-button" ng-click="priceToggle($event)">{{sale.discount_rate}}%
@@ -27,8 +26,6 @@
                     <button id="PriceBackSpace" style="padding:0px" ng-show="showDiscountDel" class="button button-small button-keypad icon ion-backspace button-keypad ng-hide" ng-click="btn_back($event)">
                     </button>
                 </div>
-            </label>
-            <label class="item item-input item-stacked-label">
                 <span class="input-label">Sale price</span>
                 <div class="button-bar">
                     <button id="sale" ng-class="{'purplebutton': saleToggle, 'greenbutton': saleHaveValue}" class="button button-small pcode-button" ng-click="priceToggle($event)">{{sale.sale_price | currency}}
@@ -36,8 +33,6 @@
                     <button id="PriceBackSpace" style="padding:0px" ng-show="showSaleDel" class="button button-small button-keypad icon ion-backspace button-keypad ng-hide" ng-click="btn_back($event)">
                     </button>
                 </div>
-            </label>
-            <label class="item item-input item-stacked-label">
                 <span class="input-label">Quantity</span>
                 <div class="button-bar">
                     <button id="qty" ng-class="{'purplebutton': qtyToggle, 'greenbutton': qtyHaveValue}" class="button button-small pcode-button" ng-click="priceToggle($event)">{{sale.qty}}
@@ -45,7 +40,6 @@
                     <button id="PriceBackSpace" style="padding:0px" ng-show="showQtyDel" class="button button-small button-keypad icon ion-backspace button-keypad ng-hide" ng-click="btn_back($event)">
                     </button>
                 </div>
-            </label>
         </div>
         <button class="button button-block button-positive" ng-click="ok()">Save</button>
     </ion-content>
