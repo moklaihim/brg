@@ -47,6 +47,7 @@ angular.module('starter.controllers')
         item_color: '',
         item_size: '',
         itemAddMode: '',
+        retail_price: '',
         view: '',
         user_id: ''
     };
