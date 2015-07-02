@@ -18,6 +18,9 @@ angular.module('starter.controllers')
         time: ''
     }
 
+    $scope.isMobile = function(){
+        return Env.isMobile();
+    }
 
     $scope.removeSale = function(key) {
         console.log("remove key: " + key);
