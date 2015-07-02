@@ -14,7 +14,7 @@
     </ion-header-bar>
 
     <ion-content padding="false" style="margin-bottom:94px">
-        <ion-list id="item_list" ng-if="showItemList">
+        <ion-list class="border-list" ng-if="showItemList">
             <ion-item ng-click="addItem()">
                 <center><b>Not Found? Add New Item.</b></center>
             </ion-item>
@@ -24,8 +24,8 @@
                 <span class="item-note">{{item.retail_price | currency:"$"}}</span>
                 </p>
                 <div>
-                    <ion-option-button class="button-option button-positive mdi mdi-pencil" ng-click="editItem(item.id)"></ion-option-button>
-                    <ion-option-button class="button-option button-assertive mdi mdi-delete" ng-click="removeItem(item.id)"></ion-option-button>
+                    <ion-option-button class="button-option button-positive-900 mdi mdi-pencil" ng-click="editItem(item.id)"></ion-option-button>
+                    <ion-option-button class="button-option button-assertive-900 mdi mdi-delete" ng-click="removeItem(item.id)"></ion-option-button>
                 </div>
             </ion-item>
         </ion-list>

@@ -5,12 +5,7 @@
     color: #5d5c5e;
 }
 
-#sale_list .item {
-    border: none;
-    border-bottom: 1px solid #dcdcdc;
-}
-
-#item_list .item {
+.border-list .item {
     border: none;
     border-bottom: 1px solid #dcdcdc;
 }
