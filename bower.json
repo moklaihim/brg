@@ -2,16 +2,14 @@
   "name": "BRG",
   "private": "true",
   "dependencies": {
-    "firebase": "2.2.2",
-    "angularfire": "~1.0.0",
-    "ngCordova": "~0.1.14-alpha",
-    "angular-datepicker": "~1.0.12",
-    "mdi": "~1.0.62-beta",
+    "ngCordova": "~0.1.17-alpha",
+    "angularfire": "~1.1.2",
+    "mdi": "~1.1.34",
+    "angular-datepicker": "unfedorg/angular-datepicker#43113ae",
     "ionic-material": "~0.4.2",
     "robotodraft": "~1.1.0"
   },
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0",
-    "platform": "~1.3.0"
+    "ionic": "driftyco/ionic-bower#1.0.1"
   }
 }

@@ -120,7 +120,7 @@ angular.module('starter.controllers')
                         }else{
                             console.log("Date over limit");
                             $scope.current.raw_new_set_date = $scope.current.raw_set_date;
-                            showAlert();
+                            //showAlert();
                         }
                     }
                 }

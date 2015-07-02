@@ -1,5 +1,6 @@
 angular.module('starter.controllers')
 .controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", "Codes", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales, Codes) {
+    
 // Start of Item List to show only item list and Brand input
 //
     $scope.current.view = 'items_list';
