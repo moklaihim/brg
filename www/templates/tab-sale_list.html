@@ -19,7 +19,7 @@
     </ion-content>
     
     <ion-content padding="false" class="ng-hide" ng-show="showSalesView">
-        <ion-list>
+        <ion-list id="sale_list">
             <ion-item class="ng-hide" ng-repeat="(key, sale) in sales" ng-show="!sale.removed">
                 <h2>{{sale.item}}</h2>
                 <p>{{sale.time}}

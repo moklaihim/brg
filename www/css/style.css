@@ -5,6 +5,16 @@
     color: #5d5c5e;
 }
 
+#sale_list .item {
+    border: none;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+#item_list .item {
+    border: none;
+    border-bottom: 1px solid #dcdcdc;
+}
+
 .button-keypad .icon:before, .button-small.icon:before, .button-small.icon-left:before, .button-small.icon-right:before {
     font-size: 24px;
     color: #a8adaf;
