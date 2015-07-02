@@ -64,6 +64,7 @@ angular.module('starter.controllers')
                         $scope.showClosedMessage = false;
                         $scope.CloseStyle = {"background-color":"#33cd5f", "border-color":"#28a54c"}
                     }
+                        
                 })
                 .catch(function(err) {
                     console.error(err);
@@ -88,6 +89,20 @@ angular.module('starter.controllers')
             online_watch();
         }
     }, false);
+    
+    var close_watch = $scope.$watch('sales', function(val){
+        console.log("Sales changed");
+        if($scope.salesClosed){
+            console.log("sale is already closed");
+            if(!('CLOSED' in $scope.sales)){
+                console.log("Open detected");
+                updateSales();
+            }
+        }else if('CLOSED' in $scope.sales){
+            console.log("Close detected");
+            updateSales();
+        }
+    }, true);
 
     // Alert Function----------------------------------------
     function showAlert(){

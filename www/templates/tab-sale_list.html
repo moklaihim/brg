@@ -20,7 +20,7 @@
     
     <ion-content padding="false" class="ng-hide" ng-show="showSalesView">
         <ion-list class="border-list">
-            <ion-item class="ng-hide" ng-repeat="(key, sale) in sales" ng-show="role.allowViewAllSales || sale.user == user_detail.email">
+            <ion-item class="ng-hide" ng-repeat="(key, sale) in sales" ng-show="key == 'CLOSED' || role.allowViewAllSales || sale.user == user_detail.email">
                 <h2>{{sale.item}}</h2>
                 <p>{{sale.time}}
                 <span class="item-note">{{sale.price | currency:"$"}}</span>
