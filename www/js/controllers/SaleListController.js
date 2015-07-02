@@ -50,10 +50,8 @@ angular.module('starter.controllers')
         $scope.showSpinner = true;
         $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
         if($scope.sales.$loaded){
-            console.log("Loaded is there");
             $scope.sales.$loaded()
                 .then(function() {
-                    //console.log($scope.sales);
                     if('CLOSED' in $scope.sales){
                         console.log("Already Closed");
                         $scope.showSpinner = false;
@@ -61,7 +59,6 @@ angular.module('starter.controllers')
                         $scope.showClosedMessage = true;
                         $scope.CloseStyle = {"background-color":"#ffc900", "border-color":"#e6b500"}
                     }else{
-                        //console.log("Has not Closed");
                         $scope.showSpinner = false;
                         $scope.salesClosed = false;
                         $scope.showClosedMessage = false;
@@ -71,29 +68,16 @@ angular.module('starter.controllers')
                 .catch(function(err) {
                     console.error(err);
                 });
-
-            // $timeout(function(){
-            //     console.log("BRG Debug: sales Timed out");
-            //     Sales.on_timeout();
-            //     $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
-            // }, 5000)
-
         }else{
-            console.log("Loaded is not there");
             if('CLOSED' in $scope.sales){
-                //console.log("Already Closed");
                 $scope.showSpinner = false;
                 $scope.salesClosed = true;
                 $scope.showClosedMessage = true;
             }else{
-                //console.log("Has not Closed");
                 $scope.showSpinner = false;
                 $scope.salesClosed = false;
             }
-
         }
-
-        //console.log(Object.getOwnPropertyNames($scope.sales));
     }
     $scope.$on('changedDate', updateSales);
 
