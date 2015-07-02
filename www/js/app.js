@@ -211,6 +211,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
     $ionicConfigProvider.backButton.text('');
     $ionicConfigProvider.backButton.icon('mdi mdi-arrow-left');
     $ionicConfigProvider.backButton.previousTitleText(false);
+
+    $ionicConfigProvider.scrolling.jsScrolling(true);
   
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
