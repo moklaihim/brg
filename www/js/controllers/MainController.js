@@ -60,13 +60,15 @@ angular.module('starter.controllers')
 
     // Update app code with new release from Ionic Deploy
     $scope.doUpdate = function() {
-        $ionicDeploy.update().then(function(res) {
-            console.log('Ionic Deploy: Update Success! ', res);
-        }, function(err) {
-            console.log('Ionic Deploy: Update error! ', err);
-        }, function(prog) {
-            console.log('Ionic Deploy: Progress... ', prog);
-        });
+        if($scope.current.hasUpdate){
+            $ionicDeploy.update().then(function(res) {
+                console.log('Ionic Deploy: Update Success! ', res);
+            }, function(err) {
+                console.log('Ionic Deploy: Update error! ', err);
+            }, function(prog) {
+                console.log('Ionic Deploy: Progress... ', prog);
+            });
+        }
     };
 
     // Check Ionic Deploy for new code
@@ -78,9 +80,6 @@ angular.module('starter.controllers')
         }, function(err) {
             console.error('Ionic Deploy: Unable to check for updates', err);
         });
-    }
-    if(Env.isMobile()){
-        $scope.checkForUpdates();
     }
 
     $scope.checkStore = function(){

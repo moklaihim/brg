@@ -11,3 +11,4 @@ document.write('<script type="text/javascript" src="js/controllers/ItemListContr
 document.write('<script type="text/javascript" src="js/controllers/StoreListController.js"></script>');
 document.write('<script type="text/javascript" src="js/controllers/ItemAddController.js"></script>');
 document.write('<script type="text/javascript" src="js/controllers/RoleListController.js"></script>');
+document.write('<script type="text/javascript" src="js/controllers/SettingsController.js"></script>');

@@ -52,21 +52,13 @@
                     <i class="icon mdi mdi-account-key sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Roles</span>
                 </ion-item>
-                <ion-item class="item-icon-left sidemenu_item" href="#" ng-if="!current.hasUpdate" ng-show="!current.hasUpdate" ng-click="checkForUpdates()">
-                    <i class="icon mdi mdi-arrow-down-bold-hexagon-outline sidemenu_item_icon"></i>
-                    <span class="sidemenu_item_text">Check for update</span>
-                </ion-item>
-                <ion-item class="item-icon-left sidemenu_item hidden" menu-close ng-if="current.hasUpdate" ng-show="current.hasUpdate" ng-click="doUpdate()" href="#">
-                    <i class="icon mdi mdi-arrow-down-bold-hexagon-outline sidemenu_item_icon" style="color: #F44336;"></i>
-                    <span class="sidemenu_item_text">Update</span>
+                <ion-item class="item-icon-left sidemenu_item hidden" menu-close href="#/main/settings">
+                    <i class="icon mdi mdi-settings sidemenu_item_icon"></i>
+                    <span class="sidemenu_item_text">Settings</span>
                 </ion-item>
                 <ion-item class="item-icon-left sidemenu_item" href="#" menu-close ng-click="logout()">
                     <i class="icon mdi mdi-logout sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Sign Out</span>
-                </ion-item>
-                <ion-item class="item-icon-left sidemenu_item" href="#" menu-close>
-                    <i class="icon mdi mdi-information sidemenu_item_icon"></i>
-                    <span class="sidemenu_item_text">Version: 1.0.0</span>
                 </ion-item>
             </ion-list>
         </ion-content>

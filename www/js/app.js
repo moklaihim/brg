@@ -349,6 +349,13 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
         cache: false,
         templateUrl: 'templates/role_list.html',
         controller: 'RoleListController'
+    })
+
+    .state('main.settings', {
+        url: '/settings',
+        cache: false,
+        templateUrl: 'templates/settings.html',
+        controller: 'SettingsController'
     });
 
     // if none of the above states are matched, use this as the fallback
