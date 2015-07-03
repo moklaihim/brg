@@ -5,9 +5,12 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker'])
-.run(["$ionicPlatform", "$rootScope", "$state", function($ionicPlatform, $rootScope, $state) {
+angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 'ionic.service.deploy', 'ionic.service.analytics', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker'])
+.run(["$ionicPlatform", "$rootScope", "$state", "$ionicAnalytics", function($ionicPlatform, $rootScope, $state, $ionicAnalytics) {
     $ionicPlatform.ready(function() {
+
+        $ionicAnalytics.register();
+
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -202,7 +205,18 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
     }
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', '$ionicAppProvider', function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $ionicAppProvider) {
+
+    // Identify app
+    $ionicAppProvider.identify({
+        // The App ID (from apps.ionic.io) for the server
+        app_id: '6847b83e',
+        // The public API key all services will use for this app
+        api_key: '1cf107f10ef4988c40b4f205c3db288e2398c56a2f2dfdac',
+        // Set the app to use development pushes
+        //dev_push: true,
+        gcm_id: '622335018092'
+    });
 
     $ionicConfigProvider.tabs.position("bottom");
     $ionicConfigProvider.navBar.alignTitle('left');
@@ -339,5 +353,5 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
-});
+}]);
 

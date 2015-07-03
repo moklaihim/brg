@@ -1,6 +1,5 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", function($rootScope, $scope, $state, $timeout, $ionicPopup, $cordovaDatePicker, Roles, role, Auth, Users, user, Env, currentAuth) {
-//.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "$cordovaDatePicker", "Roles", "Auth", "Users", "Env", "currentAuth", function($rootScope, $scope, $state, $timeout, $ionicPopup, $cordovaDatePicker, Roles, Auth, Users, Env, currentAuth) {
+.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "$ionicUser", "$ionicPush", "$ionicDeploy", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", function($rootScope, $scope, $state, $timeout, $ionicPopup, $ionicUser, $ionicPush, $ionicDeploy, $cordovaDatePicker, Roles, role, Auth, Users, user, Env, currentAuth) {
     console.log("MainController started");
 
     $scope.user_detail = user;
@@ -8,18 +7,22 @@ angular.module('starter.controllers')
         console.log("User disabled");
         logout();
     }
-    //$scope.roles = roles;
-    //$scope.role = $scope.roles[$scope.user_detail['role']];
     $scope.role = role;
 
-    /*
-    console.log("Getting user");
-    console.log($scope.user_detail);
-    console.log("Getting role");
-    console.log($scope.role);
-    console.log("Getting role");
-    console.log($scope.role);
-    */
+    $ionicPush.register({
+        canShowAlert: true, //Should new pushes show an alert on your screen?
+        canSetBadge: true, //Should new pushes be allowed to update app icon badges?
+        canPlaySound: true, //Should notifications be allowed to play a sound?
+        canRunActionsOnWake: true, // Whether to run auto actions outside the app,
+        onNotification: function(notification) {
+            // Called for each notification.
+            return true;
+        }
+    }, {
+        user_id: $scope.user_detail.email,
+        name: $scope.user_detail.name,
+        role: $scope.user_detail.role
+    });
 
     var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -49,10 +52,36 @@ angular.module('starter.controllers')
         itemAddMode: '',
         retail_price: '',
         view: '',
-        user_id: ''
+        user_id: '',
+        hasUpdate: false
     };
 
     setDate(new Date(), true);
+
+    // Update app code with new release from Ionic Deploy
+    $scope.doUpdate = function() {
+        $ionicDeploy.update().then(function(res) {
+            console.log('Ionic Deploy: Update Success! ', res);
+        }, function(err) {
+            console.log('Ionic Deploy: Update error! ', err);
+        }, function(prog) {
+            console.log('Ionic Deploy: Progress... ', prog);
+        });
+    };
+
+    // Check Ionic Deploy for new code
+    $scope.checkForUpdates = function() {
+        console.log('Ionic Deploy: Checking for updates');
+        $ionicDeploy.check().then(function(hasUpdate) {
+            console.log('Ionic Deploy: Update available: ' + hasUpdate);
+            $scope.current.hasUpdate = hasUpdate;
+        }, function(err) {
+            console.error('Ionic Deploy: Unable to check for updates', err);
+        });
+    }
+    if(Env.isMobile()){
+        $scope.checkForUpdates();
+    }
 
     $scope.checkStore = function(){
         if(window.localStorage.getItem('store_date') == $scope.current.today_date){
@@ -165,6 +194,10 @@ angular.module('starter.controllers')
             online_watch();
         }   
     }, false);
+
+    $rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
+        $ionicUser.set("token", data.token);
+    });
 
     $scope.logout = function(){
         console.log("logout started");

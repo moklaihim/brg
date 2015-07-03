@@ -8,6 +8,7 @@
       Caliby Code Team
     </author>
   <content src="index.html"/>
+  <allow-navigation href="*" />
   <access origin="*"/>
   <access origin="https://fiery-heat-6039.firebaseio.com"/>
   <preference name="webviewbounce" value="false"/>
