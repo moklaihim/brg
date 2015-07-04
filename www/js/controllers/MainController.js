@@ -141,18 +141,18 @@ angular.module('starter.controllers')
                     text: 'OK',
                     type: 'button-flat',
                     onTap: function() {
-                        var today_day = new Date();
-                        var max_date = new Date(today_day.getFullYear(), today_day.getMonth() + 1, today_day.getDate());
-                        var min_date = new Date(today_day.getFullYear(), today_day.getMonth() - 1, today_day.getDate());
+                        //var today_day = new Date();
+                        //var max_date = new Date(today_day.getFullYear(), today_day.getMonth() + 1, today_day.getDate());
+                        //var min_date = new Date(today_day.getFullYear(), today_day.getMonth() - 1, today_day.getDate());
 
-                        if($scope.current.raw_new_set_date > min_date && $scope.current.raw_new_set_date < max_date){
+                        //if($scope.current.raw_new_set_date > min_date && $scope.current.raw_new_set_date < max_date){
                             $scope.current.raw_set_date = $scope.current.raw_new_set_date;
                             setDate($scope.current.raw_set_date, false);
-                        }else{
-                            console.log("Date over limit");
-                            $scope.current.raw_new_set_date = $scope.current.raw_set_date;
+                        //}else{
+                            //console.log("Date over limit");
+                            //$scope.current.raw_new_set_date = $scope.current.raw_set_date;
                             //showAlert();
-                        }
+                        //}
                     }
                 }
             ]
