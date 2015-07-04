@@ -4,13 +4,14 @@
         <button class="button button-clear button-icon button-cleear mdi mdi-calendar" style="color: white" ng-click="showDatePicker()"></button>
     </ion-nav-buttons>
 
-    <ion-header-bar class="bar-subheader brg-bg" style="padding:0px">
+    <ion-header-bar class="bar-subheader pcode-button" style="padding:0px">
         <div class="button-bar ng-hide" ng-show = "showInputSelections">
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleBrand, 'greenbutton': brandHaveValue}" ng-click="trig_brand()">Brands</br><b>{{item_brand}}</b></button>
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleCode, 'greenbutton': codeHaveValue}" ng-click="trig_code()">Code</br><b>{{item_code}}</b></button>
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleColor, 'greenbutton': colorHaveValue}" ng-click="trig_color()">Color</br><b>{{item_color}}</b></button>
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleSize, 'greenbutton': sizeHaveValue}" ng-click="trig_size()">Size</br><b>{{item_size}}</b></button>
-            <button class="button pcode-button mdi mdi-barcode" style="line-height:17px" ng-class="{'purplebutton': toggleSize, 'greenbutton': sizeHaveValue}" ui-sref="main.sales_scanadd"></b></button>
+            <!-- <button class="button pcode-button mdi mdi-barcode" style="font-size:30px" ng-if="isMobile()" ng-click="scanFunction()" ui-sref="main.sales_scanadd"></b></button> -->
+            <button class="button pcode-button mdi mdi-barcode" style="font-size:30px" ng-if="isMobile()" ng-click="scanFunction()"</b></button>
         </div>
     </ion-header-bar>
 

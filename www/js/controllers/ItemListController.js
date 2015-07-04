@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", "Codes", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales, Codes) {
+.controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", "Codes", "Env", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales, Codes, Env) {
 
 // Start of Item List to show only item list and Brand input
 //
@@ -82,19 +82,25 @@ angular.module('starter.controllers')
                         if(barcodeData){
                             confirmScanResult(barcodeData);
                         }
-                        if (barcodeData.cancelled){
-                            //$state.go('main.sales_list');
-                            $ionicHistory.goBack();
+                        if(barcodeData.cancelled){
+                            $state.go('main.sales_list');
+                            // $ionicHistory.goBack(-2);
                         };
                     },
-                    function(error) {
-                        //$state.go('main.sales_list');
-                        $ionicHistory.goBack();
+                    function(s){
+                        if(onFailure){
+                            $state.go('main.sales_list');
+                        }
+                        // $ionicHistory.goBack();
                     }
                 );
         }); 
     };
     $scope.scanFunction = scanFunction;
+
+    $scope.isMobile = function(){
+        return Env.isMobile();
+    }
 
     //update Items from Firebase
     function updateItems(){
