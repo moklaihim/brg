@@ -37,7 +37,6 @@ angular.module('starter.controllers')
     var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     $scope.current = {
-        online: false,
         store_id: '',
         store_name: '',
         today_year: '',
@@ -52,9 +51,6 @@ angular.module('starter.controllers')
         raw_new_set_date: new Date(),
         item_id: '',
         item_key: '',
-        // editItemKey: '',
-        // editItemPrice:'',
-        fb_restored: false,
         item_brand: '',
         item_code: '',
         item_color: '',
@@ -69,30 +65,6 @@ angular.module('starter.controllers')
 
     setDate(new Date(), true);
 
-    // Update app code with new release from Ionic Deploy
-    $scope.doUpdate = function() {
-        if($scope.current.hasUpdate){
-            $ionicDeploy.update().then(function(res) {
-                console.log('Ionic Deploy: Update Success! ', res);
-            }, function(err) {
-                console.log('Ionic Deploy: Update error! ', err);
-            }, function(prog) {
-                console.log('Ionic Deploy: Progress... ', prog);
-            });
-        }
-    };
-
-    // Check Ionic Deploy for new code
-    $scope.checkForUpdates = function() {
-        console.log('Ionic Deploy: Checking for updates');
-        $ionicDeploy.check().then(function(hasUpdate) {
-            console.log('Ionic Deploy: Update available: ' + hasUpdate);
-            $scope.current.hasUpdate = hasUpdate;
-        }, function(err) {
-            console.error('Ionic Deploy: Unable to check for updates', err);
-        });
-    }
-
     $scope.checkStore = function(){
         if(window.localStorage.getItem('store_date') == $scope.current.today_date){
             $scope.current.store_id = window.localStorage.getItem('store_id');
@@ -100,6 +72,10 @@ angular.module('starter.controllers')
         }else{
             $state.go('main.stores_list');
         }
+    }
+
+    $scope.isConnected = function(){
+        return Env.isConnected();
     }
 
     function logout(){
@@ -152,29 +128,13 @@ angular.module('starter.controllers')
                     text: 'OK',
                     type: 'button-flat',
                     onTap: function() {
-                        //var today_day = new Date();
-                        //var max_date = new Date(today_day.getFullYear(), today_day.getMonth() + 1, today_day.getDate());
-                        //var min_date = new Date(today_day.getFullYear(), today_day.getMonth() - 1, today_day.getDate());
-
-                        //if($scope.current.raw_new_set_date > min_date && $scope.current.raw_new_set_date < max_date){
-                            $scope.current.raw_set_date = $scope.current.raw_new_set_date;
-                            setDate($scope.current.raw_set_date, false);
-                        //}else{
-                            //console.log("Date over limit");
-                            //$scope.current.raw_new_set_date = $scope.current.raw_set_date;
-                            //showAlert();
-                        //}
+                        $scope.current.raw_set_date = $scope.current.raw_new_set_date;
+                        setDate($scope.current.raw_set_date, false);
                     }
                 }
             ]
         });
     };
-/*
-    $scope.$watch('current.raw_set_date', function(){
-        setDate($scope.current.raw_set_date, false);
-        //$scope.showPCDatePicker = false;
-    });
-*/
 
     var user_active_watch = $scope.$watch('user_detail.active', function(){
         if(!$scope.user_detail.active){
@@ -186,15 +146,14 @@ angular.module('starter.controllers')
     var online_watch = $scope.$watch(Env.isOnline, function(val){
         console.log("isOnline changed");
         if(val == true){
-            $scope.current.online = true;
             user_active_watch();
 
-            var p_user_detail = Users.get_one(currentAuth.password.email);
-            p_user_detail.then(function(user_detail){
+            var p_user = Users.get_one(currentAuth.password.email, "email");
+            p_user.then(function(user_detail){
                 $scope.user_detail = user_detail;
 
-                var p_role_detail = Roles.get_one(user_detail.role);
-                p_role_detail.then(function(role_detail){
+                var p_role = Roles.get_one(user_detail.role);
+                p_role.then(function(role_detail){
                     $scope.role = role_detail;
                 });
 
@@ -218,15 +177,13 @@ angular.module('starter.controllers')
         logout();
     };
 
-    function showAlert(){
-        // var msg = item_id;
+    function showAlert(message){
         var alertPopup = $ionicPopup.alert({
-         title: 'Error',
-         template: 'You can only access 1 month before or after today',
-         okType: 'button-flat'
+            title: 'Alert',
+            template: message,
+            okType: 'button-flat'
         }); 
         alertPopup.then(function(res) {
-         console.log('over scroll');
         }); 
     };  
 }])

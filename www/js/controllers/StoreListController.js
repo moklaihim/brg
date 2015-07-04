@@ -23,22 +23,11 @@ angular.module('starter.controllers')
 
     function showStoreList(){
         $scope.showSpinner = true;
-        stores_array = Stores.get_list_as_array();
-        console.log(stores_array);
-
-        if(stores_array.$loaded){
-            stores_array.$loaded()
-                .then(function() {
-                    calcDistance();
-                })
-                .catch(function(err) {
-                    stores_array = Stores.get_list_as_array();
-                    calcDistance();
-                });
-
-        }else{
+        p_stores_array = Stores.get_list_as_array();
+        p_stores_array.then(function(r_stores_array){
+            stores_array = r_stores_array;
             calcDistance();
-        }
+        });
     }
 
     function calcDistance(){

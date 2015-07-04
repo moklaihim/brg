@@ -10,18 +10,11 @@ angular.module('starter.controllers')
     $scope.showDisOption = false;
     $scope.showSalesView = true;
 
-    $scope.sale = {
-        item_id: '',
-        retail_price: '',
-        sale_price: '',
-        qty: '',
-        date: '',
-        time: ''
-    }
-
     $scope.getNameByEmail = function(email){
         var user_id = email.replace("@", "_").replace(/\./g, "_");
-        return $scope.users[user_id].name;
+        if($scope.users[user_id]){
+            return $scope.users[user_id].name;
+        }
     }
 
     $scope.isMobile = function(){
@@ -54,39 +47,24 @@ angular.module('starter.controllers')
     function updateSales(){
         $scope.salesClosed = true;
         $scope.showSpinner = true;
-        $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
-        
-        if($scope.sales.$loaded){
-            $scope.sales.$loaded()
-                .then(function() {
-                    if('CLOSED' in $scope.sales){
-                        console.log("Already Closed");
-                        $scope.showSpinner = false;
-                        $scope.salesClosed = true;
-                        $scope.showClosedMessage = true;
-                        $scope.CloseStyle = {"background-color":"#ffc900", "border-color":"#e6b500"}
-                    }else{
-                        $scope.showSpinner = false;
-                        $scope.salesClosed = false;
-                        $scope.showClosedMessage = false;
-                        $scope.CloseStyle = {"background-color":"#33cd5f", "border-color":"#28a54c"}
-                    }
-                        
-                })
-                .catch(function(err) {
-                    console.error(err);
-                });
-        }else{
+        var p_sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+        p_sales.then(function(sales_detail){
+            $scope.sales = sales_detail;
             if('CLOSED' in $scope.sales){
+                console.log("Already Closed");
                 $scope.showSpinner = false;
                 $scope.salesClosed = true;
                 $scope.showClosedMessage = true;
+                $scope.CloseStyle = {"background-color":"#ffc900", "border-color":"#e6b500"}
             }else{
                 $scope.showSpinner = false;
                 $scope.salesClosed = false;
+                $scope.showClosedMessage = false;
+                $scope.CloseStyle = {"background-color":"#33cd5f", "border-color":"#28a54c"}
             }
-        }
+        });
     }
+
     $scope.$on('changedDate', updateSales);
 
     var online_watch = $scope.$watch(Env.isOnline, function(val){
@@ -112,18 +90,4 @@ angular.module('starter.controllers')
             updateSales();
         }
     }, true);
-
-    // Alert Function----------------------------------------
-    function showAlert(){
-        // var msg = item_id;
-        var alertPopup = $ionicPopup.alert({
-         title: 'hey!',
-         template: 'over scroll ',
-         okType: 'button-flat'
-        });
-        alertPopup.then(function(res) {
-         console.log('over scroll');
-        });
-    };
-    $scope.showAlert = showAlert;
 }])

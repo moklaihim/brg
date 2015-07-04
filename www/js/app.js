@@ -258,7 +258,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
                 });
             }],
             "user": ["currentAuth", "Users", function(currentAuth, Users){
-                return Users.get_one(currentAuth.password.email);
+                return Users.get_one(currentAuth.password.email, "email");
             }],
             "role": ["Roles", "user", function(Roles, user){
                 return Roles.get_one(user.role);

@@ -13,20 +13,19 @@ angular.module('starter.controllers')
         $scope.grandtotal = 0;
 
         angular.forEach($scope.stores, function(value, key) {
-            $scope.sales4stores[key] = Sales.get(key, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
             $scope.total4stores[key] = 0;
-            if($scope.sales4stores[key].$loaded){
-                $scope.sales4stores[key].$loaded().then(function() {
-                    angular.forEach($scope.sales4stores[key], function(sale, i) {
-                        if(sale.item != "CLOSED"){
-                            $scope.sales4stores[key][i].retail_price = items[sale.item].retail_price;
-                            $scope.sales4stores[key][i].discount_rate = 100 - Math.round(sale.price / items[sale.item].retail_price * 1000) / 10;
-                            $scope.total4stores[key] += sale.price * 1;
-                            $scope.grandtotal += sale.price * 1;
-                        }
-                    });
+            var p_sales = Sales.get(key, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+            p_sales.then(function(sales_detail){
+                $scope.sales4stores[key] = sales_detail;
+                angular.forEach($scope.sales4stores[key], function(sale, i) {
+                    if(sale.item != "CLOSED"){
+                        $scope.sales4stores[key][i].retail_price = items[sale.item].retail_price;
+                        $scope.sales4stores[key][i].discount_rate = 100 - Math.round(sale.price / items[sale.item].retail_price * 1000) / 10;
+                        $scope.total4stores[key] += sale.price * 1;
+                        $scope.grandtotal += sale.price * 1;
+                    }
                 });
-            }
+            });
         });
     }
 

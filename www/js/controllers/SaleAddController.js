@@ -18,7 +18,6 @@ angular.module('starter.controllers')
     }
 
     $scope.items = Items.get();
-    $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
 
     console.log("Loaded Current Item: " + $scope.current.item_id);
     if($scope.current.item_id){
@@ -32,8 +31,11 @@ angular.module('starter.controllers')
 
     }else if ($scope.current.item_key){
         $scope.showQtyField = false;
-        $scope.sales.$loaded().then(function(){
-            $scope.headerLabel = "EDITING SALES : ";
+        $scope.headerLabel = "EDITING SALES : ";
+
+        p_sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+        p_sales.then(function(sales_detail){
+            $scope.sales = sales_detail;
             $scope.sale.item_id = $scope.sales[$scope.current.item_key].item;
             $scope.sale.sale_price = $scope.sales[$scope.current.item_key].price;
             $scope.sale.retail_price = $scope.items[$scope.sale.item_id].retail_price;

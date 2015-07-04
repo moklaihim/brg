@@ -1,5 +1,5 @@
 angular.module('starter.services')
-.factory('Stores', ["$firebaseObject", "$firebaseArray", function($firebaseObject, $firebaseArray) {
+.factory('Stores', ["$q", "$firebaseObject", "$firebaseArray", function($q, $firebaseObject, $firebaseArray) {
     var stores;
     var stores_array;
     var is_online;
@@ -37,7 +37,7 @@ angular.module('starter.services')
             });
 
             stores = $firebaseObject(fStores);
-            stores_array = $firebaseArray(fStores);
+            stores_array = $firebaseArray(fStores).$loaded();
         },
         offline: function(){
             stores = JSON.parse(localStorage.getItem('brg_stores'));
@@ -47,7 +47,7 @@ angular.module('starter.services')
             return stores;
         },
         get_list_as_array: function(){
-            return stores_array;
+            return $q.when(stores_array);
         }
     }
 }]);
