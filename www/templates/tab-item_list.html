@@ -6,23 +6,21 @@
 
     <ion-header-bar class="bar-subheader brg-bg" style="padding:0px">
         <div class="button-bar ng-hide" ng-show = "showInputSelections">
-            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleBrand, 'greenbutton': brandHaveValue}" ng-click="trig_brand()">Brand</br><b>{{item_brand}}</b></button>
+            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleBrand, 'greenbutton': brandHaveValue}" ng-click="trig_brand()">Brands</br><b>{{item_brand}}</b></button>
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleCode, 'greenbutton': codeHaveValue}" ng-click="trig_code()">Code</br><b>{{item_code}}</b></button>
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleColor, 'greenbutton': colorHaveValue}" ng-click="trig_color()">Color</br><b>{{item_color}}</b></button>
             <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleSize, 'greenbutton': sizeHaveValue}" ng-click="trig_size()">Size</br><b>{{item_size}}</b></button>
+            <button class="button pcode-button mdi mdi-barcode" style="line-height:17px" ng-class="{'purplebutton': toggleSize, 'greenbutton': sizeHaveValue}" ui-sref="main.sales_scanadd"></b></button>
         </div>
     </ion-header-bar>
 
     <ion-content padding="false" style="margin-bottom:94px">
         <ion-list class="border-list" ng-if="showItemList">
-            <ion-item ng-click="addItem()">
+            <ion-item ng-show="allItemCodeEntered" ng-click="addItem()">
                 <center><b>Not Found? Add New Item.</b></center>
             </ion-item>
             <ion-item ng-repeat="item in items_array | itemFilter : item_brand:'brand' | itemFilter : item_code:'code' | itemFilter : item_color:'color' | itemFilter : item_size:'size' | uppercase" ng-click="selectItem(item.id)">
-                <h2>{{item.id}}</h2>
-                <p>{{item.timestamp}}
-                <span class="item-note">{{item.retail_price | currency:"$"}}</span>
-                </p>
+                <h2>{{item.id}}<span class="item-note">{{item.retail_price | currency:"$"}}</span></h2>
                 <div>
                     <ion-option-button class="button-option button-positive-900 mdi mdi-pencil" ng-click="editItem(item.id)"></ion-option-button>
                     <ion-option-button class="button-option button-assertive-900 mdi mdi-delete" ng-click="removeItem(item.id)"></ion-option-button>
@@ -38,6 +36,8 @@
         </ion-list>
     </ion-content>
 
+    <!-- <button class="button button-fab button-fab-top-right button-brg-a mdi mdi-barcode ng-hide" ui-sref="main.sales_scanadd" ng-show="role.allowAddSales && !salesClosed" style="margin-top:40px"></button>
+ -->
         <div style="position:absolute; bottom: 0px; width:100%" ng-show="showItemCodeInputs" class="ng-hide animation-element">
             
             <div ng-repeat="brands in brands_array track by $index" ng-show="showBrandInput" class="button-bar ng-hide bar-keypad" style="background-color: #BA68C8; color: white;">

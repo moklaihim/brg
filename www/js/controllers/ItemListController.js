@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 .controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", "Codes", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales, Codes) {
-    
+
 // Start of Item List to show only item list and Brand input
 //
     $scope.current.view = 'items_list';
@@ -22,7 +22,7 @@ angular.module('starter.controllers')
     $scope.item_size = '';
     var editItemClicked = false;
     // var addItemClicked = false;
-    var lastItemCodeEntered = false;
+    $scope.allItemCodeEntered = false;
 
     /* Make Brand palate from here*/
     $scope.brands_array = new Array();
@@ -115,7 +115,7 @@ angular.module('starter.controllers')
     // addItemClicked = true;
         $scope.headerLabel = "Shoes List (Adding) "
         // $scope.showInputSelections = true;
-        if (lastItemCodeEntered){
+        if ($scope.allItemCodeEntered){
             $state.go('main.items_add');  
         }
         else{
@@ -254,8 +254,8 @@ angular.module('starter.controllers')
         $scope.toggleBrand = false;
         $scope.toggleCode = true;
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
-            lastItemCodeEntered = true;
-            console.log("last item entered");
+            $scope.allItemCodeEntered = true;
+            console.log("$scopeall item entered");
         }
         itemId();
         // updateInstruction();
@@ -277,8 +277,8 @@ angular.module('starter.controllers')
         }
         itemId();
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
-            console.log("last item entered");
-            lastItemCodeEntered = true;
+            console.log("$scopeall item entered");
+            $scope.allItemCodeEntered = true;
         }
     };
 
@@ -316,8 +316,8 @@ angular.module('starter.controllers')
         $scope.toggleColor = false;
         $scope.toggleSize = true;
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
-            console.log("last item entered");
-            lastItemCodeEntered = true;
+            console.log("$scopeall item entered");
+            $scope.allItemCodeEntered = true;
         }
         itemId();
     };
@@ -330,8 +330,8 @@ angular.module('starter.controllers')
         $scope.showSizeInput = false;
         $scope.toggleSize = false;
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
-            console.log("last item entered");
-            lastItemCodeEntered = true;
+            console.log("$scopeall item entered");
+            $scope.allItemCodeEntered = true;
         }
 
         itemId();
