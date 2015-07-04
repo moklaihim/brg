@@ -72,7 +72,8 @@ angular.module('starter.controllers')
             //$cordovaBarcodeScanner
                 .scan(
                     {
-                        text_title: "OPTIONAL",
+                        text_title: "Scan Barcode",
+                        text_instructions: "Align the barcode on the red line",
                         flash: "on"
                     },
                     function(barcodeData) {

@@ -19,7 +19,7 @@
                 <span class="input-label">Retail price</span>
                 <input type="text" disabled value="{{sale.retail_price | currency:'$'}}">
             </label>
-                <span class="input-label">Discount rate (%)</span>
+                <span class="input-label">Discount(%)</span>
                 <div class="button-bar">
                     <button id="discount" ng-class="{'purplebutton': discountToggle, 'greenbutton': discountHaveValue}" class="button button-small pcode-button" ng-click="priceToggle($event)">{{sale.discount_rate}}%
                     </button>
