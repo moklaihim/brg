@@ -92,6 +92,7 @@ angular.module('starter.controllers')
     var online_watch = $scope.$watch(Env.isOnline, function(val){
         console.log("isOnline changed");
         if(val == true){
+            console.log("become Online");
             $scope.users= Users.get_list();
             updateSales();
             online_watch();

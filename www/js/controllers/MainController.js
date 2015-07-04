@@ -9,6 +9,8 @@ angular.module('starter.controllers')
     }
     $scope.role = role;
 
+    Env.conMon();
+
     $ionicUser.identify({
         user_id: $scope.user_detail.email,
         name: $scope.user_detail.name,
