@@ -249,9 +249,13 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
         cache: false,
         controller: 'MainController',
         resolve: {
-            "currentAuth": ["Auth", function(Auth) {
+            "currentAuth": ["Auth", "$state", function(Auth, $state) {
                 console.log("currentAuth started");
-                return Auth.getAuth().$requireAuth();
+                return Auth.getAuth().$requireAuth().then(function(data){
+                    return data;
+                }, function(data){
+                    $state.go('login');
+                });
             }],
             "user": ["currentAuth", "Users", function(currentAuth, Users){
                 return Users.get_one(currentAuth.password.email);
@@ -359,6 +363,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
     });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/main/sales/list');
 }]);
 
