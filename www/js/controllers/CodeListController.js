@@ -11,17 +11,17 @@ angular.module('starter.controllers')
 
     $scope.$watch('code.brandCode', function(val) {
         $scope.code.brandCode = $filter('uppercase')(val);
-    }, true);
+    }, false);
     $scope.$watch('code.colorCode', function(val) {
         $scope.code.colorCode = $filter('uppercase')(val);
-    }, true);
+    }, false);
 
     function submitCode(event){
         var type = event.target.id;
 
         if(type == "brands"){
             if(!$scope.code.brandCode){
-                alertRequireInput();
+                $scope.showAlert("Please enter a value");
             }else{
                 var codes = Codes.get_brands_as_array();
                 var inputCode = $scope.code.brandCode;
@@ -29,7 +29,7 @@ angular.module('starter.controllers')
         }
         if(type == "colors"){
             if(!$scope.code.colorCode){
-                alertRequireInput();
+                $scope.showAlert("Please enter a value");
             }else{
                 var codes = Codes.get_colors_as_array();
                 var inputCode = $scope.code.colorCode;
@@ -37,7 +37,7 @@ angular.module('starter.controllers')
         }
         if(type == "sizes"){
             if(!$scope.code.sizeCode){
-                alertRequireInput();
+                $scope.showAlert("Please enter a value");
             }else{
                 var codes = Codes.get_sizes_as_array();
                 var inputCode = $scope.code.sizeCode;
@@ -59,11 +59,11 @@ angular.module('starter.controllers')
         else{
             if(type == "sizes"){
                 Codes.add(inputCode, type);
-                alertAdded(type, inputCode);
+                $scope.showAlert('Code "' + inputCode + '" is added to the '+ type + ' database');
                 $scope.code.sizeCode = '';
             }else{
                 Codes.add(inputCode.toLowerCase(), type);
-                alertAdded(type, inputCode);
+                $scope.showAlert('Code "' + inputCode + '" is added to the '+ type + ' database');
                 $scope.code.brandCode = '';
                 $scope.code.colorCode = '';
                 
@@ -71,24 +71,6 @@ angular.module('starter.controllers')
         }
     }
     $scope.submitCode = submitCode;
-
-    function alertRequireInput(){
-        var alertPopup = $ionicPopup.alert({
-         title: 'Error',
-         template: 'Please enter a value',
-         okType: 'button-flat'
-        });
-    };
-    $scope.alertRequireInput = alertRequireInput;
-
-    function alertAdded(type, inputCode){
-        var alertPopup = $ionicPopup.alert({
-         title: 'Code Added',
-         template: 'Code "' + inputCode + '" is added to the '+ type + ' database',
-         okType: 'button-flat'
-        });
-    };
-    $scope.alertAdded = alertAdded;
 
     function alertExist(type, inputCode){
        var confirmPopup = $ionicPopup.confirm({
@@ -106,8 +88,4 @@ angular.module('starter.controllers')
             }
         });
     };
-    $scope.alertExist = alertExist;
-
-
-
 }])

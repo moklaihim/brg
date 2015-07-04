@@ -17,10 +17,6 @@ angular.module('starter.controllers')
         }
     }
 
-    $scope.isMobile = function(){
-        return Env.isMobile();
-    }
-
     $scope.removeSale = function(key) {
         console.log("remove key: " + key);
         Sales.remove($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, key);

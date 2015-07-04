@@ -74,9 +74,13 @@ angular.module('starter.controllers')
         }
     }
 
+    $scope.isMobile = function(){
+        return Env.isMobile();
+    };
+
     $scope.isConnected = function(){
         return Env.isConnected();
-    }
+    };
 
     function logout(){
         console.log("logout started");
@@ -186,5 +190,6 @@ angular.module('starter.controllers')
         alertPopup.then(function(res) {
         }); 
     };  
+    $scope.showAlert = showAlert;
 }])
 
