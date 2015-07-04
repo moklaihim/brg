@@ -41,11 +41,11 @@ angular.module('starter.controllers')
     }
 
     $scope.login = function (){ 
+        $scope.showLoginView = false;
         Auth.login($scope.user.email, $scope.user.password, function(res){
             if (res.uid) {
                 if(res.password.isTemporaryPassword){
                     console.log("Temporary Password");
-                    $scope.showLoginView = false;
                     $scope.showPasswordChangeView = true;
                 }else{
                     window.localStorage.setItem("brg_login_email", $scope.user.email);
@@ -53,6 +53,7 @@ angular.module('starter.controllers')
                     $state.go('main.sales_list');
                 }
             } else {
+                $scope.showLoginView = true;
                 $ionicPopup.alert({
                     title: 'Login error!',
                     template: res.message,

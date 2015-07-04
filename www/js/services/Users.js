@@ -36,7 +36,7 @@ angular.module('starter.services')
                 user_id = ref;
             }
 
-            if(is_online){
+            if(true || is_online){
                 var fb_user = "https://fiery-heat-6039.firebaseio.com/users/" + user_id;
                 var fUser = new Firebase(fb_user);
 

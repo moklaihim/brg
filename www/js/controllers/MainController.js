@@ -187,8 +187,6 @@ angular.module('starter.controllers')
             template: message,
             okType: 'button-flat'
         }); 
-        alertPopup.then(function(res) {
-        }); 
     };  
     $scope.showAlert = showAlert;
 }])
