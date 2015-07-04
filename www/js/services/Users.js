@@ -46,6 +46,7 @@ angular.module('starter.services')
                     user = JSON.parse(localStorage.getItem('brg_user_' + user_id));
                 }else{
                     user.active = true;
+                    user.email = email;
                 }
             }
             console.log("get_one");
