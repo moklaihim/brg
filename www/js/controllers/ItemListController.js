@@ -24,6 +24,8 @@ angular.module('starter.controllers')
     // var addItemClicked = false;
     $scope.allItemCodeEntered = false;
 
+    // ionic.material.ink.displayEffect();
+
     /* Make Brand palate from here*/
     $scope.brands_array = new Array();
     var iil = 3;

@@ -4,6 +4,7 @@ angular.module('starter.controllers')
     $scope.showPriceInput = false;
     $scope.iframeHeight = window.innerHeight;
     $scope.checkStore();
+    console.log("height = " + $scope.iframeHeight);
 
     $scope.sale = {
         // sale_key: '',
@@ -137,7 +138,9 @@ angular.module('starter.controllers')
                 $scope.sale.discount_rate = 0;
             }
         }else if($scope.saleToggle){
-            if($scope.sale.sale_price.endsWith('.')){
+            //console.log("sale price back button clicked");
+            //$scope.sale.sale_price = 2;
+            if($scope.sale.sale_price.slice(-1) == '.'){
                 $scope.sale.sale_price = $scope.sale.sale_price.slice(0, -2);
             }else{
                 $scope.sale.sale_price = $scope.sale.sale_price.slice(0, -1);
@@ -154,6 +157,7 @@ angular.module('starter.controllers')
         }else if($scope.iframeHeight < 569){
             $scope.ss568Detected = true;
         }
+
         $timeout(function() {
             $ionicScrollDelegate.scrollTo(0,160,true);
         },500);
