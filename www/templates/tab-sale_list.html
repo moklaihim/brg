@@ -21,9 +21,9 @@
     <ion-content padding="false" class="ng-hide" ng-show="showSalesView">
         <ion-list class="border-list">
             <ion-item class="ng-hide" ng-repeat="(key, sale) in sales" ng-show="key == 'CLOSED' || role.allowViewAllSales || sale.user == user_detail.email">
-                <h2>{{sale.item}}<span class="item-note">{{sale.price | currency:"$"}}</span></h2>
+                <h2>{{sale.item}}<span class="item-note"><span style="color:#F44336" ng-show="sale.discount!=0" class="ng-hide">{{sale.discount}}%</span> {{sale.price | currency:"$"}}</span></h2>
                 
-                <p>{{sale.user}}<span class="item-note">{{sale.time}}</span></p>
+                <p>by: {{sale.user}}<span class="item-note">{{sale.time}}</span></p>
                 <div ng-if="!salesClosed">
                     <ion-option-button class="button-option button-positive-900 mdi mdi-pencil" ng-if="role.allowEditAllSales || (role.allowEditOwnSales && sale.user == user_detail.email)" ng-show="role.allowEditAllSales || (role.allowEditOwnSales && sale.user == user_detail.email)" ng-click="editSale(key)"></ion-option-button>
                     <ion-option-button class="button-option button-assertive-900 mdi mdi-delete" ng-if="role.allowDeleteAllSales || (role.allowDeleteOwnSales && sale.user == user_detail.email)" ng-show="role.allowDeleteAllSales || (role.allowDeleteOwnSales && sale.user == user_detail.email)" ng-click="removeSale(key)"></ion-option-button>

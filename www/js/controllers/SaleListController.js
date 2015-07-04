@@ -49,6 +49,7 @@ angular.module('starter.controllers')
         $scope.salesClosed = true;
         $scope.showSpinner = true;
         $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+
         if($scope.sales.$loaded){
             $scope.sales.$loaded()
                 .then(function() {

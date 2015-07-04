@@ -33,6 +33,11 @@ angular.module('starter.services')
             return items_array;
         },
 
+        get_retail_price: function(id){
+            var retail_price = items[id].retail_price;
+            return retail_price;
+        },
+
         remove: function(key){
 
             if(is_online){

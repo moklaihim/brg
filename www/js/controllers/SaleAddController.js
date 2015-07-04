@@ -11,6 +11,7 @@ angular.module('starter.controllers')
         retail_price: '',
         sale_price: '',
         qty: '',
+        discount:'',
         date: '',
         time: ''
     }
@@ -56,11 +57,11 @@ angular.module('starter.controllers')
 
     $scope.ok = function(){
         if ($scope.current.item_key){
-            Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, $scope.current.item_key, $scope.user_detail.email);
+            Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.sale.discount_rate, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, $scope.current.item_key, $scope.user_detail.email);
         }else {
             for (var i = 0; i < $scope.sale.qty; i++) {
                 console.log("Sale_key FAIL in Sales.js")
-                Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, false, $scope.user_detail.email);
+                Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.sale.discount_rate, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, false, $scope.user_detail.email);
             }
         }
         $scope.current.item_id = "";
