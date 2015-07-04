@@ -1,10 +1,10 @@
 angular.module('starter.controllers')
-.controller('SaleListController', ["$scope", "$state", "$timeout", "$ionicPopup", "$ionicHistory", "$ionicListDelegate", "Sales", "Items", "Env", function($scope, $state, $timeout, $ionicPopup, $ionicHistory, $ionicListDelegate, Sales, Items, Env) {
+.controller('SaleListController', ["$scope", "$state", "$timeout", "$ionicPopup", "$ionicHistory", "$ionicListDelegate", "Sales", "Items", "Users", "Env", function($scope, $state, $timeout, $ionicPopup, $ionicHistory, $ionicListDelegate, Sales, Items, Users, Env) {
     console.log("SaleListController started");
     $scope.current.view = 'sales_list';
     $scope.current.showAddItemBtn = '';
     $scope.checkStore();
-
+    $scope.users= Users.get_list();
     updateSales();
     $scope.showDisOption = false;
     $scope.showSalesView = true;
@@ -16,6 +16,11 @@ angular.module('starter.controllers')
         qty: '',
         date: '',
         time: ''
+    }
+
+    $scope.getNameByEmail = function(email){
+        var user_id = email.replace("@", "_").replace(/\./g, "_");
+        return $scope.users[user_id].name;
     }
 
     $scope.isMobile = function(){
@@ -49,6 +54,8 @@ angular.module('starter.controllers')
         $scope.salesClosed = true;
         $scope.showSpinner = true;
         $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+        
+
 
         if($scope.sales.$loaded){
             $scope.sales.$loaded()

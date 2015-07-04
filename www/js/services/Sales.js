@@ -1,9 +1,8 @@
 angular.module('starter.services')
 .factory('Sales', ["$firebaseObject", "Auth", "$firebaseArray", function($firebaseObject, Auth, $firebaseArray) {
     var sales = new Object();
-    var items = new Object();
+    var users = new Object();
     var sales_array = new Array();
-    var items_array = new Array();
     var fSales = {};
     var fItems = {};
     var is_online;
@@ -48,18 +47,8 @@ angular.module('starter.services')
         get: function(store_id, year, month, day){
             if(is_online){
                 fSales = new Firebase("https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day);
-                fItems = new Firebase("https://fiery-heat-6039.firebaseio.com/items");
                 sales = $firebaseObject(fSales);
-                sales_array = $firebaseArray(fSales);
-                items_array = $firebaseArray(fItems);
-                
-                // for (var s=0; s<sales_array.length; s++){
-                //     console.log("length of sales = " + sales_array.length)
-                //     for(var i=0; i<items_array.length; i++){
-                //         console.log("length of items = " + items_array.length)
-                //     }
 
-                // }
             }else{
                 if (localStorage.getItem('brg_sales-' + store_id + '-' + year + '-' + month + '-' + day) !== null) {
                     sales = JSON.parse(localStorage.getItem('brg_sales-' + store_id + '-' + year + '-' + month + '-' + day));
