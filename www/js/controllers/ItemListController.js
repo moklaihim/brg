@@ -70,8 +70,11 @@ angular.module('starter.controllers')
         $ionicPlatform.ready(function(){
             $ZBar
             //$cordovaBarcodeScanner
-                .scan()
-                .then(
+                .scan(
+                    {
+                        text_title: "OPTIONAL",
+                        flash: "on"
+                    },
                     function(barcodeData) {
                         //showAlert(barcodeData.text);
                         //console.log(barcodeData);
@@ -86,10 +89,6 @@ angular.module('starter.controllers')
                     function(error) {
                         //$state.go('main.sales_list');
                         $ionicHistory.goBack();
-                    },
-                    {
-                        text_title: "OPTIONAL",
-                        flash: "on"
                     }
                 );
         }); 
