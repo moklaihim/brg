@@ -3,6 +3,7 @@ angular.module('starter.controllers')
     console.log("SaleListController started");
     $scope.current.view = 'sales_list';
     $scope.current.showAddItemBtn = '';
+
     $scope.checkStore();
     $scope.users= Users.get_list();
     updateSales();
@@ -55,8 +56,6 @@ angular.module('starter.controllers')
         $scope.showSpinner = true;
         $scope.sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
         
-
-
         if($scope.sales.$loaded){
             $scope.sales.$loaded()
                 .then(function() {
@@ -89,10 +88,6 @@ angular.module('starter.controllers')
         }
     }
     $scope.$on('changedDate', updateSales);
-
-    $scope.isOnline = function(){
-        return Env.isOnline();
-    }
 
     var online_watch = $scope.$watch(Env.isOnline, function(val){
         console.log("isOnline changed");

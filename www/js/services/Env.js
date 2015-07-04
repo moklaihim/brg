@@ -3,6 +3,7 @@ angular.module('starter.services')
 
     var isMobile;
     var isOnline;
+    var isConnected = false;
     //localStorage.clear();
 
     if(ionic.Platform.isAndroid() || ionic.Platform.isIOS()){
@@ -16,6 +17,7 @@ angular.module('starter.services')
         if (snap.val() === true) {
             console.log("BRG Debug: Connected");
             isOnline = true;
+            isConnected = true;
             Users.online();
             Items.online();
             Stores.online();
@@ -41,6 +43,9 @@ angular.module('starter.services')
         },
         isOnline: function(){
             return isOnline;
+        },
+        isConnected: function(){
+            return isConnected;
         }
     }
 }]);

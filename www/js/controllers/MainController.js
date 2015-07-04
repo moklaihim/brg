@@ -35,6 +35,7 @@ angular.module('starter.controllers')
     var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     $scope.current = {
+        online: false,
         store_id: '',
         store_name: '',
         today_year: '',
@@ -183,6 +184,7 @@ angular.module('starter.controllers')
     var online_watch = $scope.$watch(Env.isOnline, function(val){
         console.log("isOnline changed");
         if(val == true){
+            $scope.current.online = true;
             user_active_watch();
 
             var p_user_detail = Users.get_one(currentAuth.password.email);
