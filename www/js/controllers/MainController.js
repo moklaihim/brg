@@ -60,7 +60,8 @@ angular.module('starter.controllers')
         retail_price: '',
         view: '',
         user_id: '',
-        hasUpdate: false
+        hasUpdate: false,
+        notificationEnabled: true
     };
 
     setDate(new Date(), true);
