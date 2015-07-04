@@ -1,0 +1,26 @@
+<ion-view view-title="Settings">
+    <ion-content padding="false">
+        <ion-list>
+            <div class="item item-divider">
+                Notificatioins
+            </div>
+            <li class="item item-toggle">
+                Notify on this device
+                <label class="toggle toggle-positive">
+                    <input type="checkbox">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
+            <div class="item item-divider">
+                About
+            </div>
+            <li class="item" ng-click="doUpdate()">
+                Software version
+                <p>1.0.0<br>
+                <span ng-if="current.hasUpdate" ng-show="current.hasUpdate">Tap here to update</span></p>
+                <span class="badge badge-assertive" ng-if="current.hasUpdate" ng-show="current.hasUpdate">Update</span>
+            </li>
+    </ion-content>
+</ion-view>

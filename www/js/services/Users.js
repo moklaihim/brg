@@ -61,17 +61,22 @@ angular.module('starter.services')
         },
 
         edit: function(user_detail){
+            console.log("BRG: Edit started");
             var now = new Date();
             var current_ut = now.getTime();
             var user_id;
 
             if(is_online){
+                console.log("BRG: Step 1");
                 if(user_detail.id){
+                console.log("BRG: Step 2");
                     user_id = user_detail.id;
                 }else{
+                console.log("BRG: Step 3");
                     user_id = user_detail.email.replace("@", "_").replace(/\./g, "_");
                     Auth.register(user_detail.email, user_detail.password);
                 }
+                console.log("BRG: Step 4");
 
                 users[user_id] = new Object();
                 users[user_id].id = user_id;
@@ -80,6 +85,7 @@ angular.module('starter.services')
                 users[user_id].name = user_detail.name;
                 users[user_id].role = user_detail.role;
                 users.$save();
+                console.log("BRG: Step 5");
             }
         },
 

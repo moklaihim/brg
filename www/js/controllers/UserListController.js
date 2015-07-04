@@ -2,6 +2,7 @@ angular.module('starter.controllers')
 .controller('UserListController', ["$scope", "$state", "Users", "Roles", function($scope, $state, Users, Roles) {
     console.log("UserListController started");
     $scope.current.view = 'users_list';
+
     $scope.users = Users.get_list();
     $scope.roles = Roles.get_list();
 

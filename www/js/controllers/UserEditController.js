@@ -22,8 +22,8 @@ angular.module('starter.controllers')
                     id: $user.id,
                     name: $user.name,
                     role: $user.role,
-                    password: '',
-                }
+                    password: ''
+                };
             });
         }else{
             var $user = $users[$scope.current.user_id];
@@ -33,7 +33,7 @@ angular.module('starter.controllers')
                 name: $user.name,
                 role: $user.role,
                 password: ''
-            }
+            };
         }
     }
  
