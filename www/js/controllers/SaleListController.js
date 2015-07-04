@@ -45,7 +45,6 @@ angular.module('starter.controllers')
     }
 
     function updateSales(){
-        $scope.salesClosed = true;
         $scope.showSpinner = true;
         var p_sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
         p_sales.then(function(sales_detail){
@@ -54,12 +53,10 @@ angular.module('starter.controllers')
                 console.log("Already Closed");
                 $scope.showSpinner = false;
                 $scope.salesClosed = true;
-                $scope.showClosedMessage = true;
                 $scope.CloseStyle = {"background-color":"#ffc900", "border-color":"#e6b500"}
             }else{
                 $scope.showSpinner = false;
                 $scope.salesClosed = false;
-                $scope.showClosedMessage = false;
                 $scope.CloseStyle = {"background-color":"#33cd5f", "border-color":"#28a54c"}
             }
         });
