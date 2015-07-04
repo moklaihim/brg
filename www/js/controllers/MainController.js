@@ -17,6 +17,7 @@ angular.module('starter.controllers')
         role: $scope.user_detail.role
     }).then(function() {
         // identified
+        /*
         if(Env.isMobile()){
             $ionicPush.register({
                 canShowAlert: true, //Should new pushes show an alert on your screen?
@@ -29,6 +30,7 @@ angular.module('starter.controllers')
                 }
             });
         }
+        */
     }, function(err) {
           // error
     });

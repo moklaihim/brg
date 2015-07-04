@@ -54,8 +54,6 @@ angular.module('starter.services')
         },
 
         getAuth: function() {
-            console.log("getAuth started");
-            console.log(auth);
             return auth;
         },
 

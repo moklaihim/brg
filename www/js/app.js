@@ -250,24 +250,17 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
         controller: 'MainController',
         resolve: {
             "currentAuth": ["Auth", "$state", function(Auth, $state) {
-                console.log("currentAuth started");
                 return Auth.getAuth().$requireAuth()
                     .then(function(data){
-                        console.log("Auth success");
-                        console.log(data);
                         return data;
                     }, function(){
-                        console.log("Auth failed");
                         $state.go('login');
                     });
             }],
             "user": ["currentAuth", "Users", function(currentAuth, Users){
-                console.log("user started");
-                console.log(currentAuth);
                 return Users.get_one(currentAuth.password.email, "email");
             }],
             "role": ["Roles", "user", function(Roles, user){
-                console.log("role started");
                 return Roles.get_one(user.role);
             }]
         }
