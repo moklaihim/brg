@@ -90,9 +90,14 @@ angular.module('starter.controllers')
     }
     $scope.$on('changedDate', updateSales);
 
+    $scope.isOnline = function(){
+        return Env.isOnline();
+    }
+
     var online_watch = $scope.$watch(Env.isOnline, function(val){
         console.log("isOnline changed");
         if(val == true){
+            $scope.users= Users.get_list();
             updateSales();
             online_watch();
         }

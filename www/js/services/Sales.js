@@ -29,6 +29,7 @@ angular.module('starter.services')
 
                         sale.item = local_sales[key_ut].item;
                         sale.price = local_sales[key_ut].price;
+                        sale.discount = local_sales[key_ut].discount;
                         sale.date = local_sales[key_ut].date;
                         sale.time = local_sales[key_ut].time;
                         sale.timestamp = local_sales[key_ut].timestamp;
@@ -95,6 +96,7 @@ angular.module('starter.services')
                 sales[current_ut].time = time;
                 sales[current_ut].timestamp = current_ut;
                 sales[current_ut].user = user_id;
+                sales[current_ut].discount = discount_rate;
 
                 localStorage.setItem('brg_sales-' + store_id + '-' + year + '-' + month + '-' + day, JSON.stringify(sales));
             }

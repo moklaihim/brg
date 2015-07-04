@@ -16,6 +16,8 @@ angular.module('starter.controllers')
     if(window.localStorage.getItem('brg_login_email') !== null){
         $scope.user.email = window.localStorage.getItem('brg_login_email');
         $scope.user.password = window.localStorage.getItem('brg_login_password');
+        $state.go('main.sales_list');
+        /*
         Auth.login($scope.user.email, $scope.user.password, function(res){   
             if (res.uid) {
                 if(res.password.isTemporaryPassword){
@@ -38,12 +40,13 @@ angular.module('starter.controllers')
                 }); 
             }   
         }); 
+        */
     }else{
         $scope.showLoginView = true;
     }
 
     $scope.login = function (){ 
-        Auth.login($scope.user.email, $scope.user.password, function(res){   
+        Auth.login($scope.user.email, $scope.user.password, function(res){
             if (res.uid) {
                 if(res.password.isTemporaryPassword){
                     console.log("Temporary Password");
