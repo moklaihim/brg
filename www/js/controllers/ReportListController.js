@@ -20,7 +20,8 @@ angular.module('starter.controllers')
                 angular.forEach($scope.sales4stores[key], function(sale, i) {
                     if(sale.item != "CLOSED"){
                         $scope.sales4stores[key][i].retail_price = items[sale.item].retail_price;
-                        $scope.sales4stores[key][i].discount_rate = 100 - Math.round(sale.price / items[sale.item].retail_price * 1000) / 10;
+                        // $scope.sales4stores[key][i].discount_rate = 100 - Math.round(sale.price / items[sale.item].retail_price * 1000) / 10;
+                        $scope.sales4stores[key][i].discount_rate = sale.discount;
                         $scope.total4stores[key] += sale.price * 1;
                         $scope.grandtotal += sale.price * 1;
                     }

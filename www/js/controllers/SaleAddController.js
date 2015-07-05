@@ -122,8 +122,7 @@ angular.module('starter.controllers')
     $scope.checkHaveValue = checkHaveValue;
 
     function hideNumpad(){
-            // $scope.ss480Detected = false;
-            // $scope.ss568Detected = false;
+
             $scope.contentHeight = $scope.iframeHeight;
             $scope.showPriceInput = false;
             $timeout(function() {
@@ -155,11 +154,6 @@ angular.module('starter.controllers')
     }
 
     $scope.priceToggle= function(event){
-        // if($scope.iframeHeight < 481){
-        //     $scope.ss480Detected = true;
-        // }else if($scope.iframeHeight < 660){
-        //     $scope.ss568Detected = true;
-        // }
         $scope.contentHeight = $scope.iframeHeight - 220;
         $timeout(function() {
             $ionicScrollDelegate.scrollTo(0,160,true);

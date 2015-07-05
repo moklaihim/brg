@@ -289,7 +289,7 @@ angular.module('starter.controllers')
         $scope.toggleCode = true;
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
             $scope.allItemCodeEntered = true;
-            console.log("$scopeall item entered");
+            console.log("all item entered");
         }
         itemId();
         // updateInstruction();
@@ -311,7 +311,7 @@ angular.module('starter.controllers')
         }
         itemId();
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
-            console.log("$scopeall item entered");
+            console.log("all item entered");
             $scope.allItemCodeEntered = true;
         }
     };
@@ -350,7 +350,7 @@ angular.module('starter.controllers')
         $scope.toggleColor = false;
         $scope.toggleSize = true;
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
-            console.log("$scopeall item entered");
+            console.log("all item entered");
             $scope.allItemCodeEntered = true;
         }
         itemId();
@@ -364,7 +364,7 @@ angular.module('starter.controllers')
         $scope.showSizeInput = false;
         $scope.toggleSize = false;
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
-            console.log("$scopeall item entered");
+            console.log("all item entered");
             $scope.allItemCodeEntered = true;
         }
 
