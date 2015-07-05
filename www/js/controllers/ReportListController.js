@@ -15,6 +15,9 @@ angular.module('starter.controllers')
         angular.forEach($scope.stores, function(value, key) {
             $scope.total4stores[key] = 0;
             var p_sales = Sales.get(key, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+            // if(!p_sales.hasOwnProperty(sale.item)){
+            //     $scope.noSales = true;
+            // }
             p_sales.then(function(sales_detail){
                 $scope.sales4stores[key] = sales_detail;
                 angular.forEach($scope.sales4stores[key], function(sale, i) {
@@ -24,6 +27,7 @@ angular.module('starter.controllers')
                         $scope.sales4stores[key][i].discount_rate = sale.discount;
                         $scope.total4stores[key] += sale.price * 1;
                         $scope.grandtotal += sale.price * 1;
+
                     }
                 });
             });

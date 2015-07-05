@@ -268,10 +268,14 @@
 }
 
 .row{
-height: 60px;
-/*line-height: 30px;*/
-display: flex;
-align-items: center;
+    height: 60px;
+    /*line-height: 30px;*/
+    display: flex;
+    align-items: center;
+}
+
+.report_sale_close{
+    color: #F44336;
 }
 
 .center{
