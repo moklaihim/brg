@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform","Items", "Sales", "Codes", "Env", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales, Codes, Env) {
+.controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform", "ionicMaterialInk", "Items", "Sales", "Codes", "Env", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, ionicMaterialInk, Items, Sales, Codes, Env) {
 
 // Start of Item List to show only item list and Brand input
 //
@@ -23,8 +23,7 @@ angular.module('starter.controllers')
     var editItemClicked = false;
     // var addItemClicked = false;
     $scope.allItemCodeEntered = false;
-
-    // ionic.material.ink.displayEffect();
+    ionicMaterialInk.displayEffect();
 
     /* Make Brand palate from here*/
     $scope.brands_array = new Array();

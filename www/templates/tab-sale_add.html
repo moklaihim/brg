@@ -35,8 +35,8 @@
                     <button style="padding:0px" ng-show="showSaleDel" class="button button-small button-keypad icon ion-backspace button-keypad ng-hide" ng-click="btn_back($event)">
                     </button>
                 </div>
-                <span class="input-label">Quantity</span>
-                <div class="button-bar">
+                <span ng-show="showQtyField" class="input-label">Quantity</span>
+                <div ng-show="showQtyField" class="button-bar">
                     <button id="qty" ng-class="{'purplebutton': qtyToggle, 'greenbutton': qtyHaveValue}" class="button button-small pcode-button" ng-click="priceToggle($event)">{{sale.qty}}
                     </button>
                     <button style="padding:0px" ng-show="showQtyDel" class="button button-small button-keypad icon ion-backspace button-keypad ng-hide" ng-click="btn_back($event)">
