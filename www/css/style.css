@@ -274,18 +274,6 @@ display: flex;
 align-items: center;
 }
 
-.ss480{
-  height: 236px;
-}
-
-/*.ss568{
-  height: 324px;
-}*/
-
-.ss568{
-  height: 324px;
-}
-
 .center{
   display: -webkit-box;
     display: -moz-box;
