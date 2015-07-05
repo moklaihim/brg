@@ -156,7 +156,7 @@ angular.module('starter.controllers')
     $scope.priceToggle= function(event){
         if($scope.iframeHeight < 481){
             $scope.ss480Detected = true;
-        }else if($scope.iframeHeight < 569){
+        }else if($scope.iframeHeight < 660){
             $scope.ss568Detected = true;
         }
 
