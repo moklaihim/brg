@@ -68,32 +68,58 @@ angular.module('starter.controllers')
         showAlert();
     }
 
+    // function scanFunction() {
+    //     $ionicPlatform.ready(function(){
+    //         $ZBar
+    //         //$cordovaBarcodeScanner
+    //             .scan(
+    //                 {
+    //                     text_title: "Scan Barcode",
+    //                     text_instructions: "Align the barcode on the red line",
+    //                     flash: "on"
+    //                 },
+    //                 function(barcodeData) {
+    //                     //showAlert(barcodeData.text);
+    //                     //console.log(barcodeData);
+    //                     if(barcodeData){
+    //                         confirmScanResult(barcodeData);
+    //                     }
+    //                     if(barcodeData.cancelled){
+    //                         $state.go('main.sales_list');
+    //                         // $ionicHistory.goBack(-2);
+    //                     };
+    //                 },
+    //                 function(s){
+    //                     if(onFailure){
+    //                         $state.go('main.sales_list');
+    //                     }
+    //                     // $ionicHistory.goBack();
+    //                 }
+    //             );
+    //     }); 
+    // };
+    // $scope.scanFunction = scanFunction;
+
     function scanFunction() {
         $ionicPlatform.ready(function(){
             $ZBar
             //$cordovaBarcodeScanner
-                .scan(
-                    {
+                .scan({
                         text_title: "Scan Barcode",
                         text_instructions: "Align the barcode on the red line",
                         flash: "on"
-                    },
+                    })
+                .then(
                     function(barcodeData) {
                         //showAlert(barcodeData.text);
                         //console.log(barcodeData);
                         if(barcodeData){
                             confirmScanResult(barcodeData);
                         }
-                        if(barcodeData.cancelled){
-                            $state.go('main.sales_list');
-                            // $ionicHistory.goBack(-2);
+                        if (barcodeData.cancelled){
+                            //$state.go('main.sales_list');
+                            // $ionicHistory.goBack();
                         };
-                    },
-                    function(s){
-                        if(onFailure){
-                            $state.go('main.sales_list');
-                        }
-                        // $ionicHistory.goBack();
                     }
                 );
         }); 
@@ -436,8 +462,12 @@ angular.module('starter.controllers')
                     $state.go('main.items_add');
                 };
                 if ($scope.items.hasOwnProperty(barcodeData)){
-                    $scope.current.item_id = barcodeData;
-                    $state.go('main.sales_add');
+                    if($scope.current.itemAddMode == "fromsale"){
+                        $scope.current.item_id = barcodeData;
+                        $state.go('main.sales_add');
+                    }else if($scope.current.itemAddMode == "fromitem"){
+                        itemExist(barcodeData);
+                    }
                 };
             } if(!res) {
                 console.log('You are not sure');
@@ -446,5 +476,18 @@ angular.module('starter.controllers')
         });
     };
     $scope.confirmScanResult = confirmScanResult;
+
+    function itemExist(barcodeData){
+        // var msg = item_id;
+        var alertPopup = $ionicPopup.alert({
+         title: 'Item Exist',
+         template: 'Item <h2> ' + barcodeData+' </h2>already exist',
+         okType: 'button-flat'
+        });
+        // alertPopup.then(function(res) {
+        //  console.log('Thank you for different date');
+        // });
+    };
+    $scope.itemExist = itemExist;
 
 }])
