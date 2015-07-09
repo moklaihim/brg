@@ -32,7 +32,7 @@
                     <i class="icon mdi mdi-shopping sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Sales</span>
                 </ion-item>
-                <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'items_list'}" menu-close href="#/main/items/list" ng-click="current.itemAddMode='fromitem'">
+                <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'items_list'}" menu-close href="#/main/items/list" ng-click="current.itemAddMode='fromitem'" ng-if="role.allowItemsMenu" ng-show="role.allowItemsMenu">
                     <i class="icon mdi mdi-package-variant sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Items</span>
                 </ion-item>

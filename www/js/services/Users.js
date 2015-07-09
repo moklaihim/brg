@@ -66,6 +66,8 @@ angular.module('starter.services')
         edit: function(user_detail){
             var now = new Date();
             var current_ut = now.getTime();
+            user_detail.email = user_detail.email.toLowerCase();
+            // var user_detail = user.toLowerCase();
             var user_id;
 
             if(is_online){
