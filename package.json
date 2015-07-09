@@ -26,8 +26,8 @@
       "id": "com.ionic.deploy"
     },
     {
-      "locator": "https://github.com/phonegap-build/PushPlugin.git",
-      "id": "com.phonegap.plugins.PushPlugin"
+      "locator": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
+      "id": "uk.co.whiteoctober.cordova.appversion"
     }
   ],
   "cordovaPlatforms": [

@@ -1,14 +1,18 @@
 angular.module('starter.controllers')
-.controller('SettingsController', ["$scope", "$ionicPush", "Env", function($scope, $ionicPush, Env) {
+.controller('SettingsController', ["$scope", "$ionicDeploy", "Env", function($scope, $ionicDeploy, Env) {
     console.log("SettingsController started");
     $scope.current.view = 'settings_list';
 
     if(Env.isMobile()){
-        $scope.checkForUpdates();
+        cordova.getAppVersion(function(version) {
+            $scope.current.app_version = version;
+        });
+        checkForUpdates();
     }
 
     $scope.notificationChange = function(){
         if($scope.current.notificationEnabled){
+            /*
             $ionicPush.register({
                 canShowAlert: true, //Can pushes show an alert on your screen?
                 canSetBadge: true, //Can pushes update app icon badges?
@@ -20,8 +24,9 @@ angular.module('starter.controllers')
                     return true;
                 }
             });
+            */
         }else{
-            $ionicPush.unregister();
+            //$ionicPush.unregister();
         }
     };
 
@@ -39,7 +44,7 @@ angular.module('starter.controllers')
     };  
 
     // Check Ionic Deploy for new code
-    $scope.checkForUpdates = function() {
+    function checkForUpdates(){
         console.log('Ionic Deploy: Checking for updates');
         $ionicDeploy.check().then(function(hasUpdate) {
             console.log('Ionic Deploy: Update available: ' + hasUpdate);

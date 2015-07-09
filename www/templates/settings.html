@@ -12,7 +12,7 @@
             </div>
             <li class="item" ng-click="doUpdate()">
                 Software version
-                <p>1.0.0<br>
+                <p>{{current.app_version}}<br>
                 <span ng-if="current.hasUpdate" ng-show="current.hasUpdate">Tap here to update</span></p>
                 <span class="badge badge-assertive" ng-if="current.hasUpdate" ng-show="current.hasUpdate">Update</span>
             </li>

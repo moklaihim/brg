@@ -5,11 +5,11 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 'ionic.service.deploy', 'ionic.service.analytics', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker'])
-.run(["$ionicPlatform", "$rootScope", "$state", "$ionicAnalytics", function($ionicPlatform, $rootScope, $state, $ionicAnalytics) {
+angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker'])
+.run(["$ionicPlatform", "$rootScope", "$state", function($ionicPlatform, $rootScope, $state) {
     $ionicPlatform.ready(function() {
 
-        $ionicAnalytics.register();
+        //$ionicAnalytics.register();
 
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -212,10 +212,10 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
         // The App ID (from apps.ionic.io) for the server
         app_id: '6847b83e',
         // The public API key all services will use for this app
-        api_key: '1cf107f10ef4988c40b4f205c3db288e2398c56a2f2dfdac',
+        api_key: '1cf107f10ef4988c40b4f205c3db288e2398c56a2f2dfdac'
         // Set the app to use development pushes
         //dev_push: true,
-        gcm_id: '622335018092'
+        //gcm_id: '622335018092'
     });
 
     $ionicConfigProvider.tabs.position("bottom");
