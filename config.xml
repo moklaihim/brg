@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.brg247533" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ionicframework.brg247533" version="1.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" ios-CFBundleVersion="8" android-versionCode="8">
   <name>BRG</name>
   <description>
         Sales reporter for BRG
@@ -8,7 +8,7 @@
       Caliby Code Team
     </author>
   <content src="index.html"/>
-  <allow-navigation href="*" />
+  <allow-navigation href="*"/>
   <access origin="*"/>
   <access origin="https://fiery-heat-6039.firebaseio.com"/>
   <preference name="webviewbounce" value="false"/>

@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('UserEditController', ["$scope", "$ionicHistory", "$state", "Roles", "Users", function($scope, $ionicHistory, $state, Roles, Users) {
+.controller('UserEditController', ["$scope", "$ionicHistory", "$state", "$ionicPopup", "Roles", "Users", function($scope, $ionicHistory, $state, $ionicPopup, Roles, Users) {
 
     $scope.roles = Roles.get_list();
 
@@ -27,10 +27,12 @@ angular.module('starter.controllers')
     }
  
     $scope.ok = function(){
+        confirmedAlert();
         Users.edit($scope.user_detail);
-        $ionicHistory.nextViewOptions({
-            historyRoot: true
-        });
+
+        // $ionicHistory.nextViewOptions({
+        //     historyRoot: true
+        // });
         $state.go('main.users_list');
     };
 
@@ -40,5 +42,18 @@ angular.module('starter.controllers')
         }); 
         $state.go('main.users_list');
     }; 
+
+    function confirmedAlert(){
+        // var msg = item_id;
+        var alertPopup = $ionicPopup.alert({
+         title: 'User :' + $scope.user_detail.name,
+         template: 'Updated',
+         okType: 'button-flat'
+        });
+        // alertPopup.then(function(res) {
+        //  console.log('Thank you for different date');
+        // });
+    };
+    $scope.confirmedAlert = confirmedAlert;
 
 }])

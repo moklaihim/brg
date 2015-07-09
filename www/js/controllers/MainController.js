@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "$ionicUser", "$ionicPush", "$ionicDeploy", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", function($rootScope, $scope, $state, $timeout, $ionicPopup, $ionicUser, $ionicPush, $ionicDeploy, $cordovaDatePicker, Roles, role, Auth, Users, user, Env, currentAuth) {
+.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "$ionicUser", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", function($rootScope, $scope, $state, $timeout, $ionicPopup, $ionicUser, $cordovaDatePicker, Roles, role, Auth, Users, user, Env, currentAuth) {
     console.log("MainController started");
 
     $scope.user_detail = user;
@@ -39,6 +39,7 @@ angular.module('starter.controllers')
     var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     $scope.current = {
+        app_version: 'web 1.0.0',
         store_id: '',
         store_name: '',
         today_year: '',
