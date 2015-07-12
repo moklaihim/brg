@@ -338,7 +338,12 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy'
         url: '/users/list',
         cache: false,
         templateUrl: 'templates/user_list.html',
-        controller: 'UserListController'
+        controller: 'UserListController',
+        resolve: {
+            "users": ["Users", function(Users) {
+                return Users.get_list();
+            }]
+        }
     })
 
     .state('main.users_add', {
@@ -366,7 +371,12 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy'
         url: '/settings',
         cache: false,
         templateUrl: 'templates/settings.html',
-        controller: 'SettingsController'
+        controller: 'SettingsController',
+        resolve: {
+            "users": ["Users", function(Users) {
+                return Users.get_list();
+            }]
+        }
     });
 
     // if none of the above states are matched, use this as the fallback
