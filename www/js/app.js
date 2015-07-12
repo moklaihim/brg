@@ -312,7 +312,14 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy'
         url: '/reports/list',
         cache: false,
         templateUrl: 'templates/report_list.html',
-        controller: 'ReportListController',
+        controller: 'ReportListController'
+    })
+
+    .state('main.report_view', {
+        url: '/reports/view/:reportType',
+        cache: false,
+        templateUrl: 'templates/report_view.html',
+        controller: 'ReportViewController',
         resolve: {
             "items": ["Items", function(Items) {
                 return Items.get();

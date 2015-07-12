@@ -41,14 +41,23 @@ angular.module('starter.controllers')
     }
 
     $scope.login = function (){ 
+        var real_email;
         $scope.showLoginView = false;
-        Auth.login($scope.user.email, $scope.user.password, function(res){
+
+        if(!/@/.test($scope.user.email)){
+            console.log("email doesnt have domain part");
+            real_email = $scope.user.email + "@brg.com.sg";
+        }else{
+            real_email = $scope.user.email;
+        }
+
+        Auth.login(real_email, $scope.user.password, function(res){
             if (res.uid) {
                 if(res.password.isTemporaryPassword){
                     console.log("Temporary Password");
                     $scope.showPasswordChangeView = true;
                 }else{
-                    window.localStorage.setItem("brg_login_email", $scope.user.email);
+                    window.localStorage.setItem("brg_login_email", real_email);
                     window.localStorage.setItem("brg_login_password", $scope.user.password);
                     $state.go('main.sales_list');
                 }
