@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('UserEditController', ["$scope", "$ionicHistory", "$state", "$ionicPopup", "Roles", "Users", function($scope, $ionicHistory, $state, $ionicPopup, Roles, Users) {
+.controller('UserEditController', ["$scope", "$ionicHistory", "$state", "$ionicPopup", "Roles", "Users", "Auth", "currentAuth", function($scope, $ionicHistory, $state, $ionicPopup, Roles, Users, Auth, currentAuth) {
 
     $scope.roles = Roles.get_list();
 
@@ -29,11 +29,10 @@ angular.module('starter.controllers')
     $scope.ok = function(){
         confirmedAlert();
         Users.edit($scope.user_detail);
-
+        $state.go('main.users_list');
         // $ionicHistory.nextViewOptions({
         //     historyRoot: true
         // });
-        $state.go('main.users_list');
     };
 
     $scope.cancel = function(){
@@ -43,6 +42,16 @@ angular.module('starter.controllers')
         $state.go('main.users_list');
     }; 
 
+    function logout(){
+        console.log("logout started");
+        window.localStorage.removeItem("brg_login_email");
+        window.localStorage.removeItem("brg_login_password");
+        Users.logout(currentAuth.password.email);
+        Auth.logout();
+        $state.go('login');
+    }
+    $scope.logout = logout;
+
     function confirmedAlert(){
         // var msg = item_id;
         var alertPopup = $ionicPopup.alert({
@@ -50,10 +59,27 @@ angular.module('starter.controllers')
          template: 'Updated',
          okType: 'button-flat'
         });
-        // alertPopup.then(function(res) {
-        //  console.log('Thank you for different date');
-        // });
     };
     $scope.confirmedAlert = confirmedAlert;
+
+    // function confirmedAlert(){
+    //    var confirmPopup = $ionicPopup.confirm({
+    //      title: 'Confirm?',
+    //      template: 'Click OK to confirm changes, You will be prompt to login again',
+    //      okType: 'button-flat',
+    //      cancelType: 'button-flat'
+    //    });
+    //     confirmPopup.then(function(res) {
+    //         if(res) {
+    //             console.log('You are sure');
+    //             Users.edit($scope.user_detail);
+    //             logout();
+    //         } if(!res) {
+    //             console.log('You are not sure');
+    //         }
+    //     });
+    // };
+    // $scope.confirmedAlert = confirmedAlert;
+
 
 }])
