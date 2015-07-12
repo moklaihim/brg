@@ -143,12 +143,18 @@ angular.module('starter.controllers')
         });
     };
 
-    var user_active_watch = $scope.$watch('user_detail.active', function(){
+    var user_active_watch = $scope.$watch('user_detail', function(){
+        console.log("user_detail changed");
         if(!$scope.user_detail.active){
             console.log("User disabled detected by watch 1");
             logout();
         }
-    });
+        var p_role = Roles.get_one($scope.user_detail.role);
+        p_role.then(function(role_detail){
+            console.log("role updated");
+            $scope.role = role_detail;
+        });
+    }, true);
 
     var online_watch = $scope.$watch(Env.isOnline, function(val){
         console.log("isOnline changed");
@@ -164,12 +170,17 @@ angular.module('starter.controllers')
                     $scope.role = role_detail;
                 });
 
-                $scope.$watch('user_detail.active', function(){
+                $scope.$watch('user_detail', function(){
                     if(!$scope.user_detail.active){
                         console.log("User disabled detected by watch 2");
                         logout();
                     }
-                });
+                    var p_role = Roles.get_one($scope.user_detail.role);
+                    p_role.then(function(role_detail){
+                        console.log("role updated");
+                        $scope.role = role_detail;
+                    });
+                }, true);
             });
             online_watch();
         }   
