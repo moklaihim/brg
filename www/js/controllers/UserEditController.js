@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('UserEditController', ["$scope", "$ionicHistory", "$state", "$ionicPopup", "Roles", "Users", "Auth", "currentAuth", function($scope, $ionicHistory, $state, $ionicPopup, Roles, Users, Auth, currentAuth) {
+.controller('UserEditController', ["$scope", "$ionicHistory", "$state", "$ionicPopup", "Roles", "Users", function($scope, $ionicHistory, $state, $ionicPopup, Roles, Users) {
 
     $scope.roles = Roles.get_list();
 
