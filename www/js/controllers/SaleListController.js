@@ -78,7 +78,7 @@ angular.module('starter.controllers')
                 console.log("Open detected");
                 updateSales();
             }
-        }else if('CLOSED' in $scope.sales){
+        }else if($scope.sales && 'CLOSED' in $scope.sales){
             console.log("Close detected");
             updateSales();
         }
