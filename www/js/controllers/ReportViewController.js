@@ -4,11 +4,11 @@ angular.module('starter.controllers')
     $scope.current.view = 'reports_list';
 
     $scope.stores = Stores.get_list();
+    $scope.report_type = $stateParams.reportType;
     updateReport();
 
     function updateReport(){
         console.log("start update report");
-        $scope.report_type = $stateParams.reportType;
 
         $scope.sales4stores = new Object();
         $scope.total4stores = new Object();
@@ -62,8 +62,8 @@ angular.module('starter.controllers')
 
     $scope.send = function(){
         var tos = 'tom.tomonari@gmail.com';
-        var subject = 'Daily report for ' + $scope.current.set_date;
-        var emailbody = 'Daily report for ' + $scope.current.set_date + "\n\n";
+        var subject = $scope.report_type.toUpperCase() + ' Daily report for ' + $scope.current.set_date;
+        var emailbody = $scope.report_type.toUpperCase() + ' Daily report for ' + $scope.current.set_date + "\n\n";
         angular.forEach($scope.stores, function(value, key) {
             emailbody += $scope.stores[key].name;
             if(!$scope.sales4stores[key].CLOSED){
