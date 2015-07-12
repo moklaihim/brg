@@ -61,8 +61,8 @@ angular.module('starter.controllers')
     }
 
     $scope.send = function(){
-        var tos = user.reportSendTo;
-        var ccs = user.reportSendCc;
+        var tos = $scope.user_detail.reportSendTo;
+        var ccs = $scope.user_detail.reportSendCc;
         var subject = $scope.report_type.toUpperCase() + ' Daily report for ' + $scope.current.set_date;
         var emailbody = $scope.report_type.toUpperCase() + ' Daily report for ' + $scope.current.set_date + "\n\n";
         angular.forEach($scope.stores, function(value, key) {
