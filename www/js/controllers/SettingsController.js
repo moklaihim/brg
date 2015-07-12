@@ -1,7 +1,32 @@
 angular.module('starter.controllers')
-.controller('SettingsController', ["$scope", "$ionicDeploy", "Env", function($scope, $ionicDeploy, Env) {
+.controller('SettingsController', ["$scope", "$ionicDeploy", "$ionicPopup", "Env", "user", "Users", function($scope, $ionicDeploy, $ionicPopup, Env, user, Users) {
     console.log("SettingsController started");
     $scope.current.view = 'settings_list';
+
+    // $scope.current.emailTo = user.reportSendTo;
+    // $scope.current.emailCc = user.reportSendCc;
+
+    $scope.user_detail = {
+        email: user.email,
+        id: user.id,
+        name: user.name,
+        role: user.role,
+        emailTo: user.reportSendTo,
+        emailCc: user.reportSendCc
+    };
+
+    $scope.reportEmailUpdate = function(){
+        Users.edit($scope.user_detail);
+        confirmedAlert();
+    };
+
+    $scope.addToList = function(){
+        $scope.user_detail.emailTo = $scope.user_detail.emailTo + ',';
+    };
+
+    $scope.addCcList = function(){
+        $scope.user_detail.emailCc = $scope.user_detail.emailCc + ',';
+    };
 
     if(Env.isMobile()){
         cordova.getAppVersion(function(version) {
@@ -9,6 +34,7 @@ angular.module('starter.controllers')
         });
         checkForUpdates();
     }
+
 
     $scope.notificationChange = function(){
         if($scope.current.notificationEnabled){
@@ -53,4 +79,14 @@ angular.module('starter.controllers')
             console.error('Ionic Deploy: Unable to check for updates', err);
         }); 
     };
+
+    function confirmedAlert(){
+        // var msg = item_id;
+        var alertPopup = $ionicPopup.alert({
+         title: 'Notification',
+         template: 'Updated',
+         okType: 'button-flat'
+        });
+    };
+    $scope.confirmedAlert = confirmedAlert;
 }])

@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ReportListController', ["$scope", "Stores", "Sales", "Env", "Items", "items", "Env", "$cordovaEmailComposer", function($scope, Stores, Sales, Env, Items, items, Env, $cordovaEmailComposer) {
+.controller('ReportListController', ["$scope", "Stores", "Sales", "Env", "Items", "items", "Env", "user", "$cordovaEmailComposer", function($scope, Stores, Sales, Env, Items, items, Env, user, $cordovaEmailComposer) {
     console.log("ReportListController started");
     $scope.current.view = 'reports_list';
     $scope.checkStore();
@@ -35,7 +35,9 @@ angular.module('starter.controllers')
     }
 
     $scope.send = function(){
-        var tos = 'tom.tomonari@gmail.com';
+        // var tos = 'tom.tomonari@gmail.com';
+        var tos = user.reportSendTo;
+        var ccs = user.reportSendCc;
         var subject = 'Daily report for ' + $scope.current.set_date;
         var emailbody = 'Daily report for ' + $scope.current.set_date + "\n\n";
         angular.forEach($scope.stores, function(value, key) {
@@ -60,6 +62,7 @@ angular.module('starter.controllers')
                 // is available
                 var email = {
                     to: tos,
+                    cc: ccs,
                     subject: subject,
                     body: emailbody,
                     isHtml: false
@@ -73,7 +76,7 @@ angular.module('starter.controllers')
                 // not available
             });
         }else{
-            window.location.href = "mailto:" + tos + "?subject=" + subject + "&body=" + encodeURIComponent(emailbody);
+            window.location.href = "mailto:" + tos + "?cc=" + ccs + "&subject=" + subject + "&body=" + encodeURIComponent(emailbody);
         }
     };
 

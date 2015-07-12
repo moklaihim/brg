@@ -1,12 +1,41 @@
 <ion-view view-title="Settings">
     <ion-content padding="false">
         <ion-list>
-            <!--
-            <div class="item item-divider">
+            
+<!--             <div class="item item-divider">
                 Notificatioins
             </div>
-            <ion-toggle ng-model="current.notificationEnabled" toggle-class="toggle-calm" ng-change="notificationChange()">Notify on this device</ion-toggle>
-            -->
+            <ion-toggle ng-model="current.notificationEnabled" toggle-class="toggle-calm" ng-change="notificationChange()">Notify on this device</ion-toggle> -->
+            <div class="item item-divider">
+                Report Setting
+            </div>
+
+            <div class="list">
+                <div class="item item-input-inset">
+                    <label class="item-input-wrapper">
+                        <span class="input-label">Send To</span>
+                        <input type="text" ng-model="user_detail.emailTo">
+                    </label>
+                    <button class="button mdi mdi-plus" ng-click="addToList()">
+                    </button>
+                    
+                </div>
+                <div class="item item-input-inset">
+                    <label class="item-input-wrapper">
+                        <span class="input-label">Send Cc</span>
+                        <input type="text" ng-model="user_detail.emailCc">
+                    </label>
+                    <button class="button mdi mdi-plus" ng-click="addCcList()">
+                    </button>
+                    
+                </div>
+                <div class="item item-input-inset">
+                    <button class="button button-small" ng-click="reportEmailUpdate()">
+                        Update
+                    </button>
+                </div>
+            </div>
+            
             <div class="item item-divider">
                 About
             </div>
@@ -16,5 +45,6 @@
                 <span ng-if="current.hasUpdate" ng-show="current.hasUpdate">Tap here to update</span></p>
                 <span class="badge badge-assertive" ng-if="current.hasUpdate" ng-show="current.hasUpdate">Update</span>
             </li>
+        </ion-list>
     </ion-content>
 </ion-view>

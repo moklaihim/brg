@@ -77,6 +77,7 @@ angular.module('starter.services')
                     user_id = user_detail.email.replace("@", "_").replace(/\./g, "_");
                     Auth.register(user_detail.email, user_detail.password);
                 }
+                console.log(user_detail.emailTo);
 
                 users[user_id] = new Object();
                 users[user_id].id = user_id;
@@ -84,6 +85,8 @@ angular.module('starter.services')
                 users[user_id].email = user_detail.email;
                 users[user_id].name = user_detail.name;
                 users[user_id].role = user_detail.role;
+                users[user_id].reportSendTo = user_detail.emailTo;
+                users[user_id].reportSendCc = user_detail.emailCc;
                 users.$save();
             }
         },
