@@ -25,6 +25,11 @@ angular.module('starter.controllers')
             };
         });
     }
+
+    $scope.reset_pw = function(){
+        Users.reset_pw($scope.user_detail.email);
+        $scope.showAlert("Password reset email will be sent to the user shortly");
+    };
  
     $scope.ok = function(){
         confirmedAlert();

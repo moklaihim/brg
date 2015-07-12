@@ -93,6 +93,12 @@ angular.module('starter.services')
                 users[user_id].active = false;
                 users.$save();
             }
+        },
+
+        reset_pw: function(email){
+            if(is_online){
+                Auth.reset_pw(email);
+            }
         }
     }
 }]);

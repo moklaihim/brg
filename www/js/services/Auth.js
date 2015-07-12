@@ -36,6 +36,12 @@ angular.module('starter.services')
             });
         },
 
+        reset_pw: function(email){
+            auth.$resetPassword({
+                email: email
+            });
+        },
+
         register: function(email, password, callback) {
             auth.$createUser({email: email, password: password}).then(function(res) {
                 user = res;
