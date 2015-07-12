@@ -61,7 +61,8 @@ angular.module('starter.controllers')
     }
 
     $scope.send = function(){
-        var tos = 'tom.tomonari@gmail.com';
+        var tos = user.reportSendTo;
+        var ccs = user.reportSendCc;
         var subject = $scope.report_type.toUpperCase() + ' Daily report for ' + $scope.current.set_date;
         var emailbody = $scope.report_type.toUpperCase() + ' Daily report for ' + $scope.current.set_date + "\n\n";
         angular.forEach($scope.stores, function(value, key) {
@@ -99,7 +100,7 @@ angular.module('starter.controllers')
                 // not available
             });
         }else{
-            window.location.href = "mailto:" + tos + "?subject=" + subject + "&body=" + encodeURIComponent(emailbody);
+            window.location.href = "mailto:" + tos + "?cc=" + ccs + "&subject=" + subject + "&body=" + encodeURIComponent(emailbody);
         }
     };
 

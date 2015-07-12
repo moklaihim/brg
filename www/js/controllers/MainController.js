@@ -62,6 +62,8 @@ angular.module('starter.controllers')
         retail_price: '',
         view: '',
         user_id: '',
+        emailTo:'',
+        emailCc:'',
         hasUpdate: false,
         notificationEnabled: true
     };
