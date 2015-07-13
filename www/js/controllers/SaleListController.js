@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SaleListController', ["$scope", "$state", "$timeout", "$ionicPopup", "$ionicHistory", "$ionicListDelegate", "Sales", "Items", "Users", "Env", function($scope, $state, $timeout, $ionicPopup, $ionicHistory, $ionicListDelegate, Sales, Items, Users, Env) {
+.controller('SaleListController', ["$scope", "$state", "Sales", "Users", "Env", function($scope, $state, Sales, Users, Env) {
     console.log("SaleListController started");
     $scope.current.view = 'sales_list';
     $scope.current.showAddItemBtn = '';
