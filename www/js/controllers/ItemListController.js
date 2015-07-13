@@ -6,6 +6,7 @@ angular.module('starter.controllers')
     $scope.current.view = 'items_list';
     $scope.headerLabel = "Items";  // header will reflect ITEM List
     $scope.showInputSelections = true;
+    $scope.showItemCodeInputs = true;
     $scope.current.item_id ='';
     $scope.showItemList = true;
     $scope.showBrandInput = true;
@@ -14,7 +15,6 @@ angular.module('starter.controllers')
     $scope.showCodeInput = false;
     $scope.toggleBrand = true;
     $scope.toggelSelected = false;
-    $scope.showItemCodeInputs = true;
     
     $scope.item_brand = '';
     $scope.item_code = '';
@@ -24,6 +24,7 @@ angular.module('starter.controllers')
     // var addItemClicked = false;
     $scope.allItemCodeEntered = false;
     ionicMaterialInk.displayEffect();
+    
 
     /* Make Brand palate from here*/
     $scope.brands_array = new Array();
@@ -272,6 +273,11 @@ angular.module('starter.controllers')
     $scope.trig_size = trig_size;
 
 
+    function ink(){
+        ionicMaterialInk.displayEffect();
+        console.log("ink triggered")
+    }
+    $scope.ink = ink;
 
     //---------------Custom Keyboard------------------------ 
     $scope.btn_brand= function(brand_id){
@@ -291,12 +297,12 @@ angular.module('starter.controllers')
             console.log("all item entered");
         }
         itemId();
-        // updateInstruction();
-        
 
+        // updateInstruction();
     };
 
     $scope.btn_code= function(event){
+        ionicMaterialInk.displayEffect();
         if($scope.item_code == "Item Code"){
             $scope.item_code = "";
         }
@@ -324,7 +330,6 @@ angular.module('starter.controllers')
         $scope.toggleColor = true;
         $scope.toggleCode = false;
         $scope.showItemList = false;
-
         itemId();
     }
 
@@ -334,6 +339,7 @@ angular.module('starter.controllers')
     }
 
     $scope.btn_code_backspace = function(){
+        ionicMaterialInk.displayEffect();
         $scope.item_code = $scope.item_code.substring(0, $scope.item_code.length - 1);
         itemId();
     }
@@ -488,5 +494,9 @@ angular.module('starter.controllers')
         // });
     };
     $scope.itemExist = itemExist;
+
+    // console.log("show brand = " + $scope.showBrandInput);
+    // console.log("show keyboard = " + $scope.showItemCodeInputs);
+
 
 }])

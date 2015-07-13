@@ -87,6 +87,7 @@ angular.module('starter.controllers')
                 // is available
                 var email = {
                     to: tos,
+                    cc: ccs,
                     subject: subject,
                     body: emailbody,
                     isHtml: false

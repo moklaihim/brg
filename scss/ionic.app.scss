@@ -29,8 +29,8 @@ $font-family-sans-serif:          RobotoDraft, Roboto, "Helvetica Neue", "Roboto
 $font-family-light-sans-serif:    RobotoDraft, Roboto, "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light !default;
 
 .animation-element {
-    -webkit-transition: 150ms linear all;
-    transition: 150ms linear all;
+    -webkit-transition: 1500ms linear all;
+    transition: 1500ms linear all;
     
     // アニメ中はblockにしてやる
     &.ng-hide-add,
