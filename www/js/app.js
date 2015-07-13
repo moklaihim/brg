@@ -342,6 +342,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy'
         resolve: {
             "users": ["Users", function(Users) {
                 return Users.get_list();
+            }],
+            "roles": ["Roles", function(Roles) {
+                return Roles.get_list();
             }]
         }
     })
@@ -364,19 +367,19 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy'
         url: '/roles/list',
         cache: false,
         templateUrl: 'templates/role_list.html',
-        controller: 'RoleListController'
+        controller: 'RoleListController',
+        resolve: {
+            "roles": ["Roles", function(Roles) {
+                return Roles.get_list();
+            }]
+        }
     })
 
     .state('main.settings', {
         url: '/settings',
         cache: false,
         templateUrl: 'templates/settings.html',
-        controller: 'SettingsController',
-        resolve: {
-            "users": ["Users", function(Users) {
-                return Users.get_list();
-            }]
-        }
+        controller: 'SettingsController'
     });
 
     // if none of the above states are matched, use this as the fallback
