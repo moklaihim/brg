@@ -5,7 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker'])
+angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker'])
+//angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker'])
 .run(["$ionicPlatform", "$rootScope", "$state", function($ionicPlatform, $rootScope, $state) {
     $ionicPlatform.ready(function() {
 
@@ -205,18 +206,18 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy'
     }
 })
 
-.config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', '$ionicAppProvider', function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $ionicAppProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     // Identify app
-    $ionicAppProvider.identify({
+    //$ionicAppProvider.identify({
         // The App ID (from apps.ionic.io) for the server
-        app_id: '6847b83e',
+        //app_id: '6847b83e',
         // The public API key all services will use for this app
-        api_key: '1cf107f10ef4988c40b4f205c3db288e2398c56a2f2dfdac'
+        //api_key: '1cf107f10ef4988c40b4f205c3db288e2398c56a2f2dfdac'
         // Set the app to use development pushes
         //dev_push: true,
         //gcm_id: '622335018092'
-    });
+    //});
 
     $ionicConfigProvider.tabs.position("bottom");
     $ionicConfigProvider.navBar.alignTitle('left');
@@ -342,6 +343,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy'
         resolve: {
             "users": ["Users", function(Users) {
                 return Users.get_list();
+            }],
+            "roles": ["Roles", function(Roles) {
+                return Roles.get_list();
             }]
         }
     })
@@ -364,19 +368,19 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy'
         url: '/roles/list',
         cache: false,
         templateUrl: 'templates/role_list.html',
-        controller: 'RoleListController'
+        controller: 'RoleListController',
+        resolve: {
+            "roles": ["Roles", function(Roles) {
+                return Roles.get_list();
+            }]
+        }
     })
 
     .state('main.settings', {
         url: '/settings',
         cache: false,
         templateUrl: 'templates/settings.html',
-        controller: 'SettingsController',
-        resolve: {
-            "users": ["Users", function(Users) {
-                return Users.get_list();
-            }]
-        }
+        controller: 'SettingsController'
     });
 
     // if none of the above states are matched, use this as the fallback

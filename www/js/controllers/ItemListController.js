@@ -45,7 +45,7 @@ angular.module('starter.controllers')
     $scope.colors_array = Codes.get_colors_as_array();
 
     $scope.sizes_array = new Array();
-    var iil = 5;
+    var iil = 6;
     var sizes = Codes.get_sizes_as_array();
 
     for (var l = 0; l < Math.ceil(sizes.length / iil); l++){

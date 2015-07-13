@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$timeout", "$ionicPopup", "$ionicUser", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", function($rootScope, $scope, $state, $timeout, $ionicPopup, $ionicUser, $cordovaDatePicker, Roles, role, Auth, Users, user, Env, currentAuth) {
+.controller('MainController', ["$rootScope", "$scope", "$state", "$ionicPopup", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", function($rootScope, $scope, $state, $ionicPopup, $cordovaDatePicker, Roles, role, Auth, Users, user, Env, currentAuth) {
     console.log("MainController started");
 
     $scope.user_detail = user;
@@ -11,13 +11,13 @@ angular.module('starter.controllers')
 
     Env.conMon();
 
+    /*
     $ionicUser.identify({
         user_id: $scope.user_detail.email,
         name: $scope.user_detail.name,
         role: $scope.user_detail.role
     }).then(function() {
         // identified
-        /*
         if(Env.isMobile()){
             $ionicPush.register({
                 canShowAlert: true, //Should new pushes show an alert on your screen?
@@ -30,10 +30,10 @@ angular.module('starter.controllers')
                 }
             });
         }
-        */
     }, function(err) {
           // error
     });
+    */
 
     var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -188,9 +188,11 @@ angular.module('starter.controllers')
         }   
     }, false);
 
+    /*
     $rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
         $ionicUser.set("token", data.token);
     });
+    */
 
     $scope.logout = function(){
         console.log("logout started");

@@ -1,10 +1,10 @@
 angular.module('starter.controllers')
-.controller('UserListController', ["$scope", "$state", "Users", "Roles", function($scope, $state, Users, Roles) {
+.controller('UserListController', ["$scope", "$state", "Users", "users", "roles", function($scope, $state, Users, users, roles) {
     console.log("UserListController started");
     $scope.current.view = 'users_list';
 
-    $scope.users = Users.get_list();
-    $scope.roles = Roles.get_list();
+    $scope.users = users;
+    $scope.roles = roles;
 
     $scope.removeUser = function(user_id) {
         console.log("remove user: " + user_id);

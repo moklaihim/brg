@@ -10,6 +10,10 @@ angular.module('starter.services')
         users.$save();
     }
 
+    function convertEmail2Id(email){
+        return email.replace("@", "_").replace(/\./g, "_");
+    }
+
     return {
         online: function(){
             is_online = true;
@@ -31,7 +35,7 @@ angular.module('starter.services')
             var user_id;
 
             if(type == "email"){
-                user_id = ref.replace("@", "_").replace(/\./g, "_");
+                user_id = convertEmail2Id(ref);
             }else{
                 user_id = ref;
             }
@@ -57,7 +61,7 @@ angular.module('starter.services')
         },
 
         logout: function(email){
-            var user_id = email.replace("@", "_").replace(/\./g, "_");
+            var user_id = convertEmail2Id(email);
             if(localStorage.getItem('brg_user_' + user_id) !== null){
                 localStorage.removeItem('brg_user_' + user_id);
             }
@@ -67,27 +71,26 @@ angular.module('starter.services')
             var now = new Date();
             var current_ut = now.getTime();
             user_detail.email = user_detail.email.toLowerCase();
-            // var user_detail = user.toLowerCase();
             var user_id;
-
             if(is_online){
                 if(user_detail.id){
                     user_id = user_detail.id;
                 }else{
-                    user_id = user_detail.email.replace("@", "_").replace(/\./g, "_");
+                    user_id = convertEmail2Id(user_detail.email);
                     Auth.register(user_detail.email, user_detail.password);
                 }
-                console.log(user_detail.emailTo);
 
-                users[user_id] = new Object();
-                users[user_id].id = user_id;
-                users[user_id].active = true;
-                users[user_id].email = user_detail.email;
-                users[user_id].name = user_detail.name;
-                users[user_id].role = user_detail.role;
-                users[user_id].reportSendTo = user_detail.emailTo;
-                users[user_id].reportSendCc = user_detail.emailCc;
-                users.$save();
+                var fb_user = "https://fiery-heat-6039.firebaseio.com/users/" + user_id;
+                var fUser = new Firebase(fb_user);
+                fUser.set({
+                    id: user_id,
+                    active: true,
+                    email: user_detail.email,
+                    name: user_detail.name,
+                    role: user_detail.role,
+                    reportSendTo: user_detail.emailTo || "",
+                    reportSendCc: user_detail.emailCc || ""
+                });
             }
         },
 

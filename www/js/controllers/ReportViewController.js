@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ReportViewController', ["$scope", "$stateParams", "Stores", "Sales", "Items", "items", "Env", "$cordovaEmailComposer", function($scope, $stateParams, Stores, Sales, Items, items, Env, $cordovaEmailComposer) {
+.controller('ReportViewController', ["$scope", "$stateParams", "Stores", "Sales", "items", "Env", "$cordovaEmailComposer", function($scope, $stateParams, Stores, Sales, items, Env, $cordovaEmailComposer) {
     console.log("ReportViewController started");
     $scope.current.view = 'reports_list';
 
