@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SettingsController', ["$scope", "$ionicDeploy", "$ionicPopup", "Env", "user", "Users", function($scope, $ionicDeploy, $ionicPopup, Env, user, Users) {
+.controller('SettingsController', ["$scope", "$ionicPopup", "Env", "user", "Users", function($scope, $ionicPopup, Env, user, Users) {
     console.log("SettingsController started");
     $scope.current.view = 'settings_list';
 
@@ -32,7 +32,7 @@ angular.module('starter.controllers')
         cordova.getAppVersion(function(version) {
             $scope.current.app_version = version;
         });
-        checkForUpdates();
+        //checkForUpdates();
     }
 
 
@@ -59,6 +59,7 @@ angular.module('starter.controllers')
     // Update app code with new release from Ionic Deploy
     $scope.doUpdate = function() {
         if($scope.current.hasUpdate){
+            /*
             $ionicDeploy.update().then(function(res) {
                 console.log('Ionic Deploy: Update Success! ', res);
             }, function(err) {
@@ -66,11 +67,13 @@ angular.module('starter.controllers')
             }, function(prog) {
                 console.log('Ionic Deploy: Progress... ', prog);
             }); 
+            */
         }   
     };  
 
     // Check Ionic Deploy for new code
     function checkForUpdates(){
+        /*
         console.log('Ionic Deploy: Checking for updates');
         $ionicDeploy.check().then(function(hasUpdate) {
             console.log('Ionic Deploy: Update available: ' + hasUpdate);
@@ -78,6 +81,7 @@ angular.module('starter.controllers')
         }, function(err) {
             console.error('Ionic Deploy: Unable to check for updates', err);
         }); 
+        */
     };
 
     function confirmedAlert(){
