@@ -104,8 +104,8 @@ $dark:                            #444 !default;
 
 /* END Black */
 .animation-element {
-  -webkit-transition: 1500ms linear all;
-  transition: 1500ms linear all; }
+  -webkit-transition: 150ms linear all;
+  transition: 150ms linear all; }
   .animation-element.ng-hide-add, .animation-element.ng-hide-remove {
     display: block !important; }
   .animation-element.ng-hide-add {
