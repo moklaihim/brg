@@ -9,6 +9,7 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
 //angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker'])
 .run(["$ionicPlatform", "$rootScope", "$state", function($ionicPlatform, $rootScope, $state) {
     $ionicPlatform.ready(function() {
+        console.log("BRG Debug: run start");
 
         //$ionicAnalytics.register();
 

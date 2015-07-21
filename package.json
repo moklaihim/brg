@@ -22,10 +22,6 @@
     "org.cloudsky.cordovaplugins.zbar",
     "cordova-plugin-whitelist",
     {
-      "locator": "https://github.com/driftyco/ionic-plugins-deploy",
-      "id": "com.ionic.deploy"
-    },
-    {
       "locator": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
       "id": "uk.co.whiteoctober.cordova.appversion"
     }
