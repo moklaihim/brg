@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 .controller('LoginController', ["$scope", "$state", "$ionicPopup", "$ionicHistory", "Auth", function($scope, $state, $ionicPopup, $ionicHistory, Auth) {
-    console.log("LoginController started");
+    console.log("BRG Debug: LoginController started");
 
     $scope.user = {
         email: '',

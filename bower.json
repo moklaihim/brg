@@ -10,8 +10,6 @@
     "robotodraft": "~1.1.0"
   },
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.1",
-    "ionic-service-core": "~0.1.7",
-    "ionic-service-deploy": "~0.1.0"
+    "ionic": "driftyco/ionic-bower#1.0.1"
   }
 }
