@@ -32,15 +32,21 @@ angular.module('starter.services')
         },
 
         get_one: function(ref, type){
+            console.log("BRG Debug: Users.get_one started");
             var user_id;
+            var email;
 
             if(type == "email"){
+                email = ref;
                 user_id = convertEmail2Id(ref);
             }else{
+                email = "";
                 user_id = ref;
             }
 
             if(is_online){
+                console.log("BRG Debug: ");
+                console.log("BRG Debug: System online");
                 var fb_user = "https://fiery-heat-6039.firebaseio.com/users/" + user_id;
                 var fUser = new Firebase(fb_user);
 
@@ -50,13 +56,17 @@ angular.module('starter.services')
 
                 user = $firebaseObject(fUser).$loaded();
             }else{
+                console.log("BRG Debug: System offline");
                 if(localStorage.getItem('brg_user_' + user_id) !== null){
+                    console.log("BRG Debug: brg_user exist");
                     user = JSON.parse(localStorage.getItem('brg_user_' + user_id));
                 }else{
+                    console.log("BRG Debug: brg_user not exist");
                     user.active = true;
                     user.email = email;
                 }
             }
+            console.log("BRG Debug: Users.get_one finished");
             return $q.when(user);
         },
 

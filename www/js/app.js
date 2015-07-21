@@ -252,6 +252,7 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         controller: 'MainController',
         resolve: {
             "currentAuth": ["Auth", "$state", function(Auth, $state) {
+                console.log("BRG Debug: currentAuth started");
                 return Auth.getAuth().$requireAuth()
                     .then(function(data){
                         return data;
@@ -260,9 +261,11 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
                     });
             }],
             "user": ["currentAuth", "Users", function(currentAuth, Users){
+                console.log("BRG Debug: user started");
                 return Users.get_one(currentAuth.password.email, "email");
             }],
             "role": ["Roles", "user", function(Roles, user){
+                console.log("BRG Debug: user started");
                 return Roles.get_one(user.role);
             }]
         }
