@@ -17,15 +17,19 @@ angular.module('starter.controllers')
         $scope.user.email = window.localStorage.getItem('brg_login_email');
         $scope.user.password = window.localStorage.getItem('brg_login_password');
         Auth.login($scope.user.email, $scope.user.password, function(res){   
+            console.log("BRG Debug: Auth login returned");
             if (res.uid) {
+                console.log("BRG Debug: res.uid exist");
                 if(res.password.isTemporaryPassword){
                     console.log("Temporary Password");
                     $scope.showLoginView = false;
                     $scope.showPasswordChangeView = true;
                 }else{
+                    console.log("BRG Debug: forwarding");
                     $state.go('main.sales_list');
                 }
             } else {
+                console.log("BRG Debug: res.uid not exist");
                 $scope.user.email = '';
                 $scope.user.password = '';
                 $scope.showLoginView = true;
@@ -59,6 +63,7 @@ angular.module('starter.controllers')
                 }else{
                     window.localStorage.setItem("brg_login_email", real_email);
                     window.localStorage.setItem("brg_login_password", $scope.user.password);
+                    console.log("BRG Debug: Sending to sales list");
                     $state.go('main.sales_list');
                 }
             } else {

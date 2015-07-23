@@ -6,12 +6,12 @@ angular.module('starter.services')
 
     return {
         login: function(email, password, callback){
-            console.log("login started");
+            console.log("BRG Debug: login started");
             auth.$authWithPassword({
                 email: email,
                 password: password
             }).then(function(res) {
-                console.log("login succeeded");
+                console.log("BRG Debug: login succeeded");
                 user = res;
                 console.log(user);
                 if (callback) {
