@@ -23,7 +23,7 @@ angular.module('starter.controllers')
     var editItemClicked = false;
     // var addItemClicked = false;
     $scope.allItemCodeEntered = false;
-    ionicMaterialInk.displayEffect();
+    //ionicMaterialInk.displayEffect();
     
 
     /* Make Brand palate from here*/
@@ -297,12 +297,13 @@ angular.module('starter.controllers')
             console.log("all item entered");
         }
         itemId();
+        ionicMaterialInk.displayEffect();
 
         // updateInstruction();
     };
 
     $scope.btn_code= function(event){
-        ionicMaterialInk.displayEffect();
+        //ionicMaterialInk.displayEffect();
         if($scope.item_code == "Item Code"){
             $scope.item_code = "";
         }
@@ -339,7 +340,7 @@ angular.module('starter.controllers')
     }
 
     $scope.btn_code_backspace = function(){
-        ionicMaterialInk.displayEffect();
+        //ionicMaterialInk.displayEffect();
         $scope.item_code = $scope.item_code.substring(0, $scope.item_code.length - 1);
         itemId();
     }
