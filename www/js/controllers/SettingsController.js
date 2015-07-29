@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SettingsController', ["$scope", "$ionicPopup", "Env", "user", "Users", function($scope, $ionicPopup, Env, user, Users) {
+.controller('SettingsController', ["$scope", "$ionicPopup", "Env", "user", "Users", "$cordovaAppVersion", function($scope, $ionicPopup, Env, user, Users, $cordovaAppVersion) {
     console.log("SettingsController started");
     $scope.current.view = 'settings_list';
 
@@ -29,7 +29,7 @@ angular.module('starter.controllers')
     };
 
     if(Env.isMobile()){
-        cordova.getAppVersion(function(version) {
+        $cordovaAppVersion.getAppVersion(function(version) {
             $scope.current.app_version = version;
         });
         //checkForUpdates();
