@@ -70,6 +70,13 @@ angular.module('starter.controllers')
 
     setDate(new Date(), true);
 
+    $scope.getStore = function(){
+        if(window.localStorage.getItem('store_date') == $scope.current.today_date){
+            $scope.current.store_id = window.localStorage.getItem('store_id');
+            $scope.current.store_name = window.localStorage.getItem('store_name');
+        }
+    }
+
     $scope.checkStore = function(){
         if(window.localStorage.getItem('store_date') == $scope.current.today_date){
             $scope.current.store_id = window.localStorage.getItem('store_id');

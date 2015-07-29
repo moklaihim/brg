@@ -1,7 +1,8 @@
 <ion-view title="Sale Detail">
     <ion-nav-buttons side="right">
-        <a class="button button-clear button-store" ui-sref="main.stores_list">{{current.store_name}}</a>
-        <button class="button button-clear button-icon button-cleear mdi mdi-calendar" style="color: white" ng-click="showDatePicker($event)"></button>
+        <a class="button button-clear button-store" ui-sref="main.stores_list" ng-show="current.store_name">{{current.store_name}}</a>
+        <button class="button button-clear button-icon button-clear mdi mdi-store" ui-sref="main.stores_list" ng-show="!current.store_name"></button>
+        <button class="button button-clear button-icon button-clear mdi mdi-calendar" style="color: white" ng-click="showDatePicker($event)"></button>
         <!--
         <div class="dropdown-menu" ng-if="showPCDatePicker" ng-show="showPCDatePicker" ng-click="$event.preventDefault();$event.stopPropagation()">
             <div date-picker="current.raw_set_date" view="date" max-view="date" min-view="date" auto-close="false"></div>
