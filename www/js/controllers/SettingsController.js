@@ -36,8 +36,8 @@ angular.module('starter.controllers')
     }
 
 
-    $scope.notificationChange = function(){
-        if($scope.current.notificationEnabled){
+    //$scope.notificationChange = function(){
+        //if($scope.current.notificationEnabled){
             /*
             $ionicPush.register({
                 canShowAlert: true, //Can pushes show an alert on your screen?
@@ -51,14 +51,14 @@ angular.module('starter.controllers')
                 }
             });
             */
-        }else{
+        //}else{
             //$ionicPush.unregister();
-        }
-    };
+        //}
+    //};
 
     // Update app code with new release from Ionic Deploy
-    $scope.doUpdate = function() {
-        if($scope.current.hasUpdate){
+    //$scope.doUpdate = function() {
+        //if($scope.current.hasUpdate){
             /*
             $ionicDeploy.update().then(function(res) {
                 console.log('Ionic Deploy: Update Success! ', res);
@@ -68,11 +68,11 @@ angular.module('starter.controllers')
                 console.log('Ionic Deploy: Progress... ', prog);
             }); 
             */
-        }   
-    };  
+        //}   
+    //};  
 
     // Check Ionic Deploy for new code
-    function checkForUpdates(){
+    //function checkForUpdates(){
         /*
         console.log('Ionic Deploy: Checking for updates');
         $ionicDeploy.check().then(function(hasUpdate) {
@@ -82,7 +82,7 @@ angular.module('starter.controllers')
             console.error('Ionic Deploy: Unable to check for updates', err);
         }); 
         */
-    };
+    //};
 
     function confirmedAlert(){
         // var msg = item_id;
