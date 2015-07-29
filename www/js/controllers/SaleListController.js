@@ -6,6 +6,7 @@ angular.module('starter.controllers')
 
     $scope.checkStore();
     $scope.users= Users.get_list();
+
     updateSales();
     $scope.showDisOption = false;
     $scope.showSalesView = true;
@@ -56,9 +57,9 @@ angular.module('starter.controllers')
                 $scope.salesClosed = false;
                 // $scope.CloseStyle = {"background-color":"#33cd5f", "border-color":"#28a54c"}
             }
-
         });
     }
+    
 
     $scope.$on('changedDate', updateSales);
 
@@ -67,22 +68,29 @@ angular.module('starter.controllers')
         if(val == true){
             console.log("become Online");
             $scope.users= Users.get_list();
+            console.log("starting updateSales");
             updateSales();
+            console.log("starting online_watch");
             online_watch();
         }
     }, false);
-    
-    var close_watch = $scope.$watch('sales', function(val){
+   
+   
+    var close_watch = $scope.$watch('sales.CLOSED', function(val){
+        
         console.log("Sales changed");
+        
         if($scope.salesClosed){
             console.log("sale is already closed");
             if(!('CLOSED' in $scope.sales)){
                 console.log("Open detected");
                 updateSales();
-            }
+           }
         }else if($scope.sales && 'CLOSED' in $scope.sales){
-            console.log("Close detected");
-            updateSales();
+           console.log("Close detected");
+           updateSales();
         }
-    }, true);
+        
+    }, false);
+
 }])

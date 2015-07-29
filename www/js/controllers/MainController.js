@@ -161,9 +161,10 @@ angular.module('starter.controllers')
     var online_watch = $scope.$watch(Env.isOnline, function(val){
         console.log("isOnline changed");
         if(val == true){
-            user_active_watch();
-
+            //user_active_watch();
+ 
             var p_user = Users.get_one(currentAuth.password.email, "email");
+            
             p_user.then(function(user_detail){
                 $scope.user_detail = user_detail;
 
@@ -172,7 +173,9 @@ angular.module('starter.controllers')
                     $scope.role = role_detail;
                 });
 
-                $scope.$watch('user_detail', function(){
+                //$scope.$watch('user_detail', function(){
+                    //console.log("user_detail changed");
+                    /**
                     if(!$scope.user_detail.active){
                         console.log("User disabled detected by watch 2");
                         logout();
@@ -182,11 +185,15 @@ angular.module('starter.controllers')
                         console.log("role updated");
                         $scope.role = role_detail;
                     });
-                }, true);
+                **/
+                //}, true);
+            
             });
+
             online_watch();
         }   
     }, false);
+
 
     /*
     $rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
