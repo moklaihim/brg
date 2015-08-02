@@ -15,6 +15,10 @@ angular.module('starter.controllers')
     $scope.showCodeInput = false;
     $scope.toggleBrand = true;
     $scope.toggelSelected = false;
+    $scope.brandHasValue = false;
+    $scope.codeHasValue = false;
+    $scope.colorHasValue = false;
+    $scope.sizeHasValue = false;
     
     $scope.item_brand = '';
     $scope.item_code = '';
@@ -114,6 +118,13 @@ angular.module('starter.controllers')
 
     function addItem(event){
     // addItemClicked = true;
+        if($scope.item_brand == 'S'){
+            $scope.current.item_id = $scope.item_brand + $scope.item_code + '-' + $scope.item_color + $scope.item_size;
+        }else{
+            $scope.current.item_id = $scope.item_brand + $scope.item_code + '-' + $scope.item_color + '-' + $scope.item_size;
+        }
+
+        console.log("the item code is " + $scope.current.item_id);
         $scope.headerLabel = "Shoes List (Adding) "
         // $scope.showInputSelections = true;
         if ($scope.allItemCodeEntered){
@@ -254,9 +265,7 @@ angular.module('starter.controllers')
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
         $scope.showBackButton = true;
-        if($scope.item_code != "Item Code"){
-            $scope.item_code = "";
-        }
+        $scope.item_code = "";
         $scope.toggleBrand = false;
         $scope.toggleCode = true;
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
@@ -265,15 +274,10 @@ angular.module('starter.controllers')
         }
         itemId();
         ionicMaterialInk.displayEffect();
-
-        // updateInstruction();
     };
 
     $scope.btn_code= function(event){
         //ionicMaterialInk.displayEffect();
-        if($scope.item_code == "Item Code"){
-            $scope.item_code = "";
-        }
         $scope.item_code = $scope.item_code + event.target.id;
         if($scope.current.item_id.charAt( 0 ) == 'S'){
             if($scope.item_code.charAt(1)){
@@ -350,47 +354,9 @@ angular.module('starter.controllers')
         $scope.filterLetters = event.target.id;
     };
 
-    //When the X button beside the Retail Price is clicked
     function itemId(){
         $ionicScrollDelegate.scrollTop();
-        if($scope.item_brand == 'S'){
-            $scope.current.item_id = $scope.item_brand + $scope.item_code + '-' + $scope.item_color + $scope.item_size;
-            // updateInstruction();
-        }else{
-        $scope.current.item_id = $scope.item_brand + $scope.item_code + '-' + $scope.item_color + '-' + $scope.item_size;
-        // updateInstruction();
-        }
-
-        console.log("the item code is " + $scope.current.item_id);
-        if($scope.item_brand){
-            $scope.brandHaveValue = true;
-        }
-        else{
-            $scope.brandHaveValue = false;
-        }
-
-        if($scope.item_code){
-            $scope.codeHaveValue = true;
-        }
-        else{
-            $scope.codeHaveValue = false;
-        }
-
-        if($scope.item_color){
-            $scope.colorHaveValue = true;
-        }
-        else{
-            $scope.colorHaveValue = false;
-        }
-
-        if($scope.item_size){
-            $scope.sizeHaveValue = true;
-        }
-        else{
-            $scope.sizeHaveValue = false;
-        }
-    };
-    $scope.itemId = itemId;
+    }
     
     // ------------------------------Alert Function----------------------------
     function showAlert(){

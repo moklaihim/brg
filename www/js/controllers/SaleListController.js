@@ -7,10 +7,7 @@ angular.module('starter.controllers')
     $scope.getStore();
     $scope.users= Users.get_list();
 
-    if($scope.current.store_id != ''){
-        updateSales();
-    }
-    $scope.showDisOption = false;
+    updateSales();
     $scope.showSalesView = true;
 
     $scope.getNameByEmail = function(email){
@@ -46,21 +43,25 @@ angular.module('starter.controllers')
     function updateSales(){
         console.log("updateSales started");
         console.log("User store is" + $scope.user_detail.storeIC);
-        $scope.showSpinner = true;
-        var p_sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
-
-        p_sales.then(function(sales_detail){
-            $scope.sales = sales_detail;
-            if('CLOSED' in $scope.sales){
-                $scope.showSpinner = false;
-                $scope.salesClosed = true;
-                // $scope.CloseStyle = {"background-color":"#ffc900", "border-color":"#e6b500"}
-            }else{
-                $scope.showSpinner = false;
-                $scope.salesClosed = false;
-                // $scope.CloseStyle = {"background-color":"#33cd5f", "border-color":"#28a54c"}
-            }
-        });
+        if($scope.current.store_id != ''){
+            $scope.showSelectStoreMsg = false;
+            $scope.showSpinner = true;
+            var p_sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
+            p_sales.then(function(sales_detail){
+                $scope.sales = sales_detail;
+                if('CLOSED' in $scope.sales){
+                    $scope.showSpinner = false;
+                    $scope.salesClosed = true;
+                    // $scope.CloseStyle = {"background-color":"#ffc900", "border-color":"#e6b500"}
+                }else{
+                    $scope.showSpinner = false;
+                    $scope.salesClosed = false;
+                    // $scope.CloseStyle = {"background-color":"#33cd5f", "border-color":"#28a54c"}
+                }
+            });
+        }else{
+            $scope.showSelectStoreMsg = true;
+        }
     }
     
 
