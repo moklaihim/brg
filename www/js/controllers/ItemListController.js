@@ -59,7 +59,6 @@ angular.module('starter.controllers')
     }
 
     updateItems();
-
     if($state.current.name === "main.sales_scanadd"){
         scanFunction();
     };
@@ -67,38 +66,6 @@ angular.module('starter.controllers')
     if($scope.current.today_date != $scope.current.set_date) {
         showAlert();
     }
-
-    // function scanFunction() {
-    //     $ionicPlatform.ready(function(){
-    //         $ZBar
-    //         //$cordovaBarcodeScanner
-    //             .scan(
-    //                 {
-    //                     text_title: "Scan Barcode",
-    //                     text_instructions: "Align the barcode on the red line",
-    //                     flash: "on"
-    //                 },
-    //                 function(barcodeData) {
-    //                     //showAlert(barcodeData.text);
-    //                     //console.log(barcodeData);
-    //                     if(barcodeData){
-    //                         confirmScanResult(barcodeData);
-    //                     }
-    //                     if(barcodeData.cancelled){
-    //                         $state.go('main.sales_list');
-    //                         // $ionicHistory.goBack(-2);
-    //                     };
-    //                 },
-    //                 function(s){
-    //                     if(onFailure){
-    //                         $state.go('main.sales_list');
-    //                     }
-    //                     // $ionicHistory.goBack();
-    //                 }
-    //             );
-    //     }); 
-    // };
-    // $scope.scanFunction = scanFunction;
 
     function scanFunction() {
         $ionicPlatform.ready(function(){
@@ -174,10 +141,11 @@ angular.module('starter.controllers')
         Items.remove($item_id);
         $scope.items_array = Items.get_as_array();
     }
+    
     //make sure items entered are upper case
     $scope.$watch('current.item_id', function(val) {
         $scope.current.item_id = $filter('uppercase')(val);
-    }, true);
+    }, false);
 
     function trig_brand(event){
         $scope.showItemList = true;
@@ -271,7 +239,6 @@ angular.module('starter.controllers')
         }
     }
     $scope.trig_size = trig_size;
-
 
     function ink(){
         ionicMaterialInk.displayEffect();
@@ -424,7 +391,6 @@ angular.module('starter.controllers')
         }
     };
     $scope.itemId = itemId;
-
     
     // ------------------------------Alert Function----------------------------
     function showAlert(){
@@ -498,6 +464,4 @@ angular.module('starter.controllers')
 
     // console.log("show brand = " + $scope.showBrandInput);
     // console.log("show keyboard = " + $scope.showItemCodeInputs);
-
-
 }])

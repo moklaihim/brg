@@ -7,7 +7,9 @@ angular.module('starter.controllers')
     $scope.getStore();
     $scope.users= Users.get_list();
 
-    updateSales();
+    if($scope.current.store_id != ''){
+        updateSales();
+    }
     $scope.showDisOption = false;
     $scope.showSalesView = true;
 

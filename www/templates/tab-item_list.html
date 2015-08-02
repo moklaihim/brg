@@ -21,7 +21,8 @@
             <ion-item ng-show="allItemCodeEntered" ng-click="addItem()">
                 <center><b>Not Found? Add New Item.</b></center>
             </ion-item>
-            <ion-item ng-repeat="item in items_array | itemFilter : item_brand:'brand' | itemFilter : item_code:'code' | itemFilter : item_color:'color' | itemFilter : item_size:'size' | uppercase" ng-click="selectItem(item.id)">
+            <ion-item ng-repeat="item in items_array" ng-click="selectItem(item.id)">
+            <!--ion-item ng-repeat="item in items_display | itemFilter : item_brand:'brand' | itemFilter : item_code:'code' | itemFilter : item_color:'color' | itemFilter : item_size:'size' | uppercase" ng-click="selectItem(item.id)"-->
                 <h2>{{item.id}}<span class="item-note">{{item.retail_price | currency:"$"}}</span></h2>
                 <div>
                     <ion-option-button class="button-option button-positive-900 mdi mdi-pencil" ng-click="editItem(item.id)"></ion-option-button>

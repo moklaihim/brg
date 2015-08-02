@@ -38,7 +38,7 @@ angular.module('starter.controllers')
                                 console.log("This is not mens");
                             }
                         }else{
-                            if(sale.item.indexOf("F") === 0 || sale.item.indexOf("H") === 0){
+                            if(sale.item.indexOf("F") === 0 || (sale.item.indexOf("HB") !== 0 && sale.item.indexOf("H") === 0)){
                                 //F, H
                                 count_target = true;
                             }
