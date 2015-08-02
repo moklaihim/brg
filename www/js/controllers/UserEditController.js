@@ -39,7 +39,10 @@ angular.module('starter.controllers')
     };
  
     $scope.ok = function(){
-        showAlert("User: " + $scope.user_detail.name + " Updated");
+        if(!$scope.user_detail.storeIC){
+            $scope.user_detail.storeIC = "";
+        }
+        $scope.showAlert("User: " + $scope.user_detail.name + " Updated");
         Users.edit($scope.user_detail);
         $state.go('main.users_list');
     };
