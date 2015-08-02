@@ -19,7 +19,7 @@
     <ion-content padding="false" style="margin-bottom:94px">
         <ion-list class="border-list" ng-if="showItemList">
             <ion-item ng-show="allItemCodeEntered" ng-click="addItem()">
-                <center><b>Continue to add New Item.</b></center>
+                <center><b>Continue to add new item.</b></center>
             </ion-item>
             <ion-item ng-repeat="item in items_array | itemFilter : item_brand:'brand' | itemFilter : item_code:'code' | itemFilter : item_color:'color' | itemFilter : item_size:'size' | limitTo:20" ng-click="selectItem(item.id)">
                 <h2>{{item.id}}<span class="item-note">{{item.retail_price | currency:"$"}}</span></h2>
