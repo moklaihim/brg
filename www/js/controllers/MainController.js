@@ -65,6 +65,8 @@ angular.module('starter.controllers')
         emailTo:'',
         emailCc:'',
         hasUpdate: false,
+        isToday:'',
+        nearestStore:'',
         notificationEnabled: true
     };
 
@@ -151,6 +153,11 @@ angular.module('starter.controllers')
                     onTap: function() {
                         $scope.current.raw_set_date = $scope.current.raw_new_set_date;
                         setDate($scope.current.raw_set_date, false);
+                        if($scope.current.today_date != $scope.current.set_date) {
+                            $scope.current.isToday = {color:'#F44336'}
+                        }else{
+                            $scope.current.isToday = {color:'white'}
+                        }
                     }
                 }
             ]

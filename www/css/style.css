@@ -17,6 +17,10 @@
     color: #5d5c5e;
 }
 
+.warning-color{
+    color: #F44336 !important;
+}
+
 .item-divider{
     border-top-width: 0px !important;
 }
