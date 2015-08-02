@@ -3,10 +3,11 @@
         <button class="button button-clear button-icon button-cleear mdi mdi-undo" style="color: white" ng-click="cancel()"></button>
     </ion-nav-buttons>
 
-    <ion-content padding="false">
-        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
-            <p>Data network unavailable</p>
-        </div>
+    <div class="bar bar-subheader data_network_unavailable ng-hide" ng-hide="isOnline()">
+        <p>Data network unavailable</p>
+    </div>
+
+    <ion-content padding="false" ng-class="{'has-subheader': !isOnline()}">
         <ion-scroll direction="x">
             <table id="role-table">
                 <tr id="role-table-header">

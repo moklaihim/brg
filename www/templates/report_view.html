@@ -3,10 +3,11 @@
         <button class="button button-clear button-icon button-cleear mdi mdi-calendar" style="color: white" ng-click="showDatePicker($event)"></button>
     </ion-nav-buttons>
 
-    <ion-content padding="false">
-        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
-            <p>Data network unavailable</p>
-        </div>
+    <div class="bar bar-subheader data_network_unavailable ng-hide" ng-hide="isOnline()">
+        <p>Data network unavailable</p>
+    </div>
+
+    <ion-content padding="false" ng-class="{'has-subheader': !isOnline()}">
         <div class="list card stable-bg">
             <div class="item">
                 <h2>{{report_type | uppercase}} Daily Report for {{current.set_year}}/{{current.set_month}}/{{current.set_day}}</h2>

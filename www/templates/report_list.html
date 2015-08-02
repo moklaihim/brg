@@ -3,13 +3,17 @@
         <button class="button button-clear button-icon button-cleear mdi mdi-calendar" style="color: white" ng-click="showDatePicker($event)"></button>
     </ion-nav-buttons>
 
-    <ion-content padding="false">
-    <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
+    <div class="bar bar-subheader data_network_unavailable ng-hide" ng-hide="isOnline()">
         <p>Data network unavailable</p>
     </div>
-    <div class="list">
-        <a class="item" href="#/main/reports/view/mens">Mens Daily Report</a>
-        <a class="item" href="#/main/reports/view/ladies">Ladies Daily Report</a>
-    </div>
+
+    <ion-content padding="false" ng-class="{'has-subheader': !isOnline()}">
+        <!--div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
+            <p>Data network unavailable</p>
+        </div-->
+        <div class="list">
+            <a class="item" href="#/main/reports/view/mens">Mens Daily Report</a>
+            <a class="item" href="#/main/reports/view/ladies">Ladies Daily Report</a>
+        </div>
     </ion-content>
 </ion-view>

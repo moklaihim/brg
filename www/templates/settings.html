@@ -1,8 +1,10 @@
 <ion-view view-title="Settings">
-    <ion-content padding="false">
-        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
-            <p>Data network unavailable</p>
-        </div>
+
+    <div class="bar bar-subheader data_network_unavailable ng-hide" ng-hide="isOnline()">
+        <p>Data network unavailable</p>
+    </div>
+
+    <ion-content padding="false" ng-class="{'has-subheader': !isOnline()}">
         <ion-list>
             
 <!--             <div class="item item-divider">

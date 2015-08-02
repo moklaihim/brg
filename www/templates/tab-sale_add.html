@@ -9,13 +9,13 @@
         </div>
         -->
     </ion-nav-buttons>
+
+    <div class="bar bar-subheader data_network_unavailable ng-hide" ng-hide="isOnline()">
+        <p>Data network unavailable</p>
+    </div>
     
     <!-- <ion-content padding="true" ng-class="{'ss480': ss480Detected, 'ss568': ss568Detected}"> -->
-    <ion-content padding="true" style="height:{{contentHeight}}px">
-        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
-            <p>Data network unavailable</p>
-        </div>
-
+    <ion-content padding="true" style="height:{{contentHeight}}px" ng-class="{'has-subheader': !isOnline()}">
         <div class="list">
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Item code</span>

@@ -1,8 +1,9 @@
 <ion-view view-title="Users">
-    <ion-content padding="false">
-        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
-            <p>Data network unavailable</p>
-        </div>
+    <div class="bar bar-subheader data_network_unavailable ng-hide" ng-hide="isOnline()">
+        <p>Data network unavailable</p>
+    </div>
+
+    <ion-content padding="false" ng-class="{'has-subheader': !isOnline()}">
         <ion-list class="border-list">
             <ion-item ng-repeat="user in users" ng-if="user.active">
             <h2>{{user.name}}</h2>

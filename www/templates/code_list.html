@@ -1,8 +1,8 @@
 <ion-view view-title="Codes">
-    <ion-content class="has-header">
-        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
-            <p>Data network unavailable</p>
-        </div>
+    <div class="bar bar-subheader data_network_unavailable ng-hide" ng-hide="isOnline()">
+        <p>Data network unavailable</p>
+    </div>
+    <ion-content class="has-header" ng-class="{'has-subheader': !isOnline()}">
         <div class="list">
             <div class="item item-input-inset">
                 <label class="item-input-wrapper">
