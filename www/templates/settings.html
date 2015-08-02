@@ -11,24 +11,25 @@
             </div>
 
             <div class="list">
-                <div class="item item-input-inset">
+                <!-- <div class="item item-input-inset"> -->
                     <label class="item-input-wrapper">
                         <span class="input-label">Send To</span>
-                        <input type="text" ng-model="user_detail.emailTo">
+                        <input type="text" id="sendTo" ng-model="user_detail.emailTo" style="width:100%">
                     </label>
-                    <button class="button mdi mdi-plus" ng-click="addToList()">
-                    </button>
+                    <!-- <button class="button mdi mdi-plus" ng-click="addToList()">
+                    </button> -->
+                    <br>
                     
-                </div>
-                <div class="item item-input-inset">
+                <!-- </div> -->
+                <!-- <div class="item item-input-inset"> -->
                     <label class="item-input-wrapper">
                         <span class="input-label">Send Cc</span>
-                        <input type="text" ng-model="user_detail.emailCc">
+                        <input type="text" id="sendCc" ng-model="user_detail.emailCc" style="width:100%">
                     </label>
-                    <button class="button mdi mdi-plus" ng-click="addCcList()">
-                    </button>
+                    <!-- <button class="button mdi mdi-plus" ng-click="addCcList()">
+                    </button> -->
                     
-                </div>
+                <!-- </div> -->
                 <div class="item item-input-inset">
                     <button class="button button-small" ng-click="reportEmailUpdate()">
                         Save

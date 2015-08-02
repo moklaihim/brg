@@ -5,27 +5,42 @@ angular.module('starter.controllers')
 
     // $scope.current.emailTo = user.reportSendTo;
     // $scope.current.emailCc = user.reportSendCc;
+    console.log("send to email "+ user.reportSendTo);
+
 
     $scope.user_detail = {
         email: user.email,
         id: user.id,
         name: user.name,
         role: user.role,
+        storeIC: user.storeIC,
         emailTo: user.reportSendTo,
         emailCc: user.reportSendCc
     };
 
+    // $scope.user_detail.email = user.email;
+
     $scope.reportEmailUpdate = function(){
+        $scope.user_detail.emailTo = $scope.user_detail.emailTo.split(',');
+        $scope.user_detail.emailCc = $scope.user_detail.emailCc.split(',');
         Users.edit($scope.user_detail);
         confirmedAlert();
     };
 
     $scope.addToList = function(){
         $scope.user_detail.emailTo = $scope.user_detail.emailTo + ',';
+        //var sendToElem = angular.element(document.getElementById('sendTo'));
+        //sendToElem.focus();
+        //$("#sendTo").focus();
+        //$scope.toFocus=true;
+        //console
+        // document.getElementById("sendTo").focus();
     };
 
     $scope.addCcList = function(){
         $scope.user_detail.emailCc = $scope.user_detail.emailCc + ',';
+        // user.reportSendCc.push(user_detail.emailCc);
+        // Users.edit($scope.user_detail);
     };
 
     if(Env.isMobile()){
