@@ -39,12 +39,9 @@ angular.module('starter.controllers')
     };
  
     $scope.ok = function(){
-        confirmedAlert();
+        showAlert("User: " + $scope.user_detail.name + " Updated");
         Users.edit($scope.user_detail);
         $state.go('main.users_list');
-        // $ionicHistory.nextViewOptions({
-        //     historyRoot: true
-        // });
     };
 
     $scope.cancel = function(){
@@ -53,45 +50,4 @@ angular.module('starter.controllers')
         }); 
         $state.go('main.users_list');
     }; 
-
-    // function logout(){
-    //     console.log("logout started");
-    //     window.localStorage.removeItem("brg_login_email");
-    //     window.localStorage.removeItem("brg_login_password");
-    //     Users.logout(currentAuth.password.email);
-    //     Auth.logout();
-    //     $state.go('login');
-    // }
-    // $scope.logout = logout;
-
-    function confirmedAlert(){
-        // var msg = item_id;
-        var alertPopup = $ionicPopup.alert({
-         title: 'User :' + $scope.user_detail.name,
-         template: 'Updated',
-         okType: 'button-flat'
-        });
-    };
-    $scope.confirmedAlert = confirmedAlert;
-
-    // function confirmedAlert(){
-    //    var confirmPopup = $ionicPopup.confirm({
-    //      title: 'Confirm?',
-    //      template: 'Click OK to confirm changes, You will be prompt to login again',
-    //      okType: 'button-flat',
-    //      cancelType: 'button-flat'
-    //    });
-    //     confirmPopup.then(function(res) {
-    //         if(res) {
-    //             console.log('You are sure');
-    //             Users.edit($scope.user_detail);
-    //             logout();
-    //         } if(!res) {
-    //             console.log('You are not sure');
-    //         }
-    //     });
-    // };
-    // $scope.confirmedAlert = confirmedAlert;
-
-
 }])

@@ -28,6 +28,10 @@
             <div class="sidemenu_border">
             </div>
             <ion-list class="sidemenu_list">
+                <ion-item class="item-icon-left sidemenu_item item-assertive" href="#" ng-hide="isConnected()">
+                    <i class="icon mdi mdi-cloud-outline-off sidemenu_item_icon"></i>
+                    <span class="sidemenu_item_text">Offline</span>
+                </ion-item>
                 <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'sales_list'}" menu-close href="#/main/sales/list">
                     <i class="icon mdi mdi-shopping sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Sales</span>
