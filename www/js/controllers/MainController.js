@@ -90,6 +90,10 @@ angular.module('starter.controllers')
         return Env.isMobile();
     };
 
+    $scope.isOnline = function(){
+        return Env.isOnline();
+    };
+
     $scope.isConnected = function(){
         return Env.isConnected();
     };
