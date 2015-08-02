@@ -6,6 +6,9 @@
     </ion-nav-buttons>
     
     <ion-content padding="true" class="center" ng-show="showSpinner">
+        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
+            <p>Data network unavailable</p>
+        </div>
         <div class="row">
             <div class="col" style="text-align: center;">
                 <p class="loading-text">Getting sales</p>
@@ -15,6 +18,9 @@
     </ion-content>
 
     <ion-content pading="true" class="center" ng-show="showSelectStoreMsg">
+        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
+            <p>Data network unavailable</p>
+        </div>
         <div class="row">
             <div class="col" style="text-align: center;">
                 <p class="loading-text">Please select store.</p>
@@ -23,6 +29,9 @@
     </ion-content>
     
     <ion-content padding="false" class="ng-hide" ng-show="showSalesView">
+        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
+            <p>Data network unavailable</p>
+        </div>
         <ion-list class="border-list">
             <ion-item class="ng-hide" ng-repeat="(key, sale) in sales" ng-show="key == 'CLOSED' || role.allowViewAllSales || sale.user == user_detail.email || user_detail.storeIC == current.store_id" >
                 <h2>{{sale.item}}<span class="item-note"><span style="color:#F44336" ng-show="sale.discount!=0" class="ng-hide">{{sale.discount}}%</span> {{sale.price | currency:"$"}}</span></h2>

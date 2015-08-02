@@ -1,6 +1,9 @@
 <ion-view view-title="User">
 
     <ion-content padding="true">
+        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
+            <p>Data network unavailable</p>
+        </div>
         <div class="list">
             <label class="item item-input item-floating-label">
                 <span class="input-label">Email address</span>

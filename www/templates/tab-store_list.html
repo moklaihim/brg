@@ -1,6 +1,9 @@
 <ion-view view-title="Stores">
 
     <ion-content padding="true" class="center" ng-show="showSpinner">
+        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
+            <p>Data network unavailable</p>
+        </div>
         <div class="row">
             <div class="col" style="text-align: center;">
                 <p class="loading-text">Getting stores</p>
@@ -10,6 +13,9 @@
     </ion-content>
 
     <ion-content padding="false">
+        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
+            <p>Data network unavailable</p>
+        </div>
         <ion-list>
             <ion-item class="ng-hide" ng-show="showInitialStoreSelectMsg"><center><b>Where are you today?</b></center></ion-item>
             <ion-item ng-repeat="store in stores_array | orderBy:'distance'" ng-click="selectStore(store.id, store.name)" <b>{{store.name}}</b><span style="float: right;">{{store.distance_disp}}</span></ion-item>

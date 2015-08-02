@@ -1,4 +1,16 @@
 /* Empty. Add your own CSS if you like */
+.data_network_unavailable{
+    color: #fff;
+    background-color: #D8453C;
+    height: 42px;
+    line-height: 42px;
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 20px;
+    text-shadow: 1px 1px #ae3932;
+}
+
 .loading-text{
     font-weight: 400 !important;
     font-size: 14px !important;

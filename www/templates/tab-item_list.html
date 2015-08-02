@@ -17,6 +17,9 @@
     </ion-header-bar>
 
     <ion-content padding="false" style="margin-bottom:94px">
+        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
+            <p>Data network unavailable</p>
+        </div>
         <ion-list class="border-list" ng-if="showItemList">
             <ion-item ng-show="allItemCodeEntered" ng-click="addItem()">
                 <center><b>Continue to add new item.</b></center>

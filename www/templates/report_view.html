@@ -4,26 +4,29 @@
     </ion-nav-buttons>
 
     <ion-content padding="false">
-    <div class="list card stable-bg">
-        <div class="item">
-            <h2>{{report_type | uppercase}} Daily Report for {{current.set_year}}/{{current.set_month}}/{{current.set_day}}</h2>
+        <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
+            <p>Data network unavailable</p>
         </div>
-        <div class="item item-body">
-            <p>
-            <div ng-repeat="(key, sales) in sales4stores">
-                <span ng-class="{report_sale_close: !sales.CLOSED}"><b>{{stores[key].name}}</b></span> <span ng-class="{report_sale_close: !sales.CLOSED}" ng-show="!sales.CLOSED">( SALES NOT CLOSED )</span><br>
-                <div ng-repeat="sale in sales">
-                    <!-- <span ng-show= "noSales">No Sales</span> -->
-                    <span ng-show="sale.item != 'CLOSED'">{{sale.item}} ${{sale.retail_price}} * {{sale.discount_rate}}% = ${{sale.price}}</span><br>
-                </div>
-                <hr>
-                Total: ${{total4stores[key]}}</br><br>
+        <div class="list card stable-bg">
+            <div class="item">
+                <h2>{{report_type | uppercase}} Daily Report for {{current.set_year}}/{{current.set_month}}/{{current.set_day}}</h2>
             </div>
-            <hr>
-            Grand Total: ${{grandtotal}}</br><br>
-            </p>
+            <div class="item item-body">
+                <p>
+                    <div ng-repeat="(key, sales) in sales4stores">
+                        <span ng-class="{report_sale_close: !sales.CLOSED}"><b>{{stores[key].name}}</b></span> <span ng-class="{report_sale_close: !sales.CLOSED}" ng-show="!sales.CLOSED">( SALES NOT CLOSED )</span><br>
+                        <div ng-repeat="sale in sales">
+                            <!-- <span ng-show= "noSales">No Sales</span> -->
+                            <span ng-show="sale.item != 'CLOSED'">{{sale.item}} ${{sale.retail_price}} * {{sale.discount_rate}}% = ${{sale.price}}</span><br>
+                        </div>
+                        <hr>
+                        Total: ${{total4stores[key]}}</br><br>
+                    </div>
+                    <hr>
+                    Grand Total: ${{grandtotal}}</br><br>
+                </p>
+            </div>
         </div>
-    </div>
     </ion-content>
     <button class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-send" ng-click="send()"></button>
 </ion-view>
