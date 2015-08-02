@@ -16,7 +16,7 @@
     
     <ion-content padding="false" class="ng-hide" ng-show="showSalesView">
         <ion-list class="border-list">
-            <ion-item class="ng-hide" ng-repeat="(key, sale) in sales" ng-show="key == 'CLOSED' || role.allowViewAllSales || sale.user == user_detail.email">
+            <ion-item class="ng-hide" ng-repeat="(key, sale) in sales" ng-show="key == 'CLOSED' || role.allowViewAllSales || sale.user == user_detail.email || user_detail.storeIC == current.store_id" >
                 <h2>{{sale.item}}<span class="item-note"><span style="color:#F44336" ng-show="sale.discount!=0" class="ng-hide">{{sale.discount}}%</span> {{sale.price | currency:"$"}}</span></h2>
                 <p><span ng-show="isConnected()">By {{getNameByEmail(sale.user)}}</span><span class="item-note">{{sale.time}}</span></p>
                 <div ng-if="!salesClosed">
@@ -32,7 +32,7 @@
     </ion-content>
 
     <button class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-plus ng-hide" ui-sref="main.items_list" ng-click="current.itemAddMode='fromsale'" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed"></button>
-    <!-- <button class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-barcode ng-hide" ui-sref="main.sales_scanadd" ng-if="isMobile() && role.allowAddSales && !salesClosed" ng-click="current.itemAddMode='fromsale'" ng-show="isMobile() && role.allowAddSales && !salesClosed" style="margin-right:70px"></button> -->
+    <button class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-barcode ng-hide" ui-sref="main.sales_scanadd" ng-if="isMobile() && role.allowAddSales && !salesClosed" ng-click="current.itemAddMode='fromsale'" ng-show="isMobile() && role.allowAddSales && !salesClosed" style="margin-right:70px"></button>
     <button class="button button-fab button-fab-bottom-right button-dark mdi mdi-lock ng-hide" on-hold="reOpenSales()" ng-if="salesClosed" ng-show="salesClosed"></button>
 </ion-view>
 

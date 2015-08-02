@@ -1,7 +1,8 @@
 angular.module('starter.controllers')
-.controller('UserEditController', ["$scope", "$ionicHistory", "$state", "$ionicPopup", "Roles", "Users", function($scope, $ionicHistory, $state, $ionicPopup, Roles, Users) {
+.controller('UserEditController', ["$scope", "$ionicHistory", "$state", "$ionicPopup", "Roles", "Stores", "Users", function($scope, $ionicHistory, $state, $ionicPopup, Roles, Stores, Users) {
 
     $scope.roles = Roles.get_list();
+    $scope.stores = Stores.get_list();
 
     if ($state.current.name === "main.users_add"){
         // Adding new user
@@ -12,6 +13,7 @@ angular.module('starter.controllers')
             role: '',
             sendTo:'',
             sendCc:'',
+            storeIC:'',
             password: ''
         }
     }else{
@@ -23,6 +25,7 @@ angular.module('starter.controllers')
                 id: user_detail.id,
                 name: user_detail.name,
                 role: user_detail.role,
+                storeIC: user_detail.storeIC,
                 sendTo: user_detail.reportSendTo,
                 sendCc: user_detail.reportSendCc,
                 password: ''
