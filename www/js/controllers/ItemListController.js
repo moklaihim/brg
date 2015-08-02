@@ -78,7 +78,7 @@ angular.module('starter.controllers')
                 .scan({
                         text_title: "Scan Barcode",
                         text_instructions: "Align the barcode on the red line",
-                        flash: "on"
+                        flash: "off"
                     })
                 .then(
                     function(barcodeData) {

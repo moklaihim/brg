@@ -10,6 +10,14 @@ angular.module('starter.controllers')
     updateSales();
     $scope.showSalesView = true;
 
+    // if($scope.current.today_date != $scope.current.set_date) {
+    //     $scope.current.isToday = {color:'red'}
+    // }else{
+    //     $scope.current.isToday = {color:'white'}
+    // }
+
+
+
     $scope.getNameByEmail = function(email){
         var user_id = email.replace("@", "_").replace(/\./g, "_");
         if($scope.users[user_id]){

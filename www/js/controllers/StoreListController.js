@@ -48,8 +48,19 @@ angular.module('starter.controllers')
                     //console.log($scope.stores_array[i].name + " " + $scope.stores_array[i].distance_disp + " OK");
                 }
 
+                stores_array.sort(
+                    function(a, b){
+                        var aStoreDist = a['distance'];
+                        var bStoreDist = b['distance'];
+                        if(aStoreDist > bStoreDist) return 1;
+                        if(aStoreDist < bStoreDist) return -1;
+                        return 0
+                    }
+                );
+
                 $scope.showSpinner = false;
                 $scope.stores_array = stores_array;
+                $scope.current.nearestStore = stores_array[0].id;
             }, function(err) {
                 $scope.showSpinner = false;
                 $scope.stores_array = stores_array;

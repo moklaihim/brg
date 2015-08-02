@@ -1,8 +1,9 @@
 <ion-view hide-back-button="true" view-title="Sales">
     <ion-nav-buttons side="right">
-        <a class="button button-clear button-store" ui-sref="main.stores_list" ng-show="current.store_name">{{current.store_name}}</a>
+        <a class="button button-clear button-store" ui-sref="main.stores_list" ng-class="{'warning-color': current.nearestStore != current.store_id}" ng-show="current.store_name">{{current.store_name}}</a>
         <button class="button button-clear button-icon button-clear mdi mdi-store ng-hide" ui-sref="main.stores_list" ng-show="!current.store_name"></button>
-        <button class="button button-clear button-icon button-clear mdi mdi-calendar" style="color: white" ng-click="showDatePicker($event)"></button>
+        <!-- <button class="button button-clear button-icon button-clear mdi mdi-calendar" style="color: white" ng-click="showDatePicker($event)"></button> -->
+        <button class="button button-clear button-icon button-clear mdi mdi-calendar" ng-style="current.isToday" ng-click="showDatePicker($event)"></button>
     </ion-nav-buttons>
     
     <ion-content padding="true" class="center" ng-show="showSpinner">
