@@ -43,6 +43,7 @@ angular.module('starter.controllers')
 
     function updateSales(){
         console.log("updateSales started");
+        console.log("User store is" + $scope.user_detail.storeIC);
         $scope.showSpinner = true;
         var p_sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
 

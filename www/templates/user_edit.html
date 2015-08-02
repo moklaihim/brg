@@ -20,6 +20,13 @@
                     <option ng-repeat="role in roles" ng-value="role.id" ng-selected="user_detail.role == role.id" >{{role.name}}</option>
                 </select>
             </label>
+            <label class="item item-input item-stacked-label" ng-show="user_detail.role == 'promoter'">
+                <span class="input-label">Store InCharge</span>
+                <select ng-model="user_detail.storeIC">
+                    <option value="floater" >Floater</option>
+                    <option ng-repeat="store in stores" ng-value="store.id" ng-selected="user_detail.storeIC == store.id" >{{store.name}}</option>
+                </select>
+            </label>
         </div>
         <button class="button button-block button-balanced hidden" ng-show="user_detail.id" ng-click="reset_pw()">Reset Password</button>
 
