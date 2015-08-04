@@ -84,6 +84,7 @@ angular.module('starter.controllers')
 
         if(Env.isMobile()){
             tos = tos.split(",");
+            ccs = ccs.split(",");
             $cordovaEmailComposer.isAvailable().then(function() {
                 // is available
                 var email = {
