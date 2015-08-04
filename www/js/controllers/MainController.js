@@ -76,6 +76,7 @@ angular.module('starter.controllers')
         if(window.localStorage.getItem('store_date') == $scope.current.today_date){
             $scope.current.store_id = window.localStorage.getItem('store_id');
             $scope.current.store_name = window.localStorage.getItem('store_name');
+            $scope.current.nearestStore = window.localStorage.getItem('brg_nearestStore');
         }
     }
 
@@ -153,11 +154,6 @@ angular.module('starter.controllers')
                     onTap: function() {
                         $scope.current.raw_set_date = $scope.current.raw_new_set_date;
                         setDate($scope.current.raw_set_date, false);
-                        if($scope.current.today_date != $scope.current.set_date) {
-                            $scope.current.isToday = {color:'#F44336'}
-                        }else{
-                            $scope.current.isToday = {color:'white'}
-                        }
                     }
                 }
             ]
