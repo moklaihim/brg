@@ -152,7 +152,7 @@ angular.module('starter.controllers')
         });
     }, false);
 
-    var online_watch = $scope.$watch(Env.isOnline(), function(val){
+    var online_watch = $scope.$watch(Env.isOnline, function(val){
         console.log("isOnline changed");
         if(val == true){
             //user_active_watch();
@@ -183,8 +183,7 @@ angular.module('starter.controllers')
                 //}, true);
             
             });
-
-            online_watch();
+            //online_watch();
         }
     }, false);
 

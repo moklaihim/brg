@@ -5,8 +5,9 @@ angular.module('starter.controllers')
 
     // $scope.current.emailTo = user.reportSendTo;
     // $scope.current.emailCc = user.reportSendCc;
-    console.log("send to email "+ user.reportSendTo);
+    //console.log("send to email "+ user.reportSendTo);
 
+    console.log(user);
 
     $scope.user_detail = {
         email: user.email,
@@ -14,15 +15,15 @@ angular.module('starter.controllers')
         name: user.name,
         role: user.role,
         storeIC: user.storeIC,
-        emailTo: user.reportSendTo,
-        emailCc: user.reportSendCc
+        reportTo: user.reportTo,
+        reportCc: user.reportCc
     };
 
-    // $scope.user_detail.email = user.email;
-
     $scope.reportEmailUpdate = function(){
-        $scope.user_detail.emailTo = $scope.user_detail.emailTo.split(',');
-        $scope.user_detail.emailCc = $scope.user_detail.emailCc.split(',');
+        $scope.user_detail.reportTo = $scope.user_detail.reportTo.replace(/ /g,"");
+        $scope.user_detail.reportCc = $scope.user_detail.reportCc.replace(/ /g,"");
+        user.reportTo = $scope.user_detail.reportTo;
+        user.reportCc = $scope.user_detail.reportCc;
         Users.edit($scope.user_detail);
         confirmedAlert();
     };

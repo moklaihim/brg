@@ -99,8 +99,8 @@ angular.module('starter.services')
                     name: user_detail.name,
                     role: user_detail.role,
                     storeIC: user_detail.storeIC,
-                    reportSendTo: user_detail.emailTo || "",
-                    reportSendCc: user_detail.emailCc || ""
+                    reportTo: user_detail.reportTo || "",
+                    reportCc: user_detail.reportCc || ""
                 });
             }
         },

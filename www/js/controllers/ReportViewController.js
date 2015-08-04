@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ReportViewController', ["$scope", "$stateParams", "Stores", "Sales", "items", "Env", "$cordovaEmailComposer", function($scope, $stateParams, Stores, Sales, items, Env, $cordovaEmailComposer) {
+.controller('ReportViewController', ["$scope", "$stateParams", "Stores", "Sales", "Env", "items", "$cordovaEmailComposer", function($scope, $stateParams, Stores, Sales, Env, items, $cordovaEmailComposer) {
     console.log("ReportViewController started");
     $scope.current.view = 'reports_list';
 
@@ -61,8 +61,8 @@ angular.module('starter.controllers')
     }
 
     $scope.send = function(){
-        var tos = $scope.user_detail.reportSendTo;
-        var ccs = $scope.user_detail.reportSendCc;
+        var tos = $scope.user_detail.reportTo;
+        var ccs = $scope.user_detail.reportCc;
         var subject = $scope.report_type.toUpperCase() + ' Daily report for ' + $scope.current.set_date;
         var emailbody = $scope.report_type.toUpperCase() + ' Daily report for ' + $scope.current.set_date + "\n\n";
         angular.forEach($scope.stores, function(value, key) {
@@ -83,6 +83,7 @@ angular.module('starter.controllers')
         emailbody += "Grand total: $" + $scope.grandtotal + "\n";
 
         if(Env.isMobile()){
+            tos = tos.split(",");
             $cordovaEmailComposer.isAvailable().then(function() {
                 // is available
                 var email = {
@@ -101,21 +102,10 @@ angular.module('starter.controllers')
                 // not available
             });
         }else{
+            tos = tos.replace(" ","");
             window.location.href = "mailto:" + tos + "?cc=" + ccs + "&subject=" + subject + "&body=" + encodeURIComponent(emailbody);
         }
     };
 
     $scope.$on('changedDate', updateReport);
-
-    /*
-    var online_watch = $scope.$watch(Env.isOnline, function(val){
-        console.log("isOnline changed");
-        if(val == true){
-            items = Items.get();
-            updateReport();
-            online_watch();
-        }
-    }, false);
-    */
-
 }])
