@@ -142,10 +142,12 @@ angular.module('starter.controllers')
             scope: $scope,
             buttons: [
                 {
-                    text: 'CANCEL',
+                    text: 'Go To Today',
                     type: 'button-flat',
                     onTap: function() {
-                        $scope.current.raw_new_set_date = $scope.current.raw_set_date;
+                        $scope.current.raw_new_set_date = today_day;
+                        $scope.current.raw_set_date = today_day;
+                        setDate($scope.current.raw_set_date, true);
                     }
                 },
                 {

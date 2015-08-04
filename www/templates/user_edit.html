@@ -31,7 +31,16 @@
                 </select>
             </label>
         </div>
-        <button class="button button-block button-balanced hidden" ng-show="user_detail.id" ng-click="reset_pw()">Reset Password</button>
+        <ion-list>
+            <ion-item class="ng-hide balanced item-icon-left" ng-show="user_detail.id">
+                <i class="icon ion-chevron-left"></i>Swipe to Reset Password
+                <ion-option-button class="button-balanced" ng-click="reset_pw()" style="width:300px"> Reset Password <i class="ion-android-done-all" style="font-size: 30px ; color:white"></i>
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+
+
+        <!-- <button class="button button-block button-balanced hidden" ng-show="user_detail.id" ng-click="reset_pw()">Reset Password</button> -->
 
     </ion-content>
     <button class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-content-save" ng-click="ok()"></button>
