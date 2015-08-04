@@ -43,10 +43,10 @@
 
     <!-- <button class="button button-fab button-fab-top-right button-brg-a mdi mdi-barcode ng-hide" ui-sref="main.sales_scanadd" ng-show="role.allowAddSales && !salesClosed" style="margin-top:40px"></button>
  -->
-        <div style="position:absolute; bottom: 0px; width:100%" ng-show="showItemCodeInputs" class="ng-hide animation-element">
+        <div style="position:absolute; bottom: 0px; width:100%" ng-show="showItemCodeInputs" class="ng-hide animation-element" >
             
             <!-- <div data-tap-disabled="true" ng-repeat="brands in brands_array track by $index" ng-show="showBrandInput" class="button-bar ng-hide bar-keypad" style="background-color: #BA68C8; color: white;"> -->
-            <div ng-if="showBrandInput">
+            <div ng-if="showBrandInput" data-tap-disabled="true">
                 <div ng-repeat="brands in brands_array track by $index" class="button-bar bar-keypad" style="background-color: #BA68C8; color: white;">
                     <a ng-repeat="brand in brands | orderBy:'name' track by $index" id="{{brand.id}}" class="button button-raised" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</a>
                 </div> 
@@ -72,7 +72,7 @@
                     <a id = "8" class="button button-raised" ng-click="btn_code($event)">8</a>
                     <a id = "9" class="button button-raised" ng-click="btn_code($event)">9</a>
                     <a id = "0" class="button button-raised" ng-click="btn_code($event)">0</a>
-                    <a id = "OK" class="button button-raised keypad-ok icon ion-ios-checkmark" style="color: #4cb5ab;" ng-click="btn_code_ok()"></a>
+                    <a id = "OK" class="button button-raised keypad-ok icon ion-ios-checkmark" style="color: #4cb5ab;" ng-click="btn_code_ok()" data-tap-disabled="true"></a>
                 </div>
             </div>
             <div ng-if="showColorInput" style="padding:0px">                
