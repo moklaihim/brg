@@ -61,6 +61,7 @@ angular.module('starter.controllers')
                 $scope.showSpinner = false;
                 $scope.stores_array = stores_array;
                 $scope.current.nearestStore = stores_array[0].id;
+                localStorage.setItem('brg_nearestStore', stores_array[0].id);
             }, function(err) {
                 $scope.showSpinner = false;
                 $scope.stores_array = stores_array;
