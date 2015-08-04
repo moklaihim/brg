@@ -9,32 +9,6 @@ angular.module('starter.controllers')
     }
     $scope.role = role;
 
-    Env.conMon();
-
-    /*
-    $ionicUser.identify({
-        user_id: $scope.user_detail.email,
-        name: $scope.user_detail.name,
-        role: $scope.user_detail.role
-    }).then(function() {
-        // identified
-        if(Env.isMobile()){
-            $ionicPush.register({
-                canShowAlert: true, //Should new pushes show an alert on your screen?
-                canSetBadge: true, //Should new pushes be allowed to update app icon badges?
-                canPlaySound: true, //Should notifications be allowed to play a sound?
-                canRunActionsOnWake: true, // Whether to run auto actions outside the app,
-                onNotification: function(notification) {
-                    // Called for each notification.
-                    return true;
-                }
-            });
-        }
-    }, function(err) {
-          // error
-    });
-    */
-
     var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -180,7 +154,7 @@ angular.module('starter.controllers')
         });
     }, false);
 
-    var online_watch = $scope.$watch(Env.isOnline, function(val){
+    var online_watch = $scope.$watch(Env.isOnline(), function(val){
         console.log("isOnline changed");
         if(val == true){
             //user_active_watch();
@@ -213,7 +187,7 @@ angular.module('starter.controllers')
             });
 
             online_watch();
-        }   
+        }
     }, false);
 
 
