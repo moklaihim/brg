@@ -97,10 +97,6 @@ angular.module('starter.controllers')
     };
     $scope.scanFunction = scanFunction;
 
-    $scope.isMobile = function(){
-        return Env.isMobile();
-    }
-
     //update Items from Firebase
     function updateItems(){
         $scope.items = Items.get();

@@ -15,7 +15,6 @@ angular.module('starter.services')
     var connectedRef = new Firebase("https://fiery-heat-6039.firebaseIO.com/.info/connected");
 
     connectedRef.on("value", function(snap) {
-        console.log("BRG Debug: connection value changed");
         if (snap.val() === true) {
             console.log("BRG Debug: Connected");
             isOnline = true;
