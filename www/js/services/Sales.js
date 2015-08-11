@@ -134,6 +134,7 @@ angular.module('starter.services')
             sale.date = year + "/" + month + "/" + day;
             sale.time = time;
             sale.timestamp = current_ut;
+            sale.discount = 0;
             sale.user = user_id;
             sale.$save();
         },
