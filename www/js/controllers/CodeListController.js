@@ -21,7 +21,7 @@ angular.module('starter.controllers')
 
         if(type == "brands"){
             if(!$scope.code.brandCode){
-                $scope.showAlert("Please enter a value");
+                $scope.showAlert("Alert", "Please enter a value");
             }else{
                 var codes = Codes.get_brands_as_array();
                 var inputCode = $scope.code.brandCode;
@@ -29,7 +29,7 @@ angular.module('starter.controllers')
         }
         if(type == "colors"){
             if(!$scope.code.colorCode){
-                $scope.showAlert("Please enter a value");
+                $scope.showAlert("Alert", "Please enter a value");
             }else{
                 var codes = Codes.get_colors_as_array();
                 var inputCode = $scope.code.colorCode;
@@ -37,7 +37,7 @@ angular.module('starter.controllers')
         }
         if(type == "sizes"){
             if(!$scope.code.sizeCode){
-                $scope.showAlert("Please enter a value");
+                $scope.showAlert("Alert", "Please enter a value");
             }else{
                 var codes = Codes.get_sizes_as_array();
                 var inputCode = $scope.code.sizeCode;
@@ -59,11 +59,11 @@ angular.module('starter.controllers')
         else{
             if(type == "sizes"){
                 Codes.add(inputCode, type);
-                $scope.showAlert('Code "' + inputCode + '" is added to the '+ type + ' database');
+                $scope.showAlert("Alert", 'Code "' + inputCode + '" is added to the '+ type + ' database');
                 $scope.code.sizeCode = '';
             }else{
                 Codes.add(inputCode.toLowerCase(), type);
-                $scope.showAlert('Code "' + inputCode + '" is added to the '+ type + ' database');
+                $scope.showAlert("Alert", 'Code "' + inputCode + '" is added to the '+ type + ' database');
                 $scope.code.brandCode = '';
                 $scope.code.colorCode = '';
                 

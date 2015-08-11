@@ -199,9 +199,9 @@ angular.module('starter.controllers')
         logout();
     };
 
-    function showAlert(message){
+    function showAlert(title, message){
         var alertPopup = $ionicPopup.alert({
-            title: 'Alert',
+            title: title,
             template: message,
             okType: 'button-flat'
         }); 

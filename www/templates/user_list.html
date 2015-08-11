@@ -10,10 +10,10 @@
             <p>{{user.email}}
                 <span class="item-note">{{roles[user.role].name}}</span>
             </p>
-            <ion-option-button class="button-option button-positive-900 mdi mdi-pencil" ng-click="editUser(user.id)"></ion-option-button>
-            <ion-option-button class="button-option button-assertive-900 mdi mdi-delete" ng-click="removeUser(user.id)"></ion-option-button>
+            <ion-option-button ink class="button-option button-positive-900 mdi mdi-pencil ink" ng-click="editUser(user.id)"></ion-option-button>
+            <ion-option-button ink class="button-option button-assertive-900 mdi mdi-delete ink" ng-click="removeUser(user.id)"></ion-option-button>
             </ion-item>
             </ion-list>
     </ion-content>
-    <button class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-account-plus" ng-click="addUser()"></button>
+    <button ink class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-account-plus ink" ng-click="addUser()"></button>
 </ion-view>
