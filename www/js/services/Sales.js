@@ -67,6 +67,11 @@ angular.module('starter.services')
             if (minute < 10) { minute = '0' + minute; }
             var time = hour + ':' + minute;
             var current_ut = now.getTime();
+            var update_year = now.getFullYear();
+            var update_month = now.getMonth()+1;
+            if (update_month < 10) { update_month = '0' + update_month; }
+            var update_day = now.getDate();
+            if (update_day < 10) { update_day = '0' + update_day; }
 
             if (sale_key){
                 current_ut = sale_key;
@@ -77,9 +82,9 @@ angular.module('starter.services')
                 console.log("Sale_key FAILED in Sales.js")
                 var fSale = new Firebase("https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + current_ut);
                 var sale = $firebaseObject(fSale);
-
                 sale.item = item_id;
                 sale.price = sale_price;
+                sale.update_date = update_year + "/" + update_month + "/" + update_day;
                 sale.date = year + "/" + month + "/" + day;
                 sale.time = time;
                 sale.timestamp = current_ut;
@@ -92,6 +97,7 @@ angular.module('starter.services')
                 sales[current_ut] = new Object();
                 sales[current_ut].item = item_id;
                 sales[current_ut].price = sale_price;
+                sales[current_ut].update_date = update_year + "/" + update_month + "/" + update_day;
                 sales[current_ut].date = year + "/" + month + "/" + day;
                 sales[current_ut].time = time;
                 sales[current_ut].timestamp = current_ut;

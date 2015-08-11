@@ -54,6 +54,7 @@ angular.module('starter.controllers')
                 $scope.sales = sales_detail;
                 // var count = Object.keys($scope.sales).length; //to count and show total sales
                 // console.log("Total Sales Qty is = " + (count-3))
+
                 if('CLOSED' in $scope.sales){
                     $scope.showSpinner = false;
                     $scope.salesClosed = true;
