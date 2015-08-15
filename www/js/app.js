@@ -25,8 +25,11 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
     });
 
     $rootScope.$on("$stateChangeError", function(event, next, previous, error) {
+        console.log("stateChangeError occured");
+        console.log(error);
         if (error === "AUTH_REQUIRED") {
-            $state.go('login');
+          console.log("error is AUTH_REQUIRED");
+          $state.go('login');
         }
     });
 }])
