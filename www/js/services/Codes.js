@@ -114,6 +114,7 @@ angular.module('starter.services')
 
     return {
         online: function(){
+            console.log("Codes online started");
             var fBrands= new Firebase("https://fiery-heat-6039.firebaseio.com/codes/brands");
             fBrands.on("value", function(snapshot) {
                 localStorage.setItem('brg_brands', JSON.stringify(snapshot.val()));

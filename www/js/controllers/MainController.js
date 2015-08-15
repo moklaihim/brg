@@ -12,6 +12,8 @@ angular.module('starter.controllers')
     var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
+    Env.conMon();
+
     $scope.current = {
         app_version: 'web 1.0.0',
         store_id: '',
@@ -77,10 +79,10 @@ angular.module('starter.controllers')
 
     function logout(){
         console.log("logout started");
-        window.localStorage.removeItem("brg_login_email");
-        window.localStorage.removeItem("brg_login_password");
+        //window.localStorage.removeItem("brg_login_email");
+        //window.localStorage.removeItem("brg_login_password");
         window.localStorage.clear();
-        Users.logout(currentAuth.password.email);
+        //Users.logout(currentAuth.password.email);
         Auth.logout();
         $state.go('login');
     }

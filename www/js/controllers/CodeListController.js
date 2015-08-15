@@ -3,19 +3,6 @@ angular.module('starter.controllers')
     console.log("CodeListController started");
     $scope.current.view = 'codes_list';
 
-    $scope.code = {
-        brandCode : '',
-        colorCode : '',
-        sizeCode : ''
-    };
-
-    $scope.$watch('code.brandCode', function(val) {
-        $scope.code.brandCode = $filter('uppercase')(val);
-    }, false);
-    $scope.$watch('code.colorCode', function(val) {
-        $scope.code.colorCode = $filter('uppercase')(val);
-    }, false);
-
     $scope.brands = Codes.get_brands();
     $scope.colors = Codes.get_colors();
     $scope.sizes = Codes.get_sizes();

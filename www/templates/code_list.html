@@ -9,7 +9,6 @@
           <ion-list class="border-list">
             <ion-item ng-repeat="brand in brands">
               <b>{{brand.name}}</b>
-              <ion-option-button ink class="button-option button-positive-900 mdi mdi-pencil ink" ng-click="editCode('brands', brand.id)"></ion-option-button>
               <ion-option-button ink class="button-option button-assertive-900 mdi mdi-delete ink" ng-click="removeCode('brands', brand.id)"></ion-option-button>
             </ion-item>
           </ion-list>
@@ -24,7 +23,6 @@
           <ion-list class="border-list">
             <ion-item ng-repeat="color in colors">
               <b>{{color.name}}</b>
-              <ion-option-button ink class="button-option button-positive-900 mdi mdi-pencil ink" ng-click="editCode('colors', color.id)"></ion-option-button>
               <ion-option-button ink class="button-option button-assertive-900 mdi mdi-delete ink" ng-click="removeCode('colors', color.id)"></ion-option-button>
             </ion-item>
           </ion-list>
@@ -39,7 +37,6 @@
           <ion-list class="border-list">
             <ion-item ng-repeat="size in sizes">
               <b>{{size.name}}</b>
-              <ion-option-button ink class="button-option button-positive-900 mdi mdi-pencil ink" ng-click="editCode('sizes', size.id)"></ion-option-button>
               <ion-option-button ink class="button-option button-assertive-900 mdi mdi-delete ink" ng-click="removeCode('sizes', size.id)"></ion-option-button>
             </ion-item>
           </ion-list>

@@ -1,5 +1,6 @@
 angular.module('starter.services')
 .factory('Env', ["Users", "Stores", "Items", "Roles", "Sales", "Codes", function(Users, Stores, Items, Roles, Sales, Codes) {
+    console.log("Env started");
 
     var isMobile;
     var isOnline;
@@ -12,32 +13,35 @@ angular.module('starter.services')
         isMobile = false;
     }
 
-    var connectedRef = new Firebase("https://fiery-heat-6039.firebaseIO.com/.info/connected");
-
-    connectedRef.on("value", function(snap) {
-        if (snap.val() === true) {
-            console.log("BRG Debug: Connected");
-            isOnline = true;
-            isConnected = true;
-            Users.online();
-            Items.online();
-            Stores.online();
-            Roles.online();
-            Sales.online();
-            Codes.online();
-        } else {
-            console.log("BRG Debug: Disconnected");
-            isOnline = false;
-            Users.offline();
-            Items.offline();
-            Stores.offline();
-            Roles.offline();
-            Sales.offline();
-            Codes.offline();
-        }
-    });
 
     return {
+        conMon: function(){
+          var connectedRef = new Firebase("https://fiery-heat-6039.firebaseIO.com/.info/connected");
+
+          connectedRef.on("value", function(snap) {
+            if (snap.val() === true) {
+              console.log("BRG Debug: Connected");
+              isOnline = true;
+              isConnected = true;
+              Users.online();
+              Items.online();
+              Stores.online();
+              Roles.online();
+              Sales.online();
+              Codes.online();
+            } else {
+              console.log("BRG Debug: Disconnected");
+              isOnline = false;
+              Users.offline();
+              Items.offline();
+              Stores.offline();
+              Roles.offline();
+              Sales.offline();
+              Codes.offline();
+            }
+          });
+        },
+
         isMobile: function(){
             return isMobile;
         },
