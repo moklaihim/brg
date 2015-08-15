@@ -1,5 +1,5 @@
 angular.module('starter.services')
-.factory('Codes', ["$firebaseObject", "$firebaseArray", function($firebaseObject, $firebaseArray) {
+.factory('Codes', ["$firebaseObject", "$firebaseArray", "$state", function($firebaseObject, $firebaseArray, $state) {
 
     var brands = new Object();
     var brands_array = new Array();
@@ -117,6 +117,11 @@ angular.module('starter.services')
             var fBrands= new Firebase("https://fiery-heat-6039.firebaseio.com/codes/brands");
             fBrands.on("value", function(snapshot) {
                 localStorage.setItem('brg_brands', JSON.stringify(snapshot.val()));
+            }, function (errorObject) {
+                console.log("BRG Debug: The read failed: " + errorObject.code);
+                if(errorObject.code === "PERMISSION_DENIED"){
+                  $state.go('login');
+                }
             }); 
             brands = $firebaseObject(fBrands);
             brands_array = $firebaseArray(fBrands);
@@ -124,6 +129,11 @@ angular.module('starter.services')
             var fColors= new Firebase("https://fiery-heat-6039.firebaseio.com/codes/colors");
             fColors.on("value", function(snapshot) {
                 localStorage.setItem('brg_colors', JSON.stringify(snapshot.val()));
+            }, function (errorObject) {
+                console.log("BRG Debug: The read failed: " + errorObject.code);
+                if(errorObject.code === "PERMISSION_DENIED"){
+                  $state.go('login');
+                }
             }); 
             colors = $firebaseObject(fColors);
             colors_array = $firebaseArray(fColors);
@@ -131,6 +141,11 @@ angular.module('starter.services')
             var fSizes= new Firebase("https://fiery-heat-6039.firebaseio.com/codes/sizes");
             fSizes.on("value", function(snapshot) {
                 localStorage.setItem('brg_sizes', JSON.stringify(snapshot.val()));
+            }, function (errorObject) {
+                console.log("BRG Debug: The read failed: " + errorObject.code);
+                if(errorObject.code === "PERMISSION_DENIED"){
+                  $state.go('login');
+                }
             }); 
             sizes = $firebaseObject(fSizes);
             sizes_array = $firebaseArray(fSizes);

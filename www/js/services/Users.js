@@ -1,5 +1,5 @@
 angular.module('starter.services')
-.factory('Users', ["$q", "$firebaseObject", "Auth", function($q, $firebaseObject, Auth) {
+.factory('Users', ["$state", "$q", "$firebaseObject", "Auth", function($state, $q, $firebaseObject, Auth) {
     var users = new Object(); 
     var user = new Object();
     var is_online;
@@ -52,6 +52,11 @@ angular.module('starter.services')
 
                 fUser.on("value", function(snapshot) {
                     localStorage.setItem('brg_user_' + user_id, JSON.stringify(snapshot.val()));
+                }, function (errorObject) {
+                    console.log("BRG Debug: The read failed: " + errorObject.code);
+                    if(errorObject.code === "PERMISSION_DENIED"){
+                      $state.go('login');
+                    }
                 });
 
                 user = $firebaseObject(fUser).$loaded();
