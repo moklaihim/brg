@@ -122,6 +122,7 @@ angular.module('starter.controllers')
                         $scope.current.raw_new_set_date = today_day;
                         $scope.current.raw_set_date = today_day;
                         setDate($scope.current.raw_set_date, true);
+                        console.log("today date is true")
                     }
                 },
                 {
@@ -129,7 +130,15 @@ angular.module('starter.controllers')
                     type: 'button-flat',
                     onTap: function() {
                         $scope.current.raw_set_date = $scope.current.raw_new_set_date;
-                        setDate($scope.current.raw_set_date, false);
+                        console.log("$scope.current.raw_new_set_date = " + $scope.current.raw_new_set_date.setHours(0,0,0,0))
+                        console.log("today_day = " + today_day.setHours(0,0,0,0))
+                        if($scope.current.raw_new_set_date.setHours(0,0,0,0) === today_day.setHours(0,0,0,0)){
+                            setDate($scope.current.raw_set_date, true);
+                            console.log("today date is true")
+                        }else{
+                            setDate($scope.current.raw_set_date, false);
+                            console.log("today date is false")
+                        }
                     }
                 }
             ]
