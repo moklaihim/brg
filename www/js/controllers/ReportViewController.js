@@ -1,11 +1,12 @@
 angular.module('starter.controllers')
-.controller('ReportViewController', ["$scope", "$stateParams", "Stores", "Sales", "Env", "items", "$cordovaEmailComposer", function($scope, $stateParams, Stores, Sales, Env, items, $cordovaEmailComposer) {
+.controller('ReportViewController', ["$scope", "$stateParams", "Codes", "Stores", "Sales", "Env", "items", "$cordovaEmailComposer", function($scope, $stateParams, Codes, Stores, Sales, Env, items, $cordovaEmailComposer) {
     console.log("ReportViewController started");
     $scope.current.view = 'reports_list';
 
     $scope.stores = Stores.get_list();
     $scope.report_type = $stateParams.reportType;
     updateReport();
+    var brands = Codes.get_brands();
 
     function updateReport(){
         console.log("start update report");
@@ -29,7 +30,17 @@ angular.module('starter.controllers')
                     if(sale.item != "CLOSED"){
                         var count_target = false;
                         console.log(sale.item);
+
+                        //take brand name
+                        var brand = sale.item.slice(0,sale.item.search(/\d/));
+                        //console.log(brand);
+                        console.log(brands[brand.toLowerCase()].target);
+                        if(brands[brand.toLowerCase()].target == $stateParams.reportType){
+                          count_target = true;
+                        }
+/*
                         if($stateParams.reportType == "mens"){
+                            
                             if(sale.item.indexOf("B") === 0 || sale.item.indexOf("HB") === 0 || sale.item.indexOf("R") === 0 || sale.item.indexOf("S") === 0){
                                 console.log("This is mens");
                                 //B, HB, R, S
@@ -43,6 +54,7 @@ angular.module('starter.controllers')
                                 count_target = true;
                             }
                         }
+                        */
                         if(count_target){
                             $scope.sales4stores[key][i].retail_price = items[sale.item].retail_price;
                             // $scope.sales4stores[key][i].discount_rate = 100 - Math.round(sale.price / items[sale.item].retail_price * 1000) / 10;

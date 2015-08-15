@@ -1,5 +1,5 @@
 angular.module('starter.services')
-.factory('Roles', ["$q", "$firebaseObject", function($q, $firebaseObject) {
+.factory('Roles', ["$q", "$firebaseObject", "$state", function($q, $firebaseObject, $state) {
     var roles = new Object();
     var roles_array = new Array();
     var is_online;
@@ -37,6 +37,11 @@ angular.module('starter.services')
 
                 fRole.on("value", function(snapshot) {
                     localStorage.setItem('brg_role_' + role_id, JSON.stringify(snapshot.val()));
+                }, function (errorObject) {
+                  console.log("BRG Debug: The read failed: " + errorObject.code);
+                  if(errorObject.code === "PERMISSION_DENIED"){
+                    $state.go('login');
+                  }
                 });
 
                 role = $firebaseObject(fRole).$loaded();

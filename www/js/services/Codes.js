@@ -1,5 +1,5 @@
 angular.module('starter.services')
-.factory('Codes', ["$firebaseObject", "$firebaseArray", function($firebaseObject, $firebaseArray) {
+.factory('Codes', ["$firebaseObject", "$firebaseArray", "$state", function($firebaseObject, $firebaseArray, $state) {
 
     var brands = new Object();
     var brands_array = new Array();
@@ -114,9 +114,15 @@ angular.module('starter.services')
 
     return {
         online: function(){
+            console.log("Codes online started");
             var fBrands= new Firebase("https://fiery-heat-6039.firebaseio.com/codes/brands");
             fBrands.on("value", function(snapshot) {
                 localStorage.setItem('brg_brands', JSON.stringify(snapshot.val()));
+            }, function (errorObject) {
+                console.log("BRG Debug: The read failed: " + errorObject.code);
+                if(errorObject.code === "PERMISSION_DENIED"){
+                  $state.go('login');
+                }
             }); 
             brands = $firebaseObject(fBrands);
             brands_array = $firebaseArray(fBrands);
@@ -124,6 +130,11 @@ angular.module('starter.services')
             var fColors= new Firebase("https://fiery-heat-6039.firebaseio.com/codes/colors");
             fColors.on("value", function(snapshot) {
                 localStorage.setItem('brg_colors', JSON.stringify(snapshot.val()));
+            }, function (errorObject) {
+                console.log("BRG Debug: The read failed: " + errorObject.code);
+                if(errorObject.code === "PERMISSION_DENIED"){
+                  $state.go('login');
+                }
             }); 
             colors = $firebaseObject(fColors);
             colors_array = $firebaseArray(fColors);
@@ -131,6 +142,11 @@ angular.module('starter.services')
             var fSizes= new Firebase("https://fiery-heat-6039.firebaseio.com/codes/sizes");
             fSizes.on("value", function(snapshot) {
                 localStorage.setItem('brg_sizes', JSON.stringify(snapshot.val()));
+            }, function (errorObject) {
+                console.log("BRG Debug: The read failed: " + errorObject.code);
+                if(errorObject.code === "PERMISSION_DENIED"){
+                  $state.go('login');
+                }
             }); 
             sizes = $firebaseObject(fSizes);
             sizes_array = $firebaseArray(fSizes);
@@ -175,7 +191,7 @@ angular.module('starter.services')
             return sizes_array;
         },
 
-        remove: function(code, type){
+        remove: function(type, code){
             if(is_online){
                 if(type == "sizes"){
                     var fCodes = new Firebase("https://fiery-heat-6039.firebaseio.com/codes/" + type + "/" + code);
@@ -203,42 +219,45 @@ angular.module('starter.services')
             }
         },
 
-        add: function(code, type){
+        add: function(type, code){
 
+            var code_id = code.name.toLowerCase();
             if(is_online){
                 if(type == "brands"){
-                    brands[code] = new Object();
-                    brands[code].id = code;
-                    brands[code].name = code.toUpperCase();
+                    brands[code_id] = new Object();
+                    brands[code_id].id = code.name.toLowerCase();
+                    brands[code_id].name = code.name.toUpperCase();
+                    brands[code_id].target = code.target;
                     brands.$save();
                 }
                 if(type == "colors"){
-                    colors[code] = new Object();
-                    colors[code].id = code;
-                    colors[code].name = code.toUpperCase();
+                    colors[code_id] = new Object();
+                    colors[code_id].id = code.name.toLowerCase();
+                    colors[code_id].name = code.name.toUpperCase();
                     colors.$save();
                 }
                 if(type == "sizes"){
-                    sizes[code] = new Object();
-                    sizes[code].id = code;
-                    sizes[code].name = code;
+                    sizes[code_id] = new Object();
+                    sizes[code_id].id = code.name.toLowerCase();
+                    sizes[code_id].name = code.name.toUpperCase();
                     sizes.$save();
                 }
             }else{
                 if(type == "brands"){
-                    brands[code] = new Object();
-                    brands[code].id = code;
-                    brands[code].name = code.toUpperCase();
+                    brands[code_id] = new Object();
+                    brands[code_id].id = code.name.toLowerCase();
+                    brands[code_id].name = code.name.toUpperCase();
+                    brands[code_id].target = code.target;
                 }
                 if(type == "colors"){
-                    colors[code] = new Object();
-                    colors[code].id = code;
-                    colors[code].name = code.toUpperCase();
+                    colors[code_id] = new Object();
+                    colors[code_id].id = code.name.toLowerCase();
+                    colors[code_id].name = code.name.toUpperCase();
                 }
                 if(type == "sizes"){
                     sizes[code] = new Object();
-                    sizes[code].id = code;
-                    sizes[code].name = code;
+                    sizes[code_id].id = code.name.toLowerCase();
+                    sizes[code_id].name = code.name.toUpperCase();
                 }
             }
         }

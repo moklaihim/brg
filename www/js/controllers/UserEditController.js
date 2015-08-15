@@ -35,14 +35,14 @@ angular.module('starter.controllers')
 
     $scope.reset_pw = function(){
         Users.reset_pw($scope.user_detail.email);
-        $scope.showAlert("Password reset email will be sent to the user shortly");
+        $scope.showAlert("Notice", "Password reset email will be sent to the user shortly");
     };
  
     $scope.ok = function(){
         if(!$scope.user_detail.storeIC){
             $scope.user_detail.storeIC = "";
         }
-        $scope.showAlert("User: " + $scope.user_detail.name + " Updated");
+        $scope.showAlert("Notice", "User: " + $scope.user_detail.name + " Updated");
         Users.edit($scope.user_detail);
         $state.go('main.users_list');
     };

@@ -1,5 +1,5 @@
 angular.module('starter.services')
-.factory('Stores', ["$q", "$firebaseObject", "$firebaseArray", function($q, $firebaseObject, $firebaseArray) {
+.factory('Stores', ["$state", "$q", "$firebaseObject", "$firebaseArray", function($state, $q, $firebaseObject, $firebaseArray) {
     var stores;
     var stores_array;
     var is_online;
@@ -34,6 +34,9 @@ angular.module('starter.services')
                 localStorage.setItem('brg_stores', JSON.stringify(snapshot.val()));
             }, function (errorObject) {
                 console.log("BRG Debug: The read failed: " + errorObject.code);
+                if(errorObject.code === "PERMISSION_DENIED"){
+                  $state.go('login');
+                }
             });
 
             stores = $firebaseObject(fStores);

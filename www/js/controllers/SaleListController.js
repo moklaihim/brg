@@ -4,6 +4,7 @@ angular.module('starter.controllers')
     $scope.current.view = 'sales_list';
     $scope.current.showAddItemBtn = '';
 
+
     $scope.getStore();
     $scope.users= Users.get_list();
 

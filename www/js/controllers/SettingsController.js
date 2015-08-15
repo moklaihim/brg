@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SettingsController', ["$scope", "$ionicPopup", "Env", "user", "Users", "$cordovaAppVersion", function($scope, $ionicPopup, Env, user, Users, $cordovaAppVersion) {
+.controller('SettingsController', ["$scope", "Env", "user", "Users", "$cordovaAppVersion", function($scope, Env, user, Users, $cordovaAppVersion) {
     console.log("SettingsController started");
     $scope.current.view = 'settings_list';
 
@@ -25,7 +25,7 @@ angular.module('starter.controllers')
         user.reportTo = $scope.user_detail.reportTo;
         user.reportCc = $scope.user_detail.reportCc;
         Users.edit($scope.user_detail);
-        confirmedAlert();
+        $scope.showAlert("Notification", "Updated");
     };
 
     $scope.addToList = function(){
@@ -48,7 +48,7 @@ angular.module('starter.controllers')
         $cordovaAppVersion.getAppVersion(function(version) {
             $scope.current.app_version = version;
         });
-        //checkForUpdates();
+        checkForUpdates();
     }
 
 
@@ -73,9 +73,9 @@ angular.module('starter.controllers')
     //};
 
     // Update app code with new release from Ionic Deploy
-    //$scope.doUpdate = function() {
-        //if($scope.current.hasUpdate){
-            /*
+    $scope.doUpdate = function() {
+        /*
+        if($scope.current.hasUpdate){
             $ionicDeploy.update().then(function(res) {
                 console.log('Ionic Deploy: Update Success! ', res);
             }, function(err) {
@@ -83,12 +83,12 @@ angular.module('starter.controllers')
             }, function(prog) {
                 console.log('Ionic Deploy: Progress... ', prog);
             }); 
-            */
-        //}   
-    //};  
+        }   
+        */
+    };  
 
     // Check Ionic Deploy for new code
-    //function checkForUpdates(){
+    function checkForUpdates(){
         /*
         console.log('Ionic Deploy: Checking for updates');
         $ionicDeploy.check().then(function(hasUpdate) {
@@ -98,15 +98,5 @@ angular.module('starter.controllers')
             console.error('Ionic Deploy: Unable to check for updates', err);
         }); 
         */
-    //};
-
-    function confirmedAlert(){
-        // var msg = item_id;
-        var alertPopup = $ionicPopup.alert({
-         title: 'Notification',
-         template: 'Updated',
-         okType: 'button-flat'
-        });
     };
-    $scope.confirmedAlert = confirmedAlert;
 }])

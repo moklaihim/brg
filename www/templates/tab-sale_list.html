@@ -42,19 +42,19 @@
                     <span class="item-note">{{sale.time}}</span>
                 </p>
                 <div ng-if="!salesClosed">
-                    <ion-option-button class="button-option button-positive-900 mdi mdi-pencil" ng-if="role.allowEditAllSales || (role.allowEditOwnSales && sale.user == user_detail.email)" ng-show="role.allowEditAllSales || (role.allowEditOwnSales && sale.user == user_detail.email)" ng-click="editSale(key)"></ion-option-button>
-                    <ion-option-button class="button-option button-assertive-900 mdi mdi-delete" ng-if="role.allowDeleteAllSales || (role.allowDeleteOwnSales && sale.user == user_detail.email)" ng-show="role.allowDeleteAllSales || (role.allowDeleteOwnSales && sale.user == user_detail.email)" ng-click="removeSale(key)"></ion-option-button>
+                    <ion-option-button ink class="button-option button-positive-900 mdi mdi-pencil ink" ng-if="role.allowEditAllSales || (role.allowEditOwnSales && sale.user == user_detail.email)" ng-show="role.allowEditAllSales || (role.allowEditOwnSales && sale.user == user_detail.email)" ng-click="editSale(key)"></ion-option-button>
+                    <ion-option-button ink class="button-option button-assertive-900 mdi mdi-delete ink" ng-if="role.allowDeleteAllSales || (role.allowDeleteOwnSales && sale.user == user_detail.email)" ng-show="role.allowDeleteAllSales || (role.allowDeleteOwnSales && sale.user == user_detail.email)" ng-click="removeSale(key)"></ion-option-button>
                 </div>
             </ion-item>
              <ion-item class="ng-hide energized item-icon-left" ng-if="!salesClosed && role.allowCloseSales" ng-show="!salesClosed && role.allowCloseSales">
                 <i class="icon ion-chevron-left"></i>Swipe to close sales <!-- Total = {{totalSalesQty}} -->
-                <ion-option-button class="button-energized" ng-click="closeSales()" style="width:300px; padding-left:10px"> Close sales<i class="ion-android-done-all" style="font-size: 30px; padding-left: 10px"></i></ion-option-button>
+                <ion-option-button ink class="button-energized ink" ng-click="closeSales()" style="width:300px; padding-left:10px"> Close sales<i class="ion-android-done-all" style="font-size: 30px; padding-left: 10px"></i></ion-option-button>
             </ion-item>
         </ion-list>
     </ion-content>
 
-    <button class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-plus ng-hide" ui-sref="main.items_list" ng-click="current.itemAddMode='fromsale'" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed"></button>
-    <button class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-barcode ng-hide" ui-sref="main.sales_scanadd" ng-if="isMobile() && role.allowAddSales && !salesClosed" ng-click="current.itemAddMode='fromsale'" ng-show="isMobile() && role.allowAddSales && !salesClosed" style="margin-right:70px"></button>
-    <button class="button button-fab button-fab-bottom-right button-dark mdi mdi-lock ng-hide" on-hold="reOpenSales()" ng-if="salesClosed" ng-show="salesClosed"></button>
+    <button ink class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-plus ng-hide" ui-sref="main.items_list" ng-click="current.itemAddMode='fromsale'" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed"></button>
+    <button ink class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-barcode ng-hide" ui-sref="main.sales_scanadd" ng-if="isMobile() && role.allowAddSales && !salesClosed" ng-click="current.itemAddMode='fromsale'" ng-show="isMobile() && role.allowAddSales && !salesClosed" style="margin-right:70px"></button>
+    <button ink class="button button-fab button-fab-bottom-right button-dark mdi mdi-lock ng-hide" on-hold="reOpenSales()" ng-if="salesClosed" ng-show="salesClosed"></button>
 </ion-view>
 

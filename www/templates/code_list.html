@@ -1,4 +1,54 @@
 <ion-view view-title="Codes">
+  <ion-tabs class="tabs-dark">
+    <div class="bar bar-subheader data_network_unavailable ng-hide" ng-hide="isOnline()">
+      <p>Data network unavailable</p>
+    </div>
+    <ion-tab title="Brand">
+      <ion-nav-view name="brand-tab">
+        <ion-content>
+          <ion-list class="border-list">
+            <ion-item ng-repeat="brand in brands">
+              <b>{{brand.name}}</b>
+              <ion-option-button ink class="button-option button-assertive-900 mdi mdi-delete ink" ng-click="removeCode('brands', brand.id)"></ion-option-button>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+        <button ink class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-plus ink" ng-click="editCode('brands')"></button>
+      </ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Color">
+      <ion-nav-view name="color-tab">
+        <ion-content>
+          <ion-list class="border-list">
+            <ion-item ng-repeat="color in colors">
+              <b>{{color.name}}</b>
+              <ion-option-button ink class="button-option button-assertive-900 mdi mdi-delete ink" ng-click="removeCode('colors', color.id)"></ion-option-button>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+        <button ink class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-plus ink" ng-click="editCode('colors')"></button>
+      </ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Size">
+      <ion-nav-view name="size-tab">
+        <ion-content>
+          <ion-list class="border-list">
+            <ion-item ng-repeat="size in sizes">
+              <b>{{size.name}}</b>
+              <ion-option-button ink class="button-option button-assertive-900 mdi mdi-delete ink" ng-click="removeCode('sizes', size.id)"></ion-option-button>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+        <button ink class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-plus ink" ng-click="editCode('sizes')"></button>
+      </ion-nav-view>
+    </ion-tab>
+  </ion-tabs>
+</ion-view>
+
+<!--
+<ion-view view-title="Codes">
     <div class="bar bar-subheader data_network_unavailable ng-hide" ng-hide="isOnline()">
         <p>Data network unavailable</p>
     </div>
@@ -30,12 +80,15 @@
                 <button id="sizes" class="button button-small" ng-click="submitCode($event)">
                     Submit
                 </button>
-            </div>
+            </div>-->
             <!-- <div class="item">
                 123
                 {{code.brandCode}}
-            </div> -->
+              </div> -->
+              <!--
         </div>
     </ion-content>
+    -->
    <!--  <button class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-account-plus" ng-click="addUser()"></button> -->
-</ion-view>
+   <!--</ion-view>-->
+

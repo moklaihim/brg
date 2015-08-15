@@ -36,7 +36,7 @@
                     
                 <!-- </div> -->
                 <div class="item item-input-inset">
-                    <button class="button button-small" ng-click="reportEmailUpdate()">
+                    <button ink class="button button-small ink" ng-click="reportEmailUpdate()">
                         Save
                     </button>
                 </div>
@@ -48,6 +48,8 @@
             <li class="item" ng-click="doUpdate()">
                 Software version
                 <p>{{current.app_version}}<br>
+                <span ng-if="current.hasUpdate" ng-show="current.hasUpdate">Tap here to update</span></p>
+                <span class="badge badge-assertive" ng-if="current.hasUpdate" ng-show="current.hasUpdate">Update</span>
             </li>
         </ion-list>
     </ion-content>

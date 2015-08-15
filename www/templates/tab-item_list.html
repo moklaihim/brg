@@ -7,12 +7,12 @@
 
     <ion-header-bar class="bar-subheader pcode-button" style="padding:0px">
         <div class="button-bar ng-hide" ng-show = "showInputSelections">
-            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleBrand, 'greenbutton': item_brand}" ng-click="trig_brand()">Brands</br><b>{{item_brand}}</b></button>
-            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleCode, 'greenbutton': item_code}" ng-click="trig_code()">Code</br><b>{{item_code}}</b></button>
-            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleColor, 'greenbutton': item_color}" ng-click="trig_color()">Color</br><b>{{item_color}}</b></button>
-            <button class="button pcode-button" style="line-height:17px" ng-class="{'purplebutton': toggleSize, 'greenbutton': item_size}" ng-click="trig_size()">Size</br><b>{{item_size}}</b></button>
+            <button ink class="button pcode-button ink" style="line-height:17px" ng-class="{'purplebutton': toggleBrand, 'greenbutton': item_brand}" ng-click="trig_brand()">Brands</br><b>{{item_brand}}</b></button>
+            <button ink class="button pcode-button ink" style="line-height:17px" ng-class="{'purplebutton': toggleCode, 'greenbutton': item_code}" ng-click="trig_code()">Code</br><b>{{item_code}}</b></button>
+            <button ink class="button pcode-button ink" style="line-height:17px" ng-class="{'purplebutton': toggleColor, 'greenbutton': item_color}" ng-click="trig_color()">Color</br><b>{{item_color}}</b></button>
+            <button ink class="button pcode-button ink" style="line-height:17px" ng-class="{'purplebutton': toggleSize, 'greenbutton': item_size}" ng-click="trig_size()">Size</br><b>{{item_size}}</b></button>
 <!--             <button class="button pcode-button mdi mdi-barcode" style="font-size:30px" ng-if="isMobile()" ng-click="scanFunction()" ui-sref="main.sales_scanadd"></b></button> -->
-            <button class="button pcode-button mdi mdi-barcode" style="font-size:30px" ng-if="isMobile()" ng-click="scanFunction()"</b></button>
+            <button ink class="button pcode-button mdi mdi-barcode ink" style="font-size:30px" ng-show="isMobile()" ng-click="scanFunction()"></button>
         </div>
     </ion-header-bar>
 
@@ -21,20 +21,20 @@
             <p>Data network unavailable</p>
         </div>
         <ion-list class="border-list" ng-if="showItemList">
-            <ion-item ng-show="allItemCodeEntered" ng-click="addItem()">
+            <ion-item ink class="ink" ng-show="allItemCodeEntered" ng-click="addItem()">
                 <center><b>Continue to add new item.</b></center>
             </ion-item>
-            <ion-item ng-repeat="item in items_array | itemFilter : item_brand:'brand' | itemFilter : item_code:'code' | itemFilter : item_color:'color' | itemFilter : item_size:'size' | limitTo:20" ng-click="selectItem(item.id)">
+            <ion-item ink class="ink" ng-repeat="item in items_array | itemFilter : item_brand:'brand' | itemFilter : item_code:'code' | itemFilter : item_color:'color' | itemFilter : item_size:'size' | limitTo:20" ng-click="selectItem(item.id)">
                 <h2>{{item.id}}<span class="item-note">{{item.retail_price | currency:"$"}}</span></h2>
                 <div>
-                    <ion-option-button class="button-option button-positive-900 mdi mdi-pencil" ng-click="editItem(item.id)"></ion-option-button>
-                    <ion-option-button class="button-option button-assertive-900 mdi mdi-delete" ng-click="removeItem(item.id)"></ion-option-button>
+                    <ion-option-button ink class="button-option button-positive-900 mdi mdi-pencil ink" ng-click="editItem(item.id)"></ion-option-button>
+                    <ion-option-button ink class="button-option button-assertive-900 mdi mdi-delete ink" ng-click="removeItem(item.id)"></ion-option-button>
                 </div>
             </ion-item>
         </ion-list>
 
         <ion-list ng-if="showColorInput">
-            <ion-item class="item item-avatar" ng-repeat="color in colors_array | startsWith : filterLetters | orderBy: 'name'" ng-click="btn_color(color.name)" style="background-color:white">
+            <ion-item ink class="item item-avatar ink" ng-repeat="color in colors_array | startsWith : filterLetters | orderBy: 'name'" ng-click="btn_color(color.name)" style="background-color:white">
                 <h2>{{color.name}}</h2>
                 <p>{{color.fullname}}</p>
             </ion-item>
@@ -48,46 +48,46 @@
             <!-- <div data-tap-disabled="true" ng-repeat="brands in brands_array track by $index" ng-show="showBrandInput" class="button-bar ng-hide bar-keypad" style="background-color: #BA68C8; color: white;"> -->
             <div ng-if="showBrandInput" data-tap-disabled="true">
                 <div ng-repeat="brands in brands_array track by $index" class="button-bar bar-keypad" style="border-color: #263238; background-color:#263238; color: white;">
-                    <a ng-repeat="brand in brands | orderBy:'name' track by $index" id="{{brand.id}}" class="button button-raised" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</a>
+                    <a ink ng-repeat="brand in brands | orderBy:'name' track by $index" id="{{brand.id}}" class="button button-raised" ng-class="{active: brand.id == item_brand}" ng-click="btn_brand(brand.name)">{{brand.name}}</a>
                 </div> 
             </div>
 
             <div ng-if="showSizeInput">
                 <div ng-repeat="sizes in sizes_array track by $index" class="button-bar bar-keypad">
-                    <a ng-repeat="size in sizes | orderBy:'name' track by $index" id ="{{size.id}}" class="button button-raised" ng-class="{active: size.id == item_size}" ng-click="btn_size({{size.id}})">{{size.name}}</a>
+                    <a ink ng-repeat="size in sizes | orderBy:'name' track by $index" id ="{{size.id}}" class="button button-raised" ng-class="{active: size.id == item_size}" ng-click="btn_size({{size.id}})">{{size.name}}</a>
                 </div>
             </div>
             <div ng-if="showCodeInput">             
                 <div class="button-bar bar-keypad">
-                    <a id = "1" class="button button-raised" ng-click="btn_code($event)">1</a>
-                    <a id = "2" class="button button-raised" ng-click="btn_code($event)">2</a>
-                    <a id = "3" class="button button-raised" ng-click="btn_code($event)">3</a>
-                    <a id = "4" class="button button-raised" ng-click="btn_code($event)">4</a>
-                    <a id = "5" class="button button-raised" ng-click="btn_code($event)">5</a>
-                    <a id = "Clear" class="button button-raised icon ion-backspace" style="color: #a8adaf;" on-hold="btn_code_clear()" ng-click="btn_code_backspace()"></a>
+                    <a ink id = "1" class="button button-raised" ng-click="btn_code($event)">1</a>
+                    <a ink id = "2" class="button button-raised" ng-click="btn_code($event)">2</a>
+                    <a ink id = "3" class="button button-raised" ng-click="btn_code($event)">3</a>
+                    <a ink id = "4" class="button button-raised" ng-click="btn_code($event)">4</a>
+                    <a ink id = "5" class="button button-raised" ng-click="btn_code($event)">5</a>
+                    <a ink id = "Clear" class="button button-raised icon ion-backspace" style="color: #a8adaf;" on-hold="btn_code_clear()" ng-click="btn_code_backspace()"></a>
                 </div>
                 <div class="button-bar bar-keypad">
-                    <a id = "6" class="button button-raised" ng-click="btn_code($event)">6</a>
-                    <a id = "7" class="button button-raised" ng-click="btn_code($event)">7</a>
-                    <a id = "8" class="button button-raised" ng-click="btn_code($event)">8</a>
-                    <a id = "9" class="button button-raised" ng-click="btn_code($event)">9</a>
-                    <a id = "0" class="button button-raised" ng-click="btn_code($event)">0</a>
-                    <a id = "OK" class="button button-raised keypad-ok icon ion-ios-checkmark" style="color: #4cb5ab;" ng-click="btn_code_ok()" data-tap-disabled="true"></a>
+                    <a ink id = "6" class="button button-raised" ng-click="btn_code($event)">6</a>
+                    <a ink id = "7" class="button button-raised" ng-click="btn_code($event)">7</a>
+                    <a ink id = "8" class="button button-raised" ng-click="btn_code($event)">8</a>
+                    <a ink id = "9" class="button button-raised" ng-click="btn_code($event)">9</a>
+                    <a ink id = "0" class="button button-raised" ng-click="btn_code($event)">0</a>
+                    <a ink id = "OK" class="button button-raised keypad-ok icon ion-ios-checkmark" style="color: #4cb5ab;" ng-click="btn_code_ok()" data-tap-disabled="true"></a>
                 </div>
             </div>
             <div ng-if="showColorInput" style="padding:0px">                
                 <div class="button-bar bar-keypad">
-                    <a id = "ABC" class="button button-raised" ng-click="filterColor($event)">ABC</a>
-                    <a id = "DEF" class="button button-raised" ng-click="filterColor($event)">DEF</a>
-                    <a id = "GHI" class="button button-raised" ng-click="filterColor($event)">GHI</a>
-                    <a id = "JKL" class="button button-raised" ng-click="filterColor($event)">JKL</a>
-                    <a id = "MNO" class="button button-raised" ng-click="filterColor($event)">MNO</a>
+                    <a ink id = "ABC" class="button button-raised" ng-click="filterColor($event)">ABC</a>
+                    <a ink id = "DEF" class="button button-raised" ng-click="filterColor($event)">DEF</a>
+                    <a ink id = "GHI" class="button button-raised" ng-click="filterColor($event)">GHI</a>
+                    <a ink id = "JKL" class="button button-raised" ng-click="filterColor($event)">JKL</a>
+                    <a ink id = "MNO" class="button button-raised" ng-click="filterColor($event)">MNO</a>
                 </div>
                 <div class="button-bar bar-keypad">
-                    <a id = "PQR" class="button button-raised" ng-click="filterColor($event)">PQR</a>
-                    <a id = "STU" class="button button-raised" ng-click="filterColor($event)">STU</a>
-                    <a id = "VWX" class="button button-raised" ng-click="filterColor($event)">VWX</a>
-                    <a id = "YZ" class="button button-raised" ng-click="filterColor($event)">YZ</a>
+                    <a ink id = "PQR" class="button button-raised" ng-click="filterColor($event)">PQR</a>
+                    <a ink id = "STU" class="button button-raised" ng-click="filterColor($event)">STU</a>
+                    <a ink id = "VWX" class="button button-raised" ng-click="filterColor($event)">VWX</a>
+                    <a ink id = "YZ" class="button button-raised" ng-click="filterColor($event)">YZ</a>
                 </div>
             </div>
         </div> 

@@ -32,35 +32,35 @@
                     <i class="icon mdi mdi-cloud-outline-off sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Offline</span>
                 </ion-item>
-                <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'sales_list'}" menu-close href="#/main/sales/list">
+                <ion-item ink class="item-icon-left sidemenu_item ink" ng-class="{active: current.view == 'sales_list'}" menu-close href="#/main/sales/list">
                     <i class="icon mdi mdi-shopping sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Sales</span>
                 </ion-item>
-                <ion-item class="item-icon-left sidemenu_item" ng-class="{active: current.view == 'items_list'}" menu-close href="#/main/items/list" ng-click="current.itemAddMode='fromitem'" ng-if="role.allowItemsMenu" ng-show="role.allowItemsMenu">
+                <ion-item ink class="item-icon-left sidemenu_item ink" ng-class="{active: current.view == 'items_list'}" menu-close href="#/main/items/list" ng-click="current.itemAddMode='fromitem'" ng-if="role.allowItemsMenu" ng-show="role.allowItemsMenu">
                     <i class="icon mdi mdi-package-variant sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Items</span>
                 </ion-item>
-                <ion-item class="item-icon-left sidemenu_item hidden" ng-class="{active: current.view == 'reports_list'}" menu-close href="#/main/reports/list" ng-if="role.allowAccessReportsMenu" ng-show="role.allowAccessUsersMenu">
+                <ion-item ink class="item-icon-left sidemenu_item hidden ink" ng-class="{active: current.view == 'reports_list'}" menu-close href="#/main/reports/list" ng-if="role.allowAccessReportsMenu" ng-show="role.allowAccessUsersMenu">
                     <i class="icon mdi mdi-file-document sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Reports</span>
                 </ion-item>
-                <ion-item class="item-icon-left sidemenu_item hidden" ng-class="{active: current.view == 'codes_list'}" menu-close href="#/main/codes/list" ng-if="role.allowAccessCodesMenu" ng-show="role.allowAccessCodesMenu">
+                <ion-item ink class="item-icon-left sidemenu_item hidden ink" ng-class="{active: current.view == 'codes_list'}" menu-close href="#/main/codes/list" ng-if="role.allowAccessCodesMenu" ng-show="role.allowAccessCodesMenu">
                     <i class="icon mdi mdi-tag-text-outline sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Codes</span>
                 </ion-item>
-                <ion-item class="item-icon-left sidemenu_item hidden" ng-class="{active: current.view == 'users_list'}" menu-close ng-if="role.allowAccessUsersMenu" ng-show="role.allowAccessUsersMenu" href="#/main/users/list">
+                <ion-item ink class="item-icon-left sidemenu_item hidden ink" ng-class="{active: current.view == 'users_list'}" menu-close ng-if="role.allowAccessUsersMenu" ng-show="role.allowAccessUsersMenu" href="#/main/users/list">
                     <i class="icon mdi mdi-account-multiple sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Users</span>
                 </ion-item>
-                <ion-item class="item-icon-left sidemenu_item hidden" ng-class="{active: current.view == 'roles_list'}" menu-close ng-if="role.allowAccessRolesMenu" ng-show="role.allowAccessRolesMenu" href="#/main/roles/list">
+                <ion-item ink class="item-icon-left sidemenu_item hidden ink" ng-class="{active: current.view == 'roles_list'}" menu-close ng-if="role.allowAccessRolesMenu" ng-show="role.allowAccessRolesMenu" href="#/main/roles/list">
                     <i class="icon mdi mdi-account-key sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Roles</span>
                 </ion-item>
-                <ion-item class="item-icon-left sidemenu_item hidden" ng-class="{active: current.view == 'settings_list'}" menu-close href="#/main/settings">
+                <ion-item ink class="item-icon-left sidemenu_item hidden ink" ng-class="{active: current.view == 'settings_list'}" menu-close href="#/main/settings">
                     <i class="icon mdi mdi-settings sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Settings</span>
                 </ion-item>
-                <ion-item class="item-icon-left sidemenu_item" href="#" menu-close ng-click="logout()">
+                <ion-item ink class="item-icon-left sidemenu_item ink" href="#" menu-close ng-click="logout()">
                     <i class="icon mdi mdi-logout sidemenu_item_icon"></i>
                     <span class="sidemenu_item_text">Sign Out</span>
                 </ion-item>

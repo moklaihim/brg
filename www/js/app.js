@@ -6,7 +6,6 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker'])
-//angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker'])
 .run(["$ionicPlatform", "$rootScope", "$state", function($ionicPlatform, $rootScope, $state) {
     $ionicPlatform.ready(function() {
         console.log("BRG Debug: run start");
@@ -26,14 +25,22 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
     });
 
     $rootScope.$on("$stateChangeError", function(event, next, previous, error) {
+        console.log("stateChangeError occured");
+        console.log(error);
         if (error === "AUTH_REQUIRED") {
-            $state.go('login');
+          console.log("error is AUTH_REQUIRED");
+          $state.go('login');
         }
     });
+}])
 
-    // $ionicPlatform.registerBackButtonAction(function (event) {
-    //                   event.preventDefault();
-    //           }, 100);
+.directive("ink", ['ionicMaterialInk', function(ionicMaterialInk) {
+    return {
+        restrict: "A",
+        link: function () {
+                ionicMaterialInk.displayEffect();
+        }
+    };
 }])
 
 .filter('itemFilter', function() {
@@ -220,7 +227,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         //gcm_id: '622335018092'
     //});
 
-    $ionicConfigProvider.tabs.position("bottom");
+    $ionicConfigProvider.tabs.position("top");
+    $ionicConfigProvider.tabs.style("striped");
     $ionicConfigProvider.navBar.alignTitle('left');
     $ionicConfigProvider.views.forwardCache(true);
 

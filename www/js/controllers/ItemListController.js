@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform", "ionicMaterialInk", "Items", "Sales", "Codes", "Env", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, ionicMaterialInk, Items, Sales, Codes, Env) {
+.controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform", "Items", "Sales", "Codes", "Env", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales, Codes, Env) {
 
 // Start of Item List to show only item list and Brand input
 //
@@ -27,7 +27,6 @@ angular.module('starter.controllers')
     var editItemClicked = false;
     // var addItemClicked = false;
     $scope.allItemCodeEntered = false;
-    //ionicMaterialInk.displayEffect();
     
 
     /* Make Brand palate from here*/
@@ -197,8 +196,6 @@ angular.module('starter.controllers')
                 $scope.showItemCodeInputs = true;
             }
         }
-
-        
     }
     $scope.trig_code = trig_code;
 
@@ -247,12 +244,6 @@ angular.module('starter.controllers')
     }
     $scope.trig_size = trig_size;
 
-    function ink(){
-        ionicMaterialInk.displayEffect();
-        console.log("ink triggered")
-    }
-    $scope.ink = ink;
-
     //---------------Custom Keyboard------------------------ 
     $scope.btn_brand= function(brand_id){
         $scope.item_brand = brand_id;
@@ -269,11 +260,9 @@ angular.module('starter.controllers')
             console.log("all item entered");
         }
         itemId();
-        ionicMaterialInk.displayEffect();
     };
 
     $scope.btn_code= function(event){
-        //ionicMaterialInk.displayEffect();
         $scope.item_code = $scope.item_code + event.target.id;
         if($scope.item_brand.charAt( 0 ) == 'S'){
             if($scope.item_code.charAt(1)){
@@ -307,7 +296,6 @@ angular.module('starter.controllers')
     }
 
     $scope.btn_code_backspace = function(){
-        //ionicMaterialInk.displayEffect();
         $scope.item_code = $scope.item_code.substring(0, $scope.item_code.length - 1);
         itemId();
     }
