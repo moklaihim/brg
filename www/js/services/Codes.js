@@ -175,7 +175,7 @@ angular.module('starter.services')
             return sizes_array;
         },
 
-        remove: function(code, type){
+        remove: function(type, code){
             if(is_online){
                 if(type == "sizes"){
                     var fCodes = new Firebase("https://fiery-heat-6039.firebaseio.com/codes/" + type + "/" + code);
@@ -203,42 +203,45 @@ angular.module('starter.services')
             }
         },
 
-        add: function(code, type){
+        add: function(type, code){
 
+            var code_id = code.name.toLowerCase();
             if(is_online){
                 if(type == "brands"){
-                    brands[code] = new Object();
-                    brands[code].id = code;
-                    brands[code].name = code.toUpperCase();
+                    brands[code_id] = new Object();
+                    brands[code_id].id = code.name.toLowerCase();
+                    brands[code_id].name = code.name.toUpperCase();
+                    brands[code_id].target = code.target;
                     brands.$save();
                 }
                 if(type == "colors"){
-                    colors[code] = new Object();
-                    colors[code].id = code;
-                    colors[code].name = code.toUpperCase();
+                    colors[code_id] = new Object();
+                    colors[code_id].id = code.name.toLowerCase();
+                    colors[code_id].name = code.name.toUpperCase();
                     colors.$save();
                 }
                 if(type == "sizes"){
-                    sizes[code] = new Object();
-                    sizes[code].id = code;
-                    sizes[code].name = code;
+                    sizes[code_id] = new Object();
+                    sizes[code_id].id = code.name.toLowerCase();
+                    sizes[code_id].name = code.name.toUpperCase();
                     sizes.$save();
                 }
             }else{
                 if(type == "brands"){
-                    brands[code] = new Object();
-                    brands[code].id = code;
-                    brands[code].name = code.toUpperCase();
+                    brands[code_id] = new Object();
+                    brands[code_id].id = code.name.toLowerCase();
+                    brands[code_id].name = code.name.toUpperCase();
+                    brands[code_id].target = code.target;
                 }
                 if(type == "colors"){
-                    colors[code] = new Object();
-                    colors[code].id = code;
-                    colors[code].name = code.toUpperCase();
+                    colors[code_id] = new Object();
+                    colors[code_id].id = code.name.toLowerCase();
+                    colors[code_id].name = code.name.toUpperCase();
                 }
                 if(type == "sizes"){
                     sizes[code] = new Object();
-                    sizes[code].id = code;
-                    sizes[code].name = code;
+                    sizes[code_id].id = code.name.toLowerCase();
+                    sizes[code_id].name = code.name.toUpperCase();
                 }
             }
         }

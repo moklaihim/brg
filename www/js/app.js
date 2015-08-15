@@ -227,7 +227,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         //gcm_id: '622335018092'
     //});
 
-    $ionicConfigProvider.tabs.position("bottom");
+    $ionicConfigProvider.tabs.position("top");
+    $ionicConfigProvider.tabs.style("striped");
     $ionicConfigProvider.navBar.alignTitle('left');
     $ionicConfigProvider.views.forwardCache(true);
 
