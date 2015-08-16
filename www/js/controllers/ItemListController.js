@@ -88,7 +88,7 @@ angular.module('starter.controllers')
                         }
                         if (barcodeData.cancelled){
                             //$state.go('main.sales_list');
-                            // $ionicHistory.goBack();
+                            $ionicHistory.goBack();
                         };
                     }
                 );
