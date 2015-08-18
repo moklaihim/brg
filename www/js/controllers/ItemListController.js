@@ -2,7 +2,7 @@ angular.module('starter.controllers')
 .controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaBarcodeScanner", "$ZBar", "$ionicPlatform", "Items", "Sales", "Codes", "Env", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaBarcodeScanner, $ZBar, $ionicPlatform, Items, Sales, Codes, Env) {
 
 // Start of Item List to show only item list and Brand input
-//
+//  
     $scope.current.view = 'items_list';
     $scope.headerLabel = "Items";  // header will reflect ITEM List
     $scope.showInputSelections = true;
@@ -27,7 +27,8 @@ angular.module('starter.controllers')
     var editItemClicked = false;
     // var addItemClicked = false;
     $scope.allItemCodeEntered = false;
-    
+    $scope.checkStore();
+
 
     /* Make Brand palate from here*/
     $scope.brands_array = new Array();
@@ -88,7 +89,7 @@ angular.module('starter.controllers')
                         }
                         if (barcodeData.cancelled){
                             //$state.go('main.sales_list');
-                            // $ionicHistory.goBack();
+                            $ionicHistory.goBack();
                         };
                     }
                 );

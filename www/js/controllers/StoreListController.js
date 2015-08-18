@@ -77,7 +77,11 @@ angular.module('starter.controllers')
         $scope.current.store_name = store_name;
 
         //console.log("CurrentStore set to id: " + $scope.current.store_id + " name: " + $scope.current.store_name);
-        $ionicHistory.goBack();
+        // $ionicHistory.goBack();
+        $ionicHistory.nextViewOptions({
+          historyRoot: true
+        });
+        $state.go('main.sales_list');
     };
 
 }])

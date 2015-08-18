@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<<<<<<< HEAD
 <widget id="com.ionicframework.brg247533" version="1.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" ios-CFBundleVersion="118" android-versionCode="118">
+=======
+<widget id="com.ionicframework.brg247533" version="1.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" ios-CFBundleVersion="120" android-versionCode="120">
+>>>>>>> d4a443290da7654afaf50cce019ef0fb0a62c55b
   <name>BRG</name>
   <description>
         Sales reporter for BRG
