@@ -34,6 +34,7 @@ angular.module('starter.services')
                         sale.time = local_sales[key_ut].time;
                         sale.timestamp = local_sales[key_ut].timestamp;
                         sale.user = local_sales[key_ut].user;
+                        sale.update_date = local_sales[key_ut].update_date;
                         sale.retail_price = local_sales[key_ut].retail_price;
                         sale.$save();
                     }
