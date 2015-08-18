@@ -30,6 +30,8 @@ angular.module('starter.controllers')
 
         Items.add($scope.current.item_id, $scope.current.retail_price);
         $state.go('main.sales_add');
+        $scope.current.item_id = ''
+        $scope.current.retail_price = '';
         priceClear();
 
     };
@@ -53,6 +55,8 @@ angular.module('starter.controllers')
             return;
         };
         Items.add($scope.current.item_id, $scope.current.retail_price);
+        $scope.current.item_id = ''
+        $scope.current.retail_price = '';
         $state.go('main.items_list');
     };
 
