@@ -34,6 +34,7 @@ angular.module('starter.services')
                         sale.time = local_sales[key_ut].time;
                         sale.timestamp = local_sales[key_ut].timestamp;
                         sale.user = local_sales[key_ut].user;
+                        sale.retail_price = local_sales[key_ut].retail_price;
                         sale.$save();
                     }
                     console.log("Deleting " + localStorage.key(i));
@@ -60,7 +61,7 @@ angular.module('starter.services')
             return $q.when(sales);
         },
 
-        add: function(store_id, item_id, sale_price, discount_rate, year, month, day, sale_key, user_id){
+        add: function(store_id, item_id, sale_price, discount_rate, year, month, day, sale_key, user_id, retail_price){
             var now = new Date();
             var hour = now.getHours();
             var minute = now.getMinutes();
@@ -90,6 +91,7 @@ angular.module('starter.services')
                 sale.timestamp = current_ut;
                 sale.user = user_id;
                 sale.discount = discount_rate;
+                sale.retail_price = retail_price;
                 sale.$save();
                 
             }else{
@@ -103,6 +105,7 @@ angular.module('starter.services')
                 sales[current_ut].timestamp = current_ut;
                 sales[current_ut].user = user_id;
                 sales[current_ut].discount = discount_rate;
+                sales[current_ut].retail_price = retail_price;
 
                 localStorage.setItem('brg_sales-' + store_id + '-' + year + '-' + month + '-' + day, JSON.stringify(sales));
             }
