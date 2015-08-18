@@ -135,12 +135,18 @@ angular.module('starter.services')
             if (minute < 10) { minute = '0' + minute; }
             var time = hour + ':' + minute;
             var current_ut = now.getTime();
+            var update_year = now.getFullYear();
+            var update_month = now.getMonth()+1;
+            if (update_month < 10) { update_month = '0' + update_month; }
+            var update_day = now.getDate();
+            if (update_day < 10) { update_day = '0' + update_day; }
 
             var fSale = new Firebase("https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day + "/CLOSED");
             var sale = $firebaseObject(fSale);
 
             sale.item = "CLOSED";
             sale.date = year + "/" + month + "/" + day;
+            sale.update_date = update_year + "/" + update_month + "/" + update_day;
             sale.time = time;
             sale.timestamp = current_ut;
             sale.discount_rate = 0;
