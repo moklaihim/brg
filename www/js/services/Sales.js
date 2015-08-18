@@ -29,7 +29,7 @@ angular.module('starter.services')
 
                         sale.item = local_sales[key_ut].item;
                         sale.price = local_sales[key_ut].price;
-                        sale.discount = local_sales[key_ut].discount;
+                        sale.discount_rate = local_sales[key_ut].discount_rate;
                         sale.date = local_sales[key_ut].date;
                         sale.time = local_sales[key_ut].time;
                         sale.timestamp = local_sales[key_ut].timestamp;
@@ -89,7 +89,7 @@ angular.module('starter.services')
                 sale.time = time;
                 sale.timestamp = current_ut;
                 sale.user = user_id;
-                sale.discount = discount_rate;
+                sale.discount_rate = discount_rate;
                 sale.$save();
                 
             }else{
@@ -102,7 +102,7 @@ angular.module('starter.services')
                 sales[current_ut].time = time;
                 sales[current_ut].timestamp = current_ut;
                 sales[current_ut].user = user_id;
-                sales[current_ut].discount = discount_rate;
+                sales[current_ut].discount_rate = discount_rate;
 
                 localStorage.setItem('brg_sales-' + store_id + '-' + year + '-' + month + '-' + day, JSON.stringify(sales));
             }
@@ -140,7 +140,7 @@ angular.module('starter.services')
             sale.date = year + "/" + month + "/" + day;
             sale.time = time;
             sale.timestamp = current_ut;
-            sale.discount = 0;
+            sale.discount_rate = 0;
             sale.user = user_id;
             sale.$save();
         },

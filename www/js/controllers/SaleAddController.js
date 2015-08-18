@@ -11,7 +11,7 @@ angular.module('starter.controllers')
         retail_price: '',
         sale_price: '',
         qty: '',
-        discount:'',
+        discount_rate:'',
         date: '',
         time: ''
     }
@@ -159,7 +159,7 @@ angular.module('starter.controllers')
         },500);
 
         $scope.showPriceInput = true;
-        if(event.target.id == 'discount'){
+        if(event.target.id == 'discount_rate'){
             // $scope.showPriceInput = !$scope.showPriceInput;
             if($scope.sale.qty == ''){
                 $scope.sale.qty = 1;

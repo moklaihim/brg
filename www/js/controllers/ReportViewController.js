@@ -19,9 +19,6 @@ angular.module('starter.controllers')
         angular.forEach($scope.stores, function(value, key) {
             $scope.total4stores[key] = 0;
             var p_sales = Sales.get(key, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
-            // if(!p_sales.hasOwnProperty(sale.item)){
-            //     $scope.noSales = true;
-            // }
             p_sales.then(function(sales_detail){
                 $scope.sales4stores[key] = sales_detail;
                 console.log(key);
@@ -32,33 +29,16 @@ angular.module('starter.controllers')
                         console.log(sale.item);
 
                         //take brand name
-                        var brand = sale.item.slice(0,sale.item.search(/\d/));
-                        //console.log(brand);
+                        var brand = sale.item.slice(0, sale.item.search(/\d/));
                         console.log(brands[brand.toLowerCase()].target);
                         if(brands[brand.toLowerCase()].target == $stateParams.reportType){
                           count_target = true;
                         }
-/*
-                        if($stateParams.reportType == "mens"){
-                            
-                            if(sale.item.indexOf("B") === 0 || sale.item.indexOf("HB") === 0 || sale.item.indexOf("R") === 0 || sale.item.indexOf("S") === 0){
-                                console.log("This is mens");
-                                //B, HB, R, S
-                                count_target = true;
-                            }else{
-                                console.log("This is not mens");
-                            }
-                        }else{
-                            if(sale.item.indexOf("F") === 0 || (sale.item.indexOf("HB") !== 0 && sale.item.indexOf("H") === 0)){
-                                //F, H
-                                count_target = true;
-                            }
-                        }
-                        */
+
                         if(count_target){
-                            $scope.sales4stores[key][i].retail_price = items[sale.item].retail_price;
-                            // $scope.sales4stores[key][i].discount_rate = 100 - Math.round(sale.price / items[sale.item].retail_price * 1000) / 10;
-                            $scope.sales4stores[key][i].discount_rate = sale.discount;
+                            //I think below 2 lines can be adjusted and deleted. Tom
+                            //$scope.sales4stores[key][i].retail_price = items[sale.item].retail_price;
+                            //$scope.sales4stores[key][i].discount_rate = sale.discount;
                             $scope.total4stores[key] += sale.price * 1;
                             $scope.grandtotal += sale.price * 1;
                         }else{
@@ -66,8 +46,10 @@ angular.module('starter.controllers')
                         }
                         console.log($scope.total4stores[key]);
                         console.log($scope.grandtotal);
+                        $scope.total4stores[key] = Math.floor($scope.total4stores[key] * 100)/100;
                     }
                 });
+                $scope.grandtotal = Math.floor($scope.grandtotal * 100)/100;
             });
         });
     }

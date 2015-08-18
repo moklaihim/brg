@@ -10,7 +10,7 @@ angular.module('starter.services')
         stores['taka'] = {id: 'taka', name: 'TAKA', lat: 1.302479, lng: 103.834615, timestamp: 1430663266989};
         stores['isetan_scotts'] = {id: 'isetan_scotts', name: 'ISETAN SCOTTS', lat: 1.305732, lng: 103.8315, timestamp: 1430663266989};
         stores['isetan_tmp'] = {id: 'isetan_tmp', name: 'ISETAN TMP', lat: 1.352492, lng: 103.944797, timestamp: 1430663266989};
-        stores['isetan_nex'] = {id: 'isetan_nex', name: 'ISETAN NEX', lat: 1.305589, lng: 103.831510, timestamp: 1430663266989};
+        stores['isetan_nex'] = {id: 'isetan_nex', name: 'ISETAN NEX', lat: 1.350708, lng: 103.872240, timestamp: 1430663266989};
         stores['isetan_katong'] = {id: 'isetan_katong', name: 'ISETAN KATONG', lat: 1.301547, lng: 103.904688, timestamp: 1430663266989};
         stores['isetan_westgate'] = {id: 'isetan_westgate', name: 'ISETAN WESTGATE', lat: 1.334033, lng: 103.742837, timestamp: 1430663266989};
         stores['robs_rc'] = {id: 'robs_rc', name: 'Robs RC', lat: 1.293775, lng: 103.852741, timestamp: 1430663266989};
