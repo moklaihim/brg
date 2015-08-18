@@ -166,14 +166,14 @@ angular.module('starter.controllers')
         $scope.toggleColor = false;
         $scope.toggleSize = false;
 
-        if($scope.showBrandInput){
-            $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
-        }else{
+        //if($scope.showBrandInput){
+        //    $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
+        //}else{
             $scope.showBrandInput = true;
             if(!$scope.showItemCodeInputs){
                 $scope.showItemCodeInputs = true;
             }
-        }
+        //}
     }
     $scope.trig_brand = trig_brand;
 
@@ -189,14 +189,14 @@ angular.module('starter.controllers')
         $scope.toggleColor = false;
         $scope.toggleSize = false;
 
-        if($scope.showCodeInput){
-            $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
-        }else{
+        //if($scope.showCodeInput){
+        //    $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
+        //}else{
             $scope.showCodeInput = true;
             if(!$scope.showItemCodeInputs){
                 $scope.showItemCodeInputs = true;
             }
-        }
+        //}
     }
     $scope.trig_code = trig_code;
 
@@ -210,14 +210,16 @@ angular.module('starter.controllers')
         $scope.toggleColor = true;
         $scope.toggleSize = false;
 
-        if($scope.showColorInput){
-            $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
-        }else{
+        $scope.filterLetters = "ABC";
+
+        //if($scope.showColorInput){
+        //    $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
+        //}else{
             $scope.showColorInput = true;
             if(!$scope.showItemCodeInputs){
                 $scope.showItemCodeInputs = true;
             }
-        }
+        //}
         $scope.showItemList = !$scope.showColorInput;
     }
     $scope.trig_color = trig_color;
@@ -234,14 +236,14 @@ angular.module('starter.controllers')
         $scope.toggleColor = false;
         $scope.toggleSize = true;
 
-        if($scope.showSizeInput){
-            $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
-        }else{
+        //if($scope.showSizeInput){
+        //    $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
+        //}else{
             $scope.showSizeInput = true;
             if(!$scope.showItemCodeInputs){
                 $scope.showItemCodeInputs = true;
             }
-        }
+        //}
     }
     $scope.trig_size = trig_size;
 
