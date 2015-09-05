@@ -30,8 +30,8 @@ angular.module('starter.controllers')
 
         Items.add($scope.current.item_id, $scope.current.retail_price);
         $state.go('main.sales_add');
-        $scope.current.item_id = ''
-        $scope.current.retail_price = '';
+        // $scope.current.item_id = ''
+        // $scope.current.retail_price = '';
         priceClear();
 
     };
@@ -72,7 +72,7 @@ angular.module('starter.controllers')
 
     $scope.priceBackSpace = function(){
         $scope.showPriceInput=true;
-        if($scope.current.retail_price.endsWith('.')){
+        if($scope.current.retail_price.slice(-1) == '.'){
             $scope.current.retail_price = $scope.current.retail_price.slice(0, -2);
         }else{
             $scope.current.retail_price = $scope.current.retail_price.slice(0, -1);
