@@ -337,6 +337,8 @@ angular.module('starter.controllers')
     $scope.filterColor = function(event){
         $ionicScrollDelegate.scrollTop();
         $scope.filterLetters = event.target.id;
+        console.log("selected is " + $scope.filterLetters);
+
     };
 
     function itemId(){

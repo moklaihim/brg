@@ -79,6 +79,7 @@ angular.module('starter.controllers')
             for (var i = 0; i < $scope.sale.qty; i++) {
                 console.log("Sale_key FAIL in Sales.js")
                 Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.sale.discount_rate, $scope.sale.promo_choice, $scope.sale.gift, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, false, $scope.user_detail.email, $scope.sale.retail_price);
+                console.log("entry")
             }
         }
         $scope.current.item_id = "";
@@ -231,7 +232,7 @@ angular.module('starter.controllers')
             $scope.showDiscountDel = true;
             $scope.showSaleDel = false;
             $scope.showQtyDel = false;
-            $scope.sale.discount_rate = 0;
+            // $scope.sale.discount_rate = 0;
             $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * $scope.sale.discount_rate / 100;
 
         } else if(event.target.id == 'sale'){
@@ -245,10 +246,13 @@ angular.module('starter.controllers')
             $scope.showSaleDel = true;
             $scope.showDiscountDel = false;
             $scope.showQtyDel = false;
-            $scope.sale.sale_price = '';
+            // $scope.sale.sale_price = '';
             $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
 
         } else if(event.target.id == 'qty'){
+            if($scope.sale.qty == ''){
+                $scope.sale.qty = 1;
+            }
             // $scope.showPriceInput = !$scope.showPriceInput;
             $scope.discountToggle = false;
             $scope.saleToggle = false;
