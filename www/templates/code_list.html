@@ -51,6 +51,9 @@
           <ion-list class="border-list">
             <ion-item ng-repeat="promo in promos">
               <b>{{promo.name}}</b>
+              <span class="item-note">
+                  Discount: {{promo.promo_discount}}% </br> Sale Price: ${{promo.promo_sale_price}} 
+              </span>
               <ion-option-button ink class="button-option button-assertive-900 mdi mdi-delete ink" ng-click="removeCode('promos', promo.id)"></ion-option-button>
             </ion-item>
           </ion-list>
