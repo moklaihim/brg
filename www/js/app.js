@@ -99,12 +99,6 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
                     console.log("item COM selected");
                     output.push(item);
                 }
-                // if (/b/i.test(item.name.substring(0, 1))) {
-                //     output.push(item);
-                // }
-                // if (/c/i.test(item.name.substring(0, 1))) {
-                //     output.push(item);
-                // }
             }
         }
         else if(filterLetters == "ABC"){

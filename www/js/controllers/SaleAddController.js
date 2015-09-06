@@ -205,7 +205,7 @@ angular.module('starter.controllers')
     function giftToggle(){
         $scope.GiftToggle = !$scope.GiftToggle;
         if ($scope.GiftToggle == true) {
-            $scope.sale.gift = 'true';
+            $scope.sale.gift = 'FG';
         }
         else{
             $scope.sale.gift = '';
