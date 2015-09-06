@@ -36,10 +36,10 @@
                     </div> -->
                     <div class="button-bar" style="margin-top:5px" >         
                         <ion-radio ng-repeat="promo in promos"
-                           ng-value="promo.name"
+                           ng-value="promo.id"
                            ng-model="sale.promo_choice"
                            ng-click="promoChoice()">
-                              {{promo.name}}
+                              {{promo.id}}
                         </ion-radio>
                     </div>
                     <span class="input-label">Discount(%)</span>

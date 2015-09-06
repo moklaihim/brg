@@ -177,6 +177,9 @@ angular.module('starter.controllers')
         }
         else{
             $scope.sale.promo_choice = '';
+            // $scope.sale.sale_price = $scope.items[$scope.current.item_id].retail_price;
+            $scope.sale.discount_rate = 0;
+            $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * $scope.sale.discount_rate / 100;
         }
         console.log("promo is " + $scope.sale.promo_choice);
 
@@ -184,8 +187,15 @@ angular.module('starter.controllers')
     $scope.promoToggle = promoToggle;
 
     function promoChoice(){
-        // $scope.sale.sale_price = $scope.promos[$scope.sale.promo_choice].promo_sale_price;
-        // $scope.sale.discount_rate = $scope.promos[$scope.sale.promo_choice].promo_discount;
+        if($scope.promos[$scope.sale.promo_choice].promo_sale_price){
+            $scope.sale.sale_price = $scope.promos[$scope.sale.promo_choice].promo_sale_price;
+            $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
+        }
+        if($scope.promos[$scope.sale.promo_choice].promo_discount){
+            $scope.sale.discount_rate = $scope.promos[$scope.sale.promo_choice].promo_discount;
+            $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * $scope.sale.discount_rate / 100;
+        }
+        
         console.log("promo is " + $scope.promos[$scope.sale.promo_choice]);
 
     }
