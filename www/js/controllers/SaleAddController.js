@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SaleAddController', ["$scope", "$timeout", "$ionicGesture", "$ionicScrollDelegate", "$state", "$filter", "$ionicHistory", "$cordovaBarcodeScanner", "$ionicPlatform","Items", "Sales", function($scope, $timeout, $ionicGesture, $ionicScrollDelegate, $state, $filter, $ionicHistory, $cordovaBarcodeScanner, $ionicPlatform, Items, Sales) {
+.controller('SaleAddController', ["$scope", "$timeout", "$ionicGesture", "$ionicScrollDelegate", "$state", "$filter", "$ionicHistory", "$cordovaBarcodeScanner", "$ionicPlatform","Items", "Sales", "Codes", function($scope, $timeout, $ionicGesture, $ionicScrollDelegate, $state, $filter, $ionicHistory, $cordovaBarcodeScanner, $ionicPlatform, Items, Sales, Codes) {
     $scope.showPriceInput = false;
     $scope.GiftToggle = false;
     $scope.PromoToggle = false;
@@ -22,6 +22,7 @@ angular.module('starter.controllers')
     }
 
     $scope.items = Items.get();
+    $scope.promos = Codes.get_promos();
 
 
     console.log("Loaded Current Item: " + $scope.current.item_id);
@@ -172,7 +173,7 @@ angular.module('starter.controllers')
     function promoToggle(){
         $scope.PromoToggle = !$scope.PromoToggle;
         if ($scope.PromoToggle == true){
-            $scope.sale.promo_choice = 'A';
+            $scope.sale.promo_choice = "Disc";
         }
         else{
             $scope.sale.promo_choice = '';
@@ -181,6 +182,14 @@ angular.module('starter.controllers')
 
     }
     $scope.promoToggle = promoToggle;
+
+    function promoChoice(){
+        // $scope.sale.sale_price = $scope.promos[$scope.sale.promo_choice].promo_sale_price;
+        // $scope.sale.discount_rate = $scope.promos[$scope.sale.promo_choice].promo_discount;
+        console.log("promo is " + $scope.promos[$scope.sale.promo_choice]);
+
+    }
+    $scope.promoChoice = promoChoice;
 
     function giftToggle(){
         $scope.GiftToggle = !$scope.GiftToggle;

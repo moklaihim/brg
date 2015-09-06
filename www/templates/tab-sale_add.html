@@ -29,16 +29,18 @@
                 </div>
 
                 <div ng-show="PromoToggle">
-                    <!-- <div class="button-bar" style="margin-top:2px">
-                        <button  id="PromoA" class="button pcode-button ink" style="line-height:17px" ng-class="{'purplebutton': PromoAToggle}" ng-click="promo_type_toggle($event)">A</br></button>
-                        <button  id="PromoB" class="button pcode-button ink" style="line-height:17px" ng-class="{'purplebutton': PromoBToggle}" ng-click="promo_type_toggle($event)">B</br></button>
-                        <button  id="PromoC" class="button pcode-button ink" style="line-height:17px" ng-class="{'purplebutton': PromoCToggle}" ng-click="promo_type_toggle($event)">C</br></button>
-                        <button  id="PromoD" class="button pcode-button ink" style="line-height:17px" ng-class="{'purplebutton': PromoDToggle}" ng-click="promo_type_toggle($event)">D</br></button>
-                    </div> -->
-                    <div class="button-bar" style = "margin-top:5px">
+                    <!-- <div class="button-bar" style = "margin-top:5px">
                         <ion-radio ng-model="sale.promo_choice"  value='A'>A</ion-radio>
                         <ion-radio ng-model="sale.promo_choice"  value='B'>B</ion-radio>
                         <ion-radio ng-model="sale.promo_choice"  value='C'>C</ion-radio>
+                    </div> -->
+                    <div class="button-bar" style="margin-top:5px" >         
+                        <ion-radio ng-repeat="promo in promos"
+                           ng-value="promo.name"
+                           ng-model="sale.promo_choice"
+                           ng-click="promoChoice()">
+                              {{promo.name}}
+                        </ion-radio>
                     </div>
                     <span class="input-label">Discount(%)</span>
                     <div class="button-bar">
