@@ -156,30 +156,31 @@ angular.module('starter.controllers')
 
     function trig_brand(event){
         $scope.showItemList = true;
-
+        $scope.showBrandInput = true;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
+
 
         $scope.toggleBrand = true;
         $scope.toggleCode = false;
         $scope.toggleColor = false;
         $scope.toggleSize = false;
 
-        if($scope.showBrandInput){
-            $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
-        }else{
-            $scope.showBrandInput = true;
-            if(!$scope.showItemCodeInputs){
-                $scope.showItemCodeInputs = true;
-            }
-        }
+        // if($scope.showBrandInput){
+        //     $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
+        // }else{
+        //     $scope.showBrandInput = true;
+        //     if(!$scope.showItemCodeInputs){
+        //         $scope.showItemCodeInputs = true;
+        //     }
+        // }
     }
     $scope.trig_brand = trig_brand;
 
     function trig_code(event){
         $scope.showItemList = true;
-
+        $scope.showCodeInput = true;
         $scope.showBrandInput = false;
         $scope.showColorInput = false;
         $scope.showSizeInput = false;
@@ -189,18 +190,19 @@ angular.module('starter.controllers')
         $scope.toggleColor = false;
         $scope.toggleSize = false;
 
-        if($scope.showCodeInput){
-            $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
-        }else{
-            $scope.showCodeInput = true;
-            if(!$scope.showItemCodeInputs){
-                $scope.showItemCodeInputs = true;
-            }
-        }
+        // if($scope.showCodeInput){
+        //     $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
+        // }else{
+        //     $scope.showCodeInput = true;
+        //     if(!$scope.showItemCodeInputs){
+        //         $scope.showItemCodeInputs = true;
+        //     }
+        // }
     }
     $scope.trig_code = trig_code;
 
     function trig_color(event){
+        $scope.showColorInput = true;
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
         $scope.showSizeInput = false;
@@ -210,21 +212,21 @@ angular.module('starter.controllers')
         $scope.toggleColor = true;
         $scope.toggleSize = false;
 
-        if($scope.showColorInput){
-            $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
-        }else{
-            $scope.showColorInput = true;
-            if(!$scope.showItemCodeInputs){
-                $scope.showItemCodeInputs = true;
-            }
-        }
+        // if($scope.showColorInput){
+        //     $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
+        // }else{
+        //     $scope.showColorInput = true;
+        //     if(!$scope.showItemCodeInputs){
+        //         $scope.showItemCodeInputs = true;
+        //     }
+        // }
         $scope.showItemList = !$scope.showColorInput;
     }
     $scope.trig_color = trig_color;
 
     function trig_size(event){
         $scope.showItemList = true;
-
+        $scope.showSizeInput = true;
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
         $scope.showColorInput = false;
@@ -234,14 +236,14 @@ angular.module('starter.controllers')
         $scope.toggleColor = false;
         $scope.toggleSize = true;
 
-        if($scope.showSizeInput){
-            $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
-        }else{
-            $scope.showSizeInput = true;
-            if(!$scope.showItemCodeInputs){
-                $scope.showItemCodeInputs = true;
-            }
-        }
+        // if($scope.showSizeInput){
+        //     $scope.showItemCodeInputs = !$scope.showItemCodeInputs;
+        // }else{
+        //     $scope.showSizeInput = true;
+        //     if(!$scope.showItemCodeInputs){
+        //         $scope.showItemCodeInputs = true;
+        //     }
+        // }
     }
     $scope.trig_size = trig_size;
 
