@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$ionicPopup", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", function($rootScope, $scope, $state, $ionicPopup, $cordovaDatePicker, Roles, role, Auth, Users, user, Env, currentAuth) {
+.controller('MainController', ["$rootScope", "$scope", "$state", "$ionicHistory", "$ionicPopup", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", function($rootScope, $scope, $state, $ionicHistory, $ionicPopup, $cordovaDatePicker, Roles, role, Auth, Users, user, Env, currentAuth) {
     console.log("BRG Debug: MainController started");
 
     $scope.user_detail = user;
@@ -204,6 +204,17 @@ angular.module('starter.controllers')
         $ionicUser.set("token", data.token);
     });
     */
+
+    $scope.back = function(){
+      if($scope.current.view == 'store_list'){
+        $ionicHistory.nextViewOptions({
+          historyRoot: true
+        });
+        $state.go('main.sales_list');
+      }else{
+        $ionicHistory.goBack();
+      }
+    };
 
     $scope.logout = function(){
         console.log("logout started");
