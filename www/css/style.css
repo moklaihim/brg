@@ -280,11 +280,15 @@
   background-color: blue;
   color: white;
 }
+
 .bluebutton:hover{
   /*background-color: blue;*/
   color: white;
 }
-
+.redbutton{
+    background-color: #F44336;
+    color: white;
+}
 .addbutton{
   min-width: 78px;
   max-width: 78px;
