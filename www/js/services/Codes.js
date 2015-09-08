@@ -7,6 +7,8 @@ angular.module('starter.services')
     var colors_array = new Array();
     var sizes = new Object();
     var sizes_array = new Array();
+    var promos = new Object();
+    var promos_array = new Array();
 
     var is_online;
 
@@ -151,6 +153,18 @@ angular.module('starter.services')
             sizes = $firebaseObject(fSizes);
             sizes_array = $firebaseArray(fSizes);
 
+            var fPromos= new Firebase("https://fiery-heat-6039.firebaseio.com/codes/promos");
+            fPromos.on("value", function(snapshot) {
+                localStorage.setItem('brg_promos', JSON.stringify(snapshot.val()));
+            }, function (errorObject) {
+                console.log("BRG Debug: The read failed: " + errorObject.code);
+                if(errorObject.code === "PERMISSION_DENIED"){
+                  $state.go('login');
+                }
+            }); 
+            promos = $firebaseObject(fPromos);
+            promos_array = $firebaseArray(fPromos);
+
             //createInitialData();
             is_online = true;
         },
@@ -162,6 +176,8 @@ angular.module('starter.services')
             colors_array = Object.keys(colors).map(function(key) { return colors[key] });
             sizes = JSON.parse(localStorage.getItem('brg_sizes'));
             sizes_array = Object.keys(sizes).map(function(key) { return sizes[key] });
+            promos = JSON.parse(localStorage.getItem('brg_promos'));
+            promos_array = Object.keys(promos).map(function(key) { return promos[key] });
 
             is_online = false;
         },
@@ -191,6 +207,14 @@ angular.module('starter.services')
             return sizes_array;
         },
 
+        get_promos: function(){
+            return promos;
+        },
+
+        get_promos_as_array: function(){
+            return promos_array;
+        },
+
         remove: function(type, code){
             if(is_online){
                 if(type == "sizes"){
@@ -206,14 +230,17 @@ angular.module('starter.services')
                     });
             }
             else{
-                if(type == "brand"){
+                if(type == "brands"){
                     delete brands[code];
                 }
-                if(type == "color"){
-                    delete color[code];
+                if(type == "colors"){
+                    delete colors[code];
                 }
-                if(type == "size"){
-                    delete size[code];
+                if(type == "sizes"){
+                    delete sizes[code];
+                }
+                if(type == "promos"){
+                    delete promos[code];
                 }
 
             }
@@ -242,6 +269,14 @@ angular.module('starter.services')
                     sizes[code_id].name = code.name.toUpperCase();
                     sizes.$save();
                 }
+                if(type == "promos"){
+                    promos[code_id] = new Object();
+                    promos[code_id].id = code.name.toLowerCase();
+                    promos[code_id].name = code.name.toUpperCase();
+                    promos[code_id].promo_discount = code.promo_discount;
+                    promos[code_id].promo_sale_price = code.promo_sale_price;
+                    promos.$save();
+                }
             }else{
                 if(type == "brands"){
                     brands[code_id] = new Object();
@@ -258,6 +293,13 @@ angular.module('starter.services')
                     sizes[code] = new Object();
                     sizes[code_id].id = code.name.toLowerCase();
                     sizes[code_id].name = code.name.toUpperCase();
+                }
+                if(type == "promos"){
+                    promos[code] = new Object();
+                    promos[code_id].id = code.name.toLowerCase();
+                    promos[code_id].name = code.name.toUpperCase();
+                    promos[code_id].promo_discount = code.promo_discount;
+                    promos[code_id].promo_sale_price = code.promo_sale_price;
                 }
             }
         }

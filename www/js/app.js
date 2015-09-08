@@ -83,7 +83,25 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
 .filter('startsWith', function () {
     return function (input, filterLetters) {
         var output = [];
-        if(filterLetters == "ABC"){
+        if(filterLetters == "COM"){
+            console.log("item COM selected")
+            for (var i = 0; i < input.length; i++) {
+                var item = input[i];
+                if (/^BLK/i.test(item.name)) {
+                    console.log("item COM selected");
+                    output.push(item);
+                }
+                if (/^BRN/i.test(item.name)) {
+                    console.log("item COM selected");
+                    output.push(item);
+                }
+                if (/^TAN/i.test(item.name)) {
+                    console.log("item COM selected");
+                    output.push(item);
+                }
+            }
+        }
+        else if(filterLetters == "ABC"){
             for (var i = 0; i < input.length; i++) {
                 var item = input[i];
                 if (/a/i.test(item.name.substring(0, 1))) {

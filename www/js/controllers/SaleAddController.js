@@ -1,6 +1,9 @@
 angular.module('starter.controllers')
-.controller('SaleAddController', ["$scope", "$timeout", "$ionicGesture", "$ionicScrollDelegate", "$state", "$filter", "$ionicHistory", "$cordovaBarcodeScanner", "$ionicPlatform","Items", "Sales", function($scope, $timeout, $ionicGesture, $ionicScrollDelegate, $state, $filter, $ionicHistory, $cordovaBarcodeScanner, $ionicPlatform, Items, Sales) {
+.controller('SaleAddController', ["$scope", "$timeout", "$ionicGesture", "$ionicScrollDelegate", "$state", "$filter", "$ionicHistory", "$cordovaBarcodeScanner", "$ionicPlatform","Items", "Sales", "Codes", function($scope, $timeout, $ionicGesture, $ionicScrollDelegate, $state, $filter, $ionicHistory, $cordovaBarcodeScanner, $ionicPlatform, Items, Sales, Codes) {
     $scope.showPriceInput = false;
+    $scope.GiftToggle = false;
+    $scope.PromoToggle = false;
+    
     $scope.iframeHeight = window.innerHeight;
     $scope.checkStore();
     console.log("height = " + $scope.iframeHeight);
@@ -10,6 +13,8 @@ angular.module('starter.controllers')
         item_id: '',
         retail_price: '',
         sale_price: '',
+        promo_choice:'',
+        gift:'',
         qty: '',
         discount_rate:'',
         date: '',
@@ -17,6 +22,8 @@ angular.module('starter.controllers')
     }
 
     $scope.items = Items.get();
+    $scope.promos = Codes.get_promos();
+
 
     console.log("Loaded Current Item: " + $scope.current.item_id);
     if($scope.current.item_id){
@@ -31,14 +38,22 @@ angular.module('starter.controllers')
     }else if ($scope.current.item_key){
         $scope.showQtyField = false;
         $scope.headerLabel = "EDITING SALES : ";
-
         p_sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
         p_sales.then(function(sales_detail){
             $scope.sales = sales_detail;
             $scope.sale.item_id = $scope.sales[$scope.current.item_key].item;
             $scope.sale.sale_price = $scope.sales[$scope.current.item_key].price;
+            $scope.sale.promo_choice = $scope.sales[$scope.current.item_key].promo_choice;
+            $scope.sale.gift = $scope.sales[$scope.current.item_key].gift;
             $scope.sale.retail_price = $scope.items[$scope.sale.item_id].retail_price;
             $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
+            if($scope.sale.promo_choice != ''){
+                $scope.PromoToggle = true;
+            }
+            if($scope.sale.gift != ''){
+                $scope.GiftToggle = true;
+            }
+
             checkHaveValue();
         });
     }else if ($state.current.name === "main.sales_scanadd"){
@@ -59,11 +74,12 @@ angular.module('starter.controllers')
 
     $scope.ok = function(){
         if ($scope.current.item_key){
-            Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.sale.discount_rate, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, $scope.current.item_key, $scope.user_detail.email, $scope.sale.retail_price);
+            Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.sale.discount_rate, $scope.sale.promo_choice, $scope.sale.gift, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, $scope.current.item_key, $scope.user_detail.email, $scope.sale.retail_price);
         }else {
             for (var i = 0; i < $scope.sale.qty; i++) {
                 console.log("Sale_key FAIL in Sales.js")
-                Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.sale.discount_rate, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, false, $scope.user_detail.email, $scope.sale.retail_price);
+                Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.sale.discount_rate, $scope.sale.promo_choice, $scope.sale.gift, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, false, $scope.user_detail.email, $scope.sale.retail_price);
+                console.log("entry")
             }
         }
         $scope.current.item_id = "";
@@ -138,6 +154,7 @@ angular.module('starter.controllers')
             if($scope.sale.discount_rate == ''){
                 $scope.sale.discount_rate = 0;
             }
+            console.log("promo selected is " + $scope.sale.promo_choice);
         }else if($scope.saleToggle){
             //console.log("sale price back button clicked");
             //$scope.sale.sale_price = 2;
@@ -151,6 +168,51 @@ angular.module('starter.controllers')
             $scope.sale.qty = $scope.sale.qty.slice(0, -1);
         }
     }
+
+
+
+    function promoToggle(){
+        $scope.PromoToggle = !$scope.PromoToggle;
+        if ($scope.PromoToggle == true){
+            $scope.sale.promo_choice = "Disc";
+        }
+        else{
+            $scope.sale.promo_choice = '';
+            // $scope.sale.sale_price = $scope.items[$scope.current.item_id].retail_price;
+            $scope.sale.discount_rate = 0;
+            $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * $scope.sale.discount_rate / 100;
+        }
+        console.log("promo is " + $scope.sale.promo_choice);
+
+    }
+    $scope.promoToggle = promoToggle;
+
+    function promoChoice(){
+        if($scope.promos[$scope.sale.promo_choice].promo_sale_price){
+            $scope.sale.sale_price = $scope.promos[$scope.sale.promo_choice].promo_sale_price;
+            $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
+        }
+        if($scope.promos[$scope.sale.promo_choice].promo_discount){
+            $scope.sale.discount_rate = $scope.promos[$scope.sale.promo_choice].promo_discount;
+            $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * $scope.sale.discount_rate / 100;
+        }
+        
+        console.log("promo is " + $scope.promos[$scope.sale.promo_choice]);
+
+    }
+    $scope.promoChoice = promoChoice;
+
+    function giftToggle(){
+        $scope.GiftToggle = !$scope.GiftToggle;
+        if ($scope.GiftToggle == true) {
+            $scope.sale.gift = 'FG';
+        }
+        else{
+            $scope.sale.gift = '';
+        }
+
+    }
+    $scope.giftToggle = giftToggle;
 
     $scope.priceToggle= function(event){
         $scope.contentHeight = $scope.iframeHeight - 220;
@@ -170,7 +232,7 @@ angular.module('starter.controllers')
             $scope.showDiscountDel = true;
             $scope.showSaleDel = false;
             $scope.showQtyDel = false;
-            $scope.sale.discount_rate = 0;
+            // $scope.sale.discount_rate = 0;
             $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * $scope.sale.discount_rate / 100;
 
         } else if(event.target.id == 'sale'){
@@ -184,10 +246,13 @@ angular.module('starter.controllers')
             $scope.showSaleDel = true;
             $scope.showDiscountDel = false;
             $scope.showQtyDel = false;
-            $scope.sale.sale_price = '';
+            // $scope.sale.sale_price = '';
             $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
 
         } else if(event.target.id == 'qty'){
+            if($scope.sale.qty == ''){
+                $scope.sale.qty = 1;
+            }
             // $scope.showPriceInput = !$scope.showPriceInput;
             $scope.discountToggle = false;
             $scope.saleToggle = false;

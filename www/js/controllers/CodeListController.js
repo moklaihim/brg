@@ -6,12 +6,17 @@ angular.module('starter.controllers')
     $scope.brands = Codes.get_brands();
     $scope.colors = Codes.get_colors();
     $scope.sizes = Codes.get_sizes();
+    $scope.promos = Codes.get_promos();
+
 
     $scope.editCode = function(type, code_id) {
       $scope.code = {};
       if(code_id){
         $scope.code = $scope[type][code_id];
       }
+
+      $scope.code.promo_discount = "";
+      $scope.code.promo_sale_price = "";
 
       var template = {
         'brands': '<div class="list">' + 
@@ -31,6 +36,17 @@ angular.module('starter.controllers')
           '<label class="item item-input item-floating-label">' + 
           '<span class="input-label">Size</span><input type="text" placeholder="Size" ng-model="code.name">' + 
           '</label>' + 
+          '</div>',
+        'promos': '<div class="list">' +
+          '<label class="item item-input item-floating-label">' + 
+          '<span class="input-label">Promotion</span><input type="text" placeholder="Promotion Name" ng-model="code.name">' + 
+          '</label>' + 
+          '<label class="item item-input item-stacked-label">' +
+          '<span class="input-label">Discount</span><input type="number" placeholder="Discount" ng-model="code.promo_discount">' +
+          '</label>' +
+          '<label class="item item-input item-stacked-label">' +
+          '<span class="input-label">Sales Price</span><input type="number" placeholder="Sales Price" ng-model="code.promo_sale_price">' +
+          '</label>' +
           '</div>'
       };
 
@@ -61,13 +77,14 @@ angular.module('starter.controllers')
             type: 'button-flat',
             onTap: function(e) {
               if (!$scope.code.name) {
-                //don't allow the user to close unless he enters wifi password
+                //don't allow the user to close unless he enters code name
                 e.preventDefault();
               } else {
                 Codes.add(type, $scope.code);
                 $scope.brands = Codes.get_brands();
                 $scope.colors = Codes.get_colors();
                 $scope.sizes = Codes.get_sizes();
+                $scope.promos = Codes.get_promos();
                 return;
               }
             }
@@ -90,6 +107,7 @@ angular.module('starter.controllers')
           $scope.brands = Codes.get_brands();
           $scope.colors = Codes.get_colors();
           $scope.sizes = Codes.get_sizes();
+          $scope.promos = Codes.get_promos();
         }
       });
     };

@@ -16,21 +16,39 @@
     
     <!-- <ion-content padding="true" ng-class="{'ss480': ss480Detected, 'ss568': ss568Detected}"> -->
     <ion-content padding="true" style="height:{{contentHeight}}px" ng-class="{'has-subheader': !isOnline()}">
-        <div class="list">
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Item code</span>
-                <input type="text" disabled ng-model="sale.item_id">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Retail price</span>
-                <input type="text" disabled value="{{sale.retail_price | currency:'$'}}">
-            </label>
-                <span class="input-label">Discount(%)</span>
-                <div class="button-bar">
-                    <button id="discount_rate" ng-class="{'purplebutton': discountToggle, 'greenbutton': discountHaveValue}" class="button button-small pcode-button" ng-click="priceToggle($event)">{{sale.discount_rate}}%
-                    </button>
-                    <button style="padding:0px" ng-show="showDiscountDel" class="button button-small button-keypad icon ion-backspace button-keypad ng-hide" ng-click="btn_back($event)">
-                    </button>
+        
+            <div class="list">
+                <span class="input-label" style="float:left;width: 50%; margin-right: 5px;">Item code</span>
+                <span class="input-label" style="float:left;">Retail price</span>
+                <input type="text" style="float:left;width: 50%; margin-right: 5px;" disabled ng-model="sale.item_id">
+                <input type="text" style="float:left;" disabled value="{{sale.retail_price | currency:'$'}}">
+
+                <div class="button-bar" style="padding-top:5px; box-shadow:none;">
+                    <button class="button pcode-button ink" style="line-height:17px" ng-class="{'purplebutton': PromoToggle}" ng-click="promoToggle()">Promotion</br></button>
+                    <button class="button pcode-button ink" style="line-height:17px" ng-class="{'purplebutton': GiftToggle}" ng-click="giftToggle()">Gifts</br></button>
+                </div>
+
+                <div ng-show="PromoToggle">
+                    <!-- <div class="button-bar" style = "margin-top:5px">
+                        <ion-radio ng-model="sale.promo_choice"  value='A'>A</ion-radio>
+                        <ion-radio ng-model="sale.promo_choice"  value='B'>B</ion-radio>
+                        <ion-radio ng-model="sale.promo_choice"  value='C'>C</ion-radio>
+                    </div> -->
+                    <div class="button-bar" style="margin-top:5px" >         
+                        <ion-radio ng-repeat="promo in promos"
+                           ng-value="promo.id"
+                           ng-model="sale.promo_choice"
+                           ng-click="promoChoice()">
+                              {{promo.id}}
+                        </ion-radio>
+                    </div>
+                    <span class="input-label">Discount(%)</span>
+                    <div class="button-bar">
+                        <button id="discount_rate" ng-class="{'purplebutton': discountToggle, 'greenbutton': discountHaveValue}" class="button button-small pcode-button" ng-click="priceToggle($event)">{{sale.discount_rate}}%
+                        </button>
+                        <button style="padding:0px" ng-show="showDiscountDel" class="button button-small button-keypad icon ion-backspace button-keypad ng-hide" ng-click="btn_back($event)">
+                        </button>
+                    </div>
                 </div>
                 <span class="input-label">Sale price</span>
                 <div class="button-bar">
