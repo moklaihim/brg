@@ -39,7 +39,7 @@
                            ng-value="promo.id"
                            ng-model="sale.promo_choice"
                            ng-click="promoChoice()">
-                              {{promo.id}}
+                              {{promo.id | uppercase}}
                         </ion-radio>
                     </div>
                     <span class="input-label">Discount(%)</span>
