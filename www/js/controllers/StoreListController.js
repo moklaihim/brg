@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
 .controller('StoreListController', ["$ionicPlatform", "$rootScope", "$scope", "$timeout", "$state", "$ionicLoading", "$ionicHistory", "$cordovaGeolocation", "Stores", function($ionicPlatform, $rootScope, $scope, $timeout, $state, $ionicLoading, $ionicHistory, $cordovaGeolocation, Stores) {
     console.log("BRG Debug: StoreListController Started");
+    $scope.current.view = 'store_list';
 
     var stores_array;
     showStoreList();
