@@ -42,13 +42,29 @@ angular.module('starter.controllers')
           '<span class="input-label">Promotion</span><input type="text" placeholder="Promotion Name" ng-model="code.name">' + 
           '</label>' + 
           '<label class="item item-input item-stacked-label">' +
-          '<span class="input-label">Discount</span><input type="number" placeholder="Discount" ng-model="code.promo_discount">' +
+          '<span class="input-label">Discount</span><input type="number" placeholder="Discount" ng-model="code.promo_discount" ng-change="changesale()">' +
           '</label>' +
           '<label class="item item-input item-stacked-label">' +
-          '<span class="input-label">Sales Price</span><input type="number" placeholder="Sales Price" ng-model="code.promo_sale_price">' +
+          '<span class="input-label">Sales Price</span><input type="number" placeholder="Sales Price" ng-model="code.promo_sale_price" ng-change="changediscount()">' +
           '</label>' +
           '</div>'
       };
+
+    function changesale(){
+        if ($scope.code.promo_discount){
+          $scope.code.promo_sale_price = "";
+          console.log("sales had changed");
+        }
+    };
+    $scope.changesale = changesale;
+
+    function changediscount(){
+        if ($scope.code.promo_sale_price){
+          $scope.code.promo_discount = "";
+          console.log("discount had changed");
+        }
+    };
+    $scope.changediscount = changediscount;
 
       // An elaborate, custom popup
       var editCodePopup = $ionicPopup.show({
