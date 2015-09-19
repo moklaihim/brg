@@ -292,6 +292,7 @@ angular.module('starter.controllers')
         $scope.toggleColor = true;
         $scope.toggleCode = false;
         $scope.showItemList = false;
+        trig_color() //to set default color set button selection to COM - common
         itemId();
     }
 
