@@ -73,6 +73,10 @@ angular.module('starter.controllers')
     };
 
     $scope.ok = function(){
+
+        if (!$scope.sale.promo_choice && $scope.sale.discount_rate != 0){
+            $scope.sale.promo_choice = "Disc";
+        }
         if ($scope.current.item_key){
             Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.sale.discount_rate, $scope.sale.promo_choice, $scope.sale.gift, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, $scope.current.item_key, $scope.user_detail.email, $scope.sale.retail_price);
         }else {
@@ -173,17 +177,13 @@ angular.module('starter.controllers')
 
     function promoToggle(){
         $scope.PromoToggle = !$scope.PromoToggle;
-        if ($scope.PromoToggle == true){
-            $scope.sale.promo_choice = "Disc";
-        }
-        else{
-            $scope.sale.promo_choice = '';
-            // $scope.sale.sale_price = $scope.items[$scope.current.item_id].retail_price;
+        // $scope.sale.sale_price = $scope.items[$scope.current.item_id].retail_price;
+        if ($scope.PromoToggle == false){
             $scope.sale.discount_rate = 0;
+            $scope.sale.promo_choice = "";
             $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * $scope.sale.discount_rate / 100;
+            console.log("promo is " + $scope.sale.promo_choice);
         }
-        console.log("promo is " + $scope.sale.promo_choice);
-
     }
     $scope.promoToggle = promoToggle;
 
