@@ -77,17 +77,19 @@ angular.module('starter.controllers')
         emailbody += "Grand total: $" + $scope.grandtotal + "\n";
 
         if(Env.isMobile()){
-            tos = tos.split(",");
-            ccs = ccs.split(",");
             $cordovaEmailComposer.isAvailable().then(function() {
                 // is available
                 var email = {
-                    to: tos,
-                    cc: ccs,
                     subject: subject,
                     body: emailbody,
                     isHtml: false
                 };
+                if(tos && tos.length > 4){
+                  email.to = tos.split(",");
+                }
+                if(ccs && tos.length > 4){
+                  email.cc = ccs.split(",");
+                }
 
                 $cordovaEmailComposer.open(email).then(null, function () {
                     // user cancelled email
