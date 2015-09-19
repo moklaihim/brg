@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker'])
+angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker', 'ngIOS9UIWebViewPatch'])
 .run(["$ionicPlatform", "$rootScope", "$state", function($ionicPlatform, $rootScope, $state) {
     $ionicPlatform.ready(function() {
         console.log("BRG Debug: run start");
