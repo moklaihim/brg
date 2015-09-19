@@ -4,10 +4,10 @@
   "dependencies": {
     "064d27912b511a63caa3": "https://gist.github.com/064d27912b511a63caa3.git",
     "863acd413e3925bf282c": "https://gist.github.com/863acd413e3925bf282c.git",
-    "angular-datepicker": "unfedorg/angular-datepicker#ea7193b8e5d7ee3d5266cbc5538f41994d2714cc",
     "angularfire": "~1.1.2",
-    "ionic-material": "~0.4.2",
     "mdi": "~1.1.34",
+    "angular-datepicker": "unfedorg/angular-datepicker#ea7193b8e5d7ee3d5266cbc5538f41994d2714cc",
+    "ionic-material": "~0.4.2",
     "ngCordova": "~0.1.17-alpha",
     "robotodraft": "~1.1.0"
   },
