@@ -2,6 +2,7 @@
   "name": "BRG",
   "private": "true",
   "dependencies": {
+    "064d27912b511a63caa3": "https://gist.github.com/064d27912b511a63caa3.git",
     "863acd413e3925bf282c": "https://gist.github.com/863acd413e3925bf282c.git",
     "angularfire": "~1.1.2",
     "mdi": "~1.1.34",
