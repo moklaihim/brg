@@ -149,7 +149,7 @@ angular.module('starter.controllers')
 
     $scope.btn_back=function(){
         if($scope.discountToggle){
-            $scope.sale.discount_rate = $scope.sale.discount_rate.slice(0, -1);
+            $scope.sale.discount_rate = String($scope.sale.discount_rate).slice(0, -1);
             $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * $scope.sale.discount_rate / 100;
             if($scope.sale.discount_rate == ''){
                 $scope.sale.discount_rate = 0;
@@ -158,14 +158,14 @@ angular.module('starter.controllers')
         }else if($scope.saleToggle){
             //console.log("sale price back button clicked");
             //$scope.sale.sale_price = 2;
-            if($scope.sale.sale_price.slice(-1) == '.'){
-                $scope.sale.sale_price = $scope.sale.sale_price.slice(0, -2);
+            if(String($scope.sale.sale_price).slice(-1) == '.'){
+                $scope.sale.sale_price = String($scope.sale.sale_price).slice(0, -2);
             }else{
-                $scope.sale.sale_price = $scope.sale.sale_price.slice(0, -1);
+                $scope.sale.sale_price = String($scope.sale.sale_price).slice(0, -1);
             }
             $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
         }else if($scope.qtyToggle){
-            $scope.sale.qty = $scope.sale.qty.slice(0, -1);
+            $scope.sale.qty = String($scope.sale.qty).slice(0, -1);
         }
     }
 
@@ -187,7 +187,8 @@ angular.module('starter.controllers')
     }
     $scope.promoToggle = promoToggle;
 
-    function promoChoice(){
+    function promoChoice(promo_id){
+        $scope.sale.promo_choice = promo_id;
         if($scope.promos[$scope.sale.promo_choice].promo_sale_price){
             $scope.sale.sale_price = $scope.promos[$scope.sale.promo_choice].promo_sale_price;
             $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
