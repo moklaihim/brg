@@ -29,19 +29,14 @@
                 </div>
 
                 <div ng-show="PromoToggle">
-                    <!-- <div class="button-bar" style = "margin-top:5px">
-                        <ion-radio ng-model="sale.promo_choice"  value='A'>A</ion-radio>
-                        <ion-radio ng-model="sale.promo_choice"  value='B'>B</ion-radio>
-                        <ion-radio ng-model="sale.promo_choice"  value='C'>C</ion-radio>
-                    </div> -->
                     <div class="button-bar" style="margin-top:5px" >         
-                        <ion-radio ng-repeat="promo in promos"
+                        <ion-radio-fix ng-repeat="promo in promos"
                            ng-value="promo.id"
                            ng-model="sale.promo_choice"
                            ng-click="promoChoice()"
                            style = "text-align:center">
                               {{promo.id | uppercase}}
-                        </ion-radio>
+                        </ion-radio-fix>
                     </div>
                     <span class="input-label">Discount(%)</span>
                     <div class="button-bar">
