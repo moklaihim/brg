@@ -187,7 +187,8 @@ angular.module('starter.controllers')
     }
     $scope.promoToggle = promoToggle;
 
-    function promoChoice(){
+    function promoChoice(promo_id){
+        $scope.sale.promo_choice = promo_id;
         if($scope.promos[$scope.sale.promo_choice].promo_sale_price){
             $scope.sale.sale_price = $scope.promos[$scope.sale.promo_choice].promo_sale_price;
             $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
