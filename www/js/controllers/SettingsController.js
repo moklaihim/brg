@@ -45,9 +45,9 @@ angular.module('starter.controllers')
     };
 
     if(Env.isMobile()){
-        $cordovaAppVersion.getAppVersion(function(version) {
-            $scope.current.app_version = version;
-        });
+        //$cordovaAppVersion.getAppVersion(function(version) {
+        //    $scope.current.app_version = version;
+        //});
         checkForUpdates();
     }
 
