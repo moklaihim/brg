@@ -5,7 +5,7 @@
     "ngCordova": "~0.1.17-alpha",
     "angularfire": "~1.1.2",
     "mdi": "~1.1.34",
-    "angular-datepicker": "unfedorg/angular-datepicker#3d6954a",
+    "angular-datepicker": "unfedorg/angular-datepicker#ea7193b8e5d7ee3d5266cbc5538f41994d2714cc",
     "ionic-material": "~0.4.2",
     "robotodraft": "~1.1.0"
   },
