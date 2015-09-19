@@ -299,7 +299,10 @@
   max-width: 78px;
   padding: 0px;
 }
-
+.disabled-class{
+    background-color: grey;
+    color: black;
+}
 .row{
     height: 60px;
     /*line-height: 30px;*/
@@ -405,4 +408,5 @@
     background-color: #FFD740;
     color: #000;
 }
+
 
