@@ -50,7 +50,7 @@
         <ion-content>
           <ion-list class="border-list">
             <ion-item ng-repeat="promo in promos">
-              <b>{{promo.name}}</b>
+              <span>{{promo.name}} </br> {{promo.desc}}</span>
               <span class="item-note">
                   Discount: {{promo.promo_discount}}% </br> Sale Price: ${{promo.promo_sale_price}} 
               </span>
