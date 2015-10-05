@@ -223,7 +223,8 @@ angular.module('starter.controllers')
         $timeout(function() {
             $ionicScrollDelegate.scrollTo(0,160,true);
         },500);
-
+        $scope.sale.promo_choice = "";
+        $scope.sale.promo_desc = "";
         $scope.showPriceInput = true;
         if(event.target.id == 'discount_rate'){
             // $scope.showPriceInput = !$scope.showPriceInput;
