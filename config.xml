@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget android-versionCode="172" id="com.ionicframework.brg247533" ios-CFBundleVersion="172" version="1.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="177" id="com.ionicframework.brg247533" ios-CFBundleVersion="177" version="1.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>BRG</name>
   <description>
         Sales reporter for BRG
