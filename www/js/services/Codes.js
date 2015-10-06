@@ -271,6 +271,7 @@ angular.module('starter.services')
                 }
                 if(type == "promos"){
                     promos[code_id] = new Object();
+                    promos[code_id].desc = code.desc.toUpperCase();
                     promos[code_id].id = code.name.toLowerCase();
                     promos[code_id].name = code.name.toUpperCase();
                     promos[code_id].promo_discount = code.promo_discount;
@@ -296,6 +297,7 @@ angular.module('starter.services')
                 }
                 if(type == "promos"){
                     promos[code] = new Object();
+                    promos[code_id].desc = code.desc.toUpperCase();
                     promos[code_id].id = code.name.toLowerCase();
                     promos[code_id].name = code.name.toUpperCase();
                     promos[code_id].promo_discount = code.promo_discount;

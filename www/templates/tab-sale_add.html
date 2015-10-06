@@ -33,6 +33,7 @@
                         <button ng-repeat="promo in promos" class="button pcode-button ink" style="line-height:17px" ng-class="{'purplebutton': sale.promo_choice == promo.id}" ng-click="promoChoice(promo.id)">{{promo.id | uppercase}}</button>
                     </div>
                     <span class="input-label">Discount(%)</span>
+                    <font color="red">{{sale.promo_desc}}</font>
                     <div class="button-bar">
                         <button id="discount_rate" ng-class="{'purplebutton': discountToggle, 'greenbutton': discountHaveValue}" class="button button-small pcode-button" ng-click="priceToggle($event)">{{sale.discount_rate}}%
                         </button>

@@ -14,6 +14,7 @@ angular.module('starter.controllers')
         retail_price: '',
         sale_price: '',
         promo_choice:'',
+        promo_desc:'',
         gift:'',
         qty: '',
         discount_rate:'',
@@ -180,6 +181,7 @@ angular.module('starter.controllers')
         // $scope.sale.sale_price = $scope.items[$scope.current.item_id].retail_price;
         if ($scope.PromoToggle == false){
             $scope.sale.discount_rate = 0;
+            $scope.sale.promo_desc = "";
             $scope.sale.promo_choice = "";
             $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * $scope.sale.discount_rate / 100;
             console.log("promo is " + $scope.sale.promo_choice);
@@ -189,6 +191,7 @@ angular.module('starter.controllers')
 
     function promoChoice(promo_id){
         $scope.sale.promo_choice = promo_id;
+        $scope.sale.promo_desc = $scope.promos[$scope.sale.promo_choice].desc;
         if($scope.promos[$scope.sale.promo_choice].promo_sale_price){
             $scope.sale.sale_price = $scope.promos[$scope.sale.promo_choice].promo_sale_price;
             $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
@@ -220,7 +223,8 @@ angular.module('starter.controllers')
         $timeout(function() {
             $ionicScrollDelegate.scrollTo(0,160,true);
         },500);
-
+        $scope.sale.promo_choice = "";
+        $scope.sale.promo_desc = "";
         $scope.showPriceInput = true;
         if(event.target.id == 'discount_rate'){
             // $scope.showPriceInput = !$scope.showPriceInput;

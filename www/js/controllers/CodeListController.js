@@ -39,7 +39,10 @@ angular.module('starter.controllers')
           '</div>',
         'promos': '<div class="list">' +
           '<label class="item item-input item-floating-label">' + 
-          '<span class="input-label">Promotion</span><input type="text" placeholder="Promotion Name" ng-model="code.name">' + 
+          '<span class="input-label">Promotion Code</span><input type="text" placeholder="Promotion Code" ng-model="code.name">' + 
+          '</label>' + 
+          '<label class="item item-input item-floating-label">' + 
+          '<span class="input-label">Promotion Description</span><input type="text" placeholder="Promotion Description" ng-model="code.desc">' + 
           '</label>' + 
           '<label class="item item-input item-stacked-label">' +
           '<span class="input-label">Discount</span><input type="number" placeholder="Discount" ng-model="code.promo_discount" ng-change="changesale()">' +

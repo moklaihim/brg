@@ -408,5 +408,14 @@
     background-color: #FFD740;
     color: #000;
 }
+.bar .button.button-floating.disabled, .bar .button.button-floating:disabled, .bar .button.button-large.disabled, .bar .button.button-large:disabled, .bar .button.button:disabled, .bar .button.disabled, .bar .button.disabled.button-large, .button.button-floating.disabled, .button.button-floating:disabled, .button.button-large.disabled, .button.button-large:disabled, .button.button:disabled, .button.disabled, .button.disabled.button-large {
+    background-color: #f8f8f8;
+    color:black;
+}
 
+.button.disabled, .button[disabled]{
+    opacity: 1;
+    cursor: default !important;
+    pointer-events: none;
+}
 
