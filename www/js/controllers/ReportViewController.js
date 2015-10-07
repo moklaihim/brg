@@ -13,11 +13,21 @@ angular.module('starter.controllers')
 
         $scope.sales4stores = new Object();
         $scope.total4stores = new Object();
+        $scope.qty4stores = new Object();
+        $scope.brand_total4stores = new Object();
+        $scope.brand_qty4stores = new Object();
+        $scope.brand_grandtotal = new Object();
+        $scope.brand_grandqty = new Object();
         $scope.grandtotal = 0;
+        $scope.grandqty = 0;
 
         console.log($scope.stores);
         angular.forEach($scope.stores, function(value, key) {
             $scope.total4stores[key] = 0;
+            $scope.qty4stores[key] = 0;
+            $scope.brand_total4stores[key] = new Object();
+            $scope.brand_qty4stores[key] = new Object();
+            //$scope.brand_total4stores[key];
             var p_sales = Sales.get(key, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
             p_sales.then(function(sales_detail){
                 $scope.sales4stores[key] = sales_detail;
@@ -30,8 +40,8 @@ angular.module('starter.controllers')
 
                         //take brand name
                         var brand = sale.item.slice(0, sale.item.search(/\d/));
-                        console.log(brands[brand.toLowerCase()].target);
-                        if(brands[brand.toLowerCase()].target == $stateParams.reportType){
+                        //console.log(brands[brand.toLowerCase()].target);
+                        if((brand.toLowerCase() in brands) && brands[brand.toLowerCase()].target == $stateParams.reportType){
                           count_target = true;
                         }
 
@@ -39,17 +49,33 @@ angular.module('starter.controllers')
                             //I think below 2 lines can be adjusted and deleted. Tom
                             //$scope.sales4stores[key][i].retail_price = items[sale.item].retail_price;
                             //$scope.sales4stores[key][i].discount_rate = sale.discount;
+                            if (!(brand.toLowerCase() in $scope.brand_grandtotal)){
+                              $scope.brand_grandtotal[brand.toLowerCase()] = 0;
+                              $scope.brand_grandqty[brand.toLowerCase()] = 0;
+                            }
+                            if (!(brand.toLowerCase() in $scope.brand_total4stores[key])){
+                              $scope.brand_total4stores[key][brand.toLowerCase()] = 0;
+                              $scope.brand_qty4stores[key][brand.toLowerCase()] = 0;
+                            }
+                            $scope.brand_total4stores[key][brand.toLowerCase()] += sale.price * 1;
+                            $scope.brand_qty4stores[key][brand.toLowerCase()]++;
                             $scope.total4stores[key] += sale.price * 1;
+                            $scope.qty4stores[key]++;
+                            $scope.brand_grandtotal[brand.toLowerCase()] += sale.price * 1;
+                            $scope.brand_grandqty[brand.toLowerCase()]++;
                             $scope.grandtotal += sale.price * 1;
+                            $scope.grandqty++;
+                            $scope.brand_total4stores[key][brand.toLowerCase()] = Math.floor($scope.brand_total4stores[key][brand.toLowerCase()] * 100 + 0.5)/100;
+                            $scope.brand_grandtotal[brand.toLowerCase()] = Math.floor($scope.brand_grandtotal[brand.toLowerCase()] * 100 + 0.5)/100;
                         }else{
                             delete $scope.sales4stores[key][i];
                         }
                         console.log($scope.total4stores[key]);
                         console.log($scope.grandtotal);
-                        $scope.total4stores[key] = Math.floor($scope.total4stores[key] * 100)/100;
+                        $scope.total4stores[key] = Math.floor($scope.total4stores[key] * 100 + 0.5)/100;
                     }
                 });
-                $scope.grandtotal = Math.floor($scope.grandtotal * 100)/100;
+                $scope.grandtotal = Math.floor($scope.grandtotal * 100 + 0.5)/100;
             });
         });
     }
@@ -67,14 +93,19 @@ angular.module('starter.controllers')
             emailbody += "\n";
             angular.forEach($scope.sales4stores[key], function(sale, i) {
                 if(sale.item != "CLOSED"){
-                    emailbody += sale.item  + " $" + sale.retail_price + " * " + sale.discount_rate + "% = $" + sale.price + "\n";
+                    emailbody += sale.item  + " $" + sale.retail_price + " * " + sale.discount_rate + "% = $" + sale.price + " | " + sale.promo_choice + " | " + sale.gift + "\n";
                 }
             });
+            angular.forEach($scope.brand_total4stores[key], function(brand_total, brand_id){
+              emailbody += brand_id.toUpperCase() + " Total: $" + brand_total + " Qty: " + $scope.brand_qty4stores[key][brand_id] + "pcs\n";
+            });
+            emailbody += "Total: $" + $scope.total4stores[key] + " Qty: " + $scope.qty4stores[key] + "pcs\n\n";
             emailbody += "------------------------\n";
-            emailbody += "Total: $" + $scope.total4stores[key] + "\n\n";
         });
-        emailbody += "------------------------\n";
-        emailbody += "Grand total: $" + $scope.grandtotal + "\n";
+        angular.forEach($scope.brand_grandtotal, function(brand_grandtotal, brand_id){
+          emailbody += brand_id.toUpperCase() + " Grand Total: $" + brand_grandtotal + " Qty: " + $scope.brand_grandqty[brand_id] + "pcs\n";
+        });
+        emailbody += "Grand total: $" + $scope.grandtotal + " Qty: " + $scope.grandqty + "pcs\n";
 
         if(Env.isMobile()){
             $cordovaEmailComposer.isAvailable().then(function() {
