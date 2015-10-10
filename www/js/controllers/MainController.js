@@ -97,12 +97,12 @@ angular.module('starter.controllers')
             $scope.current.today_year = year;
             $scope.current.today_month = month;
             $scope.current.today_day = day;
-            $scope.current.today_date = year + "/" + month + "/" + day;
+            $scope.current.today_date = day + "/" + month + "/" + year;
         }
         $scope.current.set_year = year;
         $scope.current.set_month = month;
         $scope.current.set_day = day;
-        $scope.current.set_date = year + "/" + month + "/" + day;
+        $scope.current.set_date = day + "/" + month + "/" + year;
         console.log("Date changed: " + $scope.current.today_date + " " + $scope.current.set_date);
         $rootScope.$broadcast('changedDate');
     }
