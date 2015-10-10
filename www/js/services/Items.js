@@ -5,6 +5,17 @@ angular.module('starter.services')
     var items_array = new Array();
     var is_online;
 
+    function createInitialData(){
+            items['R89012-WHT-39'] = {id:'R89012-WHT-39', retail_price:'19'};
+            items['R89012-WHT-40'] = {id:'R89012-WHT-40', retail_price:'19'};
+            items['R89012-WHT-41'] = {id:'R89012-WHT-41', retail_price:'19'};
+            items['R89012-WHT-42'] = {id:'R89012-WHT-42', retail_price:'19'};
+            items['R89012-WHT-43'] = {id:'R89012-WHT-43', retail_price:'19'};
+            items['R89012-WHT-44'] = {id:'R89012-WHT-44', retail_price:'19'};
+            items.$save();
+
+    };
+
     return {
         online: function(){
             var fItems = new Firebase("https://fiery-heat-6039.firebaseio.com/items");
@@ -20,6 +31,8 @@ angular.module('starter.services')
             items = $firebaseObject(fItems);
             items_array = $firebaseArray(fItems);
             is_online = true;
+            //createInitialData();
+            
         },
 
         offline: function(){
@@ -78,4 +91,5 @@ angular.module('starter.services')
             }
         }
     }
+
 }]);
