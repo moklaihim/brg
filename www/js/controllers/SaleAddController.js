@@ -219,12 +219,15 @@ angular.module('starter.controllers')
     $scope.giftToggle = giftToggle;
 
     $scope.priceToggle= function(event){
+
         $scope.contentHeight = $scope.iframeHeight - 220;
         $timeout(function() {
             $ionicScrollDelegate.scrollTo(0,160,true);
         },500);
-        $scope.sale.promo_choice = "";
-        $scope.sale.promo_desc = "";
+        if($scope.sale.promo_choice != "z"){
+            $scope.sale.promo_choice = "";
+            $scope.sale.promo_desc = "";
+        }
         $scope.showPriceInput = true;
         if(event.target.id == 'discount_rate'){
             // $scope.showPriceInput = !$scope.showPriceInput;
@@ -237,7 +240,7 @@ angular.module('starter.controllers')
             $scope.showDiscountDel = true;
             $scope.showSaleDel = false;
             $scope.showQtyDel = false;
-            // $scope.sale.discount_rate = 0;
+            $scope.sale.discount_rate = 0;
             $scope.sale.sale_price = $scope.sale.retail_price - $scope.sale.retail_price * $scope.sale.discount_rate / 100;
 
         } else if(event.target.id == 'sale'){
@@ -251,7 +254,7 @@ angular.module('starter.controllers')
             $scope.showSaleDel = true;
             $scope.showDiscountDel = false;
             $scope.showQtyDel = false;
-            // $scope.sale.sale_price = '';
+            $scope.sale.sale_price = '';
             $scope.sale.discount_rate = Math.round(100 -($scope.sale.sale_price / $scope.sale.retail_price * 100));
 
         } else if(event.target.id == 'qty'){

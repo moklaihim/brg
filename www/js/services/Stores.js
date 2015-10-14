@@ -4,7 +4,6 @@ angular.module('starter.services')
     var stores_array;
     var is_online;
 
-
     function createInitialData(){
         stores['bhg-bugis-ladies'] = {id: 'bhg-bugis-ladies', name: 'BHG - BUGIS - LADIES', lat: 1.300001, lng: 103.855588, target: 'ladies'};
         stores['bhg-bugis-men'] = {id: 'bhg-bugis-men', name: 'BHG - BUGIS - MEN', lat: 1.300001, lng: 103.855588, target: 'men'};
@@ -55,7 +54,7 @@ angular.module('starter.services')
 
             stores = $firebaseObject(fStores);
             stores_array = $firebaseArray(fStores).$loaded();
-            createInitialData();
+            //createInitialData();
         },
         offline: function(){
             stores = JSON.parse(localStorage.getItem('brg_stores'));
