@@ -23,6 +23,7 @@ angular.module('starter.controllers')
 
         console.log($scope.stores);
         angular.forEach($scope.stores, function(value, key) {
+          if(value.target == "both" || value.target == $stateParams.reportType){
             $scope.total4stores[key] = 0;
             $scope.qty4stores[key] = 0;
             $scope.brand_total4stores[key] = new Object();
@@ -77,6 +78,7 @@ angular.module('starter.controllers')
                 });
                 $scope.grandtotal = Math.floor($scope.grandtotal * 100 + 0.5)/100;
             });
+          }
         });
     }
 
@@ -86,7 +88,10 @@ angular.module('starter.controllers')
         var subject = $scope.report_type.toUpperCase() + ' Daily report for ' + $scope.current.set_date;
         var emailbody = $scope.report_type.toUpperCase() + ' Daily report for ' + $scope.current.set_date + "\n\n";
         angular.forEach($scope.stores, function(value, key) {
+
+          if(value.target == "both" || value.target == $stateParams.reportType){
             emailbody += $scope.stores[key].name + " " + $scope.current.set_date;
+
             if(!$scope.sales4stores[key].CLOSED){
                 emailbody += " ( SALES NOT CLOSED )";
             }
@@ -101,6 +106,7 @@ angular.module('starter.controllers')
             });
             emailbody += "Total: $" + $scope.total4stores[key] + " Qty: " + $scope.qty4stores[key] + "pcs\n\n";
             emailbody += "------------------------\n";
+          }
         });
         angular.forEach($scope.brand_grandtotal, function(brand_grandtotal, brand_id){
           emailbody += brand_id.toUpperCase() + " Grand Total: $" + brand_grandtotal + " Qty: " + $scope.brand_grandqty[brand_id] + "pcs\n";
