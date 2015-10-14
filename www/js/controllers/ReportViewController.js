@@ -86,7 +86,7 @@ angular.module('starter.controllers')
         var subject = $scope.report_type.toUpperCase() + ' Daily report for ' + $scope.current.set_date;
         var emailbody = $scope.report_type.toUpperCase() + ' Daily report for ' + $scope.current.set_date + "\n\n";
         angular.forEach($scope.stores, function(value, key) {
-            emailbody += $scope.stores[key].name;
+            emailbody += $scope.stores[key].name + " " + $scope.current.set_date;
             if(!$scope.sales4stores[key].CLOSED){
                 emailbody += " ( SALES NOT CLOSED )";
             }

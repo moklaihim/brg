@@ -15,7 +15,7 @@
             <div class="item item-body">
                 <p>
                     <div ng-repeat="(key, sales) in sales4stores">
-                        <span ng-class="{report_sale_close: !sales.CLOSED}"><b>{{stores[key].name}}</b></span> <span ng-class="{report_sale_close: !sales.CLOSED}" ng-show="!sales.CLOSED">( SALES NOT CLOSED )</span><br>
+                        <span ng-class="{report_sale_close: !sales.CLOSED}"><b>{{stores[key].name}} {{current.set_day}}/{{current.set_month}}/{{current.set_year}}</b></span> <span ng-class="{report_sale_close: !sales.CLOSED}" ng-show="!sales.CLOSED">( SALES NOT CLOSED )</span><br>
                         <div ng-repeat="sale in sales">
                             <!-- <span ng-show= "noSales">No Sales</span> -->
                             <span ng-show="sale.item != 'CLOSED'">{{sale.item}} ${{sale.retail_price}} * {{sale.discount_rate}}% = ${{sale.price}} | {{sale.promo_choice}} | {{sale.gift}}</i></span><br>
