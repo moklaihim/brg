@@ -249,6 +249,9 @@ angular.module('starter.services')
         add: function(type, code){
 
             var code_id = code.name.toLowerCase();
+            if(code_id.indexOf(".") > -1){
+                code_id = code_id.replace(".","_");
+            }
             if(is_online){
                 if(type == "brands"){
                     brands[code_id] = new Object();
