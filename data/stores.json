@@ -1,0 +1,184 @@
+{
+"stores": {
+   "bhg-bugis-ladies": {
+      "id":"bhg-bugis-ladies",
+      "lat":1.300001,
+      "lng":103.855588,
+      "name":"BHG - BUGIS - LADIES"
+   },
+   "bhg-bugis-men": {
+      "id":"bhg-bugis-men",
+      "lat":1.300001,
+      "lng":103.855588,
+      "name":"BHG - BUGIS - MEN"
+   },
+   "events": {
+      "id":"events",
+      "lat":0,
+      "lng":0,
+      "name":"EVENTS"
+   },
+   "isetan_katong-men": {
+      "id":"isetan_katong-men",
+      "lat":1.301547,
+      "lng":103.904688,
+      "name":"ISETAN KATONG - MEN"
+   },
+   "isetan_scotts-men": {
+      "id":"isetan_scotts-men",
+      "lat":1.305732,
+      "lng":103.8315,
+      "name":"ISETAN SCOTTS - MEN"
+   },
+   "isetan_seragoon-men": {
+      "id":"isetan_seragoon-men",
+      "lat":1.350708,
+      "lng":103.87224,
+      "name":"ISETAN SERAGOON - MEN"
+   },
+   "isetan_tampines-men": {
+      "id":"isetan_tampines-men",
+      "lat":1.352492,
+      "lng":103.944797,
+      "name":"ISETAN TAMPINES - MEN"
+   },
+   "isetan_westgate-men": {
+      "id":"isetan_westgate-men",
+      "lat":1.334033,
+      "lng":103.742837,
+      "name":"ISETAN WESTGATE - MEN"
+   },
+   "metro_centrepoint-men": {
+      "id":"metro_centrepoint-men",
+      "lat":1.302022,
+      "lng":103.839698,
+      "name":"METRO CENTREPOINT - MEN"
+   },
+   "metro_expo-men": {
+      "id":"metro_expo-men",
+      "lat":0,
+      "lng":0,
+      "name":"METRO EXPO - MEN"
+   },
+   "metro_paragon-men": {
+      "id":"metro_paragon-men",
+      "lat":1.303753,
+      "lng":103.835716,
+      "name":"METRO PARAGON - MEN"
+   },
+   "metro_woodlands-men": {
+      "id":"metro_woodlands-men",
+      "lat":1.43582,
+      "lng":103.786139,
+      "name":"METRO WOODLANDS - MEN"
+   },
+   "plaza_singapura_event": {
+      "id":"plaza_singapura_event",
+      "lat":1.300481,
+      "lng":103.844986,
+      "name":"PLAZA SINGAPURA EVENT"
+   },
+   "robinson_expo-ladies": {
+      "id":"robinson_expo-ladies",
+      "lat":0,
+      "lng":0,
+      "name":"ROBINSON EXPO - LADIES"
+   },
+   "robinson_expo-men": {
+      "id":"robinson_expo-men",
+      "lat":0,
+      "lng":0,
+      "name":"ROBINSON EXPO - MEN"
+   },
+   "robinson_jem-ladies": {
+      "id":"robinson_jem-ladies",
+      "lat":1.333381,
+      "lng":103.743388,
+      "name":"ROBINSON JEM - LADIES"
+   },
+   "robinson_jem-men": {
+      "id":"robinson_jem-men",
+      "lat":1.333381,
+      "lng":103.743388,
+      "name":"ROBINSON JEM - MEN"
+   },
+   "robinson_orchard-ladies": {
+      "id":"robinson_orchard-ladies",
+      "lat":1.302399,
+      "lng":103.837175,
+      "name":"ROBINSON ORCHARD - LADIES"
+   },
+   "robinson_orchard-men": {
+      "id":"robinson_orchard-men",
+      "lat":1.302399,
+      "lng":103.837175,
+      "name":"ROBINSON ORCHARD - MEN"
+   },
+   "robinson_rc-ladies": {
+      "id":"robinson_rc-ladies",
+      "lat":1.293775,
+      "lng":103.852741,
+      "name":"ROBINSON RC - LADIES"
+   },
+   "robinson_rc-men": {
+      "id":"robinson_rc-men",
+      "lat":1.293775,
+      "lng":103.852741,
+      "name":"ROBINSON RC - MEN"
+   },
+   "takashimaya-event-ladies": {
+      "id":"takashimaya-event-ladies",
+      "lat":1.302479,
+      "lng":103.834615,
+      "name":"TAKASHIMAYA - EVENT - LADIES"
+   },
+   "takashimaya-event-men": {
+      "id":"takashimaya-event-men",
+      "lat":1.302479,
+      "lng":103.834615,
+      "name":"TAKASHIMAYA - EVENT - MEN"
+   },
+   "takashimaya-ladies": {
+      "id":"takashimaya-ladies",
+      "lat":1.302479,
+      "lng":103.834615,
+      "name":"TAKASHIMAYA - LADIES"
+   },
+   "takashimaya-men": {
+      "id":"takashimaya-men",
+      "lat":1.302479,
+      "lng":103.834615,
+      "name":"TAKASHIMAYA - MEN"
+   },
+   "tangs_orchard-men": {
+      "id":"tangs_orchard-men",
+      "lat":1.304975,
+      "lng":103.832957,
+      "name":"TANGS ORCHARD - MEN"
+   },
+   "tangs_vivo_atrium-ladies": {
+      "id":"tangs_vivo_atrium-ladies",
+      "lat":1.264797,
+      "lng":103.822047,
+      "name":"TANGS VIVO ATRIUM - LADIES"
+   },
+   "tangs_vivo_atrium-men": {
+      "id":"tangs_vivo_atrium-men",
+      "lat":1.264797,
+      "lng":103.822047,
+      "name":"TANGS VIVO ATRIUM - MEN"
+   },
+   "tangs_vivo_city-ladies": {
+      "id":"tangs_vivo_city-ladies",
+      "lat":1.264797,
+      "lng":103.822047,
+      "name":"TANGS VIVO CITY - LADIES"
+   },
+   "tangs_vivo_city-men": {
+      "id":"tangs_vivo_city-men",
+      "lat":1.264797,
+      "lng":103.822047,
+      "name":"TANGS VIVO CITY - MEN"
+   } 
+}
+}

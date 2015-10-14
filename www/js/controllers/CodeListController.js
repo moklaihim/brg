@@ -24,7 +24,7 @@ angular.module('starter.controllers')
           '<span class="input-label">Brand initial</span><input type="text" placeholder="Brand initial" ng-model="code.name">' + 
           '</label>' + 
           '<label class="item item-input item-stacked-label">' +
-          '<span class="input-label">Target</span><select ng-model="code.target"><option value="mens" ng-selected=\'code.target == "mens"\' >Mens</option><option value="ladies" ng-selected=\'code.target == "ladies"\' >Ladies</option></select>' +
+          '<span class="input-label">Target</span><select ng-model="code.target"><option value="men" ng-selected=\'code.target == "men"\' >Men</option><option value="ladies" ng-selected=\'code.target == "ladies"\' >Ladies</option></select>' +
           '</label>' +
           '</div>',
         'colors': '<div class="list">' +
@@ -79,7 +79,7 @@ angular.module('starter.controllers')
           '<span class="input-label">Brand initial</span><input type="text" placeholder="Brand initial" ng-model="code.name">' + 
           '</label>' + 
           '<label class="item item-input item-stacked-label">' +
-          '<span class="input-label">Target</span><select ng-model="code.target"><option value="mens" ng-selected=\'code.target == "mens"\' >Mens</option><option value="ladies" ng-selected=\'code.target == "ladies"\' >Ladies</option></select>' +
+          '<span class="input-label">Target</span><select ng-model="code.target"><option value="men" ng-selected=\'code.target == "men"\' >Men</option><option value="ladies" ng-selected=\'code.target == "ladies"\' >Ladies</option></select>' +
           '</label>' +
           '</div>',
 */
