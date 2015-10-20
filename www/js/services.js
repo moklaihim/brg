@@ -7,4 +7,4 @@ document.write('<script type="text/javascript" src="js/services/Codes.js"></scri
 document.write('<script type="text/javascript" src="js/services/Sales.js"></script>');
 document.write('<script type="text/javascript" src="js/services/Items.js"></script>');
 document.write('<script type="text/javascript" src="js/services/Stores.js"></script>');
-document.write('<script type="text/javascript" src="js/services/ZBar.js"></script>');
+document.write('<script type="text/javascript" src="js/services/GA.js"></script>');

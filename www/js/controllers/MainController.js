@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$ionicHistory", "$ionicPopup", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", function($rootScope, $scope, $state, $ionicHistory, $ionicPopup, $cordovaDatePicker, Roles, role, Auth, Users, user, Env, currentAuth) {
+.controller('MainController', ["$rootScope", "$scope", "$state", "$ionicHistory", "$ionicPopup", "$cordovaDatePicker", "$cordovaGoogleAnalytics", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", function($rootScope, $scope, $state, $ionicHistory, $ionicPopup, $cordovaDatePicker, $cordovaGoogleAnalytics, Roles, role, Auth, Users, user, Env, currentAuth) {
     console.log("BRG Debug: MainController started");
+    $cordovaGoogleAnalytics.trackView('MainController');
 
     $scope.user_detail = user;
     if(!$scope.user_detail.active){

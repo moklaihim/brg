@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('LoginController', ["$scope", "$state", "$ionicPopup", "$ionicHistory", "Auth", function($scope, $state, $ionicPopup, $ionicHistory, Auth) {
+.controller('LoginController', ["$scope", "$state", "$ionicPopup", "$ionicHistory", "$cordovaGoogleAnalytics", "Auth", function($scope, $state, $ionicPopup, $ionicHistory, $cordovaGoogleAnalytics, Auth) {
     console.log("BRG Debug: LoginController started");
 
     $scope.user = {
@@ -61,6 +61,7 @@ angular.module('starter.controllers')
                     console.log("Temporary Password");
                     $scope.showPasswordChangeView = true;
                 }else{
+                    $cordovaGoogleAnalytics.setUserId(real_email);
                     window.localStorage.setItem("brg_login_email", real_email);
                     window.localStorage.setItem("brg_login_password", $scope.user.password);
                     console.log("BRG Debug: Sending to sales list");
