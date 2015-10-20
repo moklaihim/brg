@@ -24,7 +24,6 @@
   "cordovaPlugins": [
     "org.apache.cordova.splashscreen",
     "cordova-plugin-geolocation",
-    "org.cloudsky.cordovaplugins.zbar",
     "cordova-plugin-whitelist",
     {
       "locator": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
