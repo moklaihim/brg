@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
-.controller('LoginController', ["$scope", "$state", "$ionicPopup", "$ionicHistory", "Auth", function($scope, $state, $ionicPopup, $ionicHistory, Auth) {
+.controller('LoginController', ["$scope", "$state", "$ionicPopup", "$ionicHistory", "$cordovaGoogleAnalytics", "Auth", function($scope, $state, $ionicPopup, $ionicHistory, $cordovaGoogleAnalytics, Auth) {
     console.log("BRG Debug: LoginController started");
+    $cordovaGoogleAnalytics.trackView('LoginController');
 
     $scope.user = {
         email: '',

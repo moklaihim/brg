@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
-.controller('CodeListController', ["$scope", "$state", "$filter", "$ionicPopup", "Codes", function($scope, $state, $filter, $ionicPopup, Codes) {
+.controller('CodeListController', ["$scope", "$state", "$filter", "$ionicPopup", "$cordovaGoogleAnalytics", "Codes", function($scope, $state, $filter, $ionicPopup, $cordovaGoogleAnalytics, Codes) {
     console.log("CodeListController started");
+    $cordovaGoogleAnalytics.trackView('CodeListController');
     $scope.current.view = 'codes_list';
 
     $scope.brands = Codes.get_brands();

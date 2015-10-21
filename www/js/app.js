@@ -6,8 +6,12 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker', 'ngIOS9UIWebViewPatch'])
-.run(["$ionicPlatform", "$rootScope", "$state", function($ionicPlatform, $rootScope, $state) {
+.run(["$ionicPlatform", "$rootScope", "$state", "$cordovaGoogleAnalytics", function($ionicPlatform, $rootScope, $state, $cordovaGoogleAnalytics) {
     $ionicPlatform.ready(function() {
+
+        $cordovaGoogleAnalytics.debugMode();
+        $cordovaGoogleAnalytics.startTrackerWithId('UA-69092505-1');
+        
         console.log("BRG Debug: run start");
 
         //$ionicAnalytics.register();
@@ -40,6 +44,17 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         link: function () {
                 ionicMaterialInk.displayEffect();
         }
+    };
+}])
+
+.factory('$exceptionHandler', ['$injector', function($injector) {
+    var loggingService;
+    //var ;
+    return function(exception, cause) {
+        loggingService = loggingService || $injector.get('loggingService');
+        exception.message += ' (caused by "' + cause + '")';
+        loggingService.logError(exception, exception.message);
+        throw exception;
     };
 }])
 
