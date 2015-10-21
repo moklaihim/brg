@@ -113,6 +113,9 @@ angular.module('starter.controllers')
     //When selected individually from the item list, go to sales add
     function selectItem($item_id){
         console.log("selectItem function called" + $item_id);
+        if($item_id.indexOf(".") > -1){
+            $item_id = $item_id.replace(".","_");
+        }
         $scope.current.item_id = $item_id;
         $state.go('main.sales_add');
     };
