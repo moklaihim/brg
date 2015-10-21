@@ -1,11 +1,12 @@
 angular.module('starter.controllers')
-.controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$ionicPlatform", "Items", "Sales", "Codes", "Env", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $ionicPlatform, Items, Sales, Codes, Env) {
+.controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$ionicPlatform", "Items", "Sales", "Codes", "Env", "Logging", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $ionicPlatform, Items, Sales, Codes, Env, Logging) {
     //if(Env.isMobile()){
     //  $cordovaGoogleAnalytics.trackView('ItemListController');
     //}
 
 // Start of Item List to show only item list and Brand input
 //  
+    Logging.log2FB($scope.user_detail.email, "ItemListController started");
     $scope.current.view = 'items_list';
     $scope.headerLabel = "Items";  // header will reflect ITEM List
     $scope.showInputSelections = true;

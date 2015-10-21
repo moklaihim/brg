@@ -1,10 +1,11 @@
 angular.module('starter.controllers')
-.controller('ItemAddController', ["$scope", "$state", "$ionicPopup", "$ionicHistory", "$ionicPlatform", "Items", "Sales", "Codes", "Env", function($scope, $state, $ionicPopup, $ionicHistory, $ionicPlatform, Items, Sales, Codes, Env) {
+.controller('ItemAddController', ["$scope", "$state", "$ionicPopup", "$ionicHistory", "$ionicPlatform", "Items", "Sales", "Codes", "Env", "Logging", function($scope, $state, $ionicPopup, $ionicHistory, $ionicPlatform, Items, Sales, Codes, Env, Logging) {
 // Start of Item List to show only item list and Brand input
 //
     //if(Env.isMobile()){
     //  $cordovaGoogleAnalytics.trackView('ItemAddController');
     //}
+    Logging.log2FB($scope.user_detail.email, "ItemAddController started");
     $scope.current.view = 'items_add';
     $scope.headerLabel = "Items add/edit";  // header will reflect ITEM List
     $scope.showAddSaleBtn = false;

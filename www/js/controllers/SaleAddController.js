@@ -1,8 +1,9 @@
 angular.module('starter.controllers')
-.controller('SaleAddController', ["$scope", "$timeout", "$ionicGesture", "$ionicScrollDelegate", "$state", "$filter", "$ionicHistory", "$ionicPlatform","Items", "Sales", "Codes", "Env", function($scope, $timeout, $ionicGesture, $ionicScrollDelegate, $state, $filter, $ionicHistory, $ionicPlatform, Items, Sales, Codes, Env) {
+.controller('SaleAddController', ["$scope", "$timeout", "$ionicGesture", "$ionicScrollDelegate", "$state", "$filter", "$ionicHistory", "$ionicPlatform","Items", "Sales", "Codes", "Env", "Logging", function($scope, $timeout, $ionicGesture, $ionicScrollDelegate, $state, $filter, $ionicHistory, $ionicPlatform, Items, Sales, Codes, Env, Logging) {
     //if(Env.isMobile()){
     //  $cordovaGoogleAnalytics.trackView('SaleAddController');
     //}
+    Logging.log2FB($scope.user_detail.email, "SaleAddController started");
     $scope.showPriceInput = false;
     $scope.GiftToggle = false;
     $scope.PromoToggle = false;

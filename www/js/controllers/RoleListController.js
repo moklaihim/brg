@@ -1,9 +1,10 @@
 angular.module('starter.controllers')
-.controller('RoleListController', ["$scope", "$state", "$ionicPopup", "roles", "Roles", "Env", function($scope, $state, $ionicPopup, roles, Roles, Env) {
+.controller('RoleListController', ["$scope", "$state", "$ionicPopup", "roles", "Roles", "Env", "Logging", function($scope, $state, $ionicPopup, roles, Roles, Env, Logging) {
     console.log("RoleListController started");
     //if(Env.isMobile()){
     //  $cordovaGoogleAnalytics.trackView('RoleListController');
     //}
+    Logging.log2FB($scope.user_detail.email, "RoleListController started");
     $scope.current.view = 'roles_list';
 
     $scope.roles = roles;

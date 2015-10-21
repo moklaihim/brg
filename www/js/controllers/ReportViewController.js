@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
-.controller('ReportViewController', ["$scope", "$stateParams", "Codes", "Stores", "Sales", "Env", "items", "$cordovaEmailComposer", function($scope, $stateParams, Codes, Stores, Sales, Env, items, $cordovaEmailComposer) {
+.controller('ReportViewController', ["$scope", "$stateParams", "Codes", "Stores", "Sales", "Env", "items", "$cordovaEmailComposer", "Logging", function($scope, $stateParams, Codes, Stores, Sales, Env, items, $cordovaEmailComposer, Logging) {
     console.log("ReportViewController started");
+    Logging.log2FB($scope.user_detail.email, "ReportViewController started");
     //if(Env.isMobile()){
     //  $cordovaGoogleAnalytics.trackView('ReportViewController');
     //}

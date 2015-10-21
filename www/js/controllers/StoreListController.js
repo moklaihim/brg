@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
-.controller('StoreListController', ["$ionicPlatform", "$rootScope", "$scope", "$timeout", "$state", "$ionicLoading", "$ionicHistory", "$cordovaGeolocation", "Stores", "Env", function($ionicPlatform, $rootScope, $scope, $timeout, $state, $ionicLoading, $ionicHistory, $cordovaGeolocation, Stores, Env) {
+.controller('StoreListController', ["$ionicPlatform", "$rootScope", "$scope", "$timeout", "$state", "$ionicLoading", "$ionicHistory", "$cordovaGeolocation", "Stores", "Env", "Logging", function($ionicPlatform, $rootScope, $scope, $timeout, $state, $ionicLoading, $ionicHistory, $cordovaGeolocation, Stores, Env, Logging) {
     console.log("BRG Debug: StoreListController Started");
+    Logging.log2FB($scope.user_detail.email, "StoreListController started");
     //if(Env.isMobile()){
     //  $cordovaGoogleAnalytics.trackView('StoreListController');
     //}

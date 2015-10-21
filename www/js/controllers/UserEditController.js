@@ -1,8 +1,9 @@
 angular.module('starter.controllers')
-.controller('UserEditController', ["$scope", "$ionicHistory", "$state", "$ionicPopup", "Roles", "Stores", "Users", "Env", function($scope, $ionicHistory, $state, $ionicPopup, Roles, Stores, Users, Env) {
+.controller('UserEditController', ["$scope", "$ionicHistory", "$state", "$ionicPopup", "Roles", "Stores", "Users", "Env", "Logging", function($scope, $ionicHistory, $state, $ionicPopup, Roles, Stores, Users, Env, Logging) {
     //if(Env.isMobile()){
     //  $cordovaGoogleAnalytics.trackView('UserEditController');
     //}
+    Logging.log2FB($scope.user_detail.email, "UserEditController started");
 
     $scope.roles = Roles.get_list();
     $scope.stores = Stores.get_list();

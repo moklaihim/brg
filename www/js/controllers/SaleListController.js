@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
-.controller('SaleListController', ["$scope", "$state", "Sales", "Users", "Env", function($scope, $state, Sales, Users, Env) {
+.controller('SaleListController', ["$scope", "$state", "Sales", "Users", "Env", "Logging", function($scope, $state, Sales, Users, Env, Logging) {
     console.log("BRG Debug: SaleListController started");
+    Logging.log2FB($scope.user_detail.email, "SaleListController started");
     //if(Env.isMobile()){
     //  $cordovaGoogleAnalytics.trackView('SaleListController');
     //}
