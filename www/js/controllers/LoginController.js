@@ -1,9 +1,9 @@
 angular.module('starter.controllers')
-.controller('LoginController', ["$scope", "$state", "$ionicPopup", "$ionicHistory", "$cordovaGoogleAnalytics", "Auth", "Env", function($scope, $state, $ionicPopup, $ionicHistory, $cordovaGoogleAnalytics, Auth, Env) {
+.controller('LoginController', ["$scope", "$state", "$ionicPopup", "$ionicHistory", "Auth", "Env", function($scope, $state, $ionicPopup, $ionicHistory, Auth, Env) {
     console.log("BRG Debug: LoginController started");
-    if(Env.isMobile()){
-      $cordovaGoogleAnalytics.trackView('LoginController');
-    }
+    //if(Env.isMobile()){
+    //  $cordovaGoogleAnalytics.trackView('LoginController');
+    //}
 
     $scope.user = {
         email: '',

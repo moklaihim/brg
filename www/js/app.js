@@ -9,10 +9,10 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
 .run(["$ionicPlatform", "$rootScope", "$state", "$cordovaGoogleAnalytics", "Env", function($ionicPlatform, $rootScope, $state, $cordovaGoogleAnalytics, Env) {
     $ionicPlatform.ready(function() {
 
-      if(Env.isMobile()){
-        $cordovaGoogleAnalytics.debugMode();
-        $cordovaGoogleAnalytics.startTrackerWithId('UA-69092505-1');
-      }
+      //if(Env.isMobile()){
+      //  $cordovaGoogleAnalytics.debugMode();
+      //  $cordovaGoogleAnalytics.startTrackerWithId('UA-69092505-1');
+      //}
         
         console.log("BRG Debug: run start");
 

@@ -13,9 +13,9 @@
 
 var serviceId = 'loggingService';
 angular.module('starter.services')
-.factory(serviceId, ['$http','$cordovaGoogleAnalytics', loggingService]);
+.factory(serviceId, ['$http', loggingService]);
 
-function loggingService($http,$cordovaGoogleAnalytics) {
+function loggingService($http) {
   var service = {
     pushData: pushData,
     logError: logError
@@ -24,7 +24,7 @@ function loggingService($http,$cordovaGoogleAnalytics) {
 
   function logError(errorData, message) {
     if(window.cordova){
-      $cordovaGoogleAnalytics.trackEvent('error handler',message);
+      //$cordovaGoogleAnalytics.trackEvent('error handler',message);
     } else {
       if(console){console.log('error handler: ',message);}
     }

@@ -1,9 +1,9 @@
 angular.module('starter.controllers')
-.controller('ReportViewController', ["$scope", "$stateParams", "Codes", "Stores", "Sales", "Env", "items", "$cordovaEmailComposer", "$cordovaGoogleAnalytics", function($scope, $stateParams, Codes, Stores, Sales, Env, items, $cordovaEmailComposer, $cordovaGoogleAnalytics) {
+.controller('ReportViewController', ["$scope", "$stateParams", "Codes", "Stores", "Sales", "Env", "items", "$cordovaEmailComposer", function($scope, $stateParams, Codes, Stores, Sales, Env, items, $cordovaEmailComposer) {
     console.log("ReportViewController started");
-    if(Env.isMobile()){
-      $cordovaGoogleAnalytics.trackView('ReportViewController');
-    }
+    //if(Env.isMobile()){
+    //  $cordovaGoogleAnalytics.trackView('ReportViewController');
+    //}
     $scope.current.view = 'reports_list';
 
     $scope.stores = Stores.get_list();
