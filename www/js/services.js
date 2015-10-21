@@ -8,3 +8,4 @@ document.write('<script type="text/javascript" src="js/services/Sales.js"></scri
 document.write('<script type="text/javascript" src="js/services/Items.js"></script>');
 document.write('<script type="text/javascript" src="js/services/Stores.js"></script>');
 document.write('<script type="text/javascript" src="js/services/Logging.js"></script>');
+document.write('<script type="text/javascript" src="js/services/Logging2.js"></script>');
