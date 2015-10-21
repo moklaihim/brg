@@ -1,6 +1,8 @@
 angular.module('starter.controllers')
 .controller('ItemListController', ["$scope", "$ionicScrollDelegate", "$ionicListDelegate", "$ionicGesture", "$state", "$filter", "$ionicPopup", "$ionicHistory", "$cordovaGoogleAnalytics", "$ionicPlatform", "Items", "Sales", "Codes", "Env", function($scope, $ionicScrollDelegate, $ionicListDelegate, $ionicGesture, $state, $filter, $ionicPopup, $ionicHistory, $cordovaGoogleAnalytics, $ionicPlatform, Items, Sales, Codes, Env) {
-    $cordovaGoogleAnalytics.trackView('ItemListController');
+    if(Env.isMobile()){
+      $cordovaGoogleAnalytics.trackView('ItemListController');
+    }
 
 // Start of Item List to show only item list and Brand input
 //  

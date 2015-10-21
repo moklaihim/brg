@@ -1,6 +1,8 @@
 angular.module('starter.controllers')
-.controller('ReportListController', ["$scope", "$cordovaGoogleAnalytics", function($scope, $cordovaGoogleAnalytics) {
+.controller('ReportListController', ["$scope", "$cordovaGoogleAnalytics", "Env", function($scope, $cordovaGoogleAnalytics, Env) {
     console.log("ReportListController started");
-    $cordovaGoogleAnalytics.trackView('ReportListController');
+    if(Env.isMobile()){
+      $cordovaGoogleAnalytics.trackView('ReportListController');
+    }
     $scope.current.view = 'reports_list';
 }])

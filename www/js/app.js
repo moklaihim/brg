@@ -6,11 +6,13 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker', 'ngIOS9UIWebViewPatch'])
-.run(["$ionicPlatform", "$rootScope", "$state", "$cordovaGoogleAnalytics", function($ionicPlatform, $rootScope, $state, $cordovaGoogleAnalytics) {
+.run(["$ionicPlatform", "$rootScope", "$state", "$cordovaGoogleAnalytics", "Env", function($ionicPlatform, $rootScope, $state, $cordovaGoogleAnalytics, Env) {
     $ionicPlatform.ready(function() {
 
+      if(Env.isMobile()){
         $cordovaGoogleAnalytics.debugMode();
         $cordovaGoogleAnalytics.startTrackerWithId('UA-69092505-1');
+      }
         
         console.log("BRG Debug: run start");
 
@@ -52,9 +54,11 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
     //var ;
     return function(exception, cause) {
         loggingService = loggingService || $injector.get('loggingService');
-        exception.message += ' (caused by "' + cause + '")';
-        loggingService.logError(exception, exception.message);
-        throw exception;
+        exception.message += ' (caused by "' + cause + '" File: ' + exception.fileName + ' Line: ' + exception.lineNumber + ')' ;
+        //loggingService.logError(exception, exception.message);
+        setTimeout(function() {
+          throw exception;
+        }, 0);
     };
 }])
 
