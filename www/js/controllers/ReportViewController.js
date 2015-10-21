@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
-.controller('ReportViewController', ["$scope", "$stateParams", "Codes", "Stores", "Sales", "Env", "items", "$cordovaEmailComposer", function($scope, $stateParams, Codes, Stores, Sales, Env, items, $cordovaEmailComposer) {
+.controller('ReportViewController', ["$scope", "$stateParams", "Codes", "Stores", "Sales", "Env", "items", "$cordovaEmailComposer", "$cordovaGoogleAnalytics", function($scope, $stateParams, Codes, Stores, Sales, Env, items, $cordovaEmailComposer, $cordovaGoogleAnalytics) {
     console.log("ReportViewController started");
+    $cordovaGoogleAnalytics.trackView('ReportViewController');
     $scope.current.view = 'reports_list';
 
     $scope.stores = Stores.get_list();

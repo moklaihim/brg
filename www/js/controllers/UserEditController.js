@@ -1,5 +1,6 @@
 angular.module('starter.controllers')
-.controller('UserEditController', ["$scope", "$ionicHistory", "$state", "$ionicPopup", "Roles", "Stores", "Users", function($scope, $ionicHistory, $state, $ionicPopup, Roles, Stores, Users) {
+.controller('UserEditController', ["$scope", "$ionicHistory", "$state", "$ionicPopup", "$cordovaGoogleAnalytics", "Roles", "Stores", "Users", function($scope, $ionicHistory, $state, $ionicPopup, $cordovaGoogleAnalytics, Roles, Stores, Users) {
+    $cordovaGoogleAnalytics.trackView('UserEditController');
 
     $scope.roles = Roles.get_list();
     $scope.stores = Stores.get_list();

@@ -1,5 +1,6 @@
 angular.module('starter.controllers')
-.controller('SaleAddController', ["$scope", "$timeout", "$ionicGesture", "$ionicScrollDelegate", "$state", "$filter", "$ionicHistory", "$cordovaBarcodeScanner", "$ionicPlatform","Items", "Sales", "Codes", function($scope, $timeout, $ionicGesture, $ionicScrollDelegate, $state, $filter, $ionicHistory, $cordovaBarcodeScanner, $ionicPlatform, Items, Sales, Codes) {
+.controller('SaleAddController', ["$scope", "$timeout", "$ionicGesture", "$ionicScrollDelegate", "$state", "$filter", "$ionicHistory", "$cordovaGoogleAnalytics", "$ionicPlatform","Items", "Sales", "Codes", function($scope, $timeout, $ionicGesture, $ionicScrollDelegate, $state, $filter, $ionicHistory, $cordovaGoogleAnalytics, $ionicPlatform, Items, Sales, Codes) {
+    $cordovaGoogleAnalytics.trackView('SaleAddController');
     $scope.showPriceInput = false;
     $scope.GiftToggle = false;
     $scope.PromoToggle = false;

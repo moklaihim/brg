@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
-.controller('RoleListController', ["$scope", "$state", "$ionicPopup", "roles", "Roles", function($scope, $state, $ionicPopup, roles, Roles) {
+.controller('RoleListController', ["$scope", "$state", "$ionicPopup", "$cordovaGoogleAnalytics", "roles", "Roles", function($scope, $state, $ionicPopup, $cordovaGoogleAnalytics, roles, Roles) {
     console.log("RoleListController started");
+    $cordovaGoogleAnalytics.trackView('RoleListController');
     $scope.current.view = 'roles_list';
 
     $scope.roles = roles;
