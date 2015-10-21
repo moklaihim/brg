@@ -1,7 +1,9 @@
 angular.module('starter.controllers')
-.controller('UserListController', ["$scope", "$state", "$cordovaGoogleAnalytics", "Users", "users", "roles", function($scope, $state, $cordovaGoogleAnalytics, Users, users, roles) {
+.controller('UserListController', ["$scope", "$state", "$cordovaGoogleAnalytics", "Users", "users", "roles", "Env", function($scope, $state, $cordovaGoogleAnalytics, Users, users, roles, Env) {
     console.log("UserListController started");
-    $cordovaGoogleAnalytics.trackView('UserListController');
+    if(Env.isMobile()){
+      $cordovaGoogleAnalytics.trackView('UserListController');
+    }
     $scope.current.view = 'users_list';
 
     $scope.users = users;
