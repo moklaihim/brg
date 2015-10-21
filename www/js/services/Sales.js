@@ -14,9 +14,16 @@ angular.module('starter.services')
                     var key_tmp = localStorage.key(i);
                     var keys_tmp = key_tmp.split('-');
                     var store_id = keys_tmp[1];
-                    var year = keys_tmp[2];
-                    var month = keys_tmp[3];
-                    var day = keys_tmp[4];
+                    if(keys_tmp[2].substr(0,2) == "20"){
+                      var year = keys_tmp[2];
+                      var month = keys_tmp[3];
+                      var day = keys_tmp[4];
+                    }else{
+                      store_id = store_id + "-" + keys_tmp[2];
+                      var year = keys_tmp[3];
+                      var month = keys_tmp[4];
+                      var day = keys_tmp[5];
+                    }
                     var local_sales = JSON.parse(localStorage.getItem(localStorage.key(i)));
                     //console.log("key_tmp:" + key_tmp + ", store_id:" + store_id + ", year:" + year + ", month:" + month + ", day:" + day);
 
