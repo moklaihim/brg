@@ -1,12 +1,13 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$ionicHistory", "$ionicPopup", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", function($rootScope, $scope, $state, $ionicHistory, $ionicPopup, $cordovaDatePicker, Roles, role, Auth, Users, user, Env, currentAuth) {
+.controller('MainController', ["$rootScope", "$scope", "$state", "$ionicHistory", "$ionicPopup", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", "Logging", function($rootScope, $scope, $state, $ionicHistory, $ionicPopup, $cordovaDatePicker, Roles, role, Auth, Users, user, Env, currentAuth, Logging) {
     console.log("BRG Debug: MainController started");
     //if(Env.isMobile()){
     //  $cordovaGoogleAnalytics.trackView('MainController');
     //  $cordovaGoogleAnalytics.setUserId(currentAuth.password.email);
     //}
-
     $scope.user_detail = user;
+    Logging.log2FB($scope.user_detail.email, "MainController started");
+
     if(!$scope.user_detail.active){
         console.log("User disabled");
         logout();

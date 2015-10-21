@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
     return function(exception, cause) {
         loggingService = loggingService || $injector.get('loggingService');
         exception.message += ' (caused by "' + cause + '" File: ' + exception.fileName + ' Line: ' + exception.lineNumber + ')' ;
-        //loggingService.logError(exception, exception.message);
+        loggingService.log2FB("unknown", exception.message);
         setTimeout(function() {
           throw exception;
         }, 0);
