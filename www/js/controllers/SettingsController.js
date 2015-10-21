@@ -1,9 +1,9 @@
 angular.module('starter.controllers')
-.controller('SettingsController', ["$scope", "Env", "user", "Users", "$cordovaAppVersion", "$cordovaGoogleAnalytics", function($scope, Env, user, Users, $cordovaAppVersion, $cordovaGoogleAnalytics) {
+.controller('SettingsController', ["$scope", "Env", "user", "Users", "$cordovaAppVersion", function($scope, Env, user, Users, $cordovaAppVersion) {
     console.log("SettingsController started");
-    if(Env.isMobile()){
-      $cordovaGoogleAnalytics.trackView('SettingsController');
-    }
+    //if(Env.isMobile()){
+    //  $cordovaGoogleAnalytics.trackView('SettingsController');
+    //}
     $scope.current.view = 'settings_list';
 
     // $scope.current.emailTo = user.reportSendTo;

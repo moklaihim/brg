@@ -1,9 +1,9 @@
 angular.module('starter.controllers')
-.controller('CodeListController', ["$scope", "$state", "$filter", "$ionicPopup", "$cordovaGoogleAnalytics", "Codes", "Env", function($scope, $state, $filter, $ionicPopup, $cordovaGoogleAnalytics, Codes, Env) {
+.controller('CodeListController', ["$scope", "$state", "$filter", "$ionicPopup", "Codes", "Env", function($scope, $state, $filter, $ionicPopup, Codes, Env) {
     console.log("CodeListController started");
-    if(Env.isMobile()){
-      $cordovaGoogleAnalytics.trackView('CodeListController');
-    }
+    //if(Env.isMobile()){
+      //$cordovaGoogleAnalytics.trackView('CodeListController');
+    //}
     $scope.current.view = 'codes_list';
 
     $scope.brands = Codes.get_brands();
