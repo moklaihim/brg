@@ -4,7 +4,7 @@ angular.module('starter.controllers')
     //if(Env.isMobile()){
     //  $cordovaGoogleAnalytics.trackView('LoginController');
     //}
-    // Logging.log2FB($scope.user_detail."unknown", "LoginController started");
+    Logging.log2FB("unknown", "LoginController started");
 
     $scope.user = {
         email: '',
