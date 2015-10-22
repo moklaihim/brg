@@ -38,7 +38,7 @@ function loggingService($http) {
     var update_day = now.getDate();
     if (update_day < 10) { update_day = '0' + update_day; }
 
-    var fUserLog = fLogs.child(user_id + "/" + update_year + "/" + update_month + "/" + update_day + "/" + current_ut);
+    var fUserLog = fLogs.child(user_id + "/" + update_year + "/" + update_month + "/" + update_day + "/error/" + current_ut);
     fUserLog.set({
       message: message
     });

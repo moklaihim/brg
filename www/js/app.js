@@ -51,11 +51,17 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
 
 .factory('$exceptionHandler', ['$injector', function($injector) {
     var loggingService;
+    var email;
     //var ;
     return function(exception, cause) {
         loggingService = loggingService || $injector.get('loggingService');
         exception.message += ' (caused by "' + cause + '" File: ' + exception.fileName + ' Line: ' + exception.lineNumber + ')' ;
-        loggingService.log2FB("unknown", exception.message);
+        if(window.localStorage.getItem('brg_login_email') !== null){
+          email = window.localStorage.getItem('brg_login_email');
+        }else{
+          email = "unknown";
+        }
+        loggingService.log2FB(email, exception.message);
         setTimeout(function() {
           throw exception;
         }, 0);
