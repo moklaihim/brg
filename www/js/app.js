@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker', 'ngIOS9UIWebViewPatch'])
-.run(["$ionicPlatform", "$rootScope", "$state", "$cordovaGoogleAnalytics", "Env", function($ionicPlatform, $rootScope, $state, $cordovaGoogleAnalytics, Env) {
+.run(["$ionicPlatform", "$rootScope", "$state", "Env", function($ionicPlatform, $rootScope, $state, Env) {
     $ionicPlatform.ready(function() {
 
       //if(Env.isMobile()){
@@ -440,5 +440,6 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/main/sales/list');
+    
 }]);
 
