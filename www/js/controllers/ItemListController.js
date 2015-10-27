@@ -36,6 +36,9 @@ angular.module('starter.controllers')
 
     /* Make Brand palate from here*/
     $scope.brands_array = new Array();
+    $scope.isUpdated = function(){
+      return Items.isUpdated();
+    };
     var iil = 3;
     var brands = Codes.get_brands_as_array();
 
@@ -157,11 +160,26 @@ angular.module('starter.controllers')
         Items.remove($item_id);
         $scope.items_array = Items.get_as_array();
     }
+
+    $scope.updateDB = function(){
+        $scope.updateProgress = true;
+        Items.update();
+        //$scope.items = Items.get();
+        //$scope.items_array = Items.get_as_array();
+        $scope.updateProgress = false;
+    }
     
     //make sure items entered are upper case
     $scope.$watch('current.item_id', function(val) {
         $scope.current.item_id = $filter('uppercase')(val);
     }, false);
+
+    /*
+    $scope.$watch('Items.updated', function(val){
+        console.log("Items.updated updatd");
+        updateItems();
+    }, false);
+    */
 
     function trig_brand(event){
         $scope.showItemList = true;

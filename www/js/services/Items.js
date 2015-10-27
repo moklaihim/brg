@@ -4,6 +4,8 @@ angular.module('starter.services')
     var items = new Object();
     var items_array = new Array();
     var is_online;
+    var fItems_all = new Firebase("https://fiery-heat-6039.firebaseio.com/items");
+    var isUpdated = false;
 /*
     function createInitialData(){
             items['R89012-WHT-39'] = {id:'R89012-WHT-39', retail_price:'19'};
@@ -13,7 +15,7 @@ angular.module('starter.services')
 
     return {
         online: function(){
-            var fItems = new Firebase("https://fiery-heat-6039.firebaseio.com/items");
+            /*
             fItems.on("value", function(snapshot) {
                 localStorage.setItem('brg_items', JSON.stringify(snapshot.val()));
             }, function (errorObject) {
@@ -22,9 +24,27 @@ angular.module('starter.services')
                   $state.go('login');
                 }
             }); 
+            */
 
-            items = $firebaseObject(fItems);
-            items_array = $firebaseArray(fItems);
+            //items = $firebaseObject(fItems);
+            //items_array = $firebaseArray(fItems);
+            var fb_item_ver = 0;
+            var local_item_ver = localStorage.getItem('brg_items_ver');
+            var fVer = new Firebase("https://fiery-heat-6039.firebaseio.com/ver/items");
+            //var itemVer = $firebaseObject(fVer);
+
+            fVer.on("value", function(snapshot){
+              fb_item_ver = snapshot.val();
+              console.log("isUpdated " + fb_item_ver + " & " + local_item_ver);
+              if( fb_item_ver > local_item_ver ){
+                isUpdated = true;
+              }else{
+                isUpdated = false;
+              }
+            });
+
+            items = JSON.parse(localStorage.getItem('brg_items'));
+            items_array = Object.keys(items).map(function(key) { return items[key] });
             is_online = true;
             // createInitialData();
             
@@ -34,6 +54,28 @@ angular.module('starter.services')
             items = JSON.parse(localStorage.getItem('brg_items'));
             items_array = Object.keys(items).map(function(key) { return items[key] });
             is_online = false;
+        },
+
+        isUpdated: function(){
+            console.log("isUpdated started");
+            return isUpdated;
+        },
+
+        update: function(){
+            //items = $firebaseObject(fItems_all);
+            //items_array = $firebaseArray(fItems_all);
+            fItems_all.once("value", function(snapshot) {
+              localStorage.setItem('brg_items', JSON.stringify(snapshot.val()));
+              items = JSON.parse(localStorage.getItem('brg_items'));
+              items_array = Object.keys(items).map(function(key) { return items[key] });
+
+              var fVer = new Firebase("https://fiery-heat-6039.firebaseio.com/ver/items");
+              fVer.once("value", function(snapshot){
+                localStorage.setItem('brg_items_ver', snapshot.val());
+              });
+
+              isUpdated = false;
+            }); 
         },
 
         get: function(){
@@ -50,26 +92,53 @@ angular.module('starter.services')
         },
 
         remove: function(key){
+            var now = new Date();
+            var current_ut = now.getTime();
 
             if(is_online){
                 // var fSale = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key);
-                var fItems = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + key);
-                var item = $firebaseObject(fItems);
-                item.$remove().then(function(fItems){
+                var fItems_remove = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + key);
+                var item = $firebaseObject(fItems_remove);
+                item.$remove().then(function(fItems_remove){
                     console.log("Item" + key +"removed from server");
+                    var fVer = new Firebase("https://fiery-heat-6039.firebaseio.com/ver");
+                    fVer.set({
+                        items: current_ut
+                    });
+                    localStorage.setItem('brg_items_ver', current_ut);
+
                 }, function(error) {
                     console.log("Error:", error);
                 });
+
+
+                delete items[key];
+                localStorage.setItem('brg_items', JSON.stringify(items));
+                items_array = Object.keys(items).map(function(key) { return items[key] });
             }else{
                 delete items[key];
+                localStorage.setItem('brg_items', JSON.stringify(items));
+                items_array = Object.keys(items).map(function(key) { return items[key] });
             }
         },
 
         add: function(item_id, retail_price){
             var now = new Date();
             var current_ut = now.getTime();
+            var fItems_add = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + item_id);
 
             if(is_online){
+                var item = $firebaseObject(fItems_add);
+                item.id = item_id;
+                item.retail_price = retail_price;
+                item.timestamp = current_ut;
+                item.$save().then(function(fItems_add){
+                    var fVer = new Firebase("https://fiery-heat-6039.firebaseio.com/ver");
+                    fVer.set({
+                        items: current_ut
+                    });
+                    localStorage.setItem('brg_items_ver', current_ut);
+                });
                 // if(!item_edit_key){
                 //     items[item_id] = new Object();
                 // }
@@ -77,12 +146,15 @@ angular.module('starter.services')
                 items[item_id].id = item_id;
                 items[item_id].retail_price = retail_price;
                 items[item_id].timestamp = current_ut;
-                items.$save();
+                localStorage.setItem('brg_items', JSON.stringify(items));
+                items_array = Object.keys(items).map(function(key) { return items[key] });
             }else{
                 items[item_id] = new Object();
                 items[item_id].id = item_id;
                 items[item_id].retail_price = retail_price;
                 items[item_id].timestamp = current_ut;
+                localStorage.setItem('brg_items', JSON.stringify(items));
+                items_array = Object.keys(items).map(function(key) { return items[key] });
             }
         }
     }

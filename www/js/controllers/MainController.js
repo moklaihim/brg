@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('MainController', ["$rootScope", "$scope", "$state", "$ionicHistory", "$ionicPopup", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "user", "Env", "currentAuth", "Logging", function($rootScope, $scope, $state, $ionicHistory, $ionicPopup, $cordovaDatePicker, Roles, role, Auth, Users, user, Env, currentAuth, Logging) {
+.controller('MainController', ["$rootScope", "$scope", "$state", "$ionicHistory", "$ionicPopup", "$cordovaDatePicker", "Roles", "role", "Auth", "Users", "Items", "user", "Env", "currentAuth", "Logging", function($rootScope, $scope, $state, $ionicHistory, $ionicPopup, $cordovaDatePicker, Roles, role, Auth, Users, Items, user, Env, currentAuth, Logging) {
     console.log("BRG Debug: MainController started");
     //if(Env.isMobile()){
     //  $cordovaGoogleAnalytics.trackView('MainController');
@@ -47,6 +47,7 @@ angular.module('starter.controllers')
         emailCc:'',
         hasUpdate: false,
         isToday:'',
+        itemUpdated:false,
         nearestStore:'',
         notificationEnabled: true
     };
@@ -199,6 +200,7 @@ angular.module('starter.controllers')
                 //}, true);
             
             });
+
             //online_watch();
         }
     }, false);
