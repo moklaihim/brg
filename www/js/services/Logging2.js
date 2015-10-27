@@ -5,7 +5,7 @@ angular.module('starter.services')
 
     return {
         log2FB: function(email, message){
-          if(Env.isOnline()){
+            console.log (email + " " +message);
             var user_id = email.replace("@", "_").replace(/\./g, "_");
             var now = new Date();
             var hour = now.getHours();
@@ -24,6 +24,5 @@ angular.module('starter.services')
               message: message
             });
           }
-        }
     }
 }]);

@@ -4,7 +4,7 @@ angular.module('starter.controllers')
     //if(Env.isMobile()){
     //  $cordovaGoogleAnalytics.trackView('LoginController');
     //}
-    Logging.log2FB("unknown", "LoginController started");
+    // Logging.log2FB("unknown", "LoginController started");// not required as no permission to save in firebase if not login
 
     $scope.user = {
         email: '',
