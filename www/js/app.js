@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'starter.services', 'firebase', 'ngAnimate', 'ngCordova', 'datePicker', 'ngIOS9UIWebViewPatch'])
-.run(["$ionicPlatform", "$rootScope", "$state", "$cordovaGoogleAnalytics", "Env", function($ionicPlatform, $rootScope, $state, $cordovaGoogleAnalytics, Env) {
+.run(["$ionicPlatform", "$rootScope", "$state", "Env", function($ionicPlatform, $rootScope, $state, Env) {
     $ionicPlatform.ready(function() {
 
       //if(Env.isMobile()){
@@ -51,11 +51,17 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
 
 .factory('$exceptionHandler', ['$injector', function($injector) {
     var loggingService;
+    var email;
     //var ;
     return function(exception, cause) {
         loggingService = loggingService || $injector.get('loggingService');
         exception.message += ' (caused by "' + cause + '" File: ' + exception.fileName + ' Line: ' + exception.lineNumber + ')' ;
-        loggingService.log2FB("unknown", exception.message);
+        if(window.localStorage.getItem('brg_login_email') !== null){
+          email = window.localStorage.getItem('brg_login_email');
+        }else{
+          email = "unknown";
+        }
+        loggingService.log2FB(email, exception.message);
         setTimeout(function() {
           throw exception;
         }, 0);
@@ -434,5 +440,6 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/main/sales/list');
+    
 }]);
 
