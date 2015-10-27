@@ -14,7 +14,6 @@ angular.module('starter.services')
     return {
         online: function(){
             var fItems = new Firebase("https://fiery-heat-6039.firebaseio.com/items");
-            /*
             fItems.on("value", function(snapshot) {
                 localStorage.setItem('brg_items', JSON.stringify(snapshot.val()));
             }, function (errorObject) {
@@ -25,8 +24,8 @@ angular.module('starter.services')
             }); 
             */
 
-            //items = $firebaseObject(fItems);
-            //items_array = $firebaseArray(fItems);
+            items = $firebaseObject(fItems);
+            items_array = $firebaseArray(fItems);
             is_online = true;
             // createInitialData();
             
