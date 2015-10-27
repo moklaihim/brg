@@ -126,6 +126,7 @@ angular.module('starter.services')
         },
 
         remove: function(store_id, year, month, day, key){
+            // Logging.log2FB($scope.user_detail.email, "starts remove function in Sales.js");
             var now = new Date();
             var current_ut = now.getTime();
 
@@ -133,6 +134,7 @@ angular.module('starter.services')
                 var fSale = new Firebase("https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key);
                 var sale = $firebaseObject(fSale);
                 sale.$remove().then(function(fSale){
+                    // Logging.log2FB($scope.user_detail.email, key + " removed from Firebase");
                     console.log("Data removed from server");
                 }, function(error) {
                     console.log("Error:", error);
