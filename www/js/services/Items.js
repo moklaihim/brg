@@ -22,7 +22,6 @@ angular.module('starter.services')
                   $state.go('login');
                 }
             }); 
-            */
 
             items = $firebaseObject(fItems);
             items_array = $firebaseArray(fItems);
