@@ -48,7 +48,7 @@ angular.module('starter.controllers')
 
         Items.add($scope.current.item_id, $scope.current.retail_price);
         showItemAddAlert();
-        $scope.current.item_id = ''
+        $scope.current.item_id = '';
         $scope.current.retail_price = '';
         $state.go('main.items_list');
     };
