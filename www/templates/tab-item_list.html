@@ -17,10 +17,16 @@
     </ion-header-bar>
 
     <ion-content padding="false" style="margin-bottom:94px">
+
+        <ion-refresher
+          pulling-text="Pull to refresh..."
+          on-refresh="updateDB()">
+        </ion-refresher>
+        
         <div class="data_network_unavailable ng-hide" ng-hide="isOnline()">
             <p>Data network unavailable</p>
         </div>
-        <div class="update_available ng-hide" ng-show="isUpdated()" ng-click="updateDB()" ng-class="{update_inprogress: updateProgress}">
+        <div class="update_available ng-hide" ng-show="isUpdated()">
           <p>Item Database has updates.</p>
         </div>
         <ion-list class="border-list" ng-if="showItemList">

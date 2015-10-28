@@ -23,18 +23,6 @@
     text-shadow: 1px 1px #ae3932;
 }
 
-.update_inprogress{
-    color: #fff;
-    background-color: #00ACC1;
-    height: 42px;
-    line-height: 42px;
-    font-style: italic;
-    font-size: 18px;
-    font-weight: 600;
-    padding-left: 20px;
-    text-shadow: 1px 1px #ae3932;
-}
-
 .item-radio .radio-icon{
     display: none;
 }

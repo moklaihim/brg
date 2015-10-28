@@ -1,5 +1,5 @@
 angular.module('starter.services')
-.factory('Items', ["$firebaseObject", "$firebaseArray", "$state", function($firebaseObject, $firebaseArray, $state) {
+.factory('Items', ["$rootScope", "$firebaseObject", "$firebaseArray", "$state", function($rootScope, $firebaseObject, $firebaseArray, $state) {
 
     var items = new Object();
     var items_array = new Array();
@@ -75,6 +75,9 @@ angular.module('starter.services')
               });
 
               isUpdated = false;
+              console.log("broadcast refreshComplete");
+              $rootScope.$broadcast('updatedbCompleted');
+              //$rootScope.$broadcast('scroll.refreshComplete');
             }); 
         },
 

@@ -162,17 +162,19 @@ angular.module('starter.controllers')
     }
 
     $scope.updateDB = function(){
-        $scope.updateProgress = true;
         Items.update();
-        //$scope.items = Items.get();
-        //$scope.items_array = Items.get_as_array();
-        $scope.updateProgress = false;
     }
     
     //make sure items entered are upper case
     $scope.$watch('current.item_id', function(val) {
         $scope.current.item_id = $filter('uppercase')(val);
     }, false);
+
+
+    $scope.$on('updatedbCompleted', function() {
+      updateItems();
+      $scope.$broadcast('scroll.refreshComplete');
+    });
 
     /*
     $scope.$watch('Items.updated', function(val){
