@@ -32,13 +32,14 @@ angular.module('starter.controllers')
 
     console.log("Loaded Current Item: " + $scope.current.item_id);
     if($scope.current.item_id){
+        var fb_item_id = $scope.current.item_id.replace(/\./g, '_2E');
         Logging.log2FB($scope.user_detail.email, "Add Sale Button Pressed");
         $scope.showQtyField = true;
         $scope.headerLabel = "ADDING SALES : ";
         $scope.sale.item_id = $scope.current.item_id;
-        $scope.sale.retail_price = $scope.items[$scope.current.item_id].retail_price;
+        $scope.sale.retail_price = $scope.items[fb_item_id].retail_price;
         $scope.sale.discount_rate = '0';
-        $scope.sale.sale_price = $scope.items[$scope.current.item_id].retail_price;
+        $scope.sale.sale_price = $scope.items[fb_item_id].retail_price;
         $scope.sale.qty = 1;
 
     }else if ($scope.current.item_key){
