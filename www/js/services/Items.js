@@ -12,6 +12,28 @@ angular.module('starter.services')
             items.$save();
     };
     */
+    // function createInitialData(){
+    //     items = $firebaseObject(fItems_all);
+    //     items['R81011-D_2EBLUE-39'] = {id:'R81011-D.BLUE-39', retail_price:'29'};
+    //     items['R81011-D_2EBLUE-40'] = {id:'R81011-D.BLUE-40', retail_price:'29'};
+    //     items['R81011-D_2EBLUE-41'] = {id:'R81011-D.BLUE-41', retail_price:'29'};
+    //     items['R81011-D_2EBLUE-42'] = {id:'R81011-D.BLUE-42', retail_price:'29'};
+    //     items['R81011-D_2EBLUE-43'] = {id:'R81011-D.BLUE-43', retail_price:'29'};
+    //     items['R81011-D_2EBLUE-44'] = {id:'R81011-D.BLUE-44', retail_price:'29'};
+    //     items['F12017-L_2EBLU-35'] = {id:'F12017-L.BLU-35', retail_price:'39'};
+    //     items['F12017-L_2EBLU-36'] = {id:'F12017-L.BLU-36', retail_price:'39'};
+    //     items['F12017-L_2EBLU-37'] = {id:'F12017-L.BLU-37', retail_price:'39'};
+    //     items['F12017-L_2EBLU-38'] = {id:'F12017-L.BLU-38', retail_price:'39'};
+    //     items['F12017-L_2EBLU-39'] = {id:'F12017-L.BLU-39', retail_price:'39'};
+    //     items['F12017-L_2EBLU-40'] = {id:'F12017-L.BLU-40', retail_price:'39'};
+    //     items['F12001-L_2EBLU-35'] = {id:'F12001-L.BLU-35', retail_price:'49'};
+    //     items['F12001-L_2EBLU-36'] = {id:'F12001-L.BLU-36', retail_price:'49'};
+    //     items['F12001-L_2EBLU-37'] = {id:'F12001-L.BLU-37', retail_price:'49'};
+    //     items['F12001-L_2EBLU-38'] = {id:'F12001-L.BLU-38', retail_price:'49'};
+    //     items['F12001-L_2EBLU-39'] = {id:'F12001-L.BLU-39', retail_price:'49'};
+    //     items['F12001-L_2EBLU-40'] = {id:'F12001-L.BLU-40', retail_price:'49'};
+    //     items.$save();
+    // };
 
     return {
         online: function(){
@@ -43,10 +65,11 @@ angular.module('starter.services')
               }
             });
 
+            // createInitialData();
             items = JSON.parse(localStorage.getItem('brg_items'));
             items_array = Object.keys(items).map(function(key) { return items[key] });
             is_online = true;
-            // createInitialData();
+            
             
         },
 
@@ -128,7 +151,12 @@ angular.module('starter.services')
         add: function(item_id, retail_price){
             var now = new Date();
             var current_ut = now.getTime();
-            var fItems_add = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + item_id);
+            var fb_item_id = item_id;
+            if(item_id.indexOf(".") > -1){
+                fb_item_id = item_id.replace(/\./g, '_2E')
+            }
+            console.log("item id is " + fb_item_id);
+            var fItems_add = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + fb_item_id);
 
 
             if(is_online){
@@ -146,17 +174,17 @@ angular.module('starter.services')
                 // if(!item_edit_key){
                 //     items[item_id] = new Object();
                 // }
-                items[item_id] = new Object();
-                items[item_id].id = item_id;
-                items[item_id].retail_price = retail_price;
-                items[item_id].timestamp = current_ut;
+                items[fb_item_id] = new Object();
+                items[fb_item_id].id = item_id;
+                items[fb_item_id].retail_price = retail_price;
+                items[fb_item_id].timestamp = current_ut;
                 localStorage.setItem('brg_items', JSON.stringify(items));
                 items_array = Object.keys(items).map(function(key) { return items[key] });
             }else{
-                items[item_id] = new Object();
-                items[item_id].id = item_id;
-                items[item_id].retail_price = retail_price;
-                items[item_id].timestamp = current_ut;
+                items[fb_item_id] = new Object();
+                items[fb_item_id].id = item_id;
+                items[fb_item_id].retail_price = retail_price;
+                items[fb_item_id].timestamp = current_ut;
                 localStorage.setItem('brg_items', JSON.stringify(items));
                 items_array = Object.keys(items).map(function(key) { return items[key] });
             }

@@ -116,9 +116,6 @@ angular.module('starter.controllers')
     //When selected individually from the item list, go to sales add
     function selectItem($item_id){
         console.log("selectItem function called" + $item_id);
-        if($item_id.indexOf(".") > -1){
-            $item_id = $item_id.replace(".","_");
-        }
         $scope.current.item_id = $item_id;
         $state.go('main.sales_add');
     };
@@ -136,10 +133,7 @@ angular.module('starter.controllers')
         $scope.headerLabel = "Shoes List (Adding) "
         // $scope.showInputSelections = true;
         if ($scope.allItemCodeEntered){
-            if($scope.current.item_id.indexOf(".") > -1){
-                $scope.current.item_id = $scope.current.item_id.replace(".","_");
-            }
-            console.log("the item code is " + $scope.current.item_id);
+            // console.log("the item code is " + $scope.current.item_id);
             $state.go('main.items_add');  
         }
         else{
@@ -150,8 +144,11 @@ angular.module('starter.controllers')
 
     //when individual item is slide and pressed edit
     $scope.editItem = function($item_id) {
+        if($item_id.indexOf(".") > -1){
+                $fb_item_id = $item_id.replace(/\./g, '_2E')
+            };
         $scope.current.item_id = $item_id;
-        $scope.current.retail_price = $scope.items[$item_id].retail_price;
+        $scope.current.retail_price = $scope.items[$fb_item_id].retail_price;
         $scope.current.itemAddMode = 'fromedit';
         $state.go('main.items_add');
         $ionicListDelegate.closeOptionButtons();
@@ -161,6 +158,10 @@ angular.module('starter.controllers')
     //when individual item is slide and pressed delete
     $scope.removeItem = function($item_id) {
         console.log("remove Item item_id: " + $item_id);
+        if($item_id.indexOf(".") > -1){
+                $item_id = $item_id.replace(/\./g, '_2E')
+            };
+        console.log("remove new Item item_id: " + $item_id);
         Items.remove($item_id);
         $scope.items_array = Items.get_as_array();
     }
