@@ -136,6 +136,10 @@ angular.module('starter.controllers')
         $scope.headerLabel = "Shoes List (Adding) "
         // $scope.showInputSelections = true;
         if ($scope.allItemCodeEntered){
+            if($scope.current.item_id.indexOf(".") > -1){
+                $scope.current.item_id = $scope.current.item_id.replace(".","_");
+            }
+            console.log("the item code is " + $scope.current.item_id);
             $state.go('main.items_add');  
         }
         else{

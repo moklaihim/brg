@@ -127,6 +127,7 @@ angular.module('starter.services')
             var current_ut = now.getTime();
             var fItems_add = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + item_id);
 
+
             if(is_online){
                 var item = $firebaseObject(fItems_add);
                 item.id = item_id;
