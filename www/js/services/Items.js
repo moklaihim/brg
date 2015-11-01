@@ -6,32 +6,10 @@ angular.module('starter.services')
     var is_online;
     var fItems_all = new Firebase("https://fiery-heat-6039.firebaseio.com/items");
     var isUpdated = false;
-/*
-    function createInitialData(){
-            items['R89012-WHT-39'] = {id:'R89012-WHT-39', retail_price:'19'};
-            items.$save();
-    };
-    */
+
     // function createInitialData(){
     //     items = $firebaseObject(fItems_all);
-    //     items['R81011-D_2EBLUE-39'] = {id:'R81011-D.BLUE-39', retail_price:'29'};
-    //     items['R81011-D_2EBLUE-40'] = {id:'R81011-D.BLUE-40', retail_price:'29'};
-    //     items['R81011-D_2EBLUE-41'] = {id:'R81011-D.BLUE-41', retail_price:'29'};
-    //     items['R81011-D_2EBLUE-42'] = {id:'R81011-D.BLUE-42', retail_price:'29'};
-    //     items['R81011-D_2EBLUE-43'] = {id:'R81011-D.BLUE-43', retail_price:'29'};
-    //     items['R81011-D_2EBLUE-44'] = {id:'R81011-D.BLUE-44', retail_price:'29'};
-    //     items['F12017-L_2EBLU-35'] = {id:'F12017-L.BLU-35', retail_price:'39'};
-    //     items['F12017-L_2EBLU-36'] = {id:'F12017-L.BLU-36', retail_price:'39'};
-    //     items['F12017-L_2EBLU-37'] = {id:'F12017-L.BLU-37', retail_price:'39'};
-    //     items['F12017-L_2EBLU-38'] = {id:'F12017-L.BLU-38', retail_price:'39'};
-    //     items['F12017-L_2EBLU-39'] = {id:'F12017-L.BLU-39', retail_price:'39'};
-    //     items['F12017-L_2EBLU-40'] = {id:'F12017-L.BLU-40', retail_price:'39'};
-    //     items['F12001-L_2EBLU-35'] = {id:'F12001-L.BLU-35', retail_price:'49'};
-    //     items['F12001-L_2EBLU-36'] = {id:'F12001-L.BLU-36', retail_price:'49'};
-    //     items['F12001-L_2EBLU-37'] = {id:'F12001-L.BLU-37', retail_price:'49'};
-    //     items['F12001-L_2EBLU-38'] = {id:'F12001-L.BLU-38', retail_price:'49'};
-    //     items['F12001-L_2EBLU-39'] = {id:'F12001-L.BLU-39', retail_price:'49'};
-    //     items['F12001-L_2EBLU-40'] = {id:'F12001-L.BLU-40', retail_price:'49'};
+        
     //     items.$save();
     // };
 
