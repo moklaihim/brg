@@ -16,53 +16,74 @@ angular.module('starter.services')
 
     return {
         conMon: function(){
+          // Logging.log2FB($scope.user_detail.email, "starts conMon function in Env.js service");
           var connectedRef = new Firebase("https://fiery-heat-6039.firebaseIO.com/.info/connected");
 
           connectedRef.on("value", function(snap) {
-              console.log("BRG Debug: connection status changed");
+              // Logging.log2FB($scope.user_detail.email, "BRG Debug: connection status changed in Env.js service");
+              // console.log("BRG Debug: connection status changed");
             if (snap.val() === true) {
-              console.log("BRG Debug: Connected");
+              // Logging.log2FB($scope.user_detail.email, "BRG Debug: Connected in Env.js service");
+              // console.log("BRG Debug: Connected");
               isOnline = true;
               isConnected = true;
-              console.log("Users online start");
+              // Logging.log2FB($scope.user_detail.email, "Users online start in Env.js service");
+              // console.log("Users online start");
               Users.online();
-              console.log("Items online start");
+              // Logging.log2FB($scope.user_detail.email, "Items online start in Env.js service");
+              // console.log("Items online start");
               Items.online();
-              console.log("Stores online start");
+              // Logging.log2FB($scope.user_detail.email, "Stores online start in Env.js service");
+              // console.log("Stores online start");
               Stores.online();
-              console.log("Roles online start");
+              // Logging.log2FB($scope.user_detail.email, "Roles online start in Env.js service");
+              // console.log("Roles online start");
               Roles.online();
-              console.log("Sales online start");
+              // Logging.log2FB($scope.user_detail.email, "Sales online start in Env.js service");
+              // console.log("Sales online start");
               Sales.online();
-              console.log("Codes online start");
+              // Logging.log2FB($scope.user_detail.email, "Codes online start in Env.js service");
+              // console.log("Codes online start");
               Codes.online();
-              console.log("All online done");
+              // Logging.log2FB($scope.user_detail.email, "All online done in Env.js service");
+              // console.log("All online done");
             } else {
-              console.log("BRG Debug: Disconnected");
+              // Logging.log2FB($scope.user_detail.email, "BRG Debug: Disconnected in Env.js service");
+              // console.log("BRG Debug: Disconnected");
               isOnline = false;
-              console.log("Users offline start");
+              // Logging.log2FB($scope.user_detail.email, "Users offline start in Env.js service");
+              // console.log("Users offline start");
               Users.offline();
-              console.log("Items offline start");
+              // Logging.log2FB($scope.user_detail.email, "Items offline start in Env.js service");
+              // console.log("Items offline start");
               Items.offline();
-              console.log("Stores offline start");
+              // Logging.log2FB($scope.user_detail.email, "Stores offline start in Env.js service");
+              // console.log("Stores offline start");
               Stores.offline();
-              console.log("Roles offline start");
+              // Logging.log2FB($scope.user_detail.email, "Roles offline start in Env.js service");
+              // console.log("Roles offline start");
               Roles.offline();
-              console.log("Sales offline start");
+              // Logging.log2FB($scope.user_detail.email, "Sales offline start in Env.js service");
+              // console.log("Sales offline start");
               Sales.offline();
-              console.log("Codes offline start");
+              // Logging.log2FB($scope.user_detail.email, "Codes offline start in Env.js service");
+              // console.log("Codes offline start");
               Codes.offline();
             }
           });
+        // Logging.log2FB($scope.user_detail.email, "ends conMon function in Env.js service");
         },
 
         isMobile: function(){
+            // Logging.log2FB($scope.user_detail.email, "starts isMobile function in Env.js service");
             return isMobile;
         },
         isOnline: function(){
+            // Logging.log2FB($scope.user_detail.email, "starts isOnline function in Env.js service");
             return isOnline;
         },
         isConnected: function(){
+            // Logging.log2FB($scope.user_detail.email, "starts isConnected function in Env.js service");
             return isConnected;
         }
     }

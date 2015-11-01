@@ -37,6 +37,7 @@ angular.module('starter.services')
 
     return {
         online: function(){
+            // Logging.log2FB($scope.user_detail.email, "starts online function in Items.js service");
             /*
             fItems.on("value", function(snapshot) {
                 localStorage.setItem('brg_items', JSON.stringify(snapshot.val()));
@@ -70,21 +71,26 @@ angular.module('starter.services')
             items_array = Object.keys(items).map(function(key) { return items[key] });
             is_online = true;
             
-            
+            // Logging.log2FB($scope.user_detail.email, "ends online function in Items.js service");
         },
 
         offline: function(){
+            // Logging.log2FB($scope.user_detail.email, "starts offline function in Items.js service");
             items = JSON.parse(localStorage.getItem('brg_items'));
             items_array = Object.keys(items).map(function(key) { return items[key] });
             is_online = false;
+            // Logging.log2FB($scope.user_detail.email, "ends offline function in Items.js service");
         },
 
         isUpdated: function(){
+            // Logging.log2FB($scope.user_detail.email, "starts isUpdated function in Items.js service");
             console.log("isUpdated started");
             return isUpdated;
+            // Logging.log2FB($scope.user_detail.email, "ends isUpdated function in Items.js service");
         },
 
         update: function(){
+            // Logging.log2FB($scope.user_detail.email, "starts update function in Items.js service");
             //items = $firebaseObject(fItems_all);
             //items_array = $firebaseArray(fItems_all);
             fItems_all.once("value", function(snapshot) {
@@ -102,22 +108,27 @@ angular.module('starter.services')
               $rootScope.$broadcast('updatedbCompleted');
               //$rootScope.$broadcast('scroll.refreshComplete');
             }); 
+            // Logging.log2FB($scope.user_detail.email, "ends update function in Items.js service");
         },
 
         get: function(){
+            // Logging.log2FB($scope.user_detail.email, "starts get function in Items.js service");
             return items;
         },
 
         get_as_array: function(){
+            // Logging.log2FB($scope.user_detail.email, "starts get_as_array function in Items.js service");
             return items_array;
         },
 
         get_retail_price: function(id){
+            // Logging.log2FB($scope.user_detail.email, "starts get_retail_price function in Items.js service");
             var retail_price = items[id].retail_price;
             return retail_price;
         },
 
         remove: function(key){
+            // Logging.log2FB($scope.user_detail.email, "starts remove function in Items.js service");
             var now = new Date();
             var current_ut = now.getTime();
 
@@ -146,9 +157,11 @@ angular.module('starter.services')
                 localStorage.setItem('brg_items', JSON.stringify(items));
                 items_array = Object.keys(items).map(function(key) { return items[key] });
             }
+            // Logging.log2FB($scope.user_detail.email, "ends remove function in Items.js service");
         },
 
         add: function(item_id, retail_price){
+            // Logging.log2FB($scope.user_detail.email, "starts add function in Items.js service");
             var now = new Date();
             var current_ut = now.getTime();
             var fb_item_id = item_id;
@@ -188,6 +201,7 @@ angular.module('starter.services')
                 localStorage.setItem('brg_items', JSON.stringify(items));
                 items_array = Object.keys(items).map(function(key) { return items[key] });
             }
+            // Logging.log2FB($scope.user_detail.email, "ends add function in Items.js service");
         }
     }
 

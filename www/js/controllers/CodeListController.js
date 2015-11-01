@@ -14,6 +14,7 @@ angular.module('starter.controllers')
 
 
     $scope.editCode = function(type, code_id) {
+      Logging.log2FB($scope.user_detail.email, "starts editCode function in CodeListController");
       $scope.code = {};
       if(code_id){
         $scope.code = $scope[type][code_id];
@@ -58,18 +59,22 @@ angular.module('starter.controllers')
       };
 
     function changesale(){
+      Logging.log2FB($scope.user_detail.email, "starts changesale function in CodeListController");
         if ($scope.code.promo_discount){
           $scope.code.promo_sale_price = "";
           console.log("sales had changed");
         }
+        Logging.log2FB($scope.user_detail.email, "ends changesale function in CodeListController");
     };
     $scope.changesale = changesale;
 
     function changediscount(){
+      Logging.log2FB($scope.user_detail.email, "starts changediscount function in CodeListController");
         if ($scope.code.promo_sale_price){
           $scope.code.promo_discount = "";
           console.log("discount had changed");
         }
+        Logging.log2FB($scope.user_detail.email, "ends editCode function in CodeListController");
     };
     $scope.changediscount = changediscount;
 
@@ -117,6 +122,7 @@ angular.module('starter.controllers')
     };
 
     $scope.removeCode = function(type, code_id) {
+      Logging.log2FB($scope.user_detail.email, "starts removeCode function in CodeListController");
       var confirmPopup = $ionicPopup.confirm({
         title: 'Remove ' + type,
         template: 'Are you sure you want to remove?',
@@ -134,5 +140,6 @@ angular.module('starter.controllers')
         }
       });
     };
+    Logging.log2FB($scope.user_detail.email, "ends removeCode function in CodeListController");
 
 }])

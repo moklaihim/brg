@@ -108,20 +108,25 @@ angular.module('starter.controllers')
 
     //update Items from Firebase
     function updateItems(){
+        Logging.log2FB($scope.user_detail.email, "starts updateItems function in ItemListController");
         $scope.items = Items.get();
         $scope.items_array = Items.get_as_array();
+        Logging.log2FB($scope.user_detail.email, "ends updateItems function in ItemListController");
     }
     $scope.$on(updateItems);
 
     //When selected individually from the item list, go to sales add
     function selectItem($item_id){
+        Logging.log2FB($scope.user_detail.email, "starts selectItem function in ItemListController");
         console.log("selectItem function called" + $item_id);
         $scope.current.item_id = $item_id;
         $state.go('main.sales_add');
+        Logging.log2FB($scope.user_detail.email, "ends selectItem function in ItemListController");
     };
     $scope.selectItem = selectItem;
 
     function addItem(event){
+        Logging.log2FB($scope.user_detail.email, "starts addItem function in ItemListController");
     // addItemClicked = true;
         if($scope.item_brand == 'S'){
             $scope.current.item_id = $scope.item_brand + $scope.item_code + '-' + $scope.item_color + $scope.item_size;
@@ -139,11 +144,13 @@ angular.module('starter.controllers')
         else{
             showItemAddError();
         }
+        Logging.log2FB($scope.user_detail.email, "ends addItem function in ItemListController");
     }
     $scope.addItem = addItem;
 
     //when individual item is slide and pressed edit
     $scope.editItem = function($item_id) {
+        Logging.log2FB($scope.user_detail.email, "starts editItem function in ItemListController");
         if($item_id.indexOf(".") > -1){
                 $fb_item_id = $item_id.replace(/\./g, '_2E')
             };
@@ -153,10 +160,12 @@ angular.module('starter.controllers')
         $state.go('main.items_add');
         $ionicListDelegate.closeOptionButtons();
          //When true , Price input will reset the field value
+         Logging.log2FB($scope.user_detail.email, "ends editItem function in ItemListController");
     }
 
     //when individual item is slide and pressed delete
     $scope.removeItem = function($item_id) {
+        Logging.log2FB($scope.user_detail.email, "starts removeItem function in ItemListController");
         console.log("remove Item item_id: " + $item_id);
         if($item_id.indexOf(".") > -1){
                 $item_id = $item_id.replace(/\./g, '_2E')
@@ -164,6 +173,7 @@ angular.module('starter.controllers')
         console.log("remove new Item item_id: " + $item_id);
         Items.remove($item_id);
         $scope.items_array = Items.get_as_array();
+        Logging.log2FB($scope.user_detail.email, "ends removeItem function in ItemListController");
     }
 
     $scope.updateDB = function(){
@@ -189,6 +199,7 @@ angular.module('starter.controllers')
     */
 
     function trig_brand(event){
+        Logging.log2FB($scope.user_detail.email, "starts trig_brand function in ItemListController");
         $scope.showItemList = true;
         $scope.showBrandInput = true;
         $scope.showCodeInput = false;
@@ -209,10 +220,12 @@ angular.module('starter.controllers')
         //         $scope.showItemCodeInputs = true;
         //     }
         // }
+        Logging.log2FB($scope.user_detail.email, "ends trig_brand function in ItemListController");
     }
     $scope.trig_brand = trig_brand;
 
     function trig_code(event){
+        Logging.log2FB($scope.user_detail.email, "starts trig_code function in ItemListController");
         $scope.showItemList = true;
         $scope.showCodeInput = true;
         $scope.showBrandInput = false;
@@ -232,10 +245,12 @@ angular.module('starter.controllers')
         //         $scope.showItemCodeInputs = true;
         //     }
         // }
+        Logging.log2FB($scope.user_detail.email, "ends trig_code function in ItemListController");
     }
     $scope.trig_code = trig_code;
 
     function trig_color(event){
+        Logging.log2FB($scope.user_detail.email, "starts trig_color function in ItemListController");
         $scope.showColorInput = true;
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
@@ -257,10 +272,12 @@ angular.module('starter.controllers')
         //     }
         // }
         $scope.showItemList = !$scope.showColorInput;
+        Logging.log2FB($scope.user_detail.email, "ends trig_color function in ItemListController");
     }
     $scope.trig_color = trig_color;
 
     function trig_size(event){
+        Logging.log2FB($scope.user_detail.email, "starts trig_size function in ItemListController");
         $scope.showItemList = true;
         $scope.showSizeInput = true;
         $scope.showBrandInput = false;
@@ -280,11 +297,13 @@ angular.module('starter.controllers')
         //         $scope.showItemCodeInputs = true;
         //     }
         // }
+        Logging.log2FB($scope.user_detail.email, "ends trig_size function in ItemListController");
     }
     $scope.trig_size = trig_size;
 
     //---------------Custom Keyboard------------------------ 
     $scope.btn_brand= function(brand_id){
+        Logging.log2FB($scope.user_detail.email, "starts btn_brand function in ItemListController");
         $scope.item_brand = brand_id;
         $scope.showBrandInput = false;
         $scope.showCodeInput = true;
@@ -298,10 +317,12 @@ angular.module('starter.controllers')
             $scope.allItemCodeEntered = true;
             console.log("all item entered");
         }
+        Logging.log2FB($scope.user_detail.email, "ends btn_brand function in ItemListController");
         itemId();
     };
 
     $scope.btn_code= function(event){
+        Logging.log2FB($scope.user_detail.email, "starts btn_code function in ItemListController");
         $scope.item_code = $scope.item_code + event.target.id;
         if($scope.item_brand.charAt( 0 ) == 'S'){
             if($scope.item_code.charAt(1)){
@@ -310,14 +331,16 @@ angular.module('starter.controllers')
                 }
             }
         }
-        itemId();
         if($scope.item_brand && $scope.item_code && $scope.item_color && $scope.item_size){
             console.log("all item entered");
             $scope.allItemCodeEntered = true;
         }
+        Logging.log2FB($scope.user_detail.email, "ends btn_code function in ItemListController");
+        itemId();
     };
 
     $scope.btn_code_ok = function(){
+        Logging.log2FB($scope.user_detail.email, "starts btn_code_ok function in ItemListController");
 
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
@@ -327,20 +350,26 @@ angular.module('starter.controllers')
         $scope.toggleCode = false;
         $scope.showItemList = false;
         trig_color() //to set default color set button selection to COM - common
+        Logging.log2FB($scope.user_detail.email, "ends btn_code_ok function in ItemListController");
         itemId();
     }
 
     $scope.btn_code_clear = function(){
+        Logging.log2FB($scope.user_detail.email, "starts btn_code_clear function in ItemListController");
         $scope.item_code = '';
+        Logging.log2FB($scope.user_detail.email, "ends btn_code_clear function in ItemListController");
         itemId();
     }
 
     $scope.btn_code_backspace = function(){
+        Logging.log2FB($scope.user_detail.email, "starts btn_code_backspace function in ItemListController");
         $scope.item_code = $scope.item_code.substring(0, $scope.item_code.length - 1);
+        Logging.log2FB($scope.user_detail.email, "ends btn_code_backspace function in ItemListController");
         itemId();
     }
 
     $scope.btn_color= function(color_id){
+        Logging.log2FB($scope.user_detail.email, "starts btn_color function in ItemListController");
         $scope.item_color = color_id;
         $scope.showItemList = true;        
         $scope.showBrandInput = false;
@@ -354,10 +383,12 @@ angular.module('starter.controllers')
             console.log("all item entered");
             $scope.allItemCodeEntered = true;
         }
+        Logging.log2FB($scope.user_detail.email, "ends btn_color function in ItemListController");
         itemId();
     };
 
     $scope.btn_size= function(size_id){
+        Logging.log2FB($scope.user_detail.email, "starts btn_size function in ItemListController");
         $scope.item_size = size_id;
         $scope.showBrandInput = false;
         $scope.showCodeInput = false;
@@ -368,21 +399,27 @@ angular.module('starter.controllers')
             console.log("all item entered");
             $scope.allItemCodeEntered = true;
         }
+        Logging.log2FB($scope.user_detail.email, "ends btn_size function in ItemListController");
 
         itemId();
         // $scope.headerLabel = "ITEM : " + $scope.current.item_id;
     };
 
     $scope.filterColor = function(event){
+        Logging.log2FB($scope.user_detail.email, "starts filterColor function in ItemListController");
         $ionicScrollDelegate.scrollTop();
         $scope.filterLetters = event.target.id;
         console.log("selected is " + $scope.filterLetters);
+        Logging.log2FB($scope.user_detail.email, "ends filterColor function in ItemListController");
 
     };
 
     function itemId(){
+        Logging.log2FB($scope.user_detail.email, "starts itemId function in ItemListController");
         $ionicScrollDelegate.scrollTop();
+        Logging.log2FB($scope.user_detail.email, "ends itemId function in ItemListController");
     }
+
     
     // ------------------------------Alert Function----------------------------
     function showAlert(){
@@ -412,6 +449,7 @@ angular.module('starter.controllers')
     $scope.showItemAddError = showItemAddError;
 
     function confirmScanResult(barcodeData){
+        Logging.log2FB($scope.user_detail.email, "starts confirmScanResult function in ItemListController");
        var confirmPopup = $ionicPopup.confirm({
          title: 'Verify Scanned Code',
          template: 'Scanned : ' +  '<h2>'+ barcodeData + '</h2>',
@@ -438,10 +476,12 @@ angular.module('starter.controllers')
                 scanFunction();
             }
         });
+        Logging.log2FB($scope.user_detail.email, "ends confirmScanResult function in ItemListController");
     };
     $scope.confirmScanResult = confirmScanResult;
 
     function itemExist(barcodeData){
+        Logging.log2FB($scope.user_detail.email, "starts itemExist function in ItemListController");
         // var msg = item_id;
         var alertPopup = $ionicPopup.alert({
          title: 'Item Exist',
@@ -451,6 +491,7 @@ angular.module('starter.controllers')
         // alertPopup.then(function(res) {
         //  console.log('Thank you for different date');
         // });
+        Logging.log2FB($scope.user_detail.email, "ends itemExist function in ItemListController");
     };
     $scope.itemExist = itemExist;
 

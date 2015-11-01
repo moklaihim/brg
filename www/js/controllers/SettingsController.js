@@ -24,15 +24,18 @@ angular.module('starter.controllers')
     };
 
     $scope.reportEmailUpdate = function(){
+        Logging.log2FB($scope.user_detail.email, "starts reportEmailUpdate function in SettingsController");
         $scope.user_detail.reportTo = $scope.user_detail.reportTo.replace(/ /g,"");
         $scope.user_detail.reportCc = $scope.user_detail.reportCc.replace(/ /g,"");
         user.reportTo = $scope.user_detail.reportTo;
         user.reportCc = $scope.user_detail.reportCc;
         Users.edit($scope.user_detail);
         $scope.showAlert("Notification", "Updated");
+        Logging.log2FB($scope.user_detail.email, "ends reportEmailUpdate function in SettingsController");
     };
 
     $scope.addToList = function(){
+        Logging.log2FB($scope.user_detail.email, "starts addToList function in SettingsController");
         $scope.user_detail.emailTo = $scope.user_detail.emailTo + ',';
         //var sendToElem = angular.element(document.getElementById('sendTo'));
         //sendToElem.focus();
@@ -40,12 +43,15 @@ angular.module('starter.controllers')
         //$scope.toFocus=true;
         //console
         // document.getElementById("sendTo").focus();
+        Logging.log2FB($scope.user_detail.email, "ends addToList function in SettingsController");
     };
 
     $scope.addCcList = function(){
+        Logging.log2FB($scope.user_detail.email, "starts addCcList function in SettingsController");
         $scope.user_detail.emailCc = $scope.user_detail.emailCc + ',';
         // user.reportSendCc.push(user_detail.emailCc);
         // Users.edit($scope.user_detail);
+        Logging.log2FB($scope.user_detail.email, "ends addCcList function in SettingsController");
     };
 
     if(Env.isMobile()){
@@ -78,6 +84,7 @@ angular.module('starter.controllers')
 
     // Update app code with new release from Ionic Deploy
     $scope.doUpdate = function() {
+        Logging.log2FB($scope.user_detail.email, "starts doUpdate function in SettingsController");
         /*
         if($scope.current.hasUpdate){
             $ionicDeploy.update().then(function(res) {
@@ -87,12 +94,15 @@ angular.module('starter.controllers')
             }, function(prog) {
                 console.log('Ionic Deploy: Progress... ', prog);
             }); 
+
         }   
         */
+        Logging.log2FB($scope.user_detail.email, "ends doUpdate function in SettingsController");
     };  
 
     // Check Ionic Deploy for new code
     function checkForUpdates(){
+        Logging.log2FB($scope.user_detail.email, "starts checkForUpdates function in SettingsController");
         /*
         console.log('Ionic Deploy: Checking for updates');
         $ionicDeploy.check().then(function(hasUpdate) {
@@ -101,6 +111,8 @@ angular.module('starter.controllers')
         }, function(err) {
             console.error('Ionic Deploy: Unable to check for updates', err);
         }); 
+
         */
+        Logging.log2FB($scope.user_detail.email, "ends checkForUpdates function in SettingsController");
     };
 }])

@@ -10,6 +10,7 @@ angular.module('starter.controllers')
 
     if ($state.current.name === "main.users_add"){
         // Adding new user
+        Logging.log2FB($scope.user_detail.email, "Add new user button pressed in UserEditController");
         $scope.user_detail = {
             email: '',
             id: '',
@@ -22,6 +23,7 @@ angular.module('starter.controllers')
         }
     }else{
         // Editing existing user
+        Logging.log2FB($scope.user_detail.email, "Edit user pressed in UserEditController");
         var p_user = Users.get_one($scope.current.user_id, "id");
         p_user.then(function(user_detail){
             $scope.user_detail = {
@@ -38,23 +40,29 @@ angular.module('starter.controllers')
     }
 
     $scope.reset_pw = function(){
+        Logging.log2FB($scope.user_detail.email, "starts reset_pw function in UserEditController");
         Users.reset_pw($scope.user_detail.email);
         $scope.showAlert("Notice", "Password reset email will be sent to the user shortly");
+        Logging.log2FB($scope.user_detail.email, "ends reset_pw function in UserEditController");
     };
  
     $scope.ok = function(){
+        Logging.log2FB($scope.user_detail.email, "starts ok function in UserEditController");
         if(!$scope.user_detail.storeIC){
             $scope.user_detail.storeIC = "";
         }
         $scope.showAlert("Notice", "User: " + $scope.user_detail.name + " Updated");
         Users.edit($scope.user_detail);
         $state.go('main.users_list');
+        Logging.log2FB($scope.user_detail.email, "ends ok function in UserEditController");
     };
 
     $scope.cancel = function(){
+        Logging.log2FB($scope.user_detail.email, "starts cancel function in UserEditController");
         $ionicHistory.nextViewOptions({
               historyRoot: true
         }); 
         $state.go('main.users_list');
+        Logging.log2FB($scope.user_detail.email, "starts cancel function in UserEditController");
     }; 
 }])

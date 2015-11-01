@@ -11,6 +11,7 @@ angular.module('starter.controllers')
     showStoreList();
 
     function distance(lat1, lon1, lat2, lon2, unit) {
+        Logging.log2FB($scope.user_detail.email, "starts distance function in StoreListController");
         var radlat1 = Math.PI * lat1/180
         var radlat2 = Math.PI * lat2/180
         var radlon1 = Math.PI * lon1/180
@@ -24,18 +25,23 @@ angular.module('starter.controllers')
         if (unit=="K") { dist = dist * 1.609344 }
         if (unit=="N") { dist = dist * 0.8684 }
         return dist
+    Logging.log2FB($scope.user_detail.email, "ends distance function in StoreListController");
     }
 
     function showStoreList(){
+        Logging.log2FB($scope.user_detail.email, "starts showStoreList function in StoreListController");
         $scope.showSpinner = true;
         p_stores_array = Stores.get_list_as_array();
         p_stores_array.then(function(r_stores_array){
             stores_array = r_stores_array;
             calcDistance();
         });
+        Logging.log2FB($scope.user_detail.email, "ends showStoreList function in StoreListController");
+
     }
 
     function calcDistance(){
+        Logging.log2FB($scope.user_detail.email, "starts calcDistance function in StoreListController");
         var posOptions = {timeout: 5000, enableHighAccuracy: false};
         $cordovaGeolocation
             .getCurrentPosition(posOptions)
@@ -71,9 +77,11 @@ angular.module('starter.controllers')
                 $scope.showSpinner = false;
                 $scope.stores_array = stores_array;
             });
+    Logging.log2FB($scope.user_detail.email, "ends calcDistance function in StoreListController");
     }
 
     $scope.selectStore = function(store_id, store_name){
+        Logging.log2FB($scope.user_detail.email, "starts selectStore function in StoreListController");
         window.localStorage.setItem("store_date", $scope.current.today_date);
         window.localStorage.setItem("store_id", store_id);
         window.localStorage.setItem("store_name", store_name);
@@ -87,6 +95,7 @@ angular.module('starter.controllers')
           historyRoot: true
         });
         $state.go('main.sales_list');
+        Logging.log2FB($scope.user_detail.email, "ends selectStore function in StoreListController");
     };
 
 }])

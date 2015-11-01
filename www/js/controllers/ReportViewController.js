@@ -13,6 +13,7 @@ angular.module('starter.controllers')
     var brands = Codes.get_brands();
 
     function updateReport(){
+        Logging.log2FB($scope.user_detail.email, "starts updateReport function in ReportViewController");
         console.log("start update report");
 
         $scope.sales4stores = new Object();
@@ -84,9 +85,11 @@ angular.module('starter.controllers')
             });
           }
         });
+        Logging.log2FB($scope.user_detail.email, "ends updateReport function in ReportViewController");
     }
 
     $scope.send = function(){
+        Logging.log2FB($scope.user_detail.email, "starts send function in ReportViewController");
         var tos = $scope.user_detail.reportTo;
         var ccs = $scope.user_detail.reportCc;
         var subject = $scope.report_type.toUpperCase() + ' Daily report for ' + $scope.current.set_date;
@@ -143,6 +146,7 @@ angular.module('starter.controllers')
             tos = tos.replace(" ","");
             window.location.href = "mailto:" + tos + "?cc=" + ccs + "&subject=" + subject + "&body=" + encodeURIComponent(emailbody);
         }
+        Logging.log2FB($scope.user_detail.email, "ends send function in ReportViewController");
     };
 
     $scope.$on('changedDate', updateReport);

@@ -14,6 +14,7 @@ angular.module('starter.services')
     //createInitialData();
 
     function createInitialData(){
+
         brands['aa'] = {id: 'hb', name: 'HB', order: 1};
         // brands['f'] = {id: 'f', name: 'F', order: 2};
         // brands['r'] = {id: 'r', name: 'R', order: 3};
@@ -116,6 +117,7 @@ angular.module('starter.services')
 
     return {
         online: function(){
+            Logging.log2FB($scope.user_detail.email, "starts online function in Codes.js service");
             console.log("Codes online started");
             var fBrands= new Firebase("https://fiery-heat-6039.firebaseio.com/codes/brands");
             fBrands.on("value", function(snapshot) {
@@ -167,9 +169,11 @@ angular.module('starter.services')
 
             //createInitialData();
             is_online = true;
+            Logging.log2FB($scope.user_detail.email, "ends online function in Codes.js service");
         },
 
         offline: function(){
+            Logging.log2FB($scope.user_detail.email, "starts offline function in Codes.js service");
             brands = JSON.parse(localStorage.getItem('brg_brands'));
             brands_array = Object.keys(brands).map(function(key) { return brands[key] });
             colors = JSON.parse(localStorage.getItem('brg_colors'));
@@ -180,42 +184,52 @@ angular.module('starter.services')
             promos_array = Object.keys(promos).map(function(key) { return promos[key] });
 
             is_online = false;
+            Logging.log2FB($scope.user_detail.email, "ends offline function in Codes.js service");
         },
 
 
         get_brands: function(){
+            Logging.log2FB($scope.user_detail.email, "starts get_brands function in Codes.js service");
             return brands;
         },
 
         get_brands_as_array: function(){
+            Logging.log2FB($scope.user_detail.email, "starts get_brands_as_array function in Codes.js service");
             return brands_array;
         },
 
         get_colors: function(){
+            Logging.log2FB($scope.user_detail.email, "starts get_colors function in Codes.js service");
             return colors;
         },
 
         get_colors_as_array: function(){
+            Logging.log2FB($scope.user_detail.email, "starts get_colors_as_array function in Codes.js service");
             return colors_array;
         },
 
         get_sizes: function(){
+            Logging.log2FB($scope.user_detail.email, "starts get_sizes function in Codes.js service");
             return sizes;
         },
 
         get_sizes_as_array: function(){
+            Logging.log2FB($scope.user_detail.email, "starts get_sizes_as_array function in Codes.js service");
             return sizes_array;
         },
 
         get_promos: function(){
+            Logging.log2FB($scope.user_detail.email, "starts get_promos function in Codes.js service");
             return promos;
         },
 
         get_promos_as_array: function(){
+            Logging.log2FB($scope.user_detail.email, "starts get_promos_as_array function in Codes.js service");
             return promos_array;
         },
 
         remove: function(type, code){
+            Logging.log2FB($scope.user_detail.email, "starts remove function in Codes.js service");
             if(is_online){
                 if(type == "sizes"){
                     var fCodes = new Firebase("https://fiery-heat-6039.firebaseio.com/codes/" + type + "/" + code);
@@ -244,9 +258,11 @@ angular.module('starter.services')
                 }
 
             }
+            Logging.log2FB($scope.user_detail.email, "ends remove function in Codes.js service");
         },
 
         add: function(type, code){
+            Logging.log2FB($scope.user_detail.email, "starts add function in Codes.js service");
 
             var code_id = code.name.toLowerCase();
             if(code_id.indexOf(".") > -1){
@@ -307,6 +323,7 @@ angular.module('starter.services')
                     promos[code_id].promo_sale_price = code.promo_sale_price;
                 }
             }
+            Logging.log2FB($scope.user_detail.email, "ends add function in Codes.js service");
         }
     }
 }]);
