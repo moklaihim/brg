@@ -115,10 +115,11 @@ angular.module('starter.services')
             var current_ut = now.getTime();
 
             if(is_online){
-                // var fSale = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key);
-                var fItems_remove = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + key);
-                var item = $firebaseObject(fItems_remove);
-                item.$remove().then(function(fItems_remove){
+                if(key){
+                  // var fSale = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key);
+                  var fItems_remove = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + key);
+                  var item = $firebaseObject(fItems_remove);
+                  item.$remove().then(function(fItems_remove){
                     console.log("Item" + key +"removed from server");
                     var fVer = new Firebase("https://fiery-heat-6039.firebaseio.com/ver");
                     fVer.set({
@@ -126,14 +127,15 @@ angular.module('starter.services')
                     });
                     localStorage.setItem('brg_items_ver', current_ut);
 
-                }, function(error) {
+                  }, function(error) {
                     console.log("Error:", error);
-                });
+                  });
 
 
-                delete items[key];
-                localStorage.setItem('brg_items', JSON.stringify(items));
-                items_array = Object.keys(items).map(function(key) { return items[key] });
+                  delete items[key];
+                  localStorage.setItem('brg_items', JSON.stringify(items));
+                  items_array = Object.keys(items).map(function(key) { return items[key] });
+                }
             }else{
                 delete items[key];
                 localStorage.setItem('brg_items', JSON.stringify(items));
