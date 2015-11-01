@@ -10,13 +10,17 @@ angular.module('starter.controllers')
     $scope.roles = roles;
 
     $scope.update = function(){
+        Logging.log2FB($scope.user_detail.email, "starts update function in RoleListController");
         $scope.roles.$save();
+        Logging.log2FB($scope.user_detail.email, "ends update function in RoleListController");
         updatedAlert();
     };
 
     $scope.cancel = function(){
+        Logging.log2FB($scope.user_detail.email, "starts cancel function in RoleListController");
         Roles.online();
         $scope.roles = Roles.get_list();
+        Logging.log2FB($scope.user_detail.email, "ends cancel function in RoleListController");
     };
 
     function updatedAlert(){
