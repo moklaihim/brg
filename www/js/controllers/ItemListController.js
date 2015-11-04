@@ -150,12 +150,13 @@ angular.module('starter.controllers')
 
     //when individual item is slide and pressed edit
     $scope.editItem = function($item_id) {
+
         Logging.log2FB($scope.user_detail.email, "starts editItem function in ItemListController");
         if($item_id.indexOf(".") > -1){
-                $fb_item_id = $item_id.replace(/\./g, '_2E')
+                $item_id = $item_id.replace(/\./g, '_2E')
             };
         $scope.current.item_id = $item_id;
-        $scope.current.retail_price = $scope.items[$fb_item_id].retail_price;
+        $scope.current.retail_price = $scope.items[$item_id].retail_price;
         $scope.current.itemAddMode = 'fromedit';
         $state.go('main.items_add');
         $ionicListDelegate.closeOptionButtons();
