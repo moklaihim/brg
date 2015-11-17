@@ -8,7 +8,7 @@
         <ion-content>
           <ion-list class="border-list">
             <ion-item ng-repeat="brand in brands">
-              <b>{{brand.name}}</b>
+              <b>{{brand.name}}</b><span style="padding-left:5px">- {{brand.target}}</span>
               <ion-option-button ink class="button-option button-assertive-900 mdi mdi-delete ink" ng-click="removeCode('brands', brand.id)"></ion-option-button>
             </ion-item>
           </ion-list>

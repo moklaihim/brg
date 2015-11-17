@@ -48,7 +48,9 @@
             </ion-item>
             
             <ion-item class="ng-hide energized item-icon-left" ng-if="!salesClosed && role.allowCloseSales && current.store_name" ng-show="!salesClosed && role.allowCloseSales && isOnline()">
-                <i class="icon ion-chevron-left"></i>Swipe to close sales <!-- Total = {{totalSalesQty}} -->
+                <i class="icon ion-chevron-left"></i>Swipe to close sales 
+                <!-- <span class="item-note" >Qty = {{totalSalesQty}}</span></br>
+                <span class="item-note" >Sales = {{totalSales}}</span> -->
                 <ion-option-button ink class="button-energized ink" ng-click="closeSales()" style="width:300px; padding-left:10px"> Close sales<i class="ion-android-done-all" style="font-size: 30px; padding-left: 10px"></i></ion-option-button>
             </ion-item>
         </ion-list>

@@ -75,18 +75,18 @@ angular.module('starter.controllers')
             var p_sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
             p_sales.then(function(sales_detail){
                 $scope.sales = sales_detail;
-                // var count = Object.keys($scope.sales).length; //to count and show total sales
-                // console.log("Total Sales Qty is = " + (count-3))
+                var count = Object.keys($scope.sales).length; //to count and show total sales                
+                console.log("Total Sales Qty is = " + (count-3))
 
                 if('CLOSED' in $scope.sales){
                     $scope.showSpinner = false;
                     $scope.salesClosed = true;
-                    // $scope.totalSalesQty = count -4;
+                    $scope.totalSalesQty = count -4;
                     // $scope.CloseStyle = {"background-color":"#ffc900", "border-color":"#e6b500"}
                 }else{
                     $scope.showSpinner = false;
                     $scope.salesClosed = false;
-                    // $scope.totalSalesQty = count -3;
+                    $scope.totalSalesQty = count -3;
                     // $scope.CloseStyle = {"background-color":"#33cd5f", "border-color":"#28a54c"}
                 }
             });

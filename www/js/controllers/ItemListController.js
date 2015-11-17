@@ -325,7 +325,7 @@ angular.module('starter.controllers')
     $scope.btn_code= function(event){
         Logging.log2FB($scope.user_detail.email, "starts btn_code function in ItemListController");
         $scope.item_code = $scope.item_code + event.target.id;
-        if($scope.item_brand.charAt( 0 ) == 'S'){
+        if($scope.item_brand.charAt( 0 ) == 'S' && $scope.item_brand.length == 1){
             if($scope.item_code.charAt(1)){
                 if(!$scope.item_code.charAt(2)){
                     $scope.item_code = $scope.item_code + "-";

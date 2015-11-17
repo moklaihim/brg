@@ -95,6 +95,9 @@ angular.module('starter.controllers')
             for (var i = 0; i < $scope.sale.qty; i++) {
                 console.log("Sale_key FAIL in Sales.js")
                 Sales.add($scope.current.store_id, $scope.sale.item_id, $scope.sale.sale_price, $scope.sale.discount_rate, $scope.sale.promo_choice, $scope.sale.gift, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, false, $scope.user_detail.email, $scope.sale.retail_price);
+                    if($scope.current.today_date != $scope.current.set_date) {
+                        console.log("previous date entered sales " + $scope.sale.item_id + " On " + $scope.current.set_date)
+                    }
                 console.log("entry")
             }
         }
