@@ -41,7 +41,7 @@
                     <span >On {{sale.update_date}}</span>
                     <span class="item-note">{{sale.time}}</span>
                 </p>
-                <div ng-if="!salesClosed">
+                <div class="ng-hide" ng-if="!salesClosed">
                     <ion-option-button ink class="button-option button-positive-900 mdi mdi-pencil ink" ng-if="role.allowEditAllSales || (role.allowEditOwnSales && sale.user == user_detail.email)" ng-show="role.allowEditAllSales || (role.allowEditOwnSales && sale.user == user_detail.email)" ng-click="editSale(key)"></ion-option-button>
                     <ion-option-button ink class="button-option button-assertive-900 mdi mdi-delete ink" ng-if="role.allowDeleteAllSales || (role.allowDeleteOwnSales && sale.user == user_detail.email)" ng-show="role.allowDeleteAllSales || (role.allowDeleteOwnSales && sale.user == user_detail.email)" ng-click="removeSale(key)"></ion-option-button>
                 </div>
