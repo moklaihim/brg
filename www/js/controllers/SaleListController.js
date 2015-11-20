@@ -103,6 +103,7 @@ angular.module('starter.controllers')
             $scope.showSelectStoreMsg = true;
         }
         Logging.log2FB($scope.user_detail.email, "ends updateSales function in SaleListController");
+        
     }
     
 
