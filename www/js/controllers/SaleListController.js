@@ -80,8 +80,11 @@ angular.module('starter.controllers')
                 $scope.totalSalesQty = 0;
                 $scope.totalSalesPrice = 0;
                 angular.forEach($scope.sales, function(sale, key) {
-                  $scope.totalSalesQty++;
-                  $scope.totalSalesPrice += Number(sale.price);
+                  if(key != "CLOSED"){
+                    $scope.totalSalesQty++;
+                    $scope.totalSalesPrice += Number(sale.price);
+                    console.log("Total price is = " + Number($scope.totalSalesPrice));
+                  }
                 });
 
                 var count = Object.keys($scope.sales).length; //to count and show total sales                
@@ -90,7 +93,7 @@ angular.module('starter.controllers')
                 if('CLOSED' in $scope.sales){
                     $scope.showSpinner = false;
                     $scope.salesClosed = true;
-                    $scope.totalSalesQty--;
+                    //$scope.totalSalesQty--;
                     // $scope.CloseStyle = {"background-color":"#ffc900", "border-color":"#e6b500"}
                 }else{
                     $scope.showSpinner = false;
