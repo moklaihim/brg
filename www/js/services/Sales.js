@@ -95,8 +95,8 @@ angular.module('starter.services')
                 var sale = $firebaseObject(fSale);
                 sale.item = item_id;
                 sale.price = sale_price;
-                sale.update_date = update_year + "/" + update_month + "/" + update_day;
-                sale.date = year + "/" + month + "/" + day;
+                sale.update_date = update_day + "/" + update_month + "/" + update_year;
+                sale.date = day + "/" + month + "/" + year;
                 sale.time = time;
                 sale.timestamp = current_ut;
                 sale.user = user_id;
@@ -111,8 +111,8 @@ angular.module('starter.services')
                 sales[current_ut] = new Object();
                 sales[current_ut].item = item_id;
                 sales[current_ut].price = sale_price;
-                sales[current_ut].update_date = update_year + "/" + update_month + "/" + update_day;
-                sales[current_ut].date = year + "/" + month + "/" + day;
+                sales[current_ut].update_date = update_day + "/" + update_month + "/" + update_year;
+                sales[current_ut].date = day + "/" + month + "/" + year;
                 sales[current_ut].time = time;
                 sales[current_ut].timestamp = current_ut;
                 sales[current_ut].user = user_id;
@@ -162,7 +162,7 @@ angular.module('starter.services')
 
             sale.item = "CLOSED";
             sale.date = year + "/" + month + "/" + day;
-            sale.update_date = update_year + "/" + update_month + "/" + update_day;
+            sale.update_date = update_day + "/" + update_month + "/" + update_year;
             sale.time = time;
             sale.timestamp = current_ut;
             sale.discount_rate = 0;

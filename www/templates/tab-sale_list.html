@@ -38,7 +38,7 @@
                 </h2>
                 <p>
                     <span ng-show="isConnected()">By {{getNameByEmail(sale.user)}}</span> 
-                    <span ng-show="sale.update_date != current.set_date">On {{sale.update_date}}</span>
+                    <span >On {{sale.update_date}}</span>
                     <span class="item-note">{{sale.time}}</span>
                 </p>
                 <div ng-if="!salesClosed">
