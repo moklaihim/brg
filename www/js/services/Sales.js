@@ -144,7 +144,7 @@ angular.module('starter.services')
             }
         },
 
-        close: function(store_id, year, month, day, user_id, total_qty){
+        close: function(store_id, year, month, day, user_id){
             var now = new Date();
             var hour = now.getHours();
             var minute = now.getMinutes();
@@ -167,8 +167,6 @@ angular.module('starter.services')
             sale.timestamp = current_ut;
             sale.discount_rate = 0;
             sale.user = user_id;
-            sale.total_qty = total_qty;
-            // sale.total_sale = total_sale;
             sale.$save();
         },
 
