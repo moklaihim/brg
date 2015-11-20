@@ -30,7 +30,7 @@
     <ion-content padding="false" class="ng-hide" ng-show="showSalesView" ng-class="{'has-subheader': !isOnline()}">
         <ion-list class="border-list">
             <ion-item class="ng-hide" ng-repeat="(key, sale) in sales" ng-show="key == 'CLOSED' || role.allowViewAllSales || sale.user == user_detail.email || user_detail.storeIC == current.store_id" >
-                <h2>{{sale.item}}
+                <h2>{{sale.item}} <span ngshow="salesClosed"> Total Qty : {{totalSalesQty}} <span>
                     <span class="item-note">
                         <span style="color:#FFFFFF"> <i class="ng-hide darkpurplebutton" ng-show="sale.gift">&nbsp {{sale.gift}} </i>&nbsp<i ng-show="sale.promo_choice" class="ng-hide redbutton"> {{sale.promo_choice | uppercase}} </i>&nbsp<i ng-show="sale.discount_rate != 0" class="ng-hide" style="color:#F44336"> {{sale.discount_rate}}% </i></span> 
                         {{sale.price | currency:"$"}}
@@ -49,8 +49,8 @@
             
             <ion-item class="ng-hide energized item-icon-left" ng-if="!salesClosed && role.allowCloseSales && current.store_name" ng-show="!salesClosed && role.allowCloseSales && isOnline()">
                 <i class="icon ion-chevron-left"></i>Swipe to close sales 
-                <!-- <span class="item-note" >Qty = {{totalSalesQty}}</span></br>
-                <span class="item-note" >Sales = {{totalSales}}</span> -->
+                <span class="item-note" >Qty = {{totalSalesQty}}</span></br>
+                <span class="item-note" >Sales = {{totalSales}}</span>
                 <ion-option-button ink class="button-energized ink" ng-click="closeSales()" style="width:300px; padding-left:10px"> Close sales<i class="ion-android-done-all" style="font-size: 30px; padding-left: 10px"></i></ion-option-button>
             </ion-item>
         </ion-list>
