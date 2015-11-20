@@ -55,24 +55,31 @@ angular.module('starter.controllers')
                             //I think below 2 lines can be adjusted and deleted. Tom
                             //$scope.sales4stores[key][i].retail_price = items[sale.item].retail_price;
                             //$scope.sales4stores[key][i].discount_rate = sale.discount;
-                            if (!(brand.toLowerCase() in $scope.brand_grandtotal)){
-                              $scope.brand_grandtotal[brand.toLowerCase()] = 0;
-                              $scope.brand_grandqty[brand.toLowerCase()] = 0;
+                            var brand_id = brand.toLowerCase();
+                            if(brand_id == "sf"){
+                              brand_id = "f";
+                            }else if(brand_id == "sh"){
+                              brand_id = "h";
                             }
-                            if (!(brand.toLowerCase() in $scope.brand_total4stores[key])){
-                              $scope.brand_total4stores[key][brand.toLowerCase()] = 0;
-                              $scope.brand_qty4stores[key][brand.toLowerCase()] = 0;
+
+                            if (!(brand_id in $scope.brand_grandtotal)){
+                              $scope.brand_grandtotal[brand_id] = 0;
+                              $scope.brand_grandqty[brand_id] = 0;
                             }
-                            $scope.brand_total4stores[key][brand.toLowerCase()] += sale.price * 1;
-                            $scope.brand_qty4stores[key][brand.toLowerCase()]++;
+                            if (!(brand_id in $scope.brand_total4stores[key])){
+                              $scope.brand_total4stores[key][brand_id] = 0;
+                              $scope.brand_qty4stores[key][brand_id] = 0;
+                            }
+                            $scope.brand_total4stores[key][brand_id] += sale.price * 1;
+                            $scope.brand_qty4stores[key][brand_id]++;
                             $scope.total4stores[key] += sale.price * 1;
                             $scope.qty4stores[key]++;
-                            $scope.brand_grandtotal[brand.toLowerCase()] += sale.price * 1;
-                            $scope.brand_grandqty[brand.toLowerCase()]++;
+                            $scope.brand_grandtotal[brand_id] += sale.price * 1;
+                            $scope.brand_grandqty[brand_id]++;
                             $scope.grandtotal += sale.price * 1;
                             $scope.grandqty++;
-                            $scope.brand_total4stores[key][brand.toLowerCase()] = Math.floor($scope.brand_total4stores[key][brand.toLowerCase()] * 100 + 0.5)/100;
-                            $scope.brand_grandtotal[brand.toLowerCase()] = Math.floor($scope.brand_grandtotal[brand.toLowerCase()] * 100 + 0.5)/100;
+                            $scope.brand_total4stores[key][brand_id] = Math.floor($scope.brand_total4stores[key][brand_id] * 100 + 0.5)/100;
+                            $scope.brand_grandtotal[brand_id] = Math.floor($scope.brand_grandtotal[brand_id] * 100 + 0.5)/100;
                         }else{
                             delete $scope.sales4stores[key][i];
                         }
