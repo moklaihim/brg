@@ -30,7 +30,7 @@
     <ion-content padding="false" class="ng-hide" ng-show="showSalesView" ng-class="{'has-subheader': !isOnline()}">
         <ion-list class="border-list">
             <ion-item class="ng-hide" ng-repeat="(key, sale) in sales" ng-show="key == 'CLOSED' || role.allowViewAllSales || sale.user == user_detail.email || user_detail.storeIC == current.store_id" >
-                <h2>{{sale.item}} <span ng-show="key == 'CLOSED'"> Total Qty : {{totalSalesQty}} Sales : {{totalSalesPrice | currency:"$"}}</span>
+                <h2>{{sale.item}} <span style="float:right" ng-show="key == 'CLOSED'"> Qty : {{totalSalesQty}} | Sales : {{totalSalesPrice | currency:"$"}}</span>
                     <span class="item-note">
                         <span style="color:#FFFFFF"> <i class="ng-hide darkpurplebutton" ng-show="sale.gift">&nbsp {{sale.gift}} </i>&nbsp<i ng-show="sale.promo_choice" class="ng-hide redbutton"> {{sale.promo_choice | uppercase}} </i>&nbsp<i ng-show="sale.discount_rate != 0" class="ng-hide" style="color:#F44336"> {{sale.discount_rate}}% </i></span> 
                         {{sale.price | currency:"$"}}
