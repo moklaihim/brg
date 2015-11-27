@@ -277,10 +277,17 @@ angular.module('starter.services')
                     brands.$save();
                 }
                 if(type == "colors"){
+                    if(code.commoncolor){
+                        colors[code_id] = new Object();
+                        colors[code_id].id = "1"+code.name.toLowerCase();
+                        colors[code_id].name = code.name.toUpperCase();
+                        colors.$save();
+                    }else{
                     colors[code_id] = new Object();
                     colors[code_id].id = code.name.toLowerCase();
                     colors[code_id].name = code.name.toUpperCase();
                     colors.$save();
+                    }
                 }
                 if(type == "sizes"){
                     sizes[code_id] = new Object();
