@@ -5,6 +5,9 @@
         <button class="button button-clear button-icon button-clear mdi mdi-calendar" ng-class="{'warning-color': current.today_date != current.set_date}" ng-click="showDatePicker($event)"></button>
 
     </ion-nav-buttons>
+    <ion-nav-title>
+          <div class="page-title" style="width:50%; margin: 0 auto" ng-click="modal.show()">Sales</div>
+      </ion-nav-title>
 
     <div class="bar bar-subheader data_network_unavailable ng-hide" ng-hide="isOnline()">
         <p>Data network unavailable</p>
@@ -47,7 +50,7 @@
                 </div>
             </ion-item>
             
-            <ion-item class="ng-hide energized item-icon-left" ng-if="!salesClosed && role.allowCloseSales && current.store_name" ng-show="!salesClosed && role.allowCloseSales && isOnline()">
+            <ion-item class="ng-hide energized item-icon-left" ng-if="!salesClosed && role.allowCloseSales && current.store_name" ng-show="!salesClosed && role.allowCloseSales && isOnline()" ng-click="modal.show()">
                 <i class="icon ion-chevron-left"></i>Swipe to close sales 
                 <span class="item-note" >Qty = {{totalSalesQty}}</span></br>
                 <span class="item-note" >Sales = {{totalSalesPrice | currency:"$"}}</span>
@@ -60,5 +63,7 @@
     <!-- <button ink class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-plus ng-hide" ui-sref="main.items_list" ng-click="current.itemAddMode='fromsale'" ng-if="role.allowAddSales && !salesClosed" ng-show="role.allowAddSales && !salesClosed"></button> -->
     <!-- button ink class="button button-fab button-fab-bottom-right button-brg-a mdi mdi-barcode ng-hide" ui-sref="main.sales_scanadd" ng-if="isMobile() && role.allowAddSales && !salesClosed" ng-click="current.itemAddMode='fromsale'" ng-show="isMobile() && role.allowAddSales && !salesClosed" style="margin-right:70px"></button -->
     <button ink class="button button-fab button-fab-bottom-right button-dark mdi mdi-lock ng-hide" on-hold="reOpenSales()" ng-if="salesClosed" ng-show="salesClosed"></button>
+
+    
 </ion-view>
 

@@ -1,5 +1,11 @@
 angular.module('starter.controllers')
-.controller('SaleListController', ["$scope", "$state", "Sales", "Users", "Env", "Logging", "$ionicListDelegate", function($scope, $state, Sales, Users, Env, Logging, $ionicListDelegate) {
+.controller('SaleListController', ["$scope", "$state", "Sales", "Users", "Env", "Logging", "$ionicListDelegate", "$ionicModal", function($scope, $state, Sales, Users, Env, Logging, $ionicListDelegate, $ionicModal) {
+    $ionicModal.fromTemplateUrl('templates/sales_list_report_view.html', {
+        scope: $scope
+      }).then(function(modal) {
+        $scope.modal = modal;
+      });
+
     console.log("BRG Debug: SaleListController started");
     Logging.log2FB($scope.user_detail.email, "SaleListController started");
     //if(Env.isMobile()){
@@ -89,8 +95,8 @@ angular.module('starter.controllers')
                   }
                 });
 
-                var count = Object.keys($scope.sales).length; //to count and show total sales                
-                console.log("Total Sales Qty is = " + (count-3))
+                // var count = Object.keys($scope.sales).length; //to count and show total sales                
+                // console.log("Total Sales Qty is = " + (count-3))
 
                 if('CLOSED' in $scope.sales){
                     $scope.showSpinner = false;
@@ -127,7 +133,8 @@ angular.module('starter.controllers')
             online_watch();
         }
     }, false);
-   
+
+    
    
     // var close_watch = $scope.$watch('sales.CLOSED', function(val){
         

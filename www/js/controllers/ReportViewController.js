@@ -6,7 +6,7 @@ angular.module('starter.controllers')
     //  $cordovaGoogleAnalytics.trackView('ReportViewController');
     //}
     $scope.current.view = 'reports_list';
-
+    $scope.test = "testng text";
     $scope.stores = Stores.get_list();
     $scope.report_type = $stateParams.reportType;
     updateReport();
