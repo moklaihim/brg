@@ -278,9 +278,11 @@ angular.module('starter.services')
                 }
                 if(type == "colors"){
                     if(code.commoncolor){
+                        code_id = "1"+code.name.toLowerCase();
                         colors[code_id] = new Object();
                         colors[code_id].id = "1"+code.name.toLowerCase();
                         colors[code_id].name = code.name.toUpperCase();
+                        colors[code_id].group = "common color"
                         colors.$save();
                     }else{
                     colors[code_id] = new Object();
@@ -312,9 +314,19 @@ angular.module('starter.services')
                     brands[code_id].target = code.target;
                 }
                 if(type == "colors"){
+                    if(code.commoncolor){
+                        code_id = "1"+code.name.toLowerCase();
+                        colors[code_id] = new Object();
+                        colors[code_id].id = "1"+code.name.toLowerCase();
+                        colors[code_id].name = code.name.toUpperCase();
+                        colors[code_id].group = "common color"
+                        colors.$save();
+                    }else{
                     colors[code_id] = new Object();
                     colors[code_id].id = code.name.toLowerCase();
                     colors[code_id].name = code.name.toUpperCase();
+                    colors.$save();
+                    }
                 }
                 if(type == "sizes"){
                     sizes[code] = new Object();
