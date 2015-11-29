@@ -1,0 +1,44 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+      <h1 class="title">{{current.store_name}} - Sales Report {{current.set_day}}/{{current.set_month}}/{{current.set_year}}</h1>
+    </ion-header-bar>
+    <ion-content class="padding">
+      <div class="list">
+        <label class="item">
+          <span >Total Qty
+          <i style="float:right">{{totalSalesQty}}</i>
+          </span>
+        </label>
+        <label class="item">
+          <span >Total Sales
+          <i style="float:right">{{totalSalesPrice | currency:"$"}}</i>
+          </span>
+        </label>
+        <button class="button button-full button-positive" ng-click="modal.hide()">Hide</button>
+      </div>
+      <!-- <div class="list card stable-bg">
+            <div class="item">
+                <h2>{{report_type | uppercase}} Daily Report for {{current.set_day}}/{{current.set_month}}/{{current.set_year}}</h2>
+            </div>
+            <div class="item item-body">
+                <p>
+                    <div ng-repeat="(key, sales) in sales4stores">
+                        <span ng-class="{report_sale_close: !sales.CLOSED}"><b>{{stores[key].name}} {{current.set_day}}/{{current.set_month}}/{{current.set_year}}</b></span> <span ng-class="{report_sale_close: !sales.CLOSED}" ng-show="!sales.CLOSED">( SALES NOT CLOSED )</span><br>
+                        <div ng-repeat="sale in sales">
+                            <span ng-show="sale.item != 'CLOSED'">{{sale.item}} ${{sale.retail_price}} * {{sale.discount_rate}}% = ${{sale.price}} | {{sale.promo_choice}} | {{sale.gift}}</i></span><br>
+                        </div>
+                        <span ng-repeat="(brand_id, brand_total) in brand_total4stores[key]">
+                          {{brand_id | uppercase}} Total: ${{brand_total}} Qty: {{brand_qty4stores[key][brand_id]}}pcs</br>
+                        </span>
+                        Total: ${{total4stores[key]}} Qty: {{qty4stores[key]}}pcs</br><br>
+                        <hr>
+                    </div>
+                    <span ng-repeat="(brand_id, brand_grandtotal) in brand_grandtotal">
+                      {{brand_id | uppercase}} Grand Total: ${{brand_grandtotal}} Qty: {{brand_grandqty[brand_id]}}pcs</br>
+                    </span>
+                    Grand Total: ${{grandtotal}} Qty: {{grandqty}}pcs</br><br>
+                </p>
+            </div> -->
+        </div>
+    </ion-content>
+  </ion-modal-view>
