@@ -1,5 +1,11 @@
 angular.module('starter.controllers')
-.controller('SaleListController', ["$scope", "$state", "Sales", "Users", "Env", "Logging", function($scope, $state, Sales, Users, Env, Logging) {
+.controller('SaleListController', ["$scope", "$state", "Sales", "Users", "Env", "Logging", "$ionicListDelegate", "$ionicModal", function($scope, $state, Sales, Users, Env, Logging, $ionicListDelegate, $ionicModal) {
+    $ionicModal.fromTemplateUrl('templates/sales_list_report_view.html', {
+        scope: $scope
+      }).then(function(modal) {
+        $scope.modal = modal;
+      });
+
     console.log("BRG Debug: SaleListController started");
     Logging.log2FB($scope.user_detail.email, "SaleListController started");
     //if(Env.isMobile()){
@@ -53,7 +59,7 @@ angular.module('starter.controllers')
     $scope.closeSales = function(){
         Logging.log2FB($scope.user_detail.email, "starts closeSales function in SaleListController");
         console.log("Close Sales");
-        Sales.close($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, $scope.user_detail.email, $scope.totalSalesQty);
+        Sales.close($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day, $scope.user_detail.email);
         updateSales();
         Logging.log2FB($scope.user_detail.email, "ends closeSales function in SaleListController");
     }
@@ -63,6 +69,9 @@ angular.module('starter.controllers')
         console.log("ReOpenSales");
         Sales.remove($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day,"CLOSED");
         updateSales();
+        // $state.go($state.current, {}, {reload: true});
+        // $window.location.reload(true);
+        // $ionicListDelegate.closeOptionButtons();
         Logging.log2FB($scope.user_detail.email, "ends reOpenSales function in SaleListController");
     }
 
@@ -76,7 +85,6 @@ angular.module('starter.controllers')
             var p_sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
             p_sales.then(function(sales_detail){
                 $scope.sales = sales_detail;
-
                 $scope.totalSalesQty = 0;
                 $scope.totalSalesPrice = 0;
                 angular.forEach($scope.sales, function(sale, key) {
@@ -87,13 +95,20 @@ angular.module('starter.controllers')
                   }
                 });
 
+                // var count = Object.keys($scope.sales).length; //to count and show total sales                
+                // console.log("Total Sales Qty is = " + (count-3))
+
                 if('CLOSED' in $scope.sales){
                     $scope.showSpinner = false;
                     $scope.salesClosed = true;
+                    $ionicListDelegate.canSwipeItems(false);
+                    //$scope.totalSalesQty--;
                     // $scope.CloseStyle = {"background-color":"#ffc900", "border-color":"#e6b500"}
                 }else{
                     $scope.showSpinner = false;
                     $scope.salesClosed = false;
+                    $ionicListDelegate.canSwipeItems(true);
+                    //$scope.totalSalesQty = count -3;
                     // $scope.CloseStyle = {"background-color":"#33cd5f", "border-color":"#28a54c"}
                 }
             });
@@ -101,6 +116,7 @@ angular.module('starter.controllers')
             $scope.showSelectStoreMsg = true;
         }
         Logging.log2FB($scope.user_detail.email, "ends updateSales function in SaleListController");
+        
     }
     
 
@@ -117,23 +133,24 @@ angular.module('starter.controllers')
             online_watch();
         }
     }, false);
+
+    
    
-   
-    var close_watch = $scope.$watch('sales.CLOSED', function(val){
+    // var close_watch = $scope.$watch('sales.CLOSED', function(val){
         
-        console.log("Sales changed");
+    //     console.log("Sales changed");
         
-        if($scope.salesClosed){
-            console.log("sale is already closed");
-            if(!('CLOSED' in $scope.sales)){
-                console.log("Open detected");
-                updateSales();
-           }
-        }else if($scope.sales && 'CLOSED' in $scope.sales){
-           console.log("Close detected");
-           updateSales();
-        }
+    //     if($scope.salesClosed){
+    //         console.log("sale is already closed");
+    //         if(!('CLOSED' in $scope.sales)){
+    //             console.log("Open detected");
+    //             updateSales();
+    //        }
+    //     }else if($scope.sales && 'CLOSED' in $scope.sales){
+    //        console.log("Close detected");
+    //        updateSales();
+    //     }
         
-    }, false);
+    // }, false);
 
 }])

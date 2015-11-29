@@ -11,6 +11,7 @@ angular.module('starter.controllers')
     $scope.colors = Codes.get_colors();
     $scope.sizes = Codes.get_sizes();
     $scope.promos = Codes.get_promos();
+    
 
 
     $scope.editCode = function(type, code_id) {
@@ -22,6 +23,7 @@ angular.module('starter.controllers')
 
       $scope.code.promo_discount = "";
       $scope.code.promo_sale_price = "";
+      $scope.code.commoncolor = false;
 
       var template = {
         'brands': '<div class="list">' + 
@@ -36,6 +38,12 @@ angular.module('starter.controllers')
           '<label class="item item-input item-floating-label">' + 
           '<span class="input-label">Color initial</span><input type="text" placeholder="Color initial" ng-model="code.name">' + 
           '</label>' + 
+          '<div class="item item-checkbox">' +
+          '<label class="checkbox">' +
+          '<input type="checkbox" ng-model="code.commoncolor">' +
+          '</label>' +
+          'Add to common' +
+          '</div>' +
           '</div>',
         'sizes': '<div class="list">' +
           '<label class="item item-input item-floating-label">' + 
@@ -108,11 +116,13 @@ angular.module('starter.controllers')
                 //don't allow the user to close unless he enters code name
                 e.preventDefault();
               } else {
+                // console.log("item checked = " + $scope.code.commoncolor)
                 Codes.add(type, $scope.code);
                 $scope.brands = Codes.get_brands();
                 $scope.colors = Codes.get_colors();
                 $scope.sizes = Codes.get_sizes();
                 $scope.promos = Codes.get_promos();
+
                 return;
               }
             }

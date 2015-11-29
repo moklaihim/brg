@@ -112,30 +112,30 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
             console.log("item COM selected")
             for (var i = 0; i < input.length; i++) {
                 var item = input[i];
-                if (/^BLK/i.test(item.name)) {
-                    console.log("item COM selected");
+                if (/^1/i.test(item.id)) {
+                    // console.log("item COM selected");
                     output.push(item);
                 }
-                if (/^BRN/i.test(item.name)) {
-                    console.log("item COM selected");
-                    output.push(item);
-                }
-                if (/^TAN/i.test(item.name)) {
-                    console.log("item COM selected");
-                    output.push(item);
-                }
+                // if (/^BRN/i.test(item.id)) {
+                //     // console.log("item COM selected");
+                //     output.push(item);
+                // }
+                // if (/^TAN/i.test(item.id)) {
+                //     // console.log("item COM selected");
+                //     output.push(item);
+                // }
             }
         }
         else if(filterLetters == "ABC"){
             for (var i = 0; i < input.length; i++) {
                 var item = input[i];
-                if (/a/i.test(item.name.substring(0, 1))) {
+                if (/a/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/b/i.test(item.name.substring(0, 1))) {
+                if (/b/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/c/i.test(item.name.substring(0, 1))) {
+                if (/c/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
             }
@@ -143,13 +143,13 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         else if(filterLetters == "DEF"){
             for (var i = 0; i < input.length; i++) {
                 var item = input[i];
-                if (/d/i.test(item.name.substring(0, 1))) {
+                if (/d/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/e/i.test(item.name.substring(0, 1))) {
+                if (/e/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/f/i.test(item.name.substring(0, 1))) {
+                if (/f/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
             }
@@ -157,13 +157,13 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         else if(filterLetters == "GHI"){
             for (var i = 0; i < input.length; i++) {
                 var item = input[i];
-                if (/g/i.test(item.name.substring(0, 1))) {
+                if (/g/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/h/i.test(item.name.substring(0, 1))) {
+                if (/h/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/i/i.test(item.name.substring(0, 1))) {
+                if (/i/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
             }
@@ -171,13 +171,13 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         else if(filterLetters == "JKL"){
             for (var i = 0; i < input.length; i++) {
                 var item = input[i];
-                if (/j/i.test(item.name.substring(0, 1))) {
+                if (/j/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/k/i.test(item.name.substring(0, 1))) {
+                if (/k/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/l/i.test(item.name.substring(0, 1))) {
+                if (/l/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
             }
@@ -185,13 +185,13 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         else if(filterLetters == "MNO"){
             for (var i = 0; i < input.length; i++) {
                 var item = input[i];
-                if (/m/i.test(item.name.substring(0, 1))) {
+                if (/m/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/n/i.test(item.name.substring(0, 1))) {
+                if (/n/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/o/i.test(item.name.substring(0, 1))) {
+                if (/o/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
             }
@@ -199,13 +199,13 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         else if(filterLetters == "PQR"){
             for (var i = 0; i < input.length; i++) {
                 var item = input[i];
-                if (/p/i.test(item.name.substring(0, 1))) {
+                if (/p/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/q/i.test(item.name.substring(0, 1))) {
+                if (/q/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/r/i.test(item.name.substring(0, 1))) {
+                if (/r/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
             }
@@ -213,13 +213,13 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         else if(filterLetters == "STU"){
             for (var i = 0; i < input.length; i++) {
                 var item = input[i];
-                if (/s/i.test(item.name.substring(0, 1))) {
+                if (/s/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/t/i.test(item.name.substring(0, 1))) {
+                if (/t/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/u/i.test(item.name.substring(0, 1))) {
+                if (/u/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
             }
@@ -227,13 +227,13 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         else if(filterLetters == "VWX"){
             for (var i = 0; i < input.length; i++) {
                 var item = input[i];
-                if (/v/i.test(item.name.substring(0, 1))) {
+                if (/v/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/w/i.test(item.name.substring(0, 1))) {
+                if (/w/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/x/i.test(item.name.substring(0, 1))) {
+                if (/x/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
             }
@@ -241,10 +241,10 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         else if(filterLetters == "YZ"){
             for (var i = 0; i < input.length; i++) {
                 var item = input[i];
-                if (/y/i.test(item.name.substring(0, 1))) {
+                if (/y/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
-                if (/z/i.test(item.name.substring(0, 1))) {
+                if (/z/i.test(item.id.substring(0, 1))) {
                     output.push(item);
                 }
             }
