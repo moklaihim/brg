@@ -3,11 +3,5 @@
 
 node_modules/
 platforms/
-plugins/cordova-plugin-splashscreen/
-plugins/cordova-plugin-whitelist/
-plugins/cordova-plugin-geolocation/
-plugins/de.appplant.cordova.plugin.email-composer/
-plugins/android.json
-plugins/fetch.json
-plugins/ios.json
+plugins/
 www/lib/
