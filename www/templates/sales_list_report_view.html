@@ -4,6 +4,16 @@
     </ion-header-bar>
     <ion-content class="padding">
       <div class="list">
+        <label class="item" ng-repeat="(brand_id, brand_sum) in brand_sums">
+          <h2>{{brand_id | uppercase}}
+            <span class="item-note">
+              <i style="float:right">Qty: {{brand_sum.qty}}</i>
+            </span>
+          </h2>
+          <p>
+            <span class="item-note">Total: {{brand_sum.total | currency:"$"}}</span>
+          </p>
+        </label>
         <label class="item">
           <span >Total Qty
           <i style="float:right">{{totalSalesQty}}</i>
@@ -38,7 +48,7 @@
                     </span>
                     Grand Total: ${{grandtotal}} Qty: {{grandqty}}pcs</br><br>
                 </p>
-            </div> -->
-        </div>
+            </div>
+          </div -->
     </ion-content>
-  </ion-modal-view>
+</ion-modal-view>

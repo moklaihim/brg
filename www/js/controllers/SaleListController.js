@@ -2,9 +2,9 @@ angular.module('starter.controllers')
 .controller('SaleListController', ["$scope", "$state", "Sales", "Users", "Env", "Logging", "$ionicListDelegate", "$ionicModal", function($scope, $state, Sales, Users, Env, Logging, $ionicListDelegate, $ionicModal) {
     $ionicModal.fromTemplateUrl('templates/sales_list_report_view.html', {
         scope: $scope
-      }).then(function(modal) {
+    }).then(function(modal) {
         $scope.modal = modal;
-      });
+    });
 
     console.log("BRG Debug: SaleListController started");
     Logging.log2FB($scope.user_detail.email, "SaleListController started");
@@ -13,7 +13,6 @@ angular.module('starter.controllers')
     //}
     $scope.current.view = 'sales_list';
     $scope.current.showAddItemBtn = '';
-
 
     $scope.getStore();
     $scope.users= Users.get_list();
@@ -85,12 +84,34 @@ angular.module('starter.controllers')
             var p_sales = Sales.get($scope.current.store_id, $scope.current.set_year, $scope.current.set_month, $scope.current.set_day);
             p_sales.then(function(sales_detail){
                 $scope.sales = sales_detail;
+                $scope.brand_qtys = new Object();
+                $scope.brand_totals = new Object();
+                $scope.brand_sums = new Object();
                 $scope.totalSalesQty = 0;
                 $scope.totalSalesPrice = 0;
                 angular.forEach($scope.sales, function(sale, key) {
                   if(key != "CLOSED"){
+                    var brand = sale.item.slice(0, sale.item.search(/\d/));
+                    var brand_id = brand.toLowerCase();
+                    if(brand_id == "sf"){
+                      brand_id = "f";
+                    }else if(brand_id == "sh"){
+                      brand_id = "h";
+                    }   
+
+                    if(!(brand_id in $scope.brand_sums)){
+                      $scope.brand_sums[brand_id] = new Object();
+                      $scope.brand_sums[brand_id]['qty'] = 0;
+                      $scope.brand_sums[brand_id]['total'] = 0;
+                    }
+
+                    $scope.brand_sums[brand_id]['qty']++;
+                    $scope.brand_sums[brand_id]['total'] += Number(sale.price);
+                    $scope.brand_sums[brand_id]['total'] = Math.floor($scope.brand_sums[brand_id]['total'] * 100 + 0.5)/100;
+
                     $scope.totalSalesQty++;
                     $scope.totalSalesPrice += Number(sale.price);
+                    $scope.totalSalesPrice = Math.floor($scope.totalSalesPrice * 100 + 0.5)/100;
                     console.log("Total price is = " + Number($scope.totalSalesPrice));
                   }
                 });
@@ -116,10 +137,8 @@ angular.module('starter.controllers')
             $scope.showSelectStoreMsg = true;
         }
         Logging.log2FB($scope.user_detail.email, "ends updateSales function in SaleListController");
-        
     }
     
-
     $scope.$on('changedDate', updateSales);
 
     var online_watch = $scope.$watch(Env.isOnline, function(val){
@@ -134,8 +153,6 @@ angular.module('starter.controllers')
         }
     }, false);
 
-    
-   
     // var close_watch = $scope.$watch('sales.CLOSED', function(val){
         
     //     console.log("Sales changed");
