@@ -87,18 +87,13 @@ angular.module('starter.controllers')
                   }
                 });
 
-                var count = Object.keys($scope.sales).length; //to count and show total sales                
-                console.log("Total Sales Qty is = " + (count-3))
-
                 if('CLOSED' in $scope.sales){
                     $scope.showSpinner = false;
                     $scope.salesClosed = true;
-                    //$scope.totalSalesQty--;
                     // $scope.CloseStyle = {"background-color":"#ffc900", "border-color":"#e6b500"}
                 }else{
                     $scope.showSpinner = false;
                     $scope.salesClosed = false;
-                    //$scope.totalSalesQty = count -3;
                     // $scope.CloseStyle = {"background-color":"#33cd5f", "border-color":"#28a54c"}
                 }
             });
