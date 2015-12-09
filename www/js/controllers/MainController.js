@@ -24,6 +24,7 @@ angular.module('starter.controllers')
         app_version: 'web 1.0.0',
         store_id: '',
         store_name: '',
+        store_short_name: '',
         today_year: '',
         today_month: '',
         today_day: '',
@@ -61,6 +62,7 @@ angular.module('starter.controllers')
         if(window.localStorage.getItem('store_date') == $scope.current.today_date){
             $scope.current.store_id = window.localStorage.getItem('store_id');
             $scope.current.store_name = window.localStorage.getItem('store_name');
+            $scope.current.store_short_name = window.localStorage.getItem('store_short_name');
             $scope.current.nearestStore = window.localStorage.getItem('brg_nearestStore');
         }
         Logging.log2FB($scope.user_detail.email, "ends getStore function in MainController");
@@ -73,6 +75,7 @@ angular.module('starter.controllers')
         if(window.localStorage.getItem('store_date') == $scope.current.today_date){
             $scope.current.store_id = window.localStorage.getItem('store_id');
             $scope.current.store_name = window.localStorage.getItem('store_name');
+            $scope.current.store_short_name = window.localStorage.getItem('store_short_name');
         }else{
             $state.go('main.stores_list');
         }

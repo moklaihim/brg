@@ -15,7 +15,7 @@
     <ion-content padding="false" ng-class="{'has-subheader': !isOnline()}">
         <ion-list>
             <ion-item class="ng-hide" ng-show="showInitialStoreSelectMsg"><center><b>Where are you today?</b></center></ion-item>
-            <ion-item ink class=ink" ng-repeat="store in stores_array | orderBy:'distance'" ng-click="selectStore(store.id, store.name)" <b>{{store.name}}</b><span style="float: right;">{{store.distance_disp}}</span></ion-item>
+            <ion-item ink class=ink" ng-repeat="store in stores_array | orderBy:'distance'" ng-click="selectStore(store.id, store.name, store.short_name)" <b>{{store.name}}</b><span style="float: right;">{{store.distance_disp}}</span></ion-item>
         </ion-list>
     </ion-content>
 </ion-view>

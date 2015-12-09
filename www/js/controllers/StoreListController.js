@@ -80,14 +80,16 @@ angular.module('starter.controllers')
     Logging.log2FB($scope.user_detail.email, "ends calcDistance function in StoreListController");
     }
 
-    $scope.selectStore = function(store_id, store_name){
+    $scope.selectStore = function(store_id, store_name, store_short_name){
         Logging.log2FB($scope.user_detail.email, "starts selectStore function in StoreListController");
         window.localStorage.setItem("store_date", $scope.current.today_date);
         window.localStorage.setItem("store_id", store_id);
         window.localStorage.setItem("store_name", store_name);
+        window.localStorage.setItem("store_short_name", store_short_name);
 
         $scope.current.store_id = store_id;
         $scope.current.store_name = store_name;
+        $scope.current.store_short_name = store_short_name;
 
         //console.log("CurrentStore set to id: " + $scope.current.store_id + " name: " + $scope.current.store_name);
         // $ionicHistory.goBack();
