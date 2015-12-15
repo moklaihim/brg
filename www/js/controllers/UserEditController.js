@@ -51,8 +51,15 @@ angular.module('starter.controllers')
         if(!$scope.user_detail.storeIC){
             $scope.user_detail.storeIC = "";
         }
-        $scope.showAlert("Notice", "User: " + $scope.user_detail.name + " Updated");
-        Users.edit($scope.user_detail);
+        if(Users.is_exist($scope.user_detail.email)){
+          $scope.showAlert("Notice", "User: " + $scope.user_detail.email + " is re-activated. New password will be sent to the email address.");
+          $scope.user_detail.id = Users.convert_email_2_id($scope.user_detail.email);
+          Users.edit($scope.user_detail);
+          Users.reset_pw($scope.user_detail.email);
+        }else{
+          $scope.showAlert("Notice", "User: " + $scope.user_detail.email + " Updated");
+          Users.edit($scope.user_detail);
+        }
         $state.go('main.users_list');
         Logging.log2FB($scope.user_detail.email, "ends ok function in UserEditController");
     };

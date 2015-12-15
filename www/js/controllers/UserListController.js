@@ -13,7 +13,7 @@ angular.module('starter.controllers')
     $scope.removeUser = function(user_id) {
         Logging.log2FB($scope.user_detail.email, "starts removeUser function in UserListController");
         console.log("remove user: " + user_id);
-        Users.remove(user_id);
+        Users.deactivate(user_id);
         Logging.log2FB($scope.user_detail.email, "ends removeUser function in UserListController");
     };
 

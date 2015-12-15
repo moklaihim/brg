@@ -11,7 +11,7 @@ angular.module('starter.services')
     }
 
     function convertEmail2Id(email){
-        return email.replace("@", "_").replace(/\./g, "_");
+        return email.toLowerCase().replace("@", "_").replace(/\./g, "_");
     }
 
     return {
@@ -21,6 +21,10 @@ angular.module('starter.services')
 
         offline: function(){
             is_online = false;
+        },
+
+        convert_email_2_id: function(email){
+            return convertEmail2Id(email);
         },
 
         get_list: function(){
@@ -110,7 +114,16 @@ angular.module('starter.services')
             }
         },
 
-        remove: function(user_id){
+        is_exist: function(email){
+          var user_id = convertEmail2Id(email);
+          if(user_id in users){
+            return true;
+          }else{
+            return false;
+          }
+        },
+
+        deactivate: function(user_id){
             if(is_online){
                 users[user_id].active = false;
                 users.$save();
