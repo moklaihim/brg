@@ -1,0 +1,28 @@
+{
+  "name": "angular-datepicker",
+  "license": "MIT",
+  "main": [
+    "./dist/index.js",
+    "./dist/index.css"
+  ],
+  "ignore": [
+    ".gitignore",
+    "README.md"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "angular": "1.2.14",
+    "angular-mocks": "1.2.14",
+    "angular-scenario": "1.2.14",
+    "angular-bootstrap": "~0.3.0"
+  },
+  "homepage": "https://github.com/unfedorg/angular-datepicker",
+  "_release": "ea7193b8e5",
+  "_resolution": {
+    "type": "commit",
+    "commit": "ea7193b8e5d7ee3d5266cbc5538f41994d2714cc"
+  },
+  "_source": "git://github.com/unfedorg/angular-datepicker.git",
+  "_target": "ea7193b8e5d7ee3d5266cbc5538f41994d2714cc",
+  "_originalSource": "unfedorg/angular-datepicker"
+}
