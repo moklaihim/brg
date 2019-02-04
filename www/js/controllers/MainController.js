@@ -202,7 +202,8 @@ angular.module('starter.controllers')
         if(val == true){
             //user_active_watch();
  
-            var p_user = Users.get_one(currentAuth.password.email, "email");
+            //var p_user = Users.get_one(currentAuth.password.email, "email");
+            var p_user = Users.get_one(currentAuth.email, "email");
             
             p_user.then(function(user_detail){
                 $scope.user_detail = user_detail;

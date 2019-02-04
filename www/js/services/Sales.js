@@ -28,8 +28,22 @@ angular.module('starter.services')
                     //console.log("key_tmp:" + key_tmp + ", store_id:" + store_id + ", year:" + year + ", month:" + month + ", day:" + day);
 
                     for (var key_ut in local_sales) {
-                        console.log("Adding https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key_ut);
-                        var fSale = new Firebase("https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key_ut);
+                        //console.log("Adding https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key_ut);                        
+                        // Mok Firebase SDK upgrade
+                        var config = {
+                            apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                            authDomain: "fiery-heat-6039.firebaseapp.com",
+                            databaseURL: "https://fiery-heat-6039.firebaseio.com"
+                        };
+
+                        var fSale = null;
+                        if (firebase.apps.length){
+                            fSale = firebase.database().ref("sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key_ut);
+                        } else {
+                            firebase.initializeApp(config);
+                            fSale = firebase.database().ref("sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key_ut);
+                        }    
+                        // Mok Firebase SDK upgrade   
                         var sale = $firebaseObject(fSale);
 
                         console.log("item_id:" + local_sales[key_ut].item + ", price:" + local_sales[key_ut].price + ", date:" + local_sales[key_ut].date + ", time:" + local_sales[key_ut].time + ", timestamp:" + local_sales[key_ut].timestamp);
@@ -57,8 +71,22 @@ angular.module('starter.services')
             is_online = false;
         },
         get: function(store_id, year, month, day){
-            if(is_online){
-                fSales = new Firebase("https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day);
+            if(is_online){                
+                // Mok Firebase SDK upgrade
+                var config = {
+                    apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                    authDomain: "fiery-heat-6039.firebaseapp.com",
+                    databaseURL: "https://fiery-heat-6039.firebaseio.com"
+                };
+
+                var fSales = null;
+                if (firebase.apps.length){
+                    fSales = firebase.database().ref("sales/" + store_id + "/" + year + "/" + month + "/" + day);
+                } else {
+                    firebase.initializeApp(config);
+                    fSales = firebase.database().ref("sales/" + store_id + "/" + year + "/" + month + "/" + day);
+                }    
+                // Mok Firebase SDK upgrade   
                 sales = $firebaseObject(fSales).$loaded();
 
             }else{
@@ -91,7 +119,21 @@ angular.module('starter.services')
             if(is_online){
 
                 console.log("Sale_key FAILED in Sales.js")
-                var fSale = new Firebase("https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + current_ut);
+                // Mok Firebase SDK upgrade
+                var config = {
+                    apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                    authDomain: "fiery-heat-6039.firebaseapp.com",
+                    databaseURL: "https://fiery-heat-6039.firebaseio.com"
+                };
+
+                var fSale = null;
+                if (firebase.apps.length){
+                    fSale = firebase.database().ref("sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + current_ut);
+                } else {
+                    firebase.initializeApp(config);
+                    fSale = firebase.database().ref("sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + current_ut);
+                }    
+                // Mok Firebase SDK upgrade   
                 var sale = $firebaseObject(fSale);
                 sale.item = item_id;
                 sale.price = sale_price;
@@ -131,7 +173,21 @@ angular.module('starter.services')
             var current_ut = now.getTime();
 
             if(is_online){
-                var fSale = new Firebase("https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key);
+                // Mok Firebase SDK upgrade
+                var config = {
+                    apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                    authDomain: "fiery-heat-6039.firebaseapp.com",
+                    databaseURL: "https://fiery-heat-6039.firebaseio.com"
+                };
+
+                var fSale = null;
+                if (firebase.apps.length){
+                    fSale = firebase.database().ref("sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key);
+                } else {
+                    firebase.initializeApp(config);
+                    fSale = firebase.database().ref("sales/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key);
+                }    
+                // Mok Firebase SDK upgrade   
                 var sale = $firebaseObject(fSale);
                 sale.$remove().then(function(fSale){
                     // Logging.log2FB($scope.user_detail.email, key + " removed from Firebase");
@@ -157,7 +213,21 @@ angular.module('starter.services')
             var update_day = now.getDate();
             if (update_day < 10) { update_day = '0' + update_day; }
 
-            var fSale = new Firebase("https://fiery-heat-6039.firebaseio.com/sales/" + store_id + "/" + year + "/" + month + "/" + day + "/CLOSED");
+            // Mok Firebase SDK upgrade
+            var config = {
+                apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                authDomain: "fiery-heat-6039.firebaseapp.com",
+                databaseURL: "https://fiery-heat-6039.firebaseio.com"
+            };
+
+            var fSale = null;
+            if (firebase.apps.length){
+                fSale = firebase.database().ref("sales/" + store_id + "/" + year + "/" + month + "/" + day + "/CLOSED");
+            } else {
+                firebase.initializeApp(config);
+                fSale = firebase.database().ref("sales/" + store_id + "/" + year + "/" + month + "/" + day + "/CLOSED");
+            }    
+            // Mok Firebase SDK upgrade   
             var sale = $firebaseObject(fSale);
 
             sale.item = "CLOSED";

@@ -22,8 +22,22 @@ angular.module('starter.services')
         },
 
         get_list: function(){
-            var fb_roles = "https://fiery-heat-6039.firebaseio.com/roles";
-            var fRoles = new Firebase(fb_roles);
+            //var fb_roles = "https://fiery-heat-6039.firebaseio.com/roles";
+            // Mok Firebase SDK upgrade
+            var config = {
+                apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                authDomain: "fiery-heat-6039.firebaseapp.com",
+                databaseURL: "https://fiery-heat-6039.firebaseio.com"
+            };
+
+            var fRoles = null;
+            if (firebase.apps.length){
+                fRoles = firebase.database().ref("roles");
+            } else {
+                firebase.initializeApp(config);
+                fRoles = firebase.database().ref("roles");
+            }    
+            // Mok Firebase SDK upgrade   
             roles = $firebaseObject(fRoles);
             //createSampleData();
             return roles;
@@ -32,8 +46,22 @@ angular.module('starter.services')
         get_one: function(role_id){
             var role = new Object();
             if(is_online){
-                var fb_role = "https://fiery-heat-6039.firebaseio.com/roles/" + role_id;
-                var fRole = new Firebase(fb_role);
+                //var fb_role = "https://fiery-heat-6039.firebaseio.com/roles/" + role_id;                
+                // Mok Firebase SDK upgrade
+                var config = {
+                    apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                    authDomain: "fiery-heat-6039.firebaseapp.com",
+                    databaseURL: "https://fiery-heat-6039.firebaseio.com"
+                };
+
+                var fRole = null;
+                if (firebase.apps.length){
+                    fRole = firebase.database().ref("roles/" + role_id);
+                } else {
+                    firebase.initializeApp(config);
+                    fRole = firebase.database().ref("roles/" + role_id);
+                }    
+                // Mok Firebase SDK upgrade   
 
                 fRole.on("value", function(snapshot) {
                     localStorage.setItem('brg_role_' + role_id, JSON.stringify(snapshot.val()));
