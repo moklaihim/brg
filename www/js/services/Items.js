@@ -4,7 +4,22 @@ angular.module('starter.services')
     var items = new Object();
     var items_array = new Array();
     var is_online;
-    var fItems_all = new Firebase("https://fiery-heat-6039.firebaseio.com/items");
+    // Mok Firebase SDK upgrade
+    var config = {
+        apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+        authDomain: "fiery-heat-6039.firebaseapp.com",
+        databaseURL: "https://fiery-heat-6039.firebaseio.com"
+    };
+
+    var fItems_all = null;
+    if (firebase.apps.length){
+        fItems_all = firebase.database().ref("items");
+    } else {
+        firebase.initializeApp(config);
+        fItems_all = firebase.database().ref("items");
+    }
+    // Mok Firebase SDK upgrade
+
     var isUpdated = false;
 
      function createInitialData(){
@@ -32,8 +47,24 @@ angular.module('starter.services')
             //items = $firebaseObject(fItems);
             //items_array = $firebaseArray(fItems);
             var fb_item_ver = 0;
-            var local_item_ver = localStorage.getItem('brg_items_ver');
-            var fVer = new Firebase("https://fiery-heat-6039.firebaseio.com/ver/items");
+            var local_item_ver = localStorage.getItem('brg_items_ver');            
+
+            // Mok Firebase SDK upgrade
+            var config = {
+                apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                authDomain: "fiery-heat-6039.firebaseapp.com",
+                databaseURL: "https://fiery-heat-6039.firebaseio.com"
+            };
+
+            var fVer = null;
+            if (firebase.apps.length){
+                fVer = firebase.database().ref("ver/items");
+            } else {
+                firebase.initializeApp(config);
+                fVer = firebase.database().ref("ver/items");
+            }
+            // Mok Firebase SDK upgrade
+
             //var itemVer = $firebaseObject(fVer);
 
             fVer.on("value", function(snapshot){
@@ -81,8 +112,23 @@ angular.module('starter.services')
               localStorage.setItem('brg_items', JSON.stringify(snapshot.val()));
               items = JSON.parse(localStorage.getItem('brg_items'));
               items_array = Object.keys(items).map(function(key) { return items[key] });
+              
+              // Mok Firebase SDK upgrade
+                var config = {
+                    apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                    authDomain: "fiery-heat-6039.firebaseapp.com",
+                    databaseURL: "https://fiery-heat-6039.firebaseio.com"
+                };
 
-              var fVer = new Firebase("https://fiery-heat-6039.firebaseio.com/ver/items");
+                var fVer = null;
+                if (firebase.apps.length){
+                    fVer = firebase.database().ref("ver/items");
+                } else {
+                    firebase.initializeApp(config);
+                    fVer = firebase.database().ref("ver/items");
+                }
+                // Mok Firebase SDK upgrade
+
               fVer.once("value", function(snapshot){
                 localStorage.setItem('brg_items_ver', snapshot.val());
               });
@@ -117,13 +163,41 @@ angular.module('starter.services')
             var current_ut = now.getTime();
 
             if(is_online){
-                if(key){
-                  // var fSale = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + store_id + "/" + year + "/" + month + "/" + day + "/" + key);
-                  var fItems_remove = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + key);
+                if(key){                  
+                    // Mok Firebase SDK upgrade
+                    var config = {
+                        apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                        authDomain: "fiery-heat-6039.firebaseapp.com",
+                        databaseURL: "https://fiery-heat-6039.firebaseio.com"
+                    };
+
+                    var fItems_remove = null;
+                    if (firebase.apps.length){
+                        fItems_remove = firebase.database().ref("items/" + key);
+                    } else {
+                        firebase.initializeApp(config);
+                        fItems_remove = firebase.database().ref("items/" + key);
+                    }
+                    // Mok Firebase SDK upgrade
+
                   var item = $firebaseObject(fItems_remove);
                   item.$remove().then(function(fItems_remove){
-                    console.log("Item" + key +"removed from server");
-                    var fVer = new Firebase("https://fiery-heat-6039.firebaseio.com/ver");
+                    console.log("Item" + key +"removed from server");                    
+                    // Mok Firebase SDK upgrade
+                    var config = {
+                        apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                        authDomain: "fiery-heat-6039.firebaseapp.com",
+                        databaseURL: "https://fiery-heat-6039.firebaseio.com"
+                    };
+
+                    var fVer = null;
+                    if (firebase.apps.length){
+                        fVer = firebase.database().ref("ver");
+                    } else {
+                        firebase.initializeApp(config);
+                        fVer = firebase.database().ref("ver");
+                    }
+                    // Mok Firebase SDK upgrade
                     fVer.set({
                         items: current_ut
                     });
@@ -154,17 +228,45 @@ angular.module('starter.services')
             if(item_id.indexOf(".") > -1){
                 fb_item_id = item_id.replace(/\./g, '_2E')
             }
-            console.log("item id is " + fb_item_id);
-            var fItems_add = new Firebase("https://fiery-heat-6039.firebaseio.com/items/" + fb_item_id);
+            console.log("item id is " + fb_item_id);    
+            // Mok Firebase SDK upgrade
+            var config = {
+                apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                authDomain: "fiery-heat-6039.firebaseapp.com",
+                databaseURL: "https://fiery-heat-6039.firebaseio.com"
+            };
 
+            var fItems_add = null;
+            if (firebase.apps.length){
+                fItems_add = firebase.database().ref("items/" + fb_item_id);
+            } else {
+                firebase.initializeApp(config);
+                fItems_add = firebase.database().ref("items/" + fb_item_id);
+            }
+            // Mok Firebase SDK upgrade
 
             if(is_online){
                 var item = $firebaseObject(fItems_add);
                 item.id = item_id;
                 item.retail_price = retail_price;
                 item.timestamp = current_ut;
-                item.$save().then(function(fItems_add){
-                    var fVer = new Firebase("https://fiery-heat-6039.firebaseio.com/ver");
+                item.$save().then(function(fItems_add){                    
+                    // Mok Firebase SDK upgrade
+                    var config = {
+                        apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                        authDomain: "fiery-heat-6039.firebaseapp.com",
+                        databaseURL: "https://fiery-heat-6039.firebaseio.com"
+                    };
+
+                    var fVer = null;
+                    if (firebase.apps.length){
+                        fVer = firebase.database().ref("ver");
+                    } else {
+                        firebase.initializeApp(config);
+                        fVer = firebase.database().ref("ver");
+                    }
+                    // Mok Firebase SDK upgrade    
+
                     fVer.set({
                         items: current_ut
                     });

@@ -16,7 +16,21 @@ angular.module('starter.services')
 .factory(serviceId, ['$http', 'Env', loggingService]);
 
 function loggingService($http, Env) {
-  var fLogs = new Firebase("https://fiery-heat-6039.firebaseio.com/logs/");
+  // Mok Firebase SDK upgrade
+  var config = {
+    apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+    authDomain: "fiery-heat-6039.firebaseapp.com",
+    databaseURL: "https://fiery-heat-6039.firebaseio.com"
+  };
+
+  var fLogs = null;
+  if (firebase.apps.length){
+      fLogs = firebase.database().ref("logs/");
+  } else {
+      firebase.initializeApp(config);
+      fLogs = firebase.database().ref("logs/");
+  }    
+  // Mok Firebase SDK upgrade
 
   var service = {
     log2FB: log2FB

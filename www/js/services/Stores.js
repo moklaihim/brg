@@ -40,8 +40,23 @@ angular.module('starter.services')
 
     return {
         online: function(){
-            var fb_path = "https://fiery-heat-6039.firebaseio.com/stores";
-            var fStores = new Firebase(fb_path);
+            //var fb_path = "https://fiery-heat-6039.firebaseio.com/stores";
+
+            // Mok Firebase SDK upgrade
+            var config = {
+                apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                authDomain: "fiery-heat-6039.firebaseapp.com",
+                databaseURL: "https://fiery-heat-6039.firebaseio.com"
+            };
+
+            var fStores = null;
+            if (firebase.apps.length){
+                fStores = firebase.database().ref("stores");
+            } else {
+                firebase.initializeApp(config);
+                fStores = firebase.database().ref("stores");
+            }    
+            // Mok Firebase SDK upgrade              
 
             fStores.on("value", function(snapshot) {
                 localStorage.setItem('brg_stores', JSON.stringify(snapshot.val()));
@@ -58,6 +73,7 @@ angular.module('starter.services')
         },
         offline: function(){
             stores = JSON.parse(localStorage.getItem('brg_stores'));
+            console.log("stores: ", stores);
             stores_array = Object.keys(stores).map(function(key) { return stores[key] });
         },
         get_list: function(){

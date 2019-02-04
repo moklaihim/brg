@@ -30,9 +30,15 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
 
     });
 
-    $rootScope.$on("$stateChangeError", function(event, next, previous, error) {
+    //$rootScope.$on("$stateChangeError", function(event, next, previous, error) {
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
         console.log("stateChangeError occured");
-        console.log(error);
+        console.log(event);
+        console.log(toState);
+        console.log(toParams);
+        console.log(fromState);
+        console.log(fromParams);
+        console.log("ERROR -- ", error);
         if (error === "AUTH_REQUIRED") {
           console.log("error is AUTH_REQUIRED");
           $state.go('login');
@@ -304,7 +310,7 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
         resolve: {
             "currentAuth": ["Auth", "$state", function(Auth, $state) {
                 console.log("BRG Debug: currentAuth started");
-                return Auth.getAuth().$requireAuth()
+                return Auth.getAuth().$requireSignIn()
                     .then(function(data){
                         return data;
                     }, function(){
@@ -313,7 +319,9 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'st
             }],
             "user": ["currentAuth", "Users", function(currentAuth, Users){
                 console.log("BRG Debug: user started");
-                return Users.get_one(currentAuth.password.email, "email");
+                console.log("currentAuth: ", currentAuth);
+                //return Users.get_one(currentAuth.password.email, "email");
+                return Users.get_one(currentAuth.email, "email");
             }],
             "role": ["Roles", "user", function(Roles, user){
                 console.log("BRG Debug: user started");

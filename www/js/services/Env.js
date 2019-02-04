@@ -16,9 +16,23 @@ angular.module('starter.services')
 
     return {
         conMon: function(){
-          // Logging.log2FB($scope.user_detail.email, "starts conMon function in Env.js service");
-          var connectedRef = new Firebase("https://fiery-heat-6039.firebaseIO.com/.info/connected");
+          // Logging.log2FB($scope.user_detail.email, "starts conMon function in Env.js service");          
+        // Mok Firebase SDK upgrade
+        var config = {
+            apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+            authDomain: "fiery-heat-6039.firebaseapp.com",
+            databaseURL: "https://fiery-heat-6039.firebaseio.com"
+        };
 
+        var connectedRef = null;
+        if (firebase.apps.length){
+            connectedRef = firebase.database().ref(".info/connected");
+        } else {
+            firebase.initializeApp(config);
+            connectedRef = firebase.database().ref(".info/connected");
+        }    
+        // Mok Firebase SDK upgrade
+        console.log("connectedRef: ", connectedRef, firebase.apps.length);
           connectedRef.on("value", function(snap) {
               // Logging.log2FB($scope.user_detail.email, "BRG Debug: connection status changed in Env.js service");
               // console.log("BRG Debug: connection status changed");
@@ -79,6 +93,7 @@ angular.module('starter.services')
             return isMobile;
         },
         isOnline: function(){
+            //console.log("isOnline: ", isOnline);
             // Logging.log2FB($scope.user_detail.email, "starts isOnline function in Env.js service");
             return isOnline;
         },

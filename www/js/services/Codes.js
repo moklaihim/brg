@@ -118,8 +118,20 @@ angular.module('starter.services')
     return {
         online: function(){
             //Logging.log2FB($scope.user_detail.email, "starts online function in Codes.js service");
+            // Mok Firebase SDK upgrade
+            var config = {
+                apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                authDomain: "fiery-heat-6039.firebaseapp.com",
+                databaseURL: "https://fiery-heat-6039.firebaseio.com"
+            };
+            
+            if (!firebase.apps.length){
+                firebase.initializeApp(config);
+            }    
+            // Mok Firebase SDK upgrade              
+
             console.log("Codes online started");
-            var fBrands= new Firebase("https://fiery-heat-6039.firebaseio.com/codes/brands");
+            var fBrands = firebase.database().ref("codes/brands");            
             fBrands.on("value", function(snapshot) {
                 localStorage.setItem('brg_brands', JSON.stringify(snapshot.val()));
             }, function (errorObject) {
@@ -130,8 +142,8 @@ angular.module('starter.services')
             }); 
             brands = $firebaseObject(fBrands);
             brands_array = $firebaseArray(fBrands);
-
-            var fColors= new Firebase("https://fiery-heat-6039.firebaseio.com/codes/colors");
+            
+            var fColors = firebase.database().ref("codes/colors");
             fColors.on("value", function(snapshot) {
                 localStorage.setItem('brg_colors', JSON.stringify(snapshot.val()));
             }, function (errorObject) {
@@ -142,8 +154,8 @@ angular.module('starter.services')
             }); 
             colors = $firebaseObject(fColors);
             colors_array = $firebaseArray(fColors);
-
-            var fSizes= new Firebase("https://fiery-heat-6039.firebaseio.com/codes/sizes");
+            
+            var fSizes = firebase.database().ref("codes/sizes");
             fSizes.on("value", function(snapshot) {
                 localStorage.setItem('brg_sizes', JSON.stringify(snapshot.val()));
             }, function (errorObject) {
@@ -154,8 +166,8 @@ angular.module('starter.services')
             }); 
             sizes = $firebaseObject(fSizes);
             sizes_array = $firebaseArray(fSizes);
-
-            var fPromos= new Firebase("https://fiery-heat-6039.firebaseio.com/codes/promos");
+            
+            var fPromos = firebase.database().ref("codes/promos");
             fPromos.on("value", function(snapshot) {
                 localStorage.setItem('brg_promos', JSON.stringify(snapshot.val()));
             }, function (errorObject) {
@@ -230,11 +242,22 @@ angular.module('starter.services')
 
         remove: function(type, code){
             //Logging.log2FB($scope.user_detail.email, "starts remove function in Codes.js service");
+            // Mok Firebase SDK upgrade
+            var config = {
+                apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+                authDomain: "fiery-heat-6039.firebaseapp.com",
+                databaseURL: "https://fiery-heat-6039.firebaseio.com"
+            };
+                        
+            // Mok Firebase SDK upgrade  
             if(is_online){
-                if(type == "sizes"){
-                    var fCodes = new Firebase("https://fiery-heat-6039.firebaseio.com/codes/" + type + "/" + code);
-                }else{
-                    var fCodes = new Firebase("https://fiery-heat-6039.firebaseio.com/codes/" + type + "/" + code.toLowerCase());
+                if (!firebase.apps.length){                
+                    firebase.initializeApp(config);                
+                }    
+                if(type == "sizes"){                    
+                    var fCodes = firebase.database().ref("codes/" + type + "/" + code);
+                }else{                    
+                    var fCodes = firebase.database().ref("codes/" + type + "/" + code.toLowerCase());
                 }
                 var code = $firebaseObject(fCodes);
                 code.$remove().then(function(fCodes){

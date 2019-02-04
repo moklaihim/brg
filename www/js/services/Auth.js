@@ -1,35 +1,51 @@
 angular.module('starter.services')
 .factory('Auth', ["$rootScope", "$timeout", "$firebaseAuth", "$firebaseObject", function($rootScope, $timeout, $firebaseAuth, $firebaseObject) {
-    var ref = new Firebase("https://fiery-heat-6039.firebaseIO.com/");
-    var auth = $firebaseAuth(ref);
+
+    // Mok Firebase SDK upgrade
+    var config = {
+        apiKey: "AIzaSyBy7hOHXlbrF-TkCBE8DxdG_y-KFfJqm0c",
+        authDomain: "fiery-heat-6039.firebaseapp.com",
+        databaseURL: "https://fiery-heat-6039.firebaseio.com"
+    };
+
+    var ref = null;
+    if (firebase.apps.length){
+        ref = firebase.database().ref();
+    } else {
+        firebase.initializeApp(config);
+        ref = firebase.database().ref();
+    }    
+    // Mok Firebase SDK upgrade
+
+    var auth = $firebaseAuth();
+    console.log("auth:", auth);
     var user = {}; 
 
     return {
         login: function(email, password, callback){
             console.log("BRG Debug: login started");
+            console.log(email, password)
             // Logging.log2FB($scope.user_detail.email, "starts login function in Auth.js service");
-            auth.$authWithPassword({
-                email: email,
-                password: password
-            }).then(function(res) {
-                console.log("BRG Debug: login succeeded");
-                user = res;
-                console.log(user);
-                if (callback) {
-                    $timeout(function() {
-                        callback(res);
-                    });
-                }
-            }, function(err) {
-                callback(err);
-            });
+            //firebase.auth().signInWithEmailAndPassword(email, password)
+            auth.$signInWithEmailAndPassword(email, password)
+                .then(res => {
+                    console.log("BRG Debug: login succeeded");
+                    user = res;
+                    console.log(user);
+                    if (callback) {
+                        $timeout(function() {
+                            callback(res);
+                        });
+                    }
+                })
+                .catch(err => callback(err));
             // Logging.log2FB($scope.user_detail.email, "ends login function in Auth.js service");
         },
 
         change_pw: function(email, old_password, new_password){
             // Logging.log2FB($scope.user_detail.email, "starts change_pw function in Auth.js service");
 
-            auth.$changePassword({
+            auth.$updatePassword({
                 email: email,
                 oldPassword: old_password,
                 newPassword: new_password
@@ -44,7 +60,7 @@ angular.module('starter.services')
         reset_pw: function(email){
             // Logging.log2FB($scope.user_detail.email, "starts reset_pw function in Auth.js service");
 
-            auth.$resetPassword({
+            auth.$sendPasswordResetEmail({
                 email: email
             });
             // Logging.log2FB($scope.user_detail.email, "ends reset_pw function in Auth.js service");
@@ -53,7 +69,7 @@ angular.module('starter.services')
         register: function(email, password, callback) {
             // Logging.log2FB($scope.user_detail.email, "starts register function in Auth.js service");
 
-            auth.$createUser({email: email, password: password}).then(function(res) {
+            auth.$createUserWithEmailAndPassword({email: email, password: password}).then(function(res) {
                 user = res;
                 if (callback) {
                     callback(res)

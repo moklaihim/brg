@@ -60,16 +60,16 @@ angular.module('starter.controllers')
         }
 
         Auth.login(real_email, $scope.user.password, function(res){
-            if (res.uid) {
-                if(res.password.isTemporaryPassword){
-                    console.log("Temporary Password");
-                    $scope.showPasswordChangeView = true;
-                }else{
+            if (res.user.uid) {
+                // if(res.password.isTemporaryPassword){
+                //     console.log("Temporary Password");
+                //     $scope.showPasswordChangeView = true;
+                // }else{
                     window.localStorage.setItem("brg_login_email", real_email);
                     window.localStorage.setItem("brg_login_password", $scope.user.password);
                     console.log("BRG Debug: Sending to sales list");
                     $state.go('main.sales_list');
-                }
+                //}
             } else {
                 $scope.showLoginView = true;
                 $ionicPopup.alert({
