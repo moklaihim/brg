@@ -60,7 +60,8 @@ angular.module('starter.controllers')
         }
 
         Auth.login(real_email, $scope.user.password, function(res){
-            if (res.user.uid) {
+            
+            if (res.user && res.user.uid) {
                 // if(res.password.isTemporaryPassword){
                 //     console.log("Temporary Password");
                 //     $scope.showPasswordChangeView = true;

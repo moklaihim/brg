@@ -138,7 +138,10 @@ angular.module('starter.controllers')
         Logging.log2FB($scope.user_detail.email, "starts showDatePicker function in MainController");
         var today_day = new Date();
         var max_date = new Date(today_day.getFullYear(), today_day.getMonth() + 1, today_day.getDate());
-        var min_date = new Date(today_day.getFullYear(), today_day.getMonth() - 1, today_day.getDate());
+        var min_date = new Date(today_day.getFullYear() - 1, today_day.getMonth() - 1, today_day.getDate());
+        // console.log("today_day: ", today_day);
+        // console.log("min_date: ", min_date);
+        // console.log("max_date: ", max_date);
         var myPopup = $ionicPopup.show({
             template: '<div date-picker="current.raw_new_set_date" view="date" max-view="date" min-view="date" min-date="' + min_date + '" max-date="' + max_date + '" auto-close="false"></div>',
             title: $scope.current.set_year,

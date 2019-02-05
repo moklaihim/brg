@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "BRG: An Ionic project",
   "dependencies": {
+    "cordova-android": "7.0.0",
     "elementtree": "^0.1.6",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
@@ -23,6 +24,7 @@
   },
   "cordovaPlugins": [
     "org.apache.cordova.splashscreen",
+    "de.appplant.cordova.plugin.email-composer",
     "cordova-plugin-geolocation",
     "cordova-plugin-whitelist",
     {
