@@ -22,9 +22,6 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.ionicframework.brg247533"
-    },
-    "ionic-plugin-deploy": {
-      "PACKAGE_NAME": "com.ionicframework.brg247533"
     }
   },
   "dependent_plugins": {}

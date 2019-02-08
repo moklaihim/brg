@@ -32,14 +32,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "ionic-plugin-deploy": {
-    "source": {
-      "type": "registry",
-      "id": "ionic-plugin-deploy"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-email-composer": {
     "source": {
       "type": "registry",
