@@ -127,28 +127,24 @@ angular.module('starter.controllers')
         });
         emailbody += "Grand total: $" + $scope.grandtotal + " Qty: " + $scope.grandqty + "pcs\n";
 
-        if(Env.isMobile()){
-            $cordovaEmailComposer.isAvailable().then(function() {
-                // is available
-                var email = {
-                    subject: subject,
-                    body: emailbody,
-                    isHtml: false
-                };
-                if(tos && tos.length > 4){
-                  email.to = tos.split(",");
-                }
-                if(ccs && tos.length > 4){
-                  email.cc = ccs.split(",");
-                }
+        
 
-                $cordovaEmailComposer.open(email).then(null, function () {
-                    // user cancelled email
+        if(Env.isMobile()){            
+            
+            cordova.plugins.email.requestPermission("cordova.plugins.email.permission.GET_ACCOUNTS", ()=>{
+                cordova.plugins.email.hasAccount(()=>{
+                    //console.log("in cordova.plugins.email.hasAccount");
+                    cordova.plugins.email.open({
+                        to:      (tos && tos.length > 4)?tos.split(","):"",
+                        cc:      (tos && ccs.length > 4)?tos.split(","):"",
+                        subject: subject,
+                        body:    emailbody
+                    }, ()=>{
+                        //console.log("view dismissed");
+                    });
                 });
-
-            }, function () {
-                // not available
-            });
+            });            
+                        
         }else{
             tos = tos.replace(" ","");
             window.location.href = "mailto:" + tos + "?cc=" + ccs + "&subject=" + subject + "&body=" + encodeURIComponent(emailbody);

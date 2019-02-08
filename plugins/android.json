@@ -10,6 +10,10 @@
     "cordova-plugin-app-version": {
       "PACKAGE_NAME": "com.ionicframework.brg247533"
     },
+    "cordova-plugin-email-composer": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.ionicframework.brg247533"
+    },
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "com.ionicframework.brg247533"
     },
@@ -17,9 +21,6 @@
       "PACKAGE_NAME": "com.ionicframework.brg247533"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.ionicframework.brg247533"
-    },
-    "de.appplant.cordova.plugin.email-composer": {
       "PACKAGE_NAME": "com.ionicframework.brg247533"
     },
     "ionic-plugin-deploy": {
