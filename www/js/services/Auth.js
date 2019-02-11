@@ -45,11 +45,7 @@ angular.module('starter.services')
         change_pw: function(email, old_password, new_password){
             // Logging.log2FB($scope.user_detail.email, "starts change_pw function in Auth.js service");
 
-            auth.$updatePassword({
-                email: email,
-                oldPassword: old_password,
-                newPassword: new_password
-            }).then(function(){
+            auth.$updatePassword(new_password).then(function(){
                 console.log("Password changed successfully!");
             }).catch(function(error) {
                 console.error("Error: ", error);
@@ -60,16 +56,14 @@ angular.module('starter.services')
         reset_pw: function(email){
             // Logging.log2FB($scope.user_detail.email, "starts reset_pw function in Auth.js service");
 
-            auth.$sendPasswordResetEmail({
-                email: email
-            });
+            auth.$sendPasswordResetEmail(email);
             // Logging.log2FB($scope.user_detail.email, "ends reset_pw function in Auth.js service");
         },
 
         register: function(email, password, callback) {
             // Logging.log2FB($scope.user_detail.email, "starts register function in Auth.js service");
 
-            auth.$createUserWithEmailAndPassword({email: email, password: password}).then(function(res) {
+            auth.$createUserWithEmailAndPassword(email, password).then(function(res) {
                 user = res;
                 if (callback) {
                     callback(res)
@@ -96,7 +90,7 @@ angular.module('starter.services')
 
         logout: function() {
             // Logging.log2FB($scope.user_detail.email, "starts logout function in Auth.js service");
-            auth.$unauth();
+            auth.$signOut();
             user = {}; 
             // Logging.log2FB($scope.user_detail.email, "ends logout function in Auth.js service");
         }   
